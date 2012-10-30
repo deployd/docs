@@ -61,10 +61,6 @@ app.get(/^\/docs\/(.+)$/, function (req, res) {
     , contents = info && info.contents
     , result = contents;
   
-  if(!result) {
-    return res.send(404);
-  }
-  
   req.locals.allDocs = buildLinks('docs');
   
   if(section) {
@@ -82,7 +78,7 @@ app.get(/^\/docs\/(.+)$/, function (req, res) {
     });
   }
   
-  var doc = md(result);
+  var doc = buildDoc(p);
   var docs = buildLinks('docs/' + p.replace('/' + path.basename(p), ''));
   
   res.render('doc.ejs', {doc: doc, docs: docs, current: 'docs/' + p})
@@ -147,18 +143,39 @@ function buildLinks(dir) {
       var d = {
         path: info.dir,
         files: buildLinks(info.dir),
-        title: formatTitle(info)
+        title: formatTitle(info),
+        url: '/' + dir + '#' + path.basename(info.dir)
       };
       results.push(d);
     } else if(path.dirname(info.file) === dir) {
       results.push({
         path: info.file,
+        url: '/' + dir + '#' + path.basename(info.file),
         title: formatTitle(info)
       });
     }
   });
   
   return results;
+}
+
+function buildDoc(dir) {
+  var doc = '';
+  Object.keys(app.docs).forEach(function (p) {
+    p = p.replace('docs/', '');
+    if(p.indexOf(dir) === 0) {
+      var f = path.basename(p);
+      var info = app.docs['docs/' + p];
+      doc += '\n\n<a name="' + f + '"></a>\n\n';
+      if(~p.indexOf('.md')) {
+        doc += '<div class="doc">\n';
+        doc += md(info.contents);
+        doc += '\n</div>\n';
+      }
+    }
+  });
+  
+  return doc;
 }
 
 function formatTitle(info) {

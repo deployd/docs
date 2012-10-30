@@ -1,13 +1,15 @@
 <%
+function isShallow(d) {
+  return d.path.split('/').length < 3;
+}
 
 function dir(d) {
-
-    if(d.files) {
+    if(isShallow(d) && d.files) {
       %>
         <ul class="nav nav-list">
       <%
       %><li class="nav-header"><%= d.title %></li><%
-      d.files.forEach(dir);
+        d.files.forEach(dir);
       %>
         </ul>
       <%
@@ -17,7 +19,7 @@ function dir(d) {
 }
 
 function file(f, active) {
-  %><li class="<%= active ? 'active' : '' %>"><a href="/<%= f.path %>"><%= f.title %></a></li><%
+  %><li class="<%= active ? 'active' : '' %>"><a href="<%= f.url %>"><%= f.title %></a></li><%
 }
 
 if(data.docs) dir({files: data.docs, title: data.docs.title, path: data.docs.path});

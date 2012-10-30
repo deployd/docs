@@ -1,7 +1,25 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body, p {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
 }
-a {
-  color: #00B7FF;
+
+.doc {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: solid 1px #eee;
+}
+
+p {
+  margin: 20px 0;
+}
+
+h2 {
+  padding-bottom: 0.25em;
+  border-bottom: #363535 1px solid;
+}
+
+h3, h4, h5 {
+  margin-top: 20px;
 }

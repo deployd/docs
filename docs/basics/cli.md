@@ -2,7 +2,7 @@
   title: 'The "dpd" command line tool'
 }-->
 
-### Using the dpd command line tool.
+## Using the dpd command line tool.
 
 Here is the help output of `dpd -h`:
 
