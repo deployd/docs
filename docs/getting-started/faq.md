@@ -11,7 +11,7 @@ Yes. See the [deploying to your own server](../server/deploying.md) guide for mo
 
 ### Can I use Deployd without the JavaScript library? (e.g. for mobile apps)
 
-Yes, you can use Deployd as a JSON API [over HTTP](../data/accessing-collections/over-http).
+Yes, you can use Deployd as a JSON API [over HTTP](../data/accessing-collections/over-http.md).
 
 ### Can I use Deployd with front-end frameworks like Backbone, AngularJS, Ember, Knockout, etc?
 

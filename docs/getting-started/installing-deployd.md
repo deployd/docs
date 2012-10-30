@@ -7,7 +7,7 @@
 
 ### Mac
 
-Download the latest OSX installer [here](http://deployd.com/download.html).
+Download the [latest OSX installer](http://deployd.com/download.html).
 
 If everything installed correctly you should be able to open a terminal (/Applications/Utilities/Terminal.app) and type the following:
 
@@ -27,7 +27,7 @@ The terminal is not able to find the `dpd` program. There are a couple things yo
  
 ### Windows
 
-Download the latest Windows installer [here](http://deployd.com/download.html).
+Download the [latest Windows installer](http://deployd.com/download.html).
 
 To verify that Deployd installed correctly, open a command prompt (Windows-R, cmd) and type `dpd -V`. You should see a version number such as `0.6.8`.
     
