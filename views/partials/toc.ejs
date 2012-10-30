@@ -1,0 +1,25 @@
+<%
+
+function dir(d) {
+
+    if(d.files) {
+      %>
+        <ul class="nav nav-list">
+      <%
+      %><li class="nav-header"><%= d.title %></li><%
+      d.files.forEach(dir);
+      %>
+        </ul>
+      <%
+    } else {
+      file(d, d.path === locals.data.current);
+    }
+}
+
+function file(f, active) {
+  %><li class="<%= active ? 'active' : '' %>"><a href="/<%= f.path %>"><%= f.title %></a></li><%
+}
+
+if(data.docs) dir({files: data.docs, title: data.docs.title, path: data.docs.path});
+
+%>

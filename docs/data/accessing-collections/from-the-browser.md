@@ -1,3 +1,8 @@
+<!--{
+  title: 'From the Browser',
+  tags: ['reference', 'collection', 'http', 'websockets', 'cors']
+}-->
+
 ## Accessing Collections - From the Browser 
 
 This guide outlines the various ways you can access Collections from a browser.

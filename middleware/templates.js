@@ -5,6 +5,7 @@ var ejs = require('ejs')
 module.exports = function (views) {
   return function (req, res, next) {
     req.layout = 'layouts/global.ejs';
+    req.locals = {};
     res.render = function (view, data) {
       
       read(view, function (err, contents) {
@@ -13,7 +14,13 @@ module.exports = function (views) {
         var body = render(contents, data);
         read(req.layout, function (err, contents) {
           if(err) return next(err);
-          res.send(render(contents, {body: body}));
+          var data = {body: body};
+          Object.keys(req.locals).forEach(function (k) {
+            console.log(k);
+            data[k] = req.locals[k];
+          });
+          
+          res.send(render(contents, data));
         });
       });
     }
@@ -40,7 +47,7 @@ module.exports = function (views) {
   }
   
   function script(f) {
-    src = '<script src="' + path.join('javascripts', f + '.js') + '"></script>';
+    src = '<script src="' + '/javascripts' + '/' + f + '.js' + '"></script>';
     return render(src);
   }
 }

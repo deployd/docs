@@ -1,35 +1,6 @@
 var md = require('node-markdown').Markdown
   , path = require('path'); 
 
-app.get('/', function (req, res) {
-  res.render('index.ejs', {content: app.content, docs: buildLinks('docs')});
-});
-
-app.get(/^\/docs\/(.+)$/, function (req, res) {
-  var path = req.params[0]
-    , info = app.docs['docs/' + path]
-    , section = req.param('section')
-    , contents = info.contents
-    , result = contents;
-  
-  if(section) {
-    result = '';
-    getLines(contents).forEach(function (line) {
-      if(result) {
-        if(line[0] === '#') {
-          return false;
-        }
-        result += line;
-        result += '\n';
-      } else if(line && line[0] === '#' && ~line.toLowerCase().indexOf(section.toLowerCase())) {
-        result = line;
-      }
-    })
-  }
-  
-  res.send(md(result));
-});
-
 app.get('/search', function (req, res) {
   var q = req.param('q');
   var results = app.index.search(q);
@@ -79,6 +50,44 @@ app.get('/search', function (req, res) {
   res.send(results);
 });
 
+app.get('/', function (req, res) {
+  res.render('index.ejs', {content: app.content, docs: buildLinks('docs')});
+});
+
+app.get(/^\/docs\/(.+)$/, function (req, res) {
+  var p = req.params[0]
+    , info = app.docs['docs/' + p]
+    , section = req.param('section')
+    , contents = info && info.contents
+    , result = contents;
+  
+  if(!result) {
+    return res.send(404);
+  }
+  
+  req.locals.allDocs = buildLinks('docs');
+  
+  if(section) {
+    result = '';
+    getLines(contents).forEach(function (line) {
+      if(result) {
+        if(line[0] === '#') {
+          return false;
+        }
+        result += line;
+        result += '\n';
+      } else if(line && line[0] === '#' && ~line.toLowerCase().indexOf(section.toLowerCase())) {
+        result = line;
+      }
+    });
+  }
+  
+  var doc = md(result);
+  var docs = buildLinks('docs/' + p.replace('/' + path.basename(p), ''));
+  
+  res.render('doc.ejs', {doc: doc, docs: docs, current: 'docs/' + p})
+});
+
 app.get('/complete/:input', function (req, res) {
   var input = req.param('input');
   var terms = [];
@@ -97,7 +106,7 @@ app.get('/complete/:input', function (req, res) {
       terms.push({
         value: section,
         rank: 20,
-        url: app.index.sections[section].file + '?section=' + section
+        url: '/' + app.index.sections[section].file + '?section=' + section
       });
     }
   });
@@ -108,10 +117,31 @@ app.get('/complete/:input', function (req, res) {
 });
 
 function buildLinks(dir) {
-  var results = [];
+  var results = []
+    , indexInfo = app.docs[path.join(dir, 'index.json')]
+    , index = indexInfo && indexInfo.json
+    , files = Object.keys(app.docs)
+    , dirInfo = app.docs[dir];
+    
+  if(dirInfo) {
+    results.path = dir;
+    results.title = formatTitle(dirInfo);
+  } else if(dir === 'docs') {
+    results.path = dir;
+    results.title = 'Deployd Docs';
+  }
+     
+  if(Array.isArray(index)) {
+    files = index;
+  }
   
-  Object.keys(app.docs).forEach(function (p) {
+  files.forEach(function (p) {
     var info = app.docs[p];
+    
+    if(!info) {
+      console.error('cannot buildLinks for', p);
+      return;
+    }
     
     if(info.dir && path.dirname(info.dir) === dir) {
       var d = {

@@ -89,6 +89,21 @@ Index.prototype.parse = function (info) {
     var re = /<!\-\-({(?:.|\n(?!-->))*})\-\->/;
     var matches = contents.match(re);
     var metaStr = matches && matches[1];
+    if(info.file.match(/\.json$/)) {
+      try {
+        info.json = JSON.parse(info.contents);
+      } catch(e) {
+        console.error('error parsing ', info.file, e);
+      }
+      
+      var dir = info.file.replace(path.basename(info.file), '')
+      if(Array.isArray(info.json)) {
+        for(var i = 0; i < info.json.length; i++) {
+          info.json[i] = dir + info.json[i];
+        }
+      }
+    }
+    
     if(metaStr) {
       try {
         info.meta = eval('(' + metaStr + ')');

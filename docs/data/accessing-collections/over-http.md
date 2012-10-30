@@ -1,5 +1,5 @@
 <!--{
-  title: 'Accessing Collections - Over HTTP',
+  title: 'Over HTTP',
   tags: ['reference', 'collection', 'http', 'websockets', 'cors']
 }-->
 

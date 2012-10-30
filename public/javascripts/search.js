@@ -6,7 +6,6 @@ function SearchCtrl($scope, $http, $sanitize) {
   $scope.current = 0;
   
   $('#search form').keydown(function (e) {
-    console.log(e.keyCode);
     switch(e.keyCode) {
       case 9: // tab
         e.preventDefault();
@@ -40,7 +39,6 @@ function SearchCtrl($scope, $http, $sanitize) {
   $scope.select = function () {
     $scope.query = $scope.input;
     var current = $scope.terms[$scope.current];
-    console.log(current);
     if(current && current.active && current.url) {
       window.location = current.url;
     } else {
