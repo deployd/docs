@@ -109,7 +109,6 @@ app.get('/complete/:input', function (req, res) {
 
 function buildLinks(dir) {
   var results = [];
-  
   Object.keys(app.docs).forEach(function (p) {
     var info = app.docs[p];
     
