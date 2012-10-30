@@ -6,9 +6,16 @@ var fs = require('fs')
   , natural = require('natural')
   , stem = natural.PorterStemmer.stem;
 
+// The developers of findit refuse to support windows; walkdir is an API-compatible replacement
+if (process.platform === 'win32') {
+  findit = require('walkdir');
+} 
+
 /**
  * Builds an in memory index of all doc content...
  */
+
+
  
 function Index() {
   this.cache = {};
