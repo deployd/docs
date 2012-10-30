@@ -29,11 +29,26 @@ The terminal is not able to find the `dpd` program. There are a couple things yo
 
 Download the latest Windows installer [here](http://deployd.com/download.html).
 
-    TODO
+To verify that Deployd installed correctly, open a command prompt (Windows-R, cmd) and type `dpd -V`. You should see a version number such as `0.6.8`.
     
 #### Troubleshooting
 
-    TODO
+##### "'dpd' is not recognized as an internal or external command"
+
+Windows is unable to find the `dpd` command line tool. There are a couple of things you can try:
+
+ - restart the command line or open a new `cmd` window
+ - Add the Deployd path to your PATH variabe ([instructions](http://www.computerhope.com/issues/ch000549.htm))
+  - For 64-bit systems, use the path `C:\Program Files (x86)\Deployd\bin`
+  - For 32-bit systems, use the path `C:\Program Files\Deployd\bin`.
+
+##### "'$' is not recognized as an internal or external command"
+
+`$` is not part of the syntax for the `dpd` command; it's only used as a placeholder for the command prompt throughout the Deployd documentation. If you see something like this:
+
+`$ dpd create my-app`
+
+You only need to type `dpd create my-app`.
     
 ### From NPM
 
