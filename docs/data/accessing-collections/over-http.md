@@ -36,7 +36,7 @@ First we need a basic constructor and request method.
         options.url = url + (options.url || '');
     
         if(res.statusCode >= 400) {
-          err = body || {message: 'an unkown error occured'};
+          err = body || {message: 'an unknown error occured'};
           return fn(err);
         }
     
