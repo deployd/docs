@@ -29,12 +29,19 @@ module.exports = function (views) {
   }
 
   function partial(view, data) {
-    var tmpl = fs.readFileSync(path.join(views, view));
+    var tmpl = fs.readFileSync(path.join(views, 'partials', view + '.ejs'));
+    if(tmpl) tmpl = tmpl.toString();
     return render(tmpl, data);
   }
 
   function render(template, data) {
-    return ejs.render(template, {body: data.body || '', data: data || {}, partial: partial});
+    data = data || {};
+    return ejs.render(template, {body: data.body || '', data: data || {}, partial: partial, script: script});
+  }
+  
+  function script(f) {
+    src = '<script src="' + path.join('javascripts', f + '.js') + '"></script>';
+    return render(src);
   }
 }
 

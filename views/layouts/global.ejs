@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="docs">
   <head>
     <title>Deployd</title>
     <link href='/css/prettify.css' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
-    
-    <link href="/css/app.css" rel='stylesheet' type='text/css'>
+
+    <link href="/stylesheets/bootstrap.css" rel='stylesheet' type='text/css'>
+    <link href="/stylesheets/app.css" rel='stylesheet' type='text/css'>
+    <%- script('libs/angular') %>
+    <%- script('libs/angular-sanitize') %>
+    <%- script('libs/jquery-1.8.2') %>
+    <%- script('libs/bootstrap') %>
   </head>
 
   <body>
+    <%- partial('search') -%>
+  
     <%- body %>
   </body>
 </html>

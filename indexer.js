@@ -13,6 +13,18 @@ var fs = require('fs')
 function Index() {
   this.cache = {};
   this.pending = 0;
+  this.terms = {};
+  this.sections = {};
+  
+  this.on('end', function () {
+    // clean terms
+    var terms = this.terms;
+    Object.keys(terms).forEach(function (t) {
+      if(terms[t] < 2) {
+        delete terms[t];
+      }
+    });
+  });
 }
 util.inherits(Index, EventEmitter);
 module.exports = Index;
@@ -45,7 +57,7 @@ Index.prototype.build = function () {
   var index = this
     , cache = index.cache
     , files = [];
-    
+  
   Object.keys(cache).forEach(function (k) {
     if(cache.hasOwnProperty(k)) {
       var info = cache[k];
@@ -59,7 +71,11 @@ Index.prototype.build = function () {
   files.forEach(function (info) {
     fs.readFile(info.file, function (err, contents) {
       info.contents = contents.toString();
-      index.parse(info);
+      try {
+        index.parse(info);
+      } catch(e) {
+        console.error('could not parse', info.file, e);
+      }
       if(--pending === 0) {
         index.emit('end', index.cache);
       }
@@ -69,8 +85,9 @@ Index.prototype.build = function () {
 
 Index.prototype.parse = function (info) {
   if(info.contents) {
+    var contents = info.contents;
     var re = /<!\-\-({(?:.|\n(?!-->))*})\-\->/;
-    var matches = info.contents.match(re);
+    var matches = contents.match(re);
     var metaStr = matches && matches[1];
     if(metaStr) {
       try {
@@ -79,24 +96,68 @@ Index.prototype.parse = function (info) {
         console.error(e);
       }
     }
-    
-    var lines = info.contents.split(/\n/g);
+    contents = contents.replace(re, '');
+    info.contents = contents;
+    var lines = contents.split(/\n/g);
     var keywords = info.keywords = {};
     
     for(var l = 0; l < lines.length; l++) {
       var tokenizer = new natural.WordTokenizer();
-      var tokens = tokenizer.tokenize(lines[l]);
-    
+      // replace contents of [links](http://foo) with just content.
+      var line = lines[l].replace(/\[(.+)\]\(.+\)/g, '$1');
+      if(line[0] === '#') {
+        this.addSection(line, info);
+      }
+      
+      var tokens = tokenizer.tokenize(line);
       for(var i = 0; i < tokens.length; i++) {
+        this.addTerm(tokens, i);
         var s = stem(tokens[i]);
+        if(s) s = s.toLowerCase();
         keywords[s] = keywords[s] || {lines: []};
-        keywords[s].lines.push(l);
+        if(keywords[s].lines) {
+          keywords[s].lines.push(l); 
+        }
       }
     }
   }
 }
 
+Index.prototype.addSection = function (line, info) {
+  line = line.toLowerCase();
+  line = line.replace(/#+\s+/, '');
+  this.sections[line] = this.sections[line] || {};
+  this.sections[line].file = info.file;
+}
+
+Index.prototype.addTerm = function (tokens, i) {
+  var terms = this.terms;
+  var term = tokens[i];
+  
+  function add(t) {
+    t = t.toLowerCase();
+    terms[t] = terms[t] || 0;
+    terms[t]++;
+  }
+  
+  function next(n) {
+    var p = [];
+    for(var j = i; j < tokens.length && j < i + n; j++) {
+      p.push(tokens[j]);
+    }
+    
+    return p.join(' ');
+  }
+  
+  var phrase = next(2);
+  var longPhrase = next(3);
+  add(term);
+  add(phrase);
+  add(longPhrase);
+}
+
 Index.prototype.search = function (query) {
+  query = query.toLowerCase();
   var tokenizer = new natural.WordTokenizer();
   var tokens = tokenizer.tokenize(query);
   var keywords = {};
@@ -104,7 +165,9 @@ Index.prototype.search = function (query) {
   var matches = [];
   
   tokens.forEach(function (t) {
-    keywords[stem(t)] = true; 
+    var s = stem(t);
+    if(s) s = s.toLowerCase();
+    keywords[s] = true; 
   });
   
   var totalKeywords = Object.keys(keywords).length;
@@ -113,14 +176,23 @@ Index.prototype.search = function (query) {
     var info = cache[k];
     var matchingKeywords = 0;
     var match;
-    
+    var tags = info.meta && info.meta.tags;
     
     if(info.keywords) {
       Object.keys(info.keywords).forEach(function (kw) {
+        // match on keywords
         if(keywords[kw]) {
           matchingKeywords++;
           match = match || new Match(keywords, info);
-          match.add(kw, info.keywords[kw].lines);
+          if(info.keywords[kw] && info.keywords[kw].lines) {
+            match.add(kw, info.keywords[kw].lines);
+          }
+        }
+      
+        // match on tags
+        if(tags) {
+          tags.indexOf(keywords[kw] > -1);
+          match = match || new Match(keywords, info);
         }
       });
       
@@ -134,21 +206,12 @@ Index.prototype.search = function (query) {
   
   if(matches && matches.length) {
     matches.forEach(function (m) {
-      if(m.locations) {
-        Object.keys(m.locations).forEach(function (line) {
-          results.push({
-            line: line,
-            matches: m.locations[line].length,
-            file: m.info.file,
-            meta: m.info.meta
-          })
-        })
-      }
+      results.push(m.toResult());
     });
   }
   
   return results.sort(function (a, b) {
-    return a.matches > b.matches ? -1 : 1;
+    return a.score > b.score ? -1 : 1;
   });
 }
 
@@ -165,4 +228,44 @@ Match.prototype.add = function (keyword, lines) {
     locations[l] = locations[l] || [];
     locations[l].push(keyword);
   });
+}
+
+Match.prototype.score = function () {
+  var tags = this.info.tags;
+  var tagScore = 0;
+  
+  if(tags && tags.length) {
+    tags.forEach(function (t) {
+      if(this.query[stem(t)]) tagScore++;
+    });
+  }
+  
+  var lineScore = Object.keys(this.locations).length;
+
+  return (tagScore * 10) + lineScore;
+}
+
+Match.prototype.toResult = function () {
+  var m = this;
+  var max = Object.keys(m.query).length;
+  
+  Object.keys(m.locations).forEach(function (l) {
+    var found = 0;
+    var kws = m.locations[l];
+    
+    
+    Object.keys(m.query).forEach(function (kw) {
+      if(kws.indexOf(kw) > -1) found++;
+    });
+    
+    
+    if((found / max) <= 0.5) delete m.locations[l];
+  });
+  
+  return {
+    file: m.info.file,
+    meta: m.info.meta,
+    locations: m.locations,
+    score: this.score()
+  }
 }
