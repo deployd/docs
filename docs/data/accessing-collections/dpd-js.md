@@ -25,7 +25,7 @@ Examples:
     dpd.users
     dpd.todolists
 
-**Note**: If your Collection name has a dash in it (e.g. `/todo-lists`), the dash is removed when accessing it in this way (e.g. `dpd.todolists`).
+*Note: If your Collection name has a dash in it (e.g. `/todo-lists`), the dash is removed when accessing it in this way (e.g. `dpd.todolists`).*
 
 You can also access your collection by using `dpd(collectionName)` as a function.
 
@@ -35,7 +35,7 @@ Examples:
     dpd('users')
     dpd('todo-lists')
 
-**Note**: Collections accessed in this way will not have helper functions besides `get`, `post`, `put`, `del`, and `exec` (see [Accessing Custom Resources](../../extensions/accessing-custom-resources.md) for details on these generic functions)
+*Note: Collections accessed in this way will not have helper functions besides `get`, `post`, `put`, `del`, and `exec` (see [Accessing Custom Resources](../../extensions/accessing-custom-resources.md) for details on these generic functions)*
 
 
 ### Collection API
@@ -242,30 +242,80 @@ You can also use the syntax `.del(query, fn)` if `object` has an `id` property. 
 
 `result` will always be null.
 
+### Realtime API
 
 #### dpd.on(event, fn)
 
+The `dpd.on(event, fn)` function listens for realtime events emitted from the server. See [Scripting Collections with Events](../scripting-collection-with-events.md) for information on sending realtime events with the `emit()` function.
 
+* `event` - The name of the event to listen for
+* `fn` - Callback `function(eventData)`. Called every time the event is received. There is no `error` argument.
 
+<!--seperate-->
 
-<!-- 
-### Examples
+    // Listen for a new todo
+    dpd.on('todos:create', function(post) {
+      // Do something
+    });
 
-The following examples use a Collection that was created at `/todos` and have the following schema.
+In your Collection Event:
 
+    // On Post
+    emit('todos:create', this); 
 
+Calling `.on()` on the collection itself will namespace the event by the collection name:
+  
+    // Same as dpd.on('todos:create', fn)
+    dpd.todos.on('create', function(post) {
+      // Do something
+    });
 
-### Backbone.js
+#### dpd.off(event, [fn])
 
-### Angular.js
+The `dpd.off(event)` function stops listening for the specified event.
 
-### jQuery
+    dpd.off('todos:create');
 
-### CORS
+You can also provide a function that was originally set as a listener to remove only that function.
 
-Deployd sends all the required CORS headers by default to any domain (though this will become a setting in an upcoming version). The most common bug when implementing a CORS client for Deploy is to include headers that are not allowed. A client must not send any custom headers besides the following:
+    function onTodoCreated(post) {
+      // Do something
+    }
 
+    dpd.on('todos:create', onTodoCreated);
 
-    Origin, Accept, Accept-Language, Content-Language, Content-Type, Last-Event-ID
+    dpd.off('todos:create', onTodoCreated);
 
--->
+Calling `.off()` on the collection itself will namespace the event by the collection name:
+
+    // Same as dpd.off('todos:create');
+    dpd.todos.off('create');
+
+#### dpd.once(event, fn)
+
+The `dpd.once(event, fn)` function listens for a realtime event emitted by the server and runs the `fn` callback exactly once.
+
+    dpd.once('todos:create', function(post) {
+      // Do something
+    });
+
+Calling `.once()` on the collection itself will namespace the event by the collection name:
+
+    // Same as dpd.once('todos:create');
+    dpd.todos.once('create', function(post) {
+      // Do something
+    });
+
+#### dpd.socketReady(fn)
+
+The `dpd.socketReady(fn)` function waits for a connection to be established to the server and executes the `fn` callback with no arguments. If a connection has already been established, it will execute the `fn` callback immediately. 
+
+It can sometimes take a second or more to establish a connection, and events sent during this time will not be received by your front end. This function is useful for ensuring that you will receive an event when it is broadcast.
+
+    dpd.socketReady(function() {
+      // Do something
+    });
+
+#### dpd.socket
+
+The `dpd.socket` object is a [socket.io](http://socket.io/#how-to-use) object. This is useful if you want to finely control how events are received.

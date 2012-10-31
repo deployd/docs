@@ -70,7 +70,9 @@ The `$fields` command allows you to include or exclude properties from your resu
     {
       $fields: {email: 0}
     }
+
 <!--...-->
+
     // Only include the "title" property
     {
       $fields: {title: 1}

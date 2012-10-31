@@ -239,8 +239,7 @@ The examples below show how to use various JavaScript front-end libraries to acc
       }
     })
 
-**Note**: When providing a request body, jQuery defaults to form encoding. Deployd works best with a JSON body, so you'll need to set the contentType option and manually convert to JSON.
-
+*Note: When providing a request body, jQuery defaults to form encoding. Deployd works best with a JSON body, so you'll need to set the contentType option and manually convert to JSON.*
 
 #### [Backbone.js](http://backbonejs.org)
 
