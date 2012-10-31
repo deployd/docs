@@ -211,14 +211,14 @@ Deployd uses [Socket.io](http://socket.io/#home) for its realtime functionality.
 
 The Socket.io community has created client libraries for other languages and platforms as well.
 
-### Cross-Origin Requests
 
-Deployd sends all the required CORS headers by default to any domain. The most common bug when implementing a CORS client for Deploy is to include headers that are not allowed. A client must not send any custom headers besides the following:
+### Root Requests
 
+You can elevate your session to root access by adding the header `dpd-ssh-key`. It must have the value of your app's key (you can find this by typing `dpd showkey` into the command line). In the `development` environment, the header can have any value.
 
-    Origin, Accept, Accept-Language, Content-Language, Content-Type, Last-Event-ID
+Sending a request as root has several effects. Most notably, you can use the `{$skipEvents: true}` property in either the query string or request body. This will cause events not to run. This is useful for bypassing authentication or validation. 
 
-This will not work on browsers that do not support Cross-Origin Resource Sharing (namely Internet Explorer 7 and below).
+Your front-end app should never gain root access, and you should never store the app's key in a place where it can be accessed by users, even if they understand the system. This is primarily useful for writing data management utilities for yourself, other developers, and system administrators.
 
 ### Examples
 
@@ -330,3 +330,13 @@ Using [ngResource](http://docs.angularjs.org/api/ngResource.$resource):
     }
 
     myApp.controller('Controller', Controller);
+
+
+### Cross-Origin Requests
+
+Deployd sends all the required CORS headers by default to any domain. The most common bug when implementing a CORS client for Deploy is to include headers that are not allowed. A client must not send any custom headers besides the following:
+
+
+    Origin, Accept, Accept-Language, Content-Language, Content-Type, Last-Event-ID
+
+This will not work on browsers that do not support Cross-Origin Resource Sharing (namely Internet Explorer 7 and below).
