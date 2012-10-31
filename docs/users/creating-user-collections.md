@@ -7,7 +7,7 @@
 
 # User Collection
 
-A User Collection extends a [Collection](/..data/creating-collections.md), adding the functionality needed to authenticate users with your app.
+A User Collection extends a [Collection](/..data/creating-collections.md), adding the functionality needed to authenticate users with your app. You can create one by choosing "User Collection" when adding a Resource.
 
 ## Properties
 
@@ -16,4 +16,8 @@ User Collections can have the same properties as a Collection, with two addition
 - `username` - The user's identifier; must be unique.
 - `password` - An encrypted password. It can never be retreived from the database, only queried against.
 
-In addition to the above These properties can only be modified 
+In addition to the above constraints, these properties can only be modified by:
+
+- A session authenticated as that user
+- An internal request, such as a call from an event.
+- A root request
