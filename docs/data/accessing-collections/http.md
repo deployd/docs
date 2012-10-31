@@ -200,6 +200,17 @@ You can omit the `id` in the path if you provide it in the query string:
 
 The response body will always be empty.
 
+### Realtime API
+
+Deployd uses [Socket.io](http://socket.io/#home) for its realtime functionality. If you are not using dpd.js, you can use the [Socket.io client library](https://github.com/LearnBoost/socket.io-client/blob/master/dist/socket.io.js). 
+
+    var socket = io.connect('/'); // Or io.connect('http://my-app.deploydapp.com')
+    socket.on('todos:create', function(todo) {
+      // Do something
+    });
+
+The Socket.io community has created client libraries for other languages and platforms as well.
+
 ### Cross-Origin Requests
 
 Deployd sends all the required CORS headers by default to any domain. The most common bug when implementing a CORS client for Deploy is to include headers that are not allowed. A client must not send any custom headers besides the following:
