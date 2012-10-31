@@ -51,37 +51,20 @@ app.get('/search', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-  res.render('index.ejs', {content: app.content, docs: buildLinks('docs')});
+  var root = app.index.root();
+  
+  res.render('index.ejs', {rootInfo: root});
 });
 
 app.get(/^\/docs\/(.+)$/, function (req, res) {
   var p = req.params[0]
-    , info = app.docs['docs/' + p]
-    , section = req.param('section')
-    , contents = info && info.contents
-    , result = contents;
-  
-  req.locals.allDocs = buildLinks('docs');
-  
-  if(section) {
-    result = '';
-    getLines(contents).forEach(function (line) {
-      if(result) {
-        if(line[0] === '#') {
-          return false;
-        }
-        result += line;
-        result += '\n';
-      } else if(line && line[0] === '#' && ~line.toLowerCase().indexOf(section.toLowerCase())) {
-        result = line;
-      }
-    });
-  }
-  
-  var doc = buildDoc(p);
-  var docs = buildLinks('docs/' + p.replace('/' + path.basename(p), ''));
-  
-  res.render('doc.ejs', {doc: doc, docs: docs, current: 'docs/' + p})
+    , info = app.docs['docs/' + p];
+
+  res.render('browser.ejs', {info: info, include: req.param('include')});
+});
+
+app.get('/docs', function (req, res) {
+  res.redirect('/');
 });
 
 app.get('/complete/:input', function (req, res) {
@@ -112,88 +95,26 @@ app.get('/complete/:input', function (req, res) {
   }).slice(0,4));
 });
 
-function buildLinks(dir) {
-  var results = []
-    , indexInfo = app.docs[path.join(dir, 'index.json')]
-    , index = indexInfo && indexInfo.json
-    , files = Object.keys(app.docs)
-    , dirInfo = app.docs[dir];
-    
-  if(dirInfo) {
-    results.path = dir;
-    results.title = formatTitle(dirInfo);
-  } else if(dir === 'docs') {
-    results.path = dir;
-    results.title = 'Deployd Docs';
-  }
-     
-  if(Array.isArray(index)) {
-    files = index;
-  }
-  
-  files.forEach(function (p) {
-    var info = app.docs[p];
-    
-    if(!info) {
-      console.error('cannot buildLinks for', p);
-      return;
-    }
-    
-    if(info.dir && path.dirname(info.dir) === dir) {
-      var d = {
-        path: info.dir,
-        files: buildLinks(info.dir),
-        title: formatTitle(info),
-        url: '/' + dir + '#' + path.basename(info.dir)
-      };
-      results.push(d);
-    } else if(path.dirname(info.file) === dir) {
-      results.push({
-        path: info.file,
-        url: '/' + dir + '#' + path.basename(info.file),
-        title: formatTitle(info)
-      });
-    }
-  });
-  
-  return results;
-}
-
 function buildDoc(dir) {
   var doc = '';
   Object.keys(app.docs).forEach(function (p) {
     p = p.replace('docs/', '');
-    if(p.indexOf(dir) === 0) {
-      var f = path.basename(p);
+    if(p.indexOf(dir) === 0 && p !== dir) {
+      var f = path.basename(p).replace(path.extname(p), '');
       var info = app.docs['docs/' + p];
+      doc += '<div id="'+ f +'" class="doc">\n';
       doc += '\n\n<a name="' + f + '"></a>\n\n';
-      if(~p.indexOf('.md')) {
-        doc += '<div class="doc">\n';
+      
+      if(info.file) {
         doc += md(info.contents);
-        doc += '\n</div>\n';
+      } else {
+        doc += buildDoc(info.dir);
       }
+      doc += '\n</div>\n';
     }
   });
   
   return doc;
-}
-
-function formatTitle(info) {
-  var meta = info.meta;
-  var title = (meta && meta.title) || info.file || info.dir;
-  title = path.basename(title);
-  title = title.replace(path.extname(title), '');
-  title = title.replace(/-/g, ' ');
-  return title;
-}
-
-function getLine(file, line) {
-  var info = app.docs[file];
-  var contents = info && info.contents;
-  
-  if(contents) {
-    return getLines(contents)[line];
-  }
 }
 
 function formatPreview(query, str) {
@@ -208,20 +129,4 @@ function formatPreview(query, str) {
   });
   
   return str;
-}
-
-function getSecion(file, line) {
-  var info = app.docs[file];
-  var contents = info && info.contents;
-  var lines = getLines(contents);
-  var i = line;
-  while(i--) {
-    var line = lines[i];
-    if(line && line.indexOf('#') === 0) return line;
-  }
-  return false;
-}
-
-function getLines(contents) {
-  return contents.split(/\n/g);
 }

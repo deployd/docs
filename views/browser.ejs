@@ -1,0 +1,22 @@
+<div id="bar">
+  <%- partial('search', {info: data.info}) %>
+  <%- partial('breadcrumb', {info: data.info}) %>
+</div>
+
+<div class="row">
+  <div class="span3">
+    <%- partial('explorer', {info: data.info}) %>
+  </div>
+  <div class="span9">
+    <% if(data.info.dir && data.include === 'all') { %>
+      <%
+        var children = data.info.children();
+      %>
+      <% children && children.forEach(function (c) { %>
+        <%- partial('contents', {info: c}) %>
+      <% }) %>
+    <% } else { %>
+      <%- partial('contents', {info: data.info}) %>
+    <% } %>
+  </div>
+</div>

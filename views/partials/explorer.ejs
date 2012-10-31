@@ -1,0 +1,18 @@
+<%
+  var info = data.info;
+  var parent = info.file ? info.parent() : info;
+  var children = parent.children();
+%>
+
+<div id="explorer">
+  <div id="current-folder">
+    <a href="<%= parent.url() %>"><i class="icon-folder-open"></i> <%= parent.title() %></a>
+    -
+    <a href="<%= parent.url() %>?include=all">View All</a>
+  </div>
+  <ul id="files" class="nav">
+    <% children && children.forEach(function (c) { %>
+      <li> <a href="<%= c.url() %>"><i class="icon-<%= (c.dir ? 'folder-close' : 'file') %>"></i> <span><%= c.title() %></span></a></li>
+    <% }) %>
+  </ul>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+  <%- partial('subnav', {info: data.info, current: data.current}) %>
+  <div id="section" class="span8">
+    <%
+      data.info.children().forEach(function (info) {
+        var children = info.children();
+        
+        if(children) {
+          children.forEach(function (info) {
+            %><%- partial('doc', {info: info}) %><%
+          });
+        } else {
+          %><%- partial('doc', {info: info}) %><%
+        }
+      });
+    %>
+  </div>
+  <%- partial('related') %>
+</div>

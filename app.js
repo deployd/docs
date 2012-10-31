@@ -18,7 +18,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(require('./middleware/templates')(path.join(__dirname, 'views')));
-require('./routes');
+  require('./routes');
   app.use(app.router);
   app.use(require('less-middleware')({ src: __dirname + '/public' }));
   app.use(express.static(path.join(__dirname, 'public')));
@@ -32,7 +32,7 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
-var Index = require('./indexer');
+var Index = require('./lib/indexer');
 var index = app.index = new Index();
 index.crawl('docs', function (cache) {
   app.docs = cache;

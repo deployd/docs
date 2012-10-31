@@ -1,1 +1,18 @@
-<%- partial('toc', {docs: data.docs}) -%>
+<div id="index">
+  <%- partial('toc', {info: data.rootInfo}) -%>
+</div>
+
+<script>
+(function () {
+  var maxHeight = 0;
+  var $els = $('#index ul.nav ul.nav');
+  $els.each(function () {
+    var h = $(this).height();
+    if(h > maxHeight) {
+      maxHeight = h;
+    }
+  });
+
+  $els.height(maxHeight);
+})()
+</script>

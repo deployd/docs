@@ -1,9 +1,11 @@
 <div id="subnav" class="span3">
-  <%- partial('search') -%>
-  <ul class="nav nav-list">
-    <li class="nav-header">Deployd v0.6.8 Docs</li>
-    <li><a href="/">Table of Contents</a></li>
-  </ul>
+  <div data-spy="affix">
+    <%- partial('search') -%>
+    <ul class="nav nav-list">
+      <li class="nav-header">Deployd v0.6.8 Docs</li>
+      <li><a href="/"><i class="icon-align-justifyicon-align-justify"></i> Table of Contents</a></li>
+    </ul>
   
-  <%- partial('toc', {docs: data.docs, current: data.current}) -%>
+    <%- partial('toc', {info: data.info, current: data.current}) -%>
+  </div>
 </div>

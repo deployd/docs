@@ -1,0 +1,18 @@
+<%
+var crumbs = [];
+var info = data.info;
+var c = info;
+var p;
+while(p = c.parent()) {
+  crumbs.push(p);
+  c = p;
+}
+crumbs = crumbs.reverse();
+%>
+
+<ul id="breadcrumb" class="unstyled">
+<% crumbs.forEach(function (c) { %>
+  <li><a href="<%= c.url() %>"><%= c.title() %></a><span>/</span></li>
+<% }); %>
+  <li><%= info.title() %></li>
+</ul>

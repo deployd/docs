@@ -1,0 +1,8 @@
+<% 
+  var index = data.info.dir && data.info.index();
+%>
+<% if(index) { %> 
+  <%- index.html() %>
+<% } else { %>
+  <%- data.info.html() %>  
+<% } %>

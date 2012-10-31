@@ -1,8 +1,104 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import "../../bootstrap/less/bootstrap.less";
+
+/**
+ * --- Global Styles ---
+ */
+
+/**
+ * Navs
+ */
+
+ul.nav li a {
+  text-transform: capitalize;
 }
 
-a {
-  color: #00B7FF;
+/**
+ * Bar
+ */
+
+#bar {
+  line-height: 40px;
+  margin-top: 20px;
+}
+
+/**
+ * Search
+ */
+
+#search {
+  float: right;
+}
+
+/**
+ * Breadcrumb
+ */
+ 
+#breadcrumb {
+  text-transform: capitalize;
+  font-size: 18px;
+  span {
+    margin: 0 10px;
+  }
+  li {
+    display: inline-block;
+  }
+}
+
+/**
+ * Subnav
+ */
+ 
+#subnav {
+  .affix {
+    width: 218px;
+    margin: 30px 0 0 0;
+  }
+}
+
+/**
+ * Doc
+ */
+
+.doc {
+  padding-top: 9px;
+  h2 {
+    border-bottom: solid 1px @gray;
+  }
+  margin-bottom: 222px;
+  p {
+    margin: 20px 0;
+  }
+}
+
+/**
+ * --- View Specific Styles ---
+ */
+ 
+/**
+ * Index
+ */
+ 
+#index ul.nav ul.nav {
+  .well();
+  width: 243px;
+  float: left;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+/**
+ * Explorer
+ */
+ 
+#explorer {
+  a {text-transform: capitalize;}
+  #files {
+    margin-left: 10px;
+    li {
+      .clearfix();
+      margin-top: 10px;
+    }
+    i {display: block; float: left; width: 20px; margin-top: 2px;}
+    span {display: block; width: 182px; float: left;}
+  }
 }
