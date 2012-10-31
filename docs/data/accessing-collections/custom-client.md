@@ -1,9 +1,9 @@
 <!--{
-  title: 'Over HTTP',
+  title: 'Building a Custom Client',
   tags: ['reference', 'collection', 'http', 'websockets', 'cors']
 }-->
 
-## Accessing Collections - Over HTTP
+## Accessing Collections - Building a Custom Client
 
 In this guide we will build an HTTP client from scratch to perform CRUD as well as listen for events from a Collection.
 

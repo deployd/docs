@@ -54,4 +54,4 @@ For more control, you can create a simple script to run the server. Here's an ex
       });
     });
 
-*Note:* Some hosts do not support WebSockets, so `dpd.on()` may not work correctly on certain deployments.
+*Note: Some hosts do not support WebSockets, so `dpd.on()` may not work correctly on certain deployments.*
