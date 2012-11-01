@@ -5006,10 +5006,25 @@ body > .container > .row {
   background: #fff;
 }
 /**
+ * Highlight
+ */
+.highlight {
+  font-weight: bold;
+}
+/**
  * Search
  */
 #search {
   float: right;
+}
+#search-results #no-results {
+  font-size: 18px;
+}
+#search-results .result {
+  margin-bottom: 30px;
+}
+#search-results .result h5 {
+  margin-bottom: 0;
 }
 /**
  * Breadcrumb

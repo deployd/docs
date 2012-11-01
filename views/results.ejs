@@ -1,0 +1,71 @@
+<div id="bar" data-spy="affix">
+  <%- partial('search', data) %>
+  <ul id="breadcrumb" class="unstyled">
+    <li>Search Results</li>
+  </ul>
+</div>
+
+
+<div id="search-results" class="row">
+  <% if(data.sections.length) { %>
+    <div class="span<%= data.references.length ? 8 : 12 %>">
+      <ul class="sections unstyled">
+        <% data.sections.forEach(function (result) { %>
+          <li class="result">
+            <h5 class="result-title">
+            <a href="<%= result.section.url(data.q) %>">
+              <% var ptitle = result.section.parent && result.section.parent.title;
+              if(ptitle) { %>
+                <%= ptitle %> -
+              <% } %>
+              <%= result.section.title %>
+              (<%= result.score %>)
+            </a>
+            </h5>
+            <% if(result.preview) {%>
+              <div class="result-preview">
+                <%- result.preview %>
+              </div>
+            <% } %>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+
+  <% if(data.references.length) { %>
+    <div id="reference-results" class="span<%= data.sections.length ? 4 : 12 %>">
+      <h5>Quick Reference</h5>
+      <ul class="references unstyled">
+        <% data.references.forEach(function (r) { %>
+          <li class="reference-result">
+            <h5 class="ref-title">
+              <a href="<%= r.section.url() %>">
+                <%= r.section.title %> (<%= r.score %>)
+              </a>
+            </h5>
+            <div class="example">
+              <%- r.section.exampleHtml() %>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+  
+  <% if(data.references.length + data.sections.length === 0) { %>
+    <div id="no-results">
+      <p>Your search - <%= data.q %> - did not match any documents.<p>
+
+      <strong>Suggestions:</strong>
+
+      <ul>
+        <li>Make sure all words are spelled correctly.</li>
+        <li>Try different keywords.</li>
+        <li>Try more general keywords.</li>
+        <li>Try fewer keywords.</li>
+      </ul>
+      
+    </div>
+  <% } %>
+</div>

@@ -75,7 +75,7 @@ function SearchCtrl($scope, $http, $sanitize) {
     if(cur < 0) cur = terms.length - 1;
     terms[cur].active = true;
     $scope.current = cur;
-    $scope.input = terms[cur].value;
+    $scope.input = terms[cur].reference || terms[cur].title;
   }
   
   $scope.change = function () {
@@ -95,17 +95,9 @@ function SearchCtrl($scope, $http, $sanitize) {
     var q = $scope.query;
     $scope.current = 0;
     
-    if($scope.query) {
-      $http({method: 'GET', url: '/search?q=' + q})
-        .success(function (data) {
-          $scope.results = data;
-        });
-    } else {
-      $scope.results = [];
-      $scope.terms = [];
-    }
+    window.location = '/search?q=' + q;
   }
   
-  $scope.foo = '<strong>bar</strong>';
   
+  $scope.input = $('#search-input').val();
 }

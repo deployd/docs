@@ -3,33 +3,13 @@
     background: red;
   }
 </style>
-
 <div id="search" ng-controller="SearchCtrl" class="pull-right">
   <form>
-    <input id="search-input" type="text" placeholder="search" ng-change="change()" ng-model="input" />
+    <input value="<%= data.q || '' %>" placeholder="search" id="search-input" type="text" ng-change="change()" ng-model="input" />
   </form>
   <ul id="search-terms" class="typeahead" ng-show="terms.length">
     <li ng-repeat="term in terms" class="{{ term.active && 'active' }}">
-      {{ term.value }}
-    </li>
-  </ul>
-  <ul id="search-results" ng-show="results.length && query">
-    <li class="result-item" ng-repeat="item in results">
-      <h2 class="result-title"><a href="{{item.file}}">{{item.meta.title}}</a></h2>
-      <ul>
-        <li ng-repeat="section in item.previews">
-          <h3 class="result-section">
-            <a href="/{{item.file}}?section={{section.title}}">
-              {{section.title}}
-            </a>
-          </h3>
-          <ul>
-            <li ng-repeat="preview in section.matches">
-              <div ng-bind-html="preview.html"></div>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      {{ term.title || term.reference }}
     </li>
   </ul>
 </div>
