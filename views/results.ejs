@@ -5,67 +5,53 @@
   </ul>
 </div>
 
-
-<div id="search-results" class="row">
-  <% if(data.sections.length) { %>
-    <div class="span<%= data.references.length ? 8 : 12 %>">
-      <ul class="sections unstyled">
-        <% data.sections.forEach(function (result) { %>
-          <li class="result">
-            <h5 class="result-title">
-            <a href="<%= result.section.url(data.q) %>">
-              <% var ptitle = result.section.parent && result.section.parent.title;
-              if(ptitle) { %>
-                <%= ptitle %> -
-              <% } %>
-              <%= result.section.title %>
-              (<%= result.score %>)
+<% if(data.results.length) { %> 
+  <div id="search-results" class="row">
+    <% data.results.forEach(function () {
+      <% if(r.reference) { %>
+        <li class="reference-result">
+          <h5 class="ref-title">
+            <a href="<%= r.section.url() %>">
+              <%= r.section.title %> (<%= r.score %>)
             </a>
-            </h5>
-            <% if(result.preview) {%>
-              <div class="result-preview">
-                <%- result.preview %>
-              </div>
+          </h5>
+          <div class="example">
+            <%- r.section.exampleHtml() %>
+          </div>
+        </li>
+      <% } else {
+        <li class="result">
+          <h5 class="result-title">
+          <a href="<%= r.section.url(data.q) %>">
+            <% var ptitle = r.section.parent && r.section.parent.title;
+            if(ptitle) { %>
+              <%= ptitle %> -
             <% } %>
-          </li>
-        <% }) %>
-      </ul>
-    </div>
-  <% } %>
-
-  <% if(data.references.length) { %>
-    <div id="reference-results" class="span<%= data.sections.length ? 4 : 12 %>">
-      <h5>Quick Reference</h5>
-      <ul class="references unstyled">
-        <% data.references.forEach(function (r) { %>
-          <li class="reference-result">
-            <h5 class="ref-title">
-              <a href="<%= r.section.url() %>">
-                <%= r.section.title %> (<%= r.score %>)
-              </a>
-            </h5>
-            <div class="example">
-              <%- r.section.exampleHtml() %>
+            <%= r.section.title %>
+            (<%= r.score %>)
+          </a>
+          </h5>
+          <% if(r.preview) {%>
+            <div class="result-preview">
+              <%- r.preview %>
             </div>
-          </li>
-        <% }) %>
-      </ul>
-    </div>
-  <% } %>
-  
-  <% if(data.references.length + data.sections.length === 0) { %>
-    <div id="no-results">
-      <p>Your search - <%= data.q %> - did not match any documents.<p>
+          <% } %>
+        </li>  
+      <% } %>
+    <% }) %>
+  </div>
+<% } else { %>
+  <div id="no-results">
+    <p>Your search - <%= data.q %> - did not match any documents.<p>
 
-      <strong>Suggestions:</strong>
+    <strong>Suggestions:</strong>
 
-      <ul>
-        <li>Make sure all words are spelled correctly.</li>
-        <li>Try different keywords.</li>
-        <li>Try more general keywords.</li>
-        <li>Try fewer keywords.</li>
-      </ul>
+    <ul>
+      <li>Make sure all words are spelled correctly.</li>
+      <li>Try different keywords.</li>
+      <li>Try more general keywords.</li>
+      <li>Try fewer keywords.</li>
+    </ul>
       
-    </div>
-  <% } %>
-</div>
+  </div>
+<% } %>
