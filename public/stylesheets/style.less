@@ -1,5 +1,9 @@
 @import "../../bootstrap/less/bootstrap.less";
 
+body > .container > .row {
+  padding-top: 80px;
+}
+
 /**
  * --- Global Styles ---
  */
@@ -8,17 +12,15 @@
  * Navs
  */
 
-ul.nav li a {
-  text-transform: capitalize;
-}
-
 /**
  * Bar
  */
 
 #bar {
   line-height: 40px;
-  margin-top: 20px;
+  padding-top: 20px;
+  width: 940px;
+  background: #fff;
 }
 
 /**
@@ -101,4 +103,33 @@ ul.nav li a {
     i {display: block; float: left; width: 20px; margin-top: 2px;}
     span {display: block; width: 182px; float: left;}
   }
+}
+
+#references {
+  ul {
+    margin-left: 10px;
+    li {
+      .clearfix();
+      margin-top: 10px;
+    }
+    i {display: block; float: left; width: 20px; margin-top: 2px;}
+    span {display: block; width: 182px; float: left;}
+  }
+  &.affix {
+    top: 77px;
+  }
+}
+
+/**
+ * Section
+ */
+ 
+.section {
+  padding: 10px;
+  margin: 10px;
+  border: solid 1px red;
+}
+
+.reference {
+  background: #e8e8e8;
 }

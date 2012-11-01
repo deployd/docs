@@ -17,7 +17,7 @@ The examples below use a Collection called `/todos` with the following schema:
 
 Your Collection is available at the URL you specified. If you are using the default development hostname of `localhost:2403`, for example, the `/todos` collection will be available at `http://localhost:2403/todos`.
 
-#### Requests
+#### Requests <!-- ref -->
 
 A request to the Deployd API should include the `Content-Type` header. The following content types are supported:
 
@@ -26,7 +26,7 @@ A request to the Deployd API should include the `Content-Type` header. The follo
 
 The `Content-Type` header is not necessary for `GET` or `DELETE` requests which have no body.
 
-#### Responses
+#### Responses <!-- ref -->
 
 Deployd will send standard HTTP status codes depending on the results on an operation. If the code is 200 (OK), the request was successful and the result is available in the body as JSON.
 
@@ -58,7 +58,7 @@ Examples:
       }
     }
 
-#### Listing Data
+#### Listing Data <!-- ref -->
 
 To retreive an array of objects in the collection, send a `GET` request to your collection's path:
 
@@ -84,7 +84,7 @@ If the collection has no objects, it will be an empty array:
     200 OK
     []    
 
-#### Querying Data
+#### Querying Data <!-- ref -->
 
 To filter results by the specified query object, send a `GET` request to your collection's path with a query string.  See [Querying Collections](../querying-collections.md) for information on constructing a query.
 
@@ -105,7 +105,7 @@ The response body is an array of objects:
       }
     ]
 
-#### Getting a Specific Object
+#### Getting a Specific Object <!-- ref -->
 
 To retrieve a single object by its `id` property, send a `GET` request with the `id` value as the path.
 
@@ -120,7 +120,7 @@ The response body is the object that you requested:
       "category": "pets"
     }
 
-#### Creating an Object
+#### Creating an Object <!-- ref -->
 
 To create an object in the collection, send a `POST` request with the object's properties in the body.
 
@@ -136,7 +136,7 @@ The response body is the object that you posted, with any additional calculated 
       "title": "Walk the dog"
     }
 
-#### Updating an Object
+#### Updating an Object <!-- ref -->
 
 To update an object that is already in the collection, send a `POST` or `PUT` request with the `id` value as the path and with the properties you wish to update in the body. It will only change the properties that are provided. It is also possible to incrementally update certain properties; see [Updating Objects in Collections](../updating-objects.md) for details.
 
@@ -184,7 +184,7 @@ The `PUT` verb will return an error if the `id` and/or `query` does not match an
       "message": "No object exists that matches that query"
     }
 
-#### Deleting an Object
+#### Deleting an Object <!-- ref -->
 
 To delete an object from the collection, send a `DELETE` request with the `id` value as a path.
 
@@ -241,7 +241,7 @@ The examples below show how to use various JavaScript front-end libraries to acc
 
 *Note: When providing a request body, jQuery defaults to form encoding. Deployd works best with a JSON body, so you'll need to set the contentType option and manually convert to JSON.*
 
-#### [Backbone.js](http://backbonejs.org)
+#### [Backbone.js](http://backbonejs.org) <!-- ref -->
 
     var Todo = Backbone.Model.extend({});
     var Todos = Backbone.Collection.extend({
@@ -270,7 +270,7 @@ The examples below show how to use various JavaScript front-end libraries to acc
     });
 
 
-### [Angular.js](http://angularjs.org/)
+#### [Angular.js](http://angularjs.org/) <!-- ref -->
 
 Using [$http](http://docs.angularjs.org/api/ng.$http):
   

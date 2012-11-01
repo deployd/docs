@@ -1,4 +1,4 @@
-<div id="bar">
+<div id="bar" data-spy="affix">
   <%- partial('search', {info: data.info}) %>
   <%- partial('breadcrumb', {info: data.info}) %>
 </div>
@@ -6,6 +6,9 @@
 <div class="row">
   <div class="span3">
     <%- partial('explorer', {info: data.info}) %>
+    <% if(data.info.references && data.info.references.length) { %>
+      <%- partial('references', {info: data.info}) %>
+    <% } %>
   </div>
   <div class="span9">
     <% if(data.info.dir && data.include === 'all') { %>

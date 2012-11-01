@@ -4,12 +4,12 @@ function isShallow(d) {
 }
 
 function dir(d) {
-  if(isShallow(d) && d.children()) {
+  if(isShallow(d) && d.children(true)) {
     %>
       <ul class="nav nav-list">
     <%
     %><li class="nav-header"><%= d.title() %></li><%
-      d.children().forEach(dir);
+      d.children(true).forEach(dir);
     %>
       </ul>
     <%

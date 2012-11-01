@@ -1,7 +1,7 @@
 <%
   var info = data.info;
   var parent = info.file ? info.parent() : info;
-  var children = parent.children();
+  var children = parent.children(true);
 %>
 
 <div id="explorer">
@@ -11,7 +11,8 @@
     <a href="<%= parent.url() %>?include=all">View All</a>
   </div>
   <ul id="files" class="nav">
-    <% children && children.forEach(function (c) { %>
+    <% children && children.forEach(function (c) { 
+      %>
       <li> <a href="<%= c.url() %>"><i class="icon-<%= (c.dir ? 'folder-close' : 'file') %>"></i> <span><%= c.title() %></span></a></li>
     <% }) %>
   </ul>

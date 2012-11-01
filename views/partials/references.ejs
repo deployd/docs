@@ -1,0 +1,25 @@
+<%
+  var info = data.info;
+  var refs = info.references;
+%>
+
+<div id="references" data-spy="affix" data-offset-top="500">
+  <div id="references-header">
+    Quick Reference
+    <% if(info.dir) {%>
+    - <%= info.title() %>
+    <%}%>
+  </div>
+  <ul class="nav">
+    <% refs && refs.forEach(function (r) { %>
+      <li> <a href="<%= r.url() %>"><i class="icon-info-sign"></i> <span><%= r.title %></span></a></li>
+    <% }) %>
+  </ul>
+</div>
+<script>
+(function () {
+  var $el = $('#references');
+  var top = $el.offset().top;
+  $el.data('offset-top', top);
+})()
+</script>

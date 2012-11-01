@@ -1,5 +1,6 @@
 var md = require('node-markdown').Markdown
-  , path = require('path'); 
+  , path = require('path')
+  , Query = require('../lib/query');
 
 app.get('/search', function (req, res) {
   var q = req.param('q');
@@ -67,6 +68,12 @@ app.get('/docs', function (req, res) {
   res.redirect('/');
 });
 
+app.get('/terms', function (req, res) {
+  var query = new Query(req.param('q'), app.index.root(), app.docs);
+  
+  res.send(query.phrases());
+});
+
 app.get('/complete/:input', function (req, res) {
   var input = req.param('input');
   var terms = [];
@@ -94,28 +101,6 @@ app.get('/complete/:input', function (req, res) {
     return a.rank > b.rank ? -1 : 1;
   }).slice(0,4));
 });
-
-function buildDoc(dir) {
-  var doc = '';
-  Object.keys(app.docs).forEach(function (p) {
-    p = p.replace('docs/', '');
-    if(p.indexOf(dir) === 0 && p !== dir) {
-      var f = path.basename(p).replace(path.extname(p), '');
-      var info = app.docs['docs/' + p];
-      doc += '<div id="'+ f +'" class="doc">\n';
-      doc += '\n\n<a name="' + f + '"></a>\n\n';
-      
-      if(info.file) {
-        doc += md(info.contents);
-      } else {
-        doc += buildDoc(info.dir);
-      }
-      doc += '\n</div>\n';
-    }
-  });
-  
-  return doc;
-}
 
 function formatPreview(query, str) {
   if(str[0] === '#') return;

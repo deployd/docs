@@ -4987,21 +4987,23 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+body > .container > .row {
+  padding-top: 80px;
+}
 /**
  * --- Global Styles ---
  */
 /**
  * Navs
  */
-ul.nav li a {
-  text-transform: capitalize;
-}
 /**
  * Bar
  */
 #bar {
   line-height: 40px;
-  margin-top: 20px;
+  padding-top: 20px;
+  width: 940px;
+  background: #fff;
 }
 /**
  * Search
@@ -5100,4 +5102,45 @@ ul.nav li a {
   display: block;
   width: 182px;
   float: left;
+}
+#references ul {
+  margin-left: 10px;
+}
+#references ul li {
+  *zoom: 1;
+  margin-top: 10px;
+}
+#references ul li:before,
+#references ul li:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+#references ul li:after {
+  clear: both;
+}
+#references ul i {
+  display: block;
+  float: left;
+  width: 20px;
+  margin-top: 2px;
+}
+#references ul span {
+  display: block;
+  width: 182px;
+  float: left;
+}
+#references.affix {
+  top: 77px;
+}
+/**
+ * Section
+ */
+.section {
+  padding: 10px;
+  margin: 10px;
+  border: solid 1px red;
+}
+.reference {
+  background: #e8e8e8;
 }
