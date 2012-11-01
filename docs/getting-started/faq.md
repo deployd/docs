@@ -36,7 +36,3 @@ However, they are different in a few significant ways:
 Deployd and Meteor solve many of the same problems in very different ways. You should try both frameworks to see which one better meets your needs.
 
 In the future, the two frameworks may not be mutually exclusive. Deployd focuses on data management and business logic while Meteor focuses on front-end rendering in real time; it may be possible to integrate the two for the best of both worlds.
-
-### Can I use the *X* feature of MongoDB?
-
-    TODO
