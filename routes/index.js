@@ -60,7 +60,6 @@ app.get('/', function (req, res) {
 app.get(/^\/docs\/(.+)$/, function (req, res) {
   var p = req.params[0]
     , info = app.docs['docs/' + p];
-
   res.render('browser.ejs', {info: info, include: req.param('include')});
 });
 
