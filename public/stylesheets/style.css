@@ -4987,7 +4987,7 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
-body > .container > .row {
+body {
   padding-top: 80px;
 }
 /**
@@ -5004,6 +5004,8 @@ body > .container > .row {
   padding-top: 20px;
   width: 940px;
   background: #fff;
+  margin-bottom: 0;
+  top: 0;
 }
 /**
  * Highlight
@@ -5014,10 +5016,31 @@ body > .container > .row {
 /**
  * Search
  */
+#search-terms {
+  width: 217px;
+  position: fixed;
+  top: 52px;
+  background: white;
+  border: solid 1px #049cdb;
+  padding: 10px 0;
+  margin: 0;
+}
+#search-terms li {
+  color: #aaa;
+  padding: 5px 10px;
+}
+#search-terms li.active {
+  background: #049cdb;
+  color: #fff;
+}
+#search-terms .highlight {
+  font-weight: bold;
+  color: #000000;
+}
 #search {
   float: right;
 }
-#search-results #no-results {
+#no-results {
   font-size: 18px;
 }
 #search-results .result {
@@ -5025,6 +5048,9 @@ body > .container > .row {
 }
 #search-results .result h5 {
   margin-bottom: 0;
+}
+#search-results .result pre {
+  margin-top: 10px;
 }
 /**
  * Breadcrumb

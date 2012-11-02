@@ -1,5 +1,3 @@
-
-
 (function () {
   function queryParam(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");

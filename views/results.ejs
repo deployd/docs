@@ -1,27 +1,28 @@
 <div id="bar" data-spy="affix">
   <%- partial('search', data) %>
   <ul id="breadcrumb" class="unstyled">
+    <li><a href="/">Docs</a> <span>/</span></li>
     <li>Search Results</li>
   </ul>
 </div>
 
 <% if(data.results.length) { %> 
-  <div id="search-results" class="row">
-    <% data.results.forEach(function () {
-      <% if(r.reference) { %>
-        <li class="reference-result">
-          <h5 class="ref-title">
+  <ul id="search-results" class="row unstyled">
+    <% data.results.forEach(function (r) { %>
+      <% if(r.section.reference) { %>
+        <li class="result reference-result">
+          <h3 class="ref-title">
             <a href="<%= r.section.url() %>">
               <%= r.section.title %> (<%= r.score %>)
             </a>
-          </h5>
+          </h3>
           <div class="example">
             <%- r.section.exampleHtml() %>
           </div>
         </li>
-      <% } else {
+      <% } else { %>
         <li class="result">
-          <h5 class="result-title">
+          <h4 class="result-title">
           <a href="<%= r.section.url(data.q) %>">
             <% var ptitle = r.section.parent && r.section.parent.title;
             if(ptitle) { %>
@@ -30,7 +31,7 @@
             <%= r.section.title %>
             (<%= r.score %>)
           </a>
-          </h5>
+          </h4>
           <% if(r.preview) {%>
             <div class="result-preview">
               <%- r.preview %>
@@ -39,10 +40,10 @@
         </li>  
       <% } %>
     <% }) %>
-  </div>
+  </ul>
 <% } else { %>
   <div id="no-results">
-    <p>Your search - <%= data.q %> - did not match any documents.<p>
+    <p>Your search - <strong><%= data.q %></strong> - did not match any documents.<p>
 
     <strong>Suggestions:</strong>
 

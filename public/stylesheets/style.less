@@ -1,6 +1,6 @@
 @import "../../bootstrap/less/bootstrap.less";
 
-body > .container > .row {
+body {
   padding-top: 80px;
 }
 
@@ -21,6 +21,8 @@ body > .container > .row {
   padding-top: 20px;
   width: 940px;
   background: #fff;
+  margin-bottom: 0;
+  top: 0;
 }
 
 /**
@@ -34,18 +36,44 @@ body > .container > .row {
 /**
  * Search
  */
+ 
+#search-terms {
+  width: 217px;
+  position: fixed;
+  top: 52px;
+  background: white;
+  border: solid 1px @blue;
+  padding: 10px 0;
+  margin: 0;
+  li {
+    color: #aaa;
+    padding: 5px 10px; 
+    &.active {
+      background: @blue;
+      color: #fff;
+    }
+  }
+  .highlight {
+    font-weight: bold;
+    color: @black;
+  }
+}
 
 #search {
   float: right;
 }
 
+#no-results {
+  font-size: 18px;
+}
+
 #search-results {
-  #no-results {
-    font-size: 18px;
-  }
   .result {
     h5 {margin-bottom: 0}
     margin-bottom: 30px;
+    pre {
+      margin-top: 10px;
+    }
   }
 }
 

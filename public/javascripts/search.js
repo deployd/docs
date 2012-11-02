@@ -84,6 +84,9 @@ function SearchCtrl($scope, $http, $sanitize) {
       $http({method: 'GET', url: '/complete/' + q})
         .success(function (data) {
           $scope.terms = data;
+          setTimeout(function () {
+            $('#search-terms').highlight(q);
+          }, 1);
         });
     } else {
       $scope.results = [];
