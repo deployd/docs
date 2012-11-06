@@ -1,6 +1,6 @@
 <!--{
-  title: 'Querying Collections',
-  tags: ['reference', 'collection']
+	title: 'Querying Collections',
+	tags: ['reference', 'collection']
 }-->
 
 ## Querying Collections
@@ -9,8 +9,8 @@
 
 Collections can be queried over HTTP using the query string:
 
-    GET /posts?author=Joe
-  
+	GET /posts?author=Joe
+	
 Will return all the `posts` with an author "Joe".
 
 ### Advanced Queries
@@ -25,8 +25,7 @@ When using an advanced query in REST, you must pass JSON as the query string, fo
 
 If you are using dpd.js, this will be handled automatically.
 
-
-## Comparison ($gt, $lt, $gte, $lte) <!-- api -->
+### Comparison ($gt, $lt, $gte, $lte) <!-- api -->
 
 Compares a Number property to a given value.
 
@@ -40,7 +39,7 @@ Compares a Number property to a given value.
 			likes: {$gt: 10}
 		}
 
-## $ne (Not Equal) <!-- api -->
+#### $ne (Not Equal) <!-- api -->
 
 The `$ne` command lets you choose a value to exclude. 
 
@@ -49,7 +48,7 @@ The `$ne` command lets you choose a value to exclude.
 		author: {$ne: "Bob"}
 	}
 
-## $in <!-- api -->
+#### $in <!-- api -->
 
 The `$in` command allows you to specify an array of possible matches.
 
@@ -58,27 +57,38 @@ The `$in` command allows you to specify an array of possible matches.
 		category: {$in: ["food", "business", "technology"]}
 	}
 
-## Query commands
+#### $regex <!-- api -->
+
+The `$regex` command allows you to specify a [regular expression](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions) to match a string property.
+
+You can also use the `$options` command to specify regular expression flags.
+
+	// Get usernames that might be email addresses (x@y.z)
+	{
+		"username": {$regex: "[a-z0-9\-]+@[a-z0-9\-]+\.[a-z0-9\-]+", $options: 'i' }
+	}
+
+### Query commands
 
 Query commands apply to the entire query, not just a single property.
 
-## $fields <!-- api -->
+#### $fields <!-- api -->
 
 The `$fields` command allows you to include or exclude properties from your results.
 
-    // Exclude the "email" property
-    {
-      $fields: {email: 0}
-    }
+	// Exclude the "email" property
+	{
+		$fields: {email: 0}
+	}
 
 <!--...-->
 
-    // Only include the "title" property
-    {
-      $fields: {title: 1}
-    }
+	// Only include the "title" property
+	{
+		$fields: {title: 1}
+	}
 
-## $sort <!-- api -->
+#### $sort <!-- api -->
 
 The `$sort` command allows you to order your results by the value of a property. The value can be 1 for ascending sort (lowest first; A-Z, 0-10) or -1 for descending (highest first; Z-A, 10-0)
 
@@ -87,7 +97,7 @@ The `$sort` command allows you to order your results by the value of a property.
 		$sort: {likes: -1}
 	}
 
-## $limit <!-- api -->
+#### $limit <!-- api -->
 
 The `$limit` command allows you to limit the amount of objects that are returned from a query. This is commonly used for paging, along with `$skip`.
 
@@ -97,7 +107,7 @@ The `$limit` command allows you to limit the amount of objects that are returned
 		$limit: 10
 	}
 
-## $skip <!-- api -->
+#### $skip <!-- api -->
 
 The `$skip` command allows you to exclude a given number of the first objects returned from a query. This is commonly used for paging, along with `$limit`. 
 
@@ -107,6 +117,6 @@ The `$skip` command allows you to exclude a given number of the first objects re
 		$limit: 10
 	}
 	
-## $limitRecursion <!-- api -->
+#### $limitRecursion <!-- api -->
 
-The `$limitRecursion` command allows you to override the default recursive limits in Deployd. By default `$limitRecursion` stops a request from within a collection's `GET` event after it requests the current Collection more than 2 times. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](relationships-between-collections.md) for more info.
+The `$limitRecursion` command allows you to override the default recursive limits in Deployd. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](relationships-between-collections.md) for more info.
