@@ -26,7 +26,9 @@
       var $a = $('a[name="' + window.location.hash.replace('#', '') + '"]');
       if($a.length) {
         setTimeout(function () {
-          $(window).scrollTop($a.eq(0).offset().top - 80); 
+          $(window).scrollTop($a.eq(0).parent('.section').offset().top - 85);
+          
+          $a.eq(0).parent('.section').addClass('linked');
         }, 1);
       }
     }

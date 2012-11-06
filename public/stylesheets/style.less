@@ -23,6 +23,7 @@ body {
   background: #fff;
   margin-bottom: 0;
   top: 0;
+  z-index: 999;
 }
 
 /**
@@ -172,15 +173,18 @@ body {
 /**
  * Section
  */
- 
-.section {
-  padding: 10px;
-  margin: 10px;
-  border: solid 1px red;
+
+.sections > .section + .section {
+  margin-top: 50px;
+  padding-top: 50px;
+  border-top: solid 1px @grayLighter;
 }
 
-.reference {
-  background: #e8e8e8;
+.section {
+  padding: 10px;
+  .linked {
+    border: solid 1px @blue;
+  }
 }
 
 /**

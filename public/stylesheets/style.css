@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.2.1
+ * Bootstrap v2.2.0
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -5006,6 +5006,7 @@ body {
   background: #fff;
   margin-bottom: 0;
   top: 0;
+  z-index: 999;
 }
 /**
  * Highlight
@@ -5169,13 +5170,16 @@ body {
 /**
  * Section
  */
+.sections > .section + .section {
+  margin-top: 50px;
+  padding-top: 50px;
+  border-top: solid 1px #eeeeee;
+}
 .section {
   padding: 10px;
-  margin: 10px;
-  border: solid 1px red;
 }
-.reference {
-  background: #e8e8e8;
+.section .linked {
+  border: solid 1px #049cdb;
 }
 /**
  * Sidebar

@@ -1,0 +1,46 @@
+<div id="api">
+  <%
+  data.refs.forEach(function (r) {
+    %>
+      <% if(!data.related) { %>
+        <h4><%= r.parent().title() %></h4>
+      <% } %>
+      <ul class="nav nav-list">
+        <%
+        var children = r.children();
+        children.forEach(function (c) {
+          if(hasApi(c.sections)) {
+            %>
+            <li class="nav-header"><%= c.title() %></li>
+            <%
+            c.sections.forEach(renderSections);
+          }
+        });
+        
+        %>
+      </ul>
+    <%
+  });
+  %>
+</div>
+
+<%
+function renderSections(sec) {
+  if(sec.api) {
+    %>
+      <li><a href="<%= sec.url() %>"><%= sec.title %></a></li>
+    <%
+  }
+  
+  if(sec.children) sec.children.forEach(renderSections);
+}
+
+function hasApi(sections) {
+  for(var i = 0; i < sections.length; i++) {
+    var sec = sections[i];
+    if(sec.api || (sec.children && sec.children.length && hasApi(sec.children))) {
+      return true;
+    }
+  }
+}
+%>

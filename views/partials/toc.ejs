@@ -8,7 +8,7 @@ function dir(d) {
     %>
       <ul class="nav nav-list">
     <%
-    %><li><i class="icon-folder-open"></i> <%= d.title() %></li><%
+    %><li><a href="<%= d.url() %>"><i class="icon-folder-open"></i> <%= d.title() %></a></li><%
       d.children(true).forEach(dir);
     %>
       </ul>

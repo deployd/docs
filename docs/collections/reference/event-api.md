@@ -5,7 +5,7 @@
 
 ## Event API
 
-### this <!--ref-->
+### this <!--api-->
 
 The current object is represented as `this`. You can always read its properties. Modifying its properties in an `On Get` request will change the result that the client recieves, while modifying its properties in an `On Post`, `On Put`, or `On Validate` will change the value in the database.
 
@@ -33,7 +33,7 @@ The current object is represented as `this`. You can always read its properties.
       self.sum += t.points;
     });
 
-### me <!-- ref -->
+### me <!-- api -->
 
 The currently logged in User from a User Collection. `undefined` if no user is logged in.
 
@@ -43,7 +43,7 @@ The currently logged in User from a User Collection. `undefined` if no user is l
         this.creatorId = me.id;
         this.creatorName = me.name;
     }
-### query <!-- ref -->
+### query <!-- api -->
 
 The query string object. On a specific query (such as `/posts/a59551a90be9abd8`), this includes an `id` property.
 
@@ -53,7 +53,7 @@ The query string object. On a specific query (such as `/posts/a59551a90be9abd8`)
       hide(this.body);
     }
 
-### cancel() <!-- ref -->
+### cancel() <!-- api -->
 
     cancel(message, [statusCode])
 
@@ -69,7 +69,7 @@ It is strongly recommended that you `cancel()` any events that are not accessibl
 
 *Note: In a GET event where multiple values are queried (such as on `/posts`), the `cancel()` function will remove the current item from the results without an error message.*
 
-### error() <!-- ref -->
+### error() <!-- api -->
 
     error(key, message)
 
@@ -82,7 +82,7 @@ Adds an error message to an `errors` object in the response. Cancels the request
       error('name', "Contains forbidden words");
     }
 
-### hide() <!-- ref -->
+### hide() <!-- api -->
 
     hide(property)
 
@@ -94,7 +94,7 @@ Hides a property from the response.
       hide('secret');
     }
 
-### protect() <!-- ref -->
+### protect() <!-- api -->
 
     protect(property)
 
@@ -113,7 +113,7 @@ Prevents a property from being updated. It is strongly recommended you `protect(
     }
     
 
-### changed() <!-- ref -->
+### changed() <!-- api -->
 
     changed(property)
 
@@ -125,7 +125,7 @@ Returns whether a property has been updated.
       error('title', 'must be over 5 characters');
     }
     
-### previous <!-- ref -->
+### previous <!-- api -->
 
 An `Object` containing the previous values of the item to be updated.
 
@@ -134,7 +134,7 @@ An `Object` containing the previous values of the item to be updated.
       emit('votes have decreased');
     }
 
-### emit() <!-- ref -->
+### emit() <!-- api -->
 
     emit([userCollection, query], message, [data])
 
@@ -199,7 +199,7 @@ Dpd.js will prevent recursive queries. This works by returning `null` from a `dp
     }
 
 
-### internal <!-- ref -->
+### internal <!-- api -->
 
 Equal to true if this request has been sent by another script.
 
@@ -211,7 +211,7 @@ Equal to true if this request has been sent by another script.
         this.childPosts = posts.length;
     });
 
-### isRoot <!-- ref -->
+### isRoot <!-- api -->
 
 Equal to true if this request has been authenticated as root (has the `dpd-ssh-key` header with the appropriate key; such as from the dashboard)
 
@@ -221,7 +221,7 @@ Equal to true if this request has been authenticated as root (has the `dpd-ssh-k
     if (!isRoot) protect('reputation');
 
 
-### console.log() <!-- ref -->
+### console.log() <!-- api -->
 
     console.log([arguments]...)
 

@@ -1,7 +1,7 @@
 <div id="bar" data-spy="affix">
   <%- partial('search', data) %>
   <ul id="breadcrumb" class="unstyled">
-    <li>Docs</li>
+    <li>Table of Contents</li>
   </ul>
 </div>
 
@@ -11,8 +11,12 @@
     <%- partial('toc', {info: data.rootInfo}) -%>
   </div>
   <div class="span6">
-    <h3>API Reference</h3>
+    <h3>References</h3>
     <%- partial('reference', {refs: data.refs, depth: 1}) %>
+  </div>
+  <div class="span6">
+    <h3>APIs</h3>
+    <%- partial('api', {refs: data.refs}) %>
   </div>
 </div>
 

@@ -5,12 +5,17 @@
 
 <div class="row">
   <div id="sidebar" class="span3">
+    <h4>Docs</h4>
     <%- partial('explorer', data) %>
-    <div id="reference">
 
-    </div>
+    <% if(data.refs && data.refs.length) { %>
+      <h4>Related APIs</h4>
+      <div id="related-apis">
+        <%- partial('api', {refs: data.refs, related: true}) %>
+      </div>
+    <% } %>
   </div>
-  <div class="span9">
+  <div class="span9 sections">
     <% if(data.info.dir && data.include === 'all') { %>
       <%
         var children = data.info.children();
