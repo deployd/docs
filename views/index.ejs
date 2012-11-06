@@ -5,21 +5,14 @@
   </ul>
 </div>
 
-<div id="index">
-  <%- partial('toc', {info: data.rootInfo}) -%>
+<div id="index" class="row">
+  <div class="span6">
+    <h3>Guides</h3>
+    <%- partial('toc', {info: data.rootInfo}) -%>
+  </div>
+  <div class="span6">
+    <h3>API Reference</h3>
+    <%- partial('reference', {refs: data.refs, depth: 1}) %>
+  </div>
 </div>
 
-<script>
-(function () {
-  var maxHeight = 0;
-  var $els = $('#index ul.nav ul.nav');
-  $els.each(function () {
-    var h = $(this).height();
-    if(h > maxHeight) {
-      maxHeight = h;
-    }
-  });
-
-  $els.height(maxHeight);
-})()
-</script>

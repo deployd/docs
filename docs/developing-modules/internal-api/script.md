@@ -22,7 +22,7 @@ If a script is run with a callback (in **async mode**), any error will emit an i
 
 A `Script`'s source is compiled when its constructor is called. It can be `run()` many times with independent `Context`s and `domain`s.
 
-### script.run(ctx, domain, [fn]) <!-- ref -->
+### script.run(ctx, domain, [fn]) <!-- api -->
 
 * ctx {Context}
 
@@ -60,7 +60,7 @@ If a callback is provided the script will be run in **async mode**. The callback
       console.log(e); // test err
     });
     
-### Script.load(path, fn) <!-- ref -->
+### Script.load(path, fn) <!-- api -->
 
 * path {String}
 
@@ -72,11 +72,11 @@ Load a new `script` at the given file `path`. Callback with an error if one occu
 
 Scripts are executed with a default sandbox and set of domain functions. These are functions that every `Script` needs. The following are available to every `Script`. These can be overridden by passing a value such as `{cancel: ...}` in a `domain`.
 
-#### cancel(msg, status) <!-- ref -->
+#### cancel(msg, status) <!-- api -->
 
 Throws an error that immediately stops the execution of a context and calls the callback passed to `script.run()` passing the error as the first argument. 
 
-#### emit([collection], [query], event, data) <!-- ref -->
+#### emit([collection], [query], event, data) <!-- api -->
 
     Stability: will change in 0.7
 

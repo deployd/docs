@@ -5091,31 +5091,15 @@ body {
 /**
  * Index
  */
-#index ul.nav ul.nav {
-  min-height: 20px;
-  padding: 19px;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  width: 243px;
-  float: left;
-  margin-bottom: 20px;
+#index .file {
   margin-left: 20px;
-}
-#index ul.nav ul.nav blockquote {
-  border-color: #ddd;
-  border-color: rgba(0, 0, 0, 0.15);
 }
 /**
  * Explorer
  */
 #explorer a {
   text-transform: capitalize;
+  color: #555555;
 }
 #explorer #files {
   margin-left: 10px;
@@ -5123,6 +5107,7 @@ body {
 #explorer #files li {
   *zoom: 1;
   margin-top: 10px;
+  opacity: 0.6;
 }
 #explorer #files li:before,
 #explorer #files li:after {
@@ -5133,13 +5118,20 @@ body {
 #explorer #files li:after {
   clear: both;
 }
-#explorer #files i {
+#explorer .active {
+  opacity: 1 !important;
+}
+#explorer .active a {
+  font-weight: bold;
+  color: #000000;
+}
+#explorer i {
   display: block;
   float: left;
   width: 20px;
   margin-top: 2px;
 }
-#explorer #files span {
+#explorer span {
   display: block;
   width: 182px;
   float: left;
@@ -5184,4 +5176,23 @@ body {
 }
 .reference {
   background: #e8e8e8;
+}
+/**
+ * Sidebar
+ */
+#sidebar #reference ul > ul {
+  padding: 5px;
+}
+#sidebar #reference ul ul {
+  background: #444;
+}
+#sidebar #reference ul ul ul {
+  background: #666;
+}
+#sidebar #reference ul ul ul li {
+  padding: 5px;
+  border: solid 1px #888;
+}
+#sidebar #reference ul ul ul li + li {
+  border-top: none;
 }

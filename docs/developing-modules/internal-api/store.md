@@ -13,7 +13,7 @@ An abstraction of a collection of objects in a database. Collections are HTTP wr
 
 You shouldn't construct `Store`s directly. Instead use the `process.server.createStore()` method.
 
-#### Store.insert(object, fn) <!-- ref -->
+#### Store.insert(object, fn) <!-- api -->
 
 * object {Object}
 
@@ -23,7 +23,7 @@ The data to insert into the store.
 
 Called once the insert operation is finished.
 
-#### Store.count(query, fn) <!-- ref -->
+#### Store.count(query, fn) <!-- api -->
 
 * query {Object}
 
@@ -33,7 +33,7 @@ Only count objects that match this query.
 
 Called once the count operation is finished. `count` is a number.
 
-#### Store.find(query, fn) <!-- ref -->
+#### Store.find(query, fn) <!-- api -->
 
 * query {Object}
 
@@ -43,7 +43,7 @@ Only returns objects that match this query.
 
 Called once the find operation is finished.
 
-#### Store.first(query, fn) <!-- ref -->
+#### Store.first(query, fn) <!-- api -->
 
 * query {Object}
 
@@ -51,7 +51,7 @@ Called once the find operation is finished.
 
 Find the first object in the store that match the given query.
 
-#### Store.update(query, changes, fn) <!-- ref -->
+#### Store.update(query, changes, fn) <!-- api -->
 
 * query {Object}
 
@@ -61,7 +61,7 @@ Find the first object in the store that match the given query.
 
 Update an object or objects in the store that match the given query only modifying the values in the given changes object.
 
-#### Store.update(query, fn) <!-- ref -->
+#### Store.update(query, fn) <!-- api -->
 
 * query {Object}
 
@@ -69,7 +69,7 @@ Update an object or objects in the store that match the given query only modifyi
 
 Remove an object or objects in the store that match the given query.
 
-#### Store.rename(name, fn) <!-- ref -->
+#### Store.rename(name, fn) <!-- api -->
 
 * name {String}
 

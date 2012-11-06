@@ -31,7 +31,7 @@ Servers are created when calling the Deployd exported function.
 
 *Note:* If `options.env` is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.
 
-### Server.listen([port], [host]) <!-- ref -->
+### Server.listen([port], [host]) <!-- api -->
 
 Load any configuration and start listening for incoming connections.
 
@@ -43,7 +43,7 @@ Load any configuration and start listening for incoming connections.
       console.log(server.options.port); // 2403
     });
     
-### Server.createStore(namespace)  <!-- ref -->
+### Server.createStore(namespace)  <!-- api -->
 
 Create a new `Store` for persisting data using the database info that was passed to the server when it was created.
 
@@ -56,18 +56,18 @@ Create a new `Store` for persisting data using the database info that was passed
     // Use the store to CRUD data
     todos.insert({name: 'go to the store', done: true}, ...); // see `Store` for more info
     
-### Server.sockets <!-- ref -->
+### Server.sockets <!-- api -->
 
 The **socket.io** sockets `Manager` object ([view source](https://github.com/LearnBoost/socket.io/blob/master/lib/manager.js)).
 
-### Server.sessions <!-- ref -->
+### Server.sessions <!-- api -->
 
 The server's `SessionStore`.
 
-### Server.router <!-- ref -->
+### Server.router <!-- api -->
 
 The server's `Router`.
 
-### Server.resources <!-- ref -->
+### Server.resources <!-- api -->
 
 An `Array` of the server's resource instances. These a built from the config and type loaders.

@@ -1,6 +1,6 @@
 {
   "children": [
-    "installing-modules",
+    "installing-modules.md",
     "reference"
   ]
 }

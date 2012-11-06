@@ -28,7 +28,7 @@ The server db instance
 
 The socket.io `sockets` object.
 
-#### SessionStore.createSession(sid, fn) <!-- ref -->
+#### SessionStore.createSession(sid, fn) <!-- api -->
 
 * sid {String} *optional*
 

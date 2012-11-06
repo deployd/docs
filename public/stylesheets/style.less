@@ -11,7 +11,7 @@ body {
 /**
  * Navs
  */
-
+ 
 /**
  * Bar
  */
@@ -125,13 +125,11 @@ body {
 /**
  * Index
  */
- 
-#index ul.nav ul.nav {
-  .well();
-  width: 243px;
-  float: left;
-  margin-bottom: 20px;
-  margin-left: 20px;
+
+#index {
+  .file {
+    margin-left: 20px;
+  }
 }
 
 /**
@@ -139,16 +137,21 @@ body {
  */
  
 #explorer {
-  a {text-transform: capitalize;}
+  a {text-transform: capitalize; color: @gray;}
   #files {
     margin-left: 10px;
     li {
       .clearfix();
       margin-top: 10px;
+      opacity: 0.6;
     }
-    i {display: block; float: left; width: 20px; margin-top: 2px;}
-    span {display: block; width: 182px; float: left;}
   }
+  .active {
+    a {font-weight: bold; color: @black;}
+    opacity: 1 !important;
+  }
+  i {display: block; float: left; width: 20px; margin-top: 2px;}
+  span {display: block; width: 182px; float: left;}
 }
 
 #references {
@@ -178,4 +181,27 @@ body {
 
 .reference {
   background: #e8e8e8;
+}
+
+/**
+ * Sidebar
+ */
+ 
+#sidebar {
+  #reference {
+    ul > ul {padding: 5px;}
+    ul ul {
+      background: #444;
+      ul {
+        background: #666;
+        li {
+          padding: 5px;
+          border: solid 1px #888;
+        }
+        li + li {
+          border-top: none;
+        }
+      }
+    }
+  }
 }

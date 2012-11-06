@@ -45,5 +45,5 @@ Here's an example one off module that maintains a count of requests to the url `
 
 #### Reusable Modules
 
-Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are incredibly easy to reuse. See the [custom resource type guide]('custom-resource-types.md') for more info.
+Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are incredibly easy to reuse. See the [custom resource type guide](custom-resource-types.md) for more info.
 

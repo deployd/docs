@@ -12,15 +12,40 @@ app.get('/search', function (req, res) {
 
 app.get('/', function (req, res) {
   var root = app.index.root();
+  var refs = [];
   
-  res.render('index.ejs', {rootInfo: root});
+  root.children().forEach(function (c) {
+    if(c.dir) {
+      c.children().forEach(function (cc) {
+        var bn = cc.basename();
+        if(cc.dir && bn === 'reference' || bn === 'internal-api') {
+          refs.push(cc);
+        }
+      });
+    }
+  });
+  
+  res.render('index.ejs', {rootInfo: root, refs: refs});
 });
 
 app.get(/^\/docs\/(.+)$/, function (req, res) {
   var p = req.params[0]
-    , info = app.docs['docs/' + p];
-    
-  res.render('browser.ejs', {info: info, include: req.param('include')});
+    , info = app.docs['docs/' + p]
+    , refs = []
+    , mainParent = info.mainParent();
+  
+  app.index.root().children().forEach(function (c) {
+    if(c == mainParent) {
+      c.children().forEach(function (cc) {
+        var bn = cc.basename();
+        if(cc.dir && bn === 'reference' || bn === 'internal-api') {
+          refs.push(cc);
+        }
+      });
+    }
+  });  
+      
+  res.render('browser.ejs', {refs: refs, info: info, include: req.param('include'), current: req.url});
 });
 
 app.get('/docs', function (req, res) {

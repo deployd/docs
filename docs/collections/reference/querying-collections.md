@@ -26,7 +26,7 @@ When using an advanced query in REST, you must pass JSON as the query string, fo
 If you are using dpd.js, this will be handled automatically.
 
 
-## Comparison ($gt, $lt, $gte, $lte) <!-- ref -->
+## Comparison ($gt, $lt, $gte, $lte) <!-- api -->
 
 Compares a Number property to a given value.
 
@@ -40,7 +40,7 @@ Compares a Number property to a given value.
 			likes: {$gt: 10}
 		}
 
-## $ne (Not Equal) <!-- ref -->
+## $ne (Not Equal) <!-- api -->
 
 The `$ne` command lets you choose a value to exclude. 
 
@@ -49,7 +49,7 @@ The `$ne` command lets you choose a value to exclude.
 		author: {$ne: "Bob"}
 	}
 
-## $in <!-- ref -->
+## $in <!-- api -->
 
 The `$in` command allows you to specify an array of possible matches.
 
@@ -62,7 +62,7 @@ The `$in` command allows you to specify an array of possible matches.
 
 Query commands apply to the entire query, not just a single property.
 
-## $fields <!-- ref -->
+## $fields <!-- api -->
 
 The `$fields` command allows you to include or exclude properties from your results.
 
@@ -78,7 +78,7 @@ The `$fields` command allows you to include or exclude properties from your resu
       $fields: {title: 1}
     }
 
-## $sort <!-- ref -->
+## $sort <!-- api -->
 
 The `$sort` command allows you to order your results by the value of a property. The value can be 1 for ascending sort (lowest first; A-Z, 0-10) or -1 for descending (highest first; Z-A, 10-0)
 
@@ -87,7 +87,7 @@ The `$sort` command allows you to order your results by the value of a property.
 		$sort: {likes: -1}
 	}
 
-## $limit <!-- ref -->
+## $limit <!-- api -->
 
 The `$limit` command allows you to limit the amount of objects that are returned from a query. This is commonly used for paging, along with `$skip`.
 
@@ -97,7 +97,7 @@ The `$limit` command allows you to limit the amount of objects that are returned
 		$limit: 10
 	}
 
-## $skip <!-- ref -->
+## $skip <!-- api -->
 
 The `$skip` command allows you to exclude a given number of the first objects returned from a query. This is commonly used for paging, along with `$limit`. 
 
@@ -107,6 +107,6 @@ The `$skip` command allows you to exclude a given number of the first objects re
 		$limit: 10
 	}
 	
-## $limitRecursion <!-- ref -->
+## $limitRecursion <!-- api -->
 
 The `$limitRecursion` command allows you to override the default recursive limits in Deployd. By default `$limitRecursion` stops a request from within a collection's `GET` event after it requests the current Collection more than 2 times. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](relationships-between-collections.md) for more info.

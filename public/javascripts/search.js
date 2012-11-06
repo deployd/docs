@@ -104,3 +104,6 @@ function SearchCtrl($scope, $http, $sanitize) {
   
   $scope.input = $('#search-input').val();
 }
+
+// auto focus
+$('#search-input').focus();

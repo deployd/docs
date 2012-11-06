@@ -23,13 +23,13 @@ Example inheriting from `Collection`:
 
     util.inherits(MyCollection, Collection);
 
-### collection.store <!-- ref -->
+### collection.store <!-- api -->
 
 * {Store}
 
 The backing persistence abstraction layer. Supports saving and reading data from a database. See `Store` for more info (/lib/db.js).
 
-### collection.validate(body, create) <!-- ref -->
+### collection.validate(body, create) <!-- api -->
 
 Validate the request `body` against the `Collection` `properties` 
 and return an object containing any `errors`.
@@ -44,7 +44,7 @@ Should validate a new object being created
 
 * return errors {Object}
 
-### collection.sanitize(body) <!-- ref -->
+### collection.sanitize(body) <!-- api -->
 
 Sanitize the request `body` against the `collection.properties` 
 and return an object containing only properties that exist in the
@@ -53,7 +53,7 @@ and return an object containing only properties that exist in the
 * body {Object}
 * return sanitized {Object}
 
-### collection.sanitizeQuery(query) <!-- ref -->
+### collection.sanitizeQuery(query) <!-- api -->
 
 Sanitize the request `query` against the `collection.properties` 
 and return an object containing only properties that exist in the
@@ -62,27 +62,27 @@ and return an object containing only properties that exist in the
 * query {Object}
 * return sanitizedQuery {Object}
 
-### collection.parseId(ctx) <!-- ref -->
+### collection.parseId(ctx) <!-- api -->
 
 Parse the `ctx.url` for an id. Override this change how an object's id is parsed out of a url.
 
 * ctx {Context}
 
-### collection.find(ctx, fn) <!-- ref -->
+### collection.find(ctx, fn) <!-- api -->
 
 Find all the objects in a collection that match the given `ctx.query`. Then execute a `get` event script, if one exists, using each object found. Finally call `fn(err)` passing an `error` if one occurred.
 
 * ctx {Context}
 * fn(err)
 
-### collection.remove(ctx, fn) <!-- ref -->
+### collection.remove(ctx, fn) <!-- api -->
 
 Execute a `delete` event script, if one exists, using each object found. Then remove a single object that matches the `ctx.query.id`. Finally call `fn(err)` passing an `error` if one occurred.
 
 * ctx {Context}
 * fn(err)
 
-### collection.save(ctx, fn) <!-- ref -->
+### collection.save(ctx, fn) <!-- api -->
 
 First execute a `validate` event script if one exists. If the event does not error, try to save the `ctx.body` into the store. If `ctx.body.id` exists, perform an `update` and execute the `put` event script. Otherwise perform an `insert` and execute the `post` event script. Finally call `fn(err)` passing an `error` if one occurred.
 

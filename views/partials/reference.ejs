@@ -1,0 +1,41 @@
+<div id="reference">
+  <%
+  data.refs.forEach(function (r) {
+    %>
+      <ul class="nav nav-list">
+        <li class="nav-header"><%= r.parent().title() %> - <%= r.title() %></li>
+        <% r.children().forEach(function (c) { %>
+          <li class="reference-section">
+            <a href="<%= c.url() %>"><%= c.title() %></a>
+            <%
+              var sections = c.sections;
+            %>
+            <% if(c.file) { %>
+              <ul class="unstyled">
+                <% data.depth > 1 && c.sections.forEach(function (s) { %>
+                  <% if(s.title !== c.title()) { %>
+                    <li><a href="<%= s.url() %>"><%= s.title %></a></li>  
+                  <% } %>
+                  <% if(s.children.length && r.basename() !== 'internal-api') { %>
+                    <% if(s.title !== c.title()) { %>
+                      <ul class="unstyled">
+                    <% } %>
+                      <% s.children.forEach(function (sc) { %>
+                        <% if(sc.title !== c.title() && sc.title !== s.title) { %>
+                          <li><a href="<%= sc.url() %>"><%= sc.title %></a></li>  
+                        <% } %>
+                      <% }) %>
+                    <% if(s.title !== c.title()) { %>
+                      </ul>
+                    <% } %>
+                  <% } %>
+                <% }) %>  
+              </ul>
+            <% } %>
+          </li>
+        <% }); %>
+      </ul>
+    <%
+  });
+  %>
+</div>

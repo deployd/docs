@@ -8,7 +8,7 @@ function dir(d) {
     %>
       <ul class="nav nav-list">
     <%
-    %><li class="nav-header"><%= d.title() %></li><%
+    %><li><i class="icon-folder-open"></i> <%= d.title() %></li><%
       d.children(true).forEach(dir);
     %>
       </ul>
@@ -19,7 +19,7 @@ function dir(d) {
 }
 
 function file(f) {
-  %><li><a href="<%= f.url() %>"><%= f.title() %></a></li><%
+  %><li class="clearfix file"><a href="<%= f.url() %>"><i class="icon-<%= (f.dir ? 'folder-close' : 'file') %>"></i> <span><%= f.title() %></span></a></li><%
 }
 
 if(data.info) dir(data.info);

@@ -4,11 +4,11 @@
 </div>
 
 <div class="row">
-  <div class="span3">
-    <%- partial('explorer', {info: data.info}) %>
-    <% if(data.info.references && data.info.references.length) { %>
-      <%- partial('references', {info: data.info}) %>
-    <% } %>
+  <div id="sidebar" class="span3">
+    <%- partial('explorer', data) %>
+    <div id="reference">
+
+    </div>
   </div>
   <div class="span9">
     <% if(data.info.dir && data.include === 'all') { %>

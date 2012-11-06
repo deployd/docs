@@ -8,7 +8,19 @@
   <ul id="files" class="nav">
     <% children && children.forEach(function (c) { 
       %>
-      <li> <a href="<%= c.url() %>"><i class="icon-<%= (c.dir ? 'folder-close' : 'file') %>"></i> <span><%= c.title() %></span></a></li>
+      <li class="<%= c.isActive(data.current) ? 'active' : '' %>"><a href="<%= c.url() %>"><i class="icon-<%= (c.dir ? 'folder-close' : 'file') %>"></i> <span><%= c.title() %></span></a></li>
+      <% if(c.isActive(data.current)) {
+        %>
+        <ul>
+        <% 
+        c.children() && c.children().forEach(function (cc) { %>
+      %>
+        <li><%= cc.title() %></li>
+      <%
+        })
+        %></ul><%
+       }
+      %>
     <% }) %>
   </ul>
 </div>

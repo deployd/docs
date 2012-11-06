@@ -13,7 +13,7 @@ Deployd APIs are built from [node modules](https://npmjs.org). This means anythi
 
 An example resource is a [collection](/term/collection). A collection exposes a database-like API directly to clients. All you have to do to create a [collection](/term/collection) is define its URL and the data it is able to store in Deployd's dashboard.
 
-The dashboard is an in browser user interface that allows you to easily build and configure your APIs. Every resource has its own custom interface. For example, the collection resource includes editors for data, to edit the objects in your collection and events, to edit [event scripts](/term/events). 
+The dashboard is an in browser user interface that allows you to easily build and configure your APIs. Every resource has its own custom interface. For example, the collection resource includes a data editor for managing the data in your collection and an event editor for easily creating [event scripts](/term/events).
 
 Instead of leaving everything to configuration, resources expose scriptable [events](/term/events). For example, a collection exposes several events. The most commonly used being a `GET` event. In this example event script, if a user tries to `GET` a todo that the user is not the owner of, they will receive an error.
 

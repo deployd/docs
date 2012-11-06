@@ -22,26 +22,26 @@ Event scripts do not share a global scope with other modules in your app. Instea
 
 The following functions and objects are available to all event scripts.
 
-#### me <!-- ref -->
+#### me <!-- api -->
 
 The current user if one exists on the current `Context`.
 
-#### this <!-- ref -->
+#### this <!-- api -->
 
 If the resource does not implement a custom domain, this will be an empty object. Otherwise `this` usually refers to the current domain's instance (eg. an object in a collection).
 
-#### internal <!-- ref -->
+#### internal <!-- api -->
 
 A boolean property, true if this request has been initiated by another script.
 
-#### isRoot <!-- ref -->
+#### isRoot <!-- api -->
 
 A boolean property, true if this request is authenticated as root (from the dashboard or a custom script).
 
-#### query <!-- ref -->
+#### query <!-- api -->
 
 The current HTTP query. (eg ?foo=bar - query would be {foo: 'bar'}).
 
-#### console <!-- ref --> 
+#### console <!-- api --> 
 
 Support for console.log() and other console methods.

@@ -18,7 +18,7 @@ Contexts may be created without a real request and response such as during an in
     var Context = require('deployd/lib/context');
     var ctx = new Context(resource, req, res, server);
 
-#### ctx.done(err, result) <!-- ref -->
+#### ctx.done(err, result) <!-- api -->
 
 Continuous callback sugar for easily calling `res.end()`. Conforms to the idiomatic callback signature for most node APIs. It can be passed directly to most APIs that require a callback in node.
 
@@ -32,19 +32,19 @@ An error if one occured during handling of the `ctx`. Otherwise it should be `nu
 
 The result of executing the `ctx`. This should be a `typeof` object and serialize-able as JSON.
 
-#### ctx.body <!-- ref -->
+#### ctx.body <!-- api -->
 
 * {Object}
 
 The body of the request if sent as `application/json` or `application/x-www-form-urlencoded`.
 
-#### ctx.query <!-- ref -->
+#### ctx.query <!-- api -->
 
 * {Object}
 
 The query string of the request serialized as an `Object`. Supports both `?key=value` as well as `?{"key":"value"}`.
 
-#### ctx.method <!-- ref -->
+#### ctx.method <!-- api -->
 
 * {Object}
 

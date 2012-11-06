@@ -70,7 +70,7 @@ The following resource would respond with a file at the url `/my-file.html`.
 
 Certain method's on a `Resource` prototype are called by the runtime. Their default behavior should be overriden to define an inherited `Resources` behavior.
 
-### resource.handle(ctx, next) <!-- ref -->
+### resource.handle(ctx, next) <!-- api -->
 
 Handle an incoming request. This gets called by the router.
 Call `next()` if the resource cannot handle the request.
@@ -93,7 +93,7 @@ Override the handle method to return a string:
       fs.readFile('myfile.txt', ctx.done);
     }
     
-### resource.load(fn) <!-- ref -->
+### resource.load(fn) <!-- api -->
 
 Load any dependencies and call `fn(err)` with any errors that occur. This is automatically called by the runtime to support asynchronous construction of a resource (such as loading files). If this method is overridden the super method must be called to support loading of the `MyResource.events` array.
 
@@ -131,7 +131,7 @@ When the `hello()` method is called a context does not need to be provided as th
 
     dpd.example.hello({msg: 'hello world'});
 
-### Resource.events <!-- ref -->
+### Resource.events <!-- api -->
 
 * {Array}
 

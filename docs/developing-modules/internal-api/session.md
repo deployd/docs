@@ -27,31 +27,31 @@ The store used to persist the session.
 
 The Socket.IO sockets object used to attach an existing socket.
 
-#### Session.set(changes) <!-- ref -->
+#### Session.set(changes) <!-- api -->
 
 * `changes` {Object} 
 
 An object containing changes to the session's data.
 
-#### Session.save(fn) <!-- ref -->
+#### Session.save(fn) <!-- api -->
 
 * `fn(err, data)` {Function} *optional*
 
 Save the in memory representation of a session to its store.
 
-#### Session.fetch(fn) <!-- ref -->
+#### Session.fetch(fn) <!-- api -->
 
 * `fn(err, data)` {Function} *optional*
 
 Reset the session using the data persisted in its store.
 
-#### Session.remove(fn) <!-- ref -->
+#### Session.remove(fn) <!-- api -->
 
 * `fn(err, data)` {Function} *optional*
 
 Remove the session.
 
-#### Session.emitToAll(event, data) <!-- ref -->
+#### Session.emitToAll(event, data) <!-- api -->
 
 * `event` {String}
 
@@ -61,7 +61,7 @@ The event to emit to all session's sockets.
 
 The data to send to sockets listening to the given event.
 
-#### Session.emitToUsers(collection, query, event, data) <!-- ref -->
+#### Session.emitToUsers(collection, query, event, data) <!-- api -->
 
 * `collection` {Collection}
 

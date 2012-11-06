@@ -90,7 +90,7 @@ Examples:
       }
     }
 
-#### .get([id], [query], fn) <!-- ref -->
+#### .get([id], [query], fn) <!-- api -->
 
 ##### Listing Data
 
@@ -155,7 +155,7 @@ The `.get(id, fn)` function returns a single object by its `id` property.
       "category": "pets"
     }
 
-#### .post([id], object, fn) <!-- ref -->
+#### .post([id], object, fn) <!-- api -->
 
 ##### Creating an Object
 
@@ -179,7 +179,7 @@ The `.post(id, object, fn)` function, or `.post(object, fn)` where `object` has 
 
 This is useful if you want to insert an object if it does not exist and update it if it does.
 
-#### .put([id or query], object, fn) <!-- ref -->
+#### .put([id or query], object, fn) <!-- api -->
 
 ##### Updating an Object
 
@@ -222,7 +222,7 @@ The `.put()` function will return an error if the `id` and/or `query` does not m
       "message":"No object exists that matches that query"
     }
 
-#### .del(id or query, fn) <!-- ref -->
+#### .del(id or query, fn) <!-- api -->
 
 ##### Deleting an Object
 
@@ -244,7 +244,7 @@ You can also use the syntax `.del(query, fn)` if `object` has an `id` property. 
 
 ### Realtime API
 
-#### dpd.on(event, fn) <!-- ref -->
+#### dpd.on(event, fn) <!-- api -->
 
 The `dpd.on(event, fn)` function listens for realtime events emitted from the server. See [Scripting Collections with Events](../scripting-collection-with-events.md) for information on sending realtime events with the `emit()` function.
 
@@ -270,7 +270,7 @@ Calling `.on()` on the collection itself will namespace the event by the collect
       // Do something
     });
 
-#### dpd.off(event, [fn]) <!-- ref -->
+#### dpd.off(event, [fn]) <!-- api -->
 
 The `dpd.off(event)` function stops listening for the specified event.
 
@@ -291,7 +291,7 @@ Calling `.off()` on the collection itself will namespace the event by the collec
     // Same as dpd.off('todos:create');
     dpd.todos.off('create');
 
-#### dpd.once(event, fn) <!-- ref -->
+#### dpd.once(event, fn) <!-- api -->
 
 The `dpd.once(event, fn)` function listens for a realtime event emitted by the server and runs the `fn` callback exactly once.
 
@@ -306,7 +306,7 @@ Calling `.once()` on the collection itself will namespace the event by the colle
       // Do something
     });
 
-#### dpd.socketReady(fn) <!-- ref -->
+#### dpd.socketReady(fn) <!-- api -->
 
 The `dpd.socketReady(fn)` function waits for a connection to be established to the server and executes the `fn` callback with no arguments. If a connection has already been established, it will execute the `fn` callback immediately. 
 
@@ -316,6 +316,6 @@ It can sometimes take a second or more to establish a connection, and events sen
       // Do something
     });
 
-#### dpd.socket <!-- ref -->
+#### dpd.socket <!-- api -->
 
 The `dpd.socket` object is a [socket.io](http://socket.io/#how-to-use) object. This is useful if you want to finely control how events are received.

@@ -5,7 +5,7 @@
 
 When updating an object in a Collection, you can use special modifier commands to more granularly change property values. 
 
-## $inc <!-- ref -->
+## $inc <!-- api -->
 
 The `$inc` command increments the value of a given Number property.
 
@@ -14,7 +14,7 @@ The `$inc` command increments the value of a given Number property.
     score: {$inc: 5}
   }
 
-## $push <!-- ref -->
+## $push <!-- api -->
 
 The `$push` command adds a value to an Array property.
 
@@ -25,7 +25,7 @@ The `$push` command adds a value to an Array property.
 
 *Note: This will work even on an undefined property*
 
-## $pushAll <!-- ref -->
+## $pushAll <!-- api -->
 
 The `$pushAll` command adds multiple values to an Array property.
 
@@ -38,7 +38,7 @@ The `$pushAll` command adds multiple values to an Array property.
 
 *Note: This will work even on an undefined property*
 
-## $pull <!-- ref -->
+## $pull <!-- api -->
 
 The `$pull` command removes a value from an Array property.
 
@@ -49,7 +49,7 @@ The `$pull` command removes a value from an Array property.
 
 *Note: If there is more than one matching value in the Array, this will remove all of them*
 
-## $pullAll <!-- ref -->
+## $pullAll <!-- api -->
 
 The `$pullAll` command removes multiple values from an Array property.
 
