@@ -1,9 +1,14 @@
-[
-  "getting-started",
-  "basics",
-  "data",
-  "users",
-  "extensions",
-  "server",
-  "developing-extensions"
-]
+{
+  "children": [
+    "getting-started",
+    "basics",
+    "collections",
+    "users",
+    "using-modules",
+    "server",
+    "developing-extensions"
+  ],
+  "aliases": {
+    "server": "The Deployd Server"
+  }
+}

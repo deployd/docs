@@ -1,5 +1,5 @@
 <!--{
-  title: 'The "dpd" command line tool'
+  title: 'The "dpd" Command Line Tool'
 }-->
 
 ## Using the dpd command line tool.

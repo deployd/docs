@@ -3,7 +3,6 @@
   tags: ['session', 'store', 'users']
 }-->
 
-
 ## Session Store
 
 Sessions are persisted in a modified store. This store has several methods to help create and manage sessions.
@@ -17,25 +16,25 @@ A store for persisting sessions inbetween connection and disconnection. Automati
     var name = 'sessions';
     var store = new SessionStore(name, db, sockets);
     
-* `name` {String} 
+* name {String} 
 
 The name of the db store.
 
-* `db` {Db} 
+* db {Db} 
 
 The server db instance
 
-* `sockets` {Socket.IO.sockets} 
+* sockets {Socket.IO.sockets} 
 
 The socket.io `sockets` object.
 
 #### SessionStore.createSession(sid, fn) <!-- ref -->
 
-* `sid` {String} *optional*
+* sid {String} *optional*
 
 An existing session id.
 
-* `fn(err, session)` {Function}
+* fn(err, session) {Function}
 
 Called once the session has been created.
 

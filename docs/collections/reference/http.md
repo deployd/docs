@@ -224,7 +224,7 @@ Your front-end app should never gain root access, and you should never store the
 
 The examples below show how to use various JavaScript front-end libraries to access a Collection called `/todos`.
 
-### [jQuery](http://jquery.com/)
+#### [jQuery](http://jquery.com/)
 
     $.ajax('/todos', {
       type: "GET",
@@ -252,7 +252,7 @@ The examples below show how to use various JavaScript front-end libraries to acc
 
 *Note: When providing a request body, jQuery defaults to form encoding. Deployd works best with a JSON body, so you'll need to set the contentType option and manually convert to JSON.*
 
-#### [Backbone.js](http://backbonejs.org) <!-- ref -->
+#### [Backbone.js](http://backbonejs.org)
 
     var Todo = Backbone.Model.extend({});
     var Todos = Backbone.Collection.extend({
@@ -281,7 +281,7 @@ The examples below show how to use various JavaScript front-end libraries to acc
     });
 
 
-#### [Angular.js](http://angularjs.org/) <!-- ref -->
+#### [Angular.js](http://angularjs.org/)
 
 Using [$http](http://docs.angularjs.org/api/ng.$http):
   

@@ -1,0 +1,8 @@
+{
+  "children": [
+    "creating-user-collections.md",
+    "authenticating-users.md",
+    "advanced-guides",
+    "examples"
+  ]
+}

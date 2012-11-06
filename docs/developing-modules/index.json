@@ -1,0 +1,11 @@
+{
+  "children": [
+    "creating-modules.md",
+    "custom-resource-types.md",
+    "examples",
+    "internal-api"
+  ],
+  "aliases": {
+    "internal-api": "Internal API Reference"
+  }
+}

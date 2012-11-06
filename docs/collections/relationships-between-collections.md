@@ -90,7 +90,7 @@ would output
 
 Some collections contain objects related to other objects in the same collection. A simple example of this is threaded comments. Where a comment can be in reply to another comment, creating a tree-like structure when rendered.
 
-To accomplish this, all you need is a `parent` property containing the `id` of a parent object if one exists. Since deployd supports [recursive queries](/term/recursive-queries) in a collection's `GET` event the following just works as you would expect.
+To accomplish this, all you need is a `parent` property containing the `id` of a parent object if one exists. Since Deployd supports [recursive queries](/term/recursive-queries) in a collection's `GET` event the following just works as you would expect.
 
     // on GET /comments
     var comment = this;

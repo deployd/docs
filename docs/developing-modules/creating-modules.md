@@ -5,7 +5,7 @@
 
 ## Creating a Module
 
-Deployd modules are just [node modules](http://npmjs.org). Any module in your app's `node_module` folder will be loaded when the deployd server starts.
+Deployd modules are just [node modules](http://npmjs.org). Any module in your app's `node_module` folder will be loaded when the Deployd server starts.
 
 ### Hello World
 
@@ -16,7 +16,7 @@ You don't have to `require()` or load anything to instantiate your module. The f
     
 ### Accessing the Server
 
-In order to do anything interesting you need a reference to the current deployd [server](internal-api/server.md) object. The server is always available at `process.server`. This means you don't need to require anything to use most of the [internal APIs](internal-api).
+In order to do anything interesting you need a reference to the current Deployd [server](internal-api/server.md) object. The server is always available at `process.server`. This means you don't need to require anything to use most of the [internal APIs](internal-api).
 
 ### Types of Modules
 

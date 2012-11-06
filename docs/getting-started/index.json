@@ -1,0 +1,9 @@
+{
+  "children": [
+    "what-is-deployd.md",
+    "faq.md",
+    "installing-deployd.md",
+    "your-first-api.md",
+    "your-first-app.md"
+  ]
+}

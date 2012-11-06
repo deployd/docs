@@ -9,4 +9,4 @@ Deployd projects are designed to be committed to version control systems so team
 
 ### Recommended Ignored Files
 
-You shouldn't commit the `/data` or `.dpd` directories. The files in these directories are environment specific and should be kept out of version control. All other deployd files should be committed.
+You shouldn't commit the `/data` or `.dpd` directories. The files in these directories are environment specific and should be kept out of version control. All other Deployd files should be committed.

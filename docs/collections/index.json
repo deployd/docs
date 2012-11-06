@@ -1,0 +1,12 @@
+{
+  "children": [
+    "creating-collections.md",
+    "accessing-collections.md",
+    "adding-logic.md",
+    "relationships-between-collections.md",
+    "notifying-clients.md",
+    "advanced-guides",
+    "reference",
+    "examples"
+  ]
+}

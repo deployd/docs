@@ -9,7 +9,7 @@ Deployd serves static files from your app's `/public` directory. This directory 
 
 ### Environments
 
-When Deployd is run with the environment setting (see the documentation on the [cli](./cli.md)), it will attempt to serve files from the `/public-[environment]` directory instead. For example, if deployd is run with `dpd -e production`, it will serve files from the `/public-production` directory.
+When Deployd is run with the environment setting (see the documentation on the [cli](./cli.md)), it will attempt to serve files from the `/public-[environment]` directory instead. For example, if Deployd is run with `dpd -e production`, it will serve files from the `/public-production` directory.
 
 This is useful for optimizing your app in production. You can serve a slightly different version of your front-end with minified JavaScript and CSS. You can also use it to served compiled versions of pre-processed languages such as LESS, SASS, and CoffeeScript. 
 

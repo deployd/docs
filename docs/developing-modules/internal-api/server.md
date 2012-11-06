@@ -11,7 +11,7 @@ The `Server` object is also the main entry point for modules. After it is starte
 
 ### Class: Server
 
-Servers are created when calling the deployd exported function.
+Servers are created when calling the Deployd exported function.
 
     var deployd = require('deployd')
       , options = {port: 3000}
