@@ -120,4 +120,4 @@ The `$skip` command allows you to exclude a given number of the first objects re
 	
 #### $limitRecursion <!-- ref -->
 
-The `$limitRecursion` command allows you to override the default recursive limits in Deployd. By default `$limitRecursion` stops a request from within a collection's `GET` event after it requests the current Collection more than 2 times. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](relationships-between-collections.md) for more info.
+The `$limitRecursion` command allows you to override the default recursive limits in Deployd. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](relationships-between-collections.md) for more info.
