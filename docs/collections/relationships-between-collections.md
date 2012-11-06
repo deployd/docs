@@ -11,7 +11,7 @@ Designing the relationships between the collections in your application is cruci
 
 When designing the collections in your application keep in mind the following strategies for relating data. There isn't a single best way to create relationships, so you will have to take into account how data will change in your collections. 
 
-#### Embeding Data
+#### Embedding Data
 
 Deployd allows your collection to store complex structures such as nested objects or arrays. This is useful if you want to embed data inside your collection's objects. Keep in mind this is only recommended when the embeded data is not likely to change. For example, a `blog-posts` collection could have an `author` property with a type set to `Object`.
 

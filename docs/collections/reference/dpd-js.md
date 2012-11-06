@@ -3,17 +3,9 @@
   tags: ['reference', 'collection', 'http', 'websockets', 'cors']
 }-->
 
-## Accessing Collections - Using dpd.js
+## Dpd.js
 
-`dpd.js` is an auto-generated library that updates as you update the resources in your Deployd API. If you are writing your front-end in the `public` directory, all you have to do is include a `<script src="/dpd.js"></script>` tag in your HTML and your browser has access to all your Deployd Collections.
-
-### Using dpd.js on a different origin
-
-You can use the dpd.js library outside of the `public` folder by using an absolute URL to the file. If your app is hosted at `my-app.deploydapp.com`, it would look something like this:
-
-    <script src="http://my-app.deploydapp.com/dpd.js"></script>
-
-This will not work on browsers that do not support Cross-Origin Resource Sharing (namely Internet Explorer 7 and below).
+`dpd.js` is an auto-generated library that provides access to Collections and other Deployd features on the front-end. For information on including it, see [Accessing Collections with dpd.js](../accessing-collections.md)
 
 ### Accessing the Collection
 
@@ -50,17 +42,7 @@ The examples below use a Collection called `/todos` with the following schema:
 
 Every function in the Collection API takes a callback function (represented by `fn` in the docs) with the signature `function(result, error)`.
 
-The callback will be executed asynchronously when the API has received a response from the server. You cannot call a remote API synchronously:
-
-    // Does not work
-    var result = dpd.todos.get();
-
-<!--...-->
-
-    // Works as expected
-    dpd.todos.get(function(result, error) {
-      // Work with result
-    });
+The callback will be executed asynchronously when the API has received a response from the server. 
 
 The `result` argument differs depending on the function. If the result failed, it will be `null` and the `error` argument will contain the error message.
 

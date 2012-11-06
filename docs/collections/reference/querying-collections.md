@@ -1,6 +1,6 @@
 <!--{
-  title: 'Querying Collections',
-  tags: ['reference', 'collection']
+	title: 'Querying Collections',
+	tags: ['reference', 'collection']
 }-->
 
 ## Querying Collections
@@ -9,8 +9,8 @@
 
 Collections can be queried over HTTP using the query string:
 
-    GET /posts?author=Joe
-  
+	GET /posts?author=Joe
+	
 Will return all the `posts` with an author "Joe".
 
 ### Advanced Queries
@@ -58,6 +58,17 @@ The `$in` command allows you to specify an array of possible matches.
 		category: {$in: ["food", "business", "technology"]}
 	}
 
+## $regex <!-- ref -->
+
+The `$regex` command allows you to specify a [regular expression](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions) to match a string property.
+
+You can also use the `$options` command to specify regular expression flags.
+
+	// Get usernames that might be email addresses (x@y.z)
+	{
+		"username": {$regex: "[a-z0-9\-]+@[a-z0-9\-]+\.[a-z0-9\-]+", $options: 'i' }
+	}
+
 ## Query commands
 
 Query commands apply to the entire query, not just a single property.
@@ -66,17 +77,17 @@ Query commands apply to the entire query, not just a single property.
 
 The `$fields` command allows you to include or exclude properties from your results.
 
-    // Exclude the "email" property
-    {
-      $fields: {email: 0}
-    }
+	// Exclude the "email" property
+	{
+		$fields: {email: 0}
+	}
 
 <!--...-->
 
-    // Only include the "title" property
-    {
-      $fields: {title: 1}
-    }
+	// Only include the "title" property
+	{
+		$fields: {title: 1}
+	}
 
 ## $sort <!-- ref -->
 

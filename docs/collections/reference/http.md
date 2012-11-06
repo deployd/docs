@@ -3,7 +3,7 @@
   tags: ['reference', 'collection', 'http', 'websockets', 'cors']
 }-->
 
-## Accessing Collections - Over HTTP
+## Accessing Collections Over HTTP
 
 Deployd exposes an HTTP API to your Collections which can be used by any platform or library that supports HTTP or AJAX. Though it does not strictly adhere to REST, it should also work with most libraries designed for REST.
 
