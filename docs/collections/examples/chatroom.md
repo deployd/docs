@@ -14,3 +14,5 @@ This app demonstrates how to send messages to the client using Sockets when data
 ### Useful files
 
 - [chatroom.js](https://github.com/deployd/examples/blob/master/collection/chatroom/public/js/chatroom.js)
+- [messages/validate.js](https://github.com/deployd/examples/blob/master/collection/chatroom/resources/messages/validate.js) (On Validate `/messages`)
+- [messages/post.js](https://github.com/deployd/examples/blob/master/collection/chatroom/resources/messages/post.js) (On POST `/messages`)
