@@ -41,7 +41,7 @@ body {
 #search-terms {
   width: 217px;
   position: fixed;
-  top: 52px;
+  top: 40px;
   background: white;
   border: solid 1px @blue;
   padding: 10px 0;
@@ -61,7 +61,9 @@ body {
 }
 
 #search {
-  float: right;
+  #search-input {
+    margin-bottom: 0;
+  }
 }
 
 #no-results {
@@ -75,6 +77,11 @@ body {
     pre {
       margin-top: 10px;
     }
+  }
+  
+  .api-parent {
+    opacity: 0.5;
+    font-size: 75%;
   }
 }
 
@@ -124,13 +131,69 @@ body {
  */
  
 /**
- * Index
+ * Table of Contents
+ */
+ 
+#index {
+ .file {
+   margin-left: 20px;
+ }
+ .nav-tabs a {
+   font-size: 18px;
+ }
+ .section {
+   .clearfix();
+   .well();
+   .pull-right();
+   width: 460px;
+   padding: 0 10px 10px 10px;
+   h3 {
+     font-size: 18px;
+     height: 25px;
+     margin: 5px 0 10px 0;
+     padding: 5px 0 7px 0;
+     border-bottom: solid 1px @gray;
+   }
+ }
+}
+ 
+/**
+ * Guides
  */
 
-#index {
-  .file {
-    margin-left: 20px;
+#guides {
+  & > div + div {
+    padding-top: 200px;
   }
+  #guide-lists {
+    margin-left: -20px;
+  }
+  .guide-list {
+    width: 278px;
+    padding: 0px 10px 10px 10px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    h4 {
+      margin: 0;
+    }
+    .section {
+      font-size: 16px;
+      font-weight: bold;
+      list-style: none;
+      border-bottom: solid 1px #e8e8e8;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      a {color: @gray;}
+    }
+    .file {
+      font-size: 14px;
+      font-weight: bold;
+      margin-left: 30px;
+    }
+  }
+  ul {list-style: disc;}
+  .clearfix();
 }
 
 /**
@@ -207,5 +270,63 @@ body {
         }
       }
     }
+  }
+}
+
+/**
+ * API
+ */
+
+#sidebar {
+  #api {
+    .nav-list {
+      width: 190px;
+    }
+  }
+}
+
+#api {
+  margin-top: 20px;
+  margin-left: -20px;
+  .nav-list {
+    .well();
+    width: 400px;
+    margin-left: 20px;
+  }
+  .nav-header {
+    color: @gray;
+  }
+  .collections {
+    background: lighten(desaturate(@green, 10), 50);
+  }
+  .developing-modules {
+    background: lighten(desaturate(@yellow, 20), 45);
+  }
+  .using-modules {
+    background: lighten(desaturate(@blue, 10), 55);
+  }
+  
+}
+
+/**
+ * Examples
+ */
+
+#examples {
+  margin-top: 20px;
+  > .section {
+    h2 {
+      font-size: 18px;
+      margin-top: 20px;
+      line-height: 20px;
+      padding-bottom: 7px;
+      border-bottom: solid 1px @grayLight;
+    }
+    .well();
+    padding: 0 20px 20px 20px;
+    width: 250px;
+    p > img {display: none;}
+    margin-left: 20px;
+    margin-top: 3px;
   }
 }

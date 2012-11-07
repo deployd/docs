@@ -1,0 +1,16 @@
+<ul id="breadcrumb" class="unstyled">
+  <li><a href="/">Docs</a><span>/</span></li>
+  <li>Examples</li>
+</ul>
+
+<div id="examples">
+  <%
+    data.examples.forEach(function (e) {
+      %><%- e.html() %><%
+    })
+  %>
+</div>
+
+<script>
+  $('#examples').masonry();
+</script>

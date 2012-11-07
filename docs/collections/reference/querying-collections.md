@@ -76,36 +76,36 @@ Query commands apply to the entire query, not just a single property.
 
 The `$fields` command allows you to include or exclude properties from your results.
 
-	// Exclude the "email" property
-	{
-		$fields: {email: 0}
-	}
+    	// Exclude the "email" property
+    	{
+    		$fields: {email: 0}
+    	}
 
 <!--...-->
 
-	// Only include the "title" property
-	{
-		$fields: {title: 1}
-	}
+    	// Only include the "title" property
+    	{
+    		$fields: {title: 1}
+    	}
 
 #### $sort <!-- api -->
 
 The `$sort` command allows you to order your results by the value of a property. The value can be 1 for ascending sort (lowest first; A-Z, 0-10) or -1 for descending (highest first; Z-A, 10-0)
 
-	// Sort posts by likes, descending
-	{
-		$sort: {likes: -1}
-	}
+    // Sort posts by likes, descending
+    {
+    	$sort: {likes: -1}
+    }
 
 #### $limit <!-- api -->
 
 The `$limit` command allows you to limit the amount of objects that are returned from a query. This is commonly used for paging, along with `$skip`.
 
-	// Return the top 10 scores
-	{
-		$sort: {score: -1}
-		$limit: 10
-	}
+    // Return the top 10 scores
+    {
+    	$sort: {score: -1}
+    	$limit: 10
+    }
 
 #### $skip <!-- api -->
 

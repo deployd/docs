@@ -3,26 +3,42 @@
   data.refs.forEach(function (r) {
     %>
       <% if(!data.related) { %>
-        <h4><%= r.parent().title() %></h4>
+        <section>
+        <ul class="nav nav-list api-section <%= r.parent().basename() %>">
+          <li class="nav-header">
+            <h4><%= r.parent().title() %></h4>
+          <li>
+        </ul>
       <% } %>
-      <ul class="nav nav-list">
         <%
         var children = r.children();
         children.forEach(function (c) {
           if(hasApi(c.sections)) {
             %>
+            <ul class="nav nav-list <%= r.parent().basename() %>">
             <li class="nav-header"><%= c.title() %></li>
             <%
             c.sections.forEach(renderSections);
+            %>
+            </ul>
+            <%
           }
         });
         
         %>
-      </ul>
+      <% if(!data.related) { %>
+        </section>
+      <% } %>
     <%
   });
   %>
 </div>
+
+<% if(!data.related) { %>
+  <script>
+    $('#api').masonry();
+  </script>
+<% } %>
 
 <%
 function renderSections(sec) {

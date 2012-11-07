@@ -5,7 +5,7 @@ var ejs = require('ejs')
 module.exports = function (views) {
   return function (req, res, next) {
     req.layout = 'layouts/global.ejs';
-    req.locals = {};
+    req.locals = {url: req.url};
     res.render = function (view, data) {
       
       read(view, function (err, contents) {
@@ -16,7 +16,6 @@ module.exports = function (views) {
           if(err) return next(err);
           var data = {body: body};
           Object.keys(req.locals).forEach(function (k) {
-            console.log(k);
             data[k] = req.locals[k];
           });
           

@@ -1,6 +1,6 @@
 <%
 function isShallow(d) {
-  return d.depth() < 3;
+  return d.depth() < 5;
 }
 
 function dir(d) {
@@ -19,7 +19,11 @@ function dir(d) {
 }
 
 function file(f) {
-  %><li class="clearfix file"><a href="<%= f.url() %>"><i class="icon-<%= (f.dir ? 'folder-close' : 'file') %>"></i> <span><%= f.title() %></span></a></li><%
+  %>
+    <li class="clearfix file">
+      <a href="<%= f.url() %>"><i class="icon-<%= (f.dir ? 'folder-close' : 'file') %>"></i> <span><%= f.title() %></span></a>
+    </li>
+  <%
 }
 
 if(data.info) dir(data.info);

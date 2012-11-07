@@ -1,0 +1,41 @@
+<%
+  switch(data.page) {
+    case 'guides':
+    %>
+      <ul id="breadcrumb" class="unstyled">
+        <li><a href="/">Docs</a><span>/</span></li>
+        <li>Guides</li>
+      </ul>
+      <div id="guides">
+        <%- partial('guides', {info: data.root}) -%>
+      </div>
+    <%
+    break;
+    case 'api':
+    %>
+      <ul id="breadcrumb" class="unstyled">
+        <li><a href="/">Docs</a><span>/</span></li>
+        <li>APIs</li>
+      </ul>
+      <div id="apis">
+        <%- partial('api', {refs: data.refs}) %>
+      </div>
+    <%
+    break;
+    default:
+    %>
+    <div id="index" class="row">
+      <div class="span6">
+        <h4>Table of Contents</h4>
+        <%- partial('toc', {info: app.index.root()}) %>
+      </div>
+      <div class="span6">
+        <div class="page">
+          <%- data.info.html() %>
+        </div>
+      </div>
+    </div>
+    <%
+    break;
+  }
+%>

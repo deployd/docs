@@ -9,12 +9,14 @@
 <% if(data.results.length) { %> 
   <ul id="search-results" class="row unstyled">
     <% data.results.forEach(function (r) { %>
-      <% if(r.section.reference) { %>
-        <li class="result reference-result">
-          <h3 class="ref-title">
+      <% if(r.section.api) { %>
+        <li class="result api-result">
+          
+          <h3 class="api-title">
             <a href="<%= r.section.url() %>">
               <%= r.section.title %> (<%= r.score %>)
             </a>
+            <em class="api-parent">- <%= r.section.info.title() %></em>
           </h3>
           <div class="example">
             <%- r.section.exampleHtml() %>

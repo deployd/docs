@@ -1,0 +1,58 @@
+<div id="guide-lists">
+
+<%
+function filter(d) {
+  switch(d.basename()) {
+    case 'reference':
+    case 'internal-api':
+    case 'examples':
+      return false;
+    break;
+  }
+  return true;
+}
+
+function isShallow(d) {
+  var bn = d.basename();
+  
+  return d.depth() < 3;
+}
+
+function dir(d) {
+  if(isShallow(d) && d.children(true)) {
+    %>
+      <ul class="nav nav-list guide-list well">
+    <%
+    %>
+      <li class="section">
+          <a href="<%= d.url() %>"><%= d.title() %></a>
+      </li>
+    <%
+      d.children(true).filter(filter).forEach(dir);
+    %>
+      </ul>
+    <%
+  } else if(d.public()) {
+    file(d);
+  }
+}
+
+function file(f) {
+  %>
+    <li class="file">
+        <a href="<%= f.url() %>"><%= f.title() %></a>
+    </li>
+  <%
+}
+
+data.info.children().forEach(function (d) {
+  if(d.dir) dir(d);
+});
+
+%>
+
+</div>
+
+<script>
+  $('#guide-lists').masonry();
+</script>

@@ -10,22 +10,54 @@ app.get('/search', function (req, res) {
   res.render('results.ejs', results);
 });
 
-app.get('/', function (req, res) {
-  var root = app.index.root();
-  var refs = [];
+app.get('/examples', function (req, res) {
+  var examples = [];
   
-  root.children().forEach(function (c) {
+  app.index.root().children().forEach(function (c) {
     if(c.dir) {
       c.children().forEach(function (cc) {
-        var bn = cc.basename();
-        if(cc.dir && bn === 'reference' || bn === 'internal-api') {
-          refs.push(cc);
-        }
+        if(cc.basename() === 'examples') examples.push(cc);
       });
     }
   });
   
-  res.render('index.ejs', {rootInfo: root, refs: refs});
+  res.render('examples.ejs', {examples: examples});
+});
+
+app.get('/docs', function (req, res) {
+  res.redirect('/');
+});
+
+app.get('/:page', function (req, res) {
+  var page = req.param('page');
+  var info = app.docs['docs/' + page];
+  var root = app.index.root();
+  var data = {info: info, page: page, root: root};
+  
+  if(page === 'api') {
+    var refs = [];
+    
+    root.children(true).forEach(function (c) {
+      if(c.dir) {
+        c.children(true).forEach(function (cc) {
+          var bn = cc.basename();
+          if(cc.dir && bn === 'reference' || bn === 'internal-api') {
+            refs.push(cc);
+          }
+        });
+      }
+    });
+    data.refs = refs;
+  }
+  
+
+  res.render('page.ejs', data);
+});
+
+app.get('/', function (req, res) {
+  var info = app.docs['docs/index.md'];
+  
+  res.render('page.ejs', {info: info});
 });
 
 app.get(/^\/docs\/(.+)$/, function (req, res) {
@@ -34,7 +66,7 @@ app.get(/^\/docs\/(.+)$/, function (req, res) {
     , refs = []
     , mainParent = info.mainParent();
   
-  app.index.root().children().forEach(function (c) {
+  app.index.root().children(true).forEach(function (c) {
     if(c == mainParent) {
       c.children().forEach(function (cc) {
         var bn = cc.basename();
@@ -48,9 +80,6 @@ app.get(/^\/docs\/(.+)$/, function (req, res) {
   res.render('browser.ejs', {refs: refs, info: info, include: req.param('include'), current: req.url});
 });
 
-app.get('/docs', function (req, res) {
-  res.redirect('/');
-});
 
 app.get('/complete/:input', function (req, res) {
   var input = req.param('input');

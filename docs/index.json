@@ -6,7 +6,7 @@
     "users",
     "using-modules",
     "server",
-    "developing-extensions"
+    "developing-modules"
   ],
   "aliases": {
     "server": "The Deployd Server"
