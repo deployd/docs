@@ -4,11 +4,12 @@
     %>
       <% if(!data.related) { %>
         <section>
-        <ul class="nav nav-list api-section <%= r.parent().basename() %>">
-          <li class="nav-header">
-            <h4><%= r.parent().title() %></h4>
-          <li>
-        </ul>
+        <!-- <ul class="nav nav-list api-section <%= r.parent().basename() %>">
+          <li class="nav-header"> -->
+            <h3><%= r.parent().title() %></h3>
+          <!-- <li>
+        </ul> -->
+        <div class="sections">
       <% } %>
         <%
         var children = r.children();
@@ -27,6 +28,7 @@
         
         %>
       <% if(!data.related) { %>
+        </div>
         </section>
       <% } %>
     <%
@@ -36,7 +38,7 @@
 
 <% if(!data.related) { %>
   <script>
-    $('#api').masonry();
+    $('#api .sections').masonry();
   </script>
 <% } %>
 
