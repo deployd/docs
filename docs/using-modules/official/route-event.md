@@ -9,53 +9,9 @@ This custom resource type allows you to write an event when the resource's route
 
 ### Installation
 
-Save the following script as `route-event.js` in your app's `node_modules` folder:
+In your app's root directory, type `npm install dpd-route-event` into the command line. This should create a `dpd-route-event` directory in your app's `node_modules` directory.
 
-    var Resource = require('deployd/lib/resource')
-      , Script = require('deployd/lib/script')
-      , util = require('util');
-
-    function RouteEvent() {
-      Resource.apply(this, arguments);
-    }
-    util.inherits(RouteEvent, Resource);
-
-    RouteEvent.label = "Route Event";
-    RouteEvent.events = ["get", "post"];
-
-    module.exports = RouteEvent;
-
-    RouteEvent.prototype.clientGeneration = true;
-
-    RouteEvent.prototype.handle = function (ctx, next) {
-      var parts = ctx.url.split('/').filter(function(p) { return p; });
-
-      var result = {};
-
-      var domain = {
-          url: ctx.url
-        , parts: parts
-        , query: ctx.query
-        , body: ctx.body
-        , 'this': result
-        , setResult: function(val) {
-          result = val;
-        }
-      };
-
-      if (ctx.method === "POST" && this.events.post) {
-        this.events.post.run(ctx, domain, function(err) {
-          ctx.done(err, result);
-        });
-      } else if (ctx.method === "GET" && this.events.get) {
-        this.events.get.run(ctx, domain, function(err) {
-          ctx.done(err, domain.result);
-        });
-      } else {
-        next();
-      }
-
-    };
+See [Installing Modules](../installing-modules.md) for details.
 
 ### Usage
 
@@ -79,7 +35,7 @@ And over HTTP:
 
 ### Event API
 
-In addition to the generic [custom resource event API](../reference/event-api), the following functions and variables are available while scripting the Route Event resource:
+In addition to the generic [custom resource event API](../reference/event-api.md), the following functions and variables are available while scripting the Route Event resource:
 
 
 #### setResult(result) <!-- api -->
