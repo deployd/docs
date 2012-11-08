@@ -5,7 +5,7 @@
 
 ## Hosting your API on deploydapp.com
 
-When you want to share your app with the world, you can use Deployd's beta hosting service to host it online in seconds.
+During the development of Deployd deploydapp.com exists as a free service to quickly push and test your app.
 
 *Note: this service is heavily in development and will change drastically in the future*
 

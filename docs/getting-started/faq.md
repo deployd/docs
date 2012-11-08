@@ -7,15 +7,15 @@
 
 ### Can I host Deployd on my own server?
 
-Yes. See the [deploying to your own server](../server/deploying.md) guide for more info.
+Yes. See the [deploying to your own server](/docs/server/your-server.md) guide for more info.
 
 ### Can I use Deployd without the JavaScript library? (e.g. for mobile apps)
 
-Yes, you can use Deployd as a JSON API [over HTTP](../data/accessing-collections/http.md).
+Yes, you can use Deployd as a JSON API [over HTTP](/docs/collections/reference/http.md).
 
 ### Can I use Deployd with front-end frameworks like Backbone, AngularJS, Ember, Knockout, etc?
 
-Yes, Deployd is unopinionated on the front-end and you can use any libraries that you like. For frameworks that provide their own AJAX implementation (particularly Backbone), you should probably use the [HTTP API](../data/accessing-collections/http.md) rather than dpd.js in most cases. Dpd.js is still useful for realtime and user authentication, as most of those frameworks don't provide any built-in way to do this.
+Yes, Deployd is unopinionated on the front-end and you can use any libraries that you like. For frameworks that provide their own AJAX implementation (particularly Backbone), you should probably use the [HTTP API](/docs/collections/accessing-collections.mdaccessing-collections.mdaccessing-collections/http.md) rather than dpd.js in most cases. Dpd.js is still useful for realtime and user authentication, as most of those frameworks don't provide any built-in way to do this.
 
 If you're interested, some of Deployd.com (such as the community page and the documentation's search feature) was built with [AngularJS](http://angularjs.org/) and certain parts of the Dashboard (such as the data and property editor) were built with [Knockout](http://knockoutjs.com/). 
 

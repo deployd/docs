@@ -4,6 +4,35 @@
 
 ## Using the dpd command line tool.
 
+### Commands
+
+#### dpd
+
+Start Deployd the current project in development mode
+with an interactive shell/repl for interacting with the running server.
+
+#### dpd create name
+    
+Create a Deployd project in a new directory with the given `name`.
+
+#### dpd deploy [subdomain]
+    
+Deploy the current project to a testing instance on **deploydapp.com**. If a key does not exist, one will be generated before deploying.
+
+#### dpd showkey
+    
+Print the app's key for use in a remote dashboard or for making remote authenticated / administrative requests.
+
+#### dpd keygen
+    
+Generate a new key for remote access / administration.
+
+#### dpd remote
+    
+Open up the remote dashboard in your browser.
+
+### Help
+
 Here is the help output of `dpd -h`:
 
     Usage: dpd [options] [command]
