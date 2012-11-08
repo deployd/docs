@@ -4,7 +4,9 @@ function isShallow(d) {
 }
 
 function dir(d) {
-  if(isShallow(d) && d.children(true)) {
+  if (d.depth() <= 1) {
+    d.children(true).forEach(dir);
+  } else if(isShallow(d) && d.children(true)) {
     %>
       <ul class="nav nav-list">
     <%

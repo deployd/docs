@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.2.0
+ * Bootstrap v2.2.1
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -5096,11 +5096,14 @@ body {
 /**
  * Table of Contents
  */
-#index .file {
-  margin-left: 20px;
-}
 #index .nav-tabs a {
   font-size: 18px;
+}
+#index .nav-list .file,
+#index .nav-list .nav-list {
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: solid 1px #999999;
 }
 #index .section {
   *zoom: 1;
@@ -5116,7 +5119,6 @@ body {
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   float: right;
-  width: 460px;
   padding: 0 10px 10px 10px;
 }
 #index .section:before,
