@@ -5176,6 +5176,10 @@ body {
   font-size: 14px;
   font-weight: bold;
   margin-left: 30px;
+  padding-right: 20px;
+}
+#guides .guide-list .file a:hover {
+  background: none;
 }
 #guides ul {
   list-style: disc;
@@ -5322,6 +5326,12 @@ body {
 #api .nav-list blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
+}
+#api .nav-list a:hover {
+  background: #049cdb;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: none;
 }
 #api .nav-header {
   color: #555555;
