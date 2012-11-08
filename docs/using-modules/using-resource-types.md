@@ -7,13 +7,13 @@
 
 Deployd modules can register new *Resource Types*, which can be created with a route and configured per instance. Deployd comes with two built-in Resource Types: "Collection" and "User Collection". 
 
-To add more Resource Types, you can [install](./installing-modules) a module that includes one. The examples on this page use a simple [Route Event](https://gist.github.com/3893059) resource.
+To add more Resource Types, you can [install](./installing-modules) a module that includes one. The examples on this page use the [Event resource](./official/route-event.md).
 
 #### Creating an instance of a Custom Resource Type
 
 Once the module is properly installed, you can add the custom resource just like a Collection. Custom Resources will usually have an asterisk <i class="icon-asterisk"></i> icon. 
 
-![Creating a Route Event resource](/tutorials/resource-type/creating-custom-resource.png)
+![Creating an Event resource](/tutorials/resource-type/creating-custom-resource.png)
 
 *Note: After adding any module, you will have to restart the Deployd server to see its effects. If you don't see the custom resource type in the list, you may have to restart the server and refresh the dashboard.*
 
