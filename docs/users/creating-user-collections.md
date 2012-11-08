@@ -5,11 +5,11 @@
 
 ## Creating User Collections
 
-# User Collection
+### User Collection
 
 A User Collection extends a [Collection](/../docs/collections/accessing-collections.mdcreating-collections.md), adding the functionality needed to authenticate users with your app. You can create one by choosing "User Collection" when adding a Resource.
 
-## Properties
+#### Properties
 
 User Collections can have the same properties as a Collection, with two additional non-removable properties:
 
