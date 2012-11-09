@@ -1,8 +1,9 @@
 <%
 var crumbs = [];
-var info = data.info;
+var info = data.info.parent();
 var c = info;
 var p;
+
 while(p = c.parent()) {
   crumbs.push(p);
   c = p;

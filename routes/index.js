@@ -65,6 +65,11 @@ app.get(/^\/docs\/(.+)$/, function (req, res) {
     , info = app.docs['docs/' + p]
     , refs = []
     , mainParent = info.mainParent();
+
+  if (info.dir) {
+    res.redirect(info.children()[0].url());
+    return;
+  }
   
   app.index.root().children(true).forEach(function (c) {
     if(c == mainParent) {
