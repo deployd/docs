@@ -195,6 +195,12 @@ body {
       margin-left: 15px;
       padding-right: 20px;
       a:hover {background: none;}
+
+      .title {
+        display: inline-block;
+        width: 220px;
+        vertical-align: top;
+      }
     }
   }
   ul {list-style: disc;}
@@ -206,14 +212,20 @@ body {
  */
  
 #explorer {
+  margin-bottom: 20px;
   a {text-transform: capitalize; color: @gray;}
-  #files {
+  #files, #dirs {
     margin-left: 10px;
+    margin-bottom: 10px;
     li {
       .clearfix();
       margin-top: 10px;
       opacity: 0.6;
     }
+  }
+
+  #dirs {
+    border-top: 1px #ccc solid;
   }
   .active {
     a {font-weight: bold; color: @black;}

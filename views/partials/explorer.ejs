@@ -2,14 +2,31 @@
   var info = data.info;
   var parent = info.file ? info.parent() : info;
   var children = parent.children(true);
+
+  var dirs = children && children.filter(function(c) { return c.dir });
+  var files = children && children.filter(function(c) { return !c.dir });
 %>
 
 <div id="explorer">
   <ul id="files" class="nav">
-    <% children && children.forEach(function (c) { 
+    <% files && files.forEach(function (c) { 
       %>
-      <li class="<%= c.isActive(data.current) ? 'active' : '' %>"><a href="<%= c.url() %>"><i class="icon-<%= (c.dir ? 'folder-close' : 'file') %>"></i> <span><%= c.title() %></span></a></li>
-      <% if(c.isActive(data.current)) {
+      <li class="<%= c.isActive(data.current) ? 'active' : '' %>"><a href="<%= c.url() %>"><i class="icon-file"></i> <span><%= c.title() %></span></a></li>
+    <% }) %>
+    
+  </ul>
+  <% if (dirs && dirs.length) { %>
+  <ul id="dirs" class="nav">
+  <% dirs.forEach(function (c) { 
+      %>
+      <li class="<%= c.isActive(data.current) ? 'active' : '' %>"><a href="<%= c.url() %>"><i class="icon-folder-close"></i> <span><%= c.title() %></span></a></li>
+    <% }) %>
+  </ul>
+  <% } %>
+</div>
+
+
+ <% /* if(c.isActive(data.current)) {
         %>
         <ul>
         <% 
@@ -20,7 +37,4 @@
         })
         %></ul><%
        }
-      %>
-    <% }) %>
-  </ul>
-</div>
+      */%>
