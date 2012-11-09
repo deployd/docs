@@ -8,9 +8,13 @@ Done:
 - Fix search typeahead flash
 - Show real titles on table of contents (turned out to be a Windows bug)
 - Made navigation and breadcrumbs more intuitive (in my opinion)
+  - Removed current page from breadcrumbs
+  - A folder will now redirect to its first page
 - Seperated folders from files in the sidebar
+- Add "(View All)" link to combine all files in a folder into one page
 
 Want to do:
+
 
 High level problems:
 - Clicking on a folder changes my navigation somewhat unexpectedly

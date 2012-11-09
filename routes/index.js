@@ -66,7 +66,7 @@ app.get(/^\/docs\/(.+)$/, function (req, res) {
     , refs = []
     , mainParent = info.mainParent();
 
-  if (info.dir) {
+  if (info.dir && req.param('include') !== 'all') {
     res.redirect(info.children()[0].url());
     return;
   }
