@@ -5184,6 +5184,11 @@ body {
 #guides .guide-list .file a:hover {
   background: none;
 }
+#guides .guide-list .file .title {
+  display: inline-block;
+  width: 220px;
+  vertical-align: top;
+}
 #guides ul {
   list-style: disc;
 }
