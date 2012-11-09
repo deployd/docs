@@ -26,9 +26,28 @@ The following functions and objects are available to all event scripts.
 
 The current user if one exists on the current `Context`.
 
+#### isMe() <!-- api --> 
+
+    isMe(id)
+
+Returns true if the current user (`me`) matches the provided `id`.
+
 #### this <!-- api -->
 
 If the resource does not implement a custom domain, this will be an empty object. Otherwise `this` usually refers to the current domain's instance (eg. an object in a collection).
+
+### cancel() <!-- api -->
+
+    cancel(message, [statusCode])
+
+Stops the current request with the provided error message and HTTP status code. Status code defaults to `400`.
+
+### cancelIf(), cancelUnless() <!-- api -->
+
+    cancelIf(condition, message, [statusCode])
+    cancelUnless(condition, message, [statusCode])
+
+Calls `cancel(message, statusCode)` if the provided condition is truthy (for `cancelIf()`) or falsy (for `cancelUnless`).
 
 #### internal <!-- api -->
 
@@ -42,6 +61,14 @@ A boolean property, true if this request is authenticated as root (from the dash
 
 The current HTTP query. (eg ?foo=bar - query would be {foo: 'bar'}).
 
+### emit() <!-- api -->
+
+    emit([userCollection, query], message, [data])
+
+Emits a realtime message to the client
+You can use `userCollection` and `query` parameters to limit the message broadcast to specific users.
+
 #### console <!-- api --> 
 
 Support for console.log() and other console methods.
+

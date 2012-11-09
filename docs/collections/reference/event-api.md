@@ -43,6 +43,25 @@ The currently logged in User from a User Collection. `undefined` if no user is l
         this.creatorId = me.id;
         this.creatorName = me.name;
     }
+
+### isMe() <!-- api --> 
+
+    isMe(id)
+
+Checks whether the current user matches the provided `id`.
+
+    // Example: On Get /users
+    // Hide properties unless this is the current user
+    if (!isMe(this.id)) {
+        hide('privateVariable');
+    }
+
+<!-- seperate -->
+
+    // Example: On Put 
+    // Make sure that only the creator can edit a post
+    cancelUnless(isMe(this.id), "You are not authorized to edit that post", 401);
+
 ### query <!-- api -->
 
 The query string object. On a specific query (such as `/posts/a59551a90be9abd8`), this includes an `id` property.
@@ -69,6 +88,18 @@ It is strongly recommended that you `cancel()` any events that are not accessibl
 
 *Note: In a GET event where multiple values are queried (such as on `/posts`), the `cancel()` function will remove the current item from the results without an error message.*
 
+### cancelIf(), cancelUnless() <!-- api -->
+
+    cancelIf(condition, message, [statusCode])
+    cancelUnless(condition, message, [statusCode])
+
+Calls `cancel(message, statusCode)` if the provided condition is truthy (for `cancelIf()`) or falsy (for `cancelUnless`).
+
+    Example: On Post
+    // Prevent banned users from posting
+    cancelUnless(me, "You are not logged in", 401);
+    cancelIf(me.isBanned, "You are banned", 401);
+
 ### error() <!-- api -->
 
     error(key, message)
@@ -81,6 +112,17 @@ Adds an error message to an `errors` object in the response. Cancels the request
     if (!this.name.match(/(foo|bar)/)) {
       error('name', "Contains forbidden words");
     }
+
+### errorIf(), errorUnless() <!-- api -->
+
+    errorIf(condition, key, message)
+    errorUnless(condition, key, message)
+
+Calls `error(key, message)` if the provided condition is truthy (for `errorIf()`) or falsy (for `errorUnless`).
+
+    // Example: On Validate
+    // Require message to be a certain length
+    errorUnless(this.message && this.message.length > 2, 'message', "Must be at least 2 characters");
 
 ### hide() <!-- api -->
 
