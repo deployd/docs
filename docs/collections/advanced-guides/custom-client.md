@@ -21,7 +21,7 @@ The following is implemented in node but the basic idea can be applied to any la
 
 #### Basics
 
-First we need a basic constructor and request method.
+All we need to create a collection client is a constructor and a single method for making requests.
 
     var request = require('request');
 
@@ -44,7 +44,7 @@ First we need a basic constructor and request method.
       });
     }
     
-This is actually everything we need to make HTTP requests to our Collection. Here's a simple query example:
+Now we can construct new collections by passing the URL as the only argument to our constructor.
 
     var c = new Collection('http://foo.deploydapp.com/todos');
 
@@ -52,7 +52,7 @@ This is actually everything we need to make HTTP requests to our Collection. Her
       console.log(todos); // [...]
     });
 
-This will create a new todo:
+We can add an object to our collection by passing an object as the json body and setting the `method` to "POST".
 
     var todo = {
       title: 'wash the car'
@@ -62,7 +62,7 @@ This will create a new todo:
       console.log(todo); // {id: '...', ...}
     });
     
-Updating is also quite simple:
+To update an object we just need to set the `method` to "PUT".
 
     var todo = {
       id: '06a5254f11ff7853',
@@ -73,7 +73,7 @@ Updating is also quite simple:
       console.log(todo); // {id: '...', ...}
     });
 
-This will delete the todo:
+Deleting an object requires an ID and the method must be set to "DELETE".
 
     var id = '06a5254f11ff7853';
 
@@ -85,7 +85,7 @@ This will delete the todo:
 
 The simplest way to listen events is to use a Socket.IO client. You can find a list of clients [here](https://github.com/LearnBoost/socket.io/wiki).
 
-Using the node.js Socket.IO is simple:
+Using the node.js Socket.IO client, we can create a socket by connecting to our deployed app. Then calling the socket's `on()` method to listen to a custom event emitted by a collection.
 
     var io = require('socket.io-client');
     var socket = io.connect('http://foo.deploydapp.com');

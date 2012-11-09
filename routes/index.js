@@ -28,6 +28,12 @@ app.get('/docs', function (req, res) {
   res.redirect('/');
 });
 
+app.get('/modules', function (req, res) {
+  var info = app.docs['docs/using-modules/official'];
+  
+  res.render('modules.ejs', {info: info});
+});
+
 app.get('/:page', function (req, res) {
   var page = req.param('page');
   var info = app.docs['docs/' + page];

@@ -3,7 +3,7 @@
   tags: ['example', 'collection', 'dpd.js', 'realtime']
 }-->
 
-## A Simple Todo App
+## Chatroom
 
 ![Todo app](/examples/images/chat-room.png)
 

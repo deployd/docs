@@ -5,7 +5,7 @@
 
 ## Creating Collections
 
-A Collection is a Deployd [resource](/term/resource) that exposes a database-like API directly to clients over HTTP and WebSockets. Clients can run advanced queries, create and update objects, and bind to change events to sync with the Collection in realtime. You can create a Collection in the dashboard.
+A Collection exposes a database-like API directly to clients over HTTP and WebSockets. Clients can run advanced queries, create and update objects, and bind to change events to sync with the Collection in realtime. You can create a Collection in the dashboard.
 
 ### Properties
 
