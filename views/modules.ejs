@@ -1,0 +1,10 @@
+<ul id="breadcrumb" class="unstyled">
+  <li><a href="/">Docs</a><span>/</span></li>
+  <li>Modules</li>
+</ul>
+
+<% data.info.children().forEach(function (c) { %>
+  <h4>
+    <a href="<%= c.url() %>"><%= c.title() %></a> - <%= c.meta.description %>
+  </h4>
+<% }); %>

@@ -5,9 +5,13 @@
 
 ## Creating a Module
 
-Deployd modules are just [node modules](http://npmjs.org). Any module in your app's `node_module` folder will be loaded when the Deployd server starts.
+### Background
+
+Deployd modules are 100% compatible with regular [node modules](http://npmjs.org). This means you can use any of the 17,000+ node modules when building your Deployd app.
 
 ### Hello World
+
+Any module in your app's `node_module` folder will be loaded when the Deployd server starts.
 
 You don't have to `require()` or load anything to instantiate your module. The following will log 'hello world' when you run `dpd`.
 
@@ -18,11 +22,7 @@ You don't have to `require()` or load anything to instantiate your module. The f
 
 In order to do anything interesting you need a reference to the current Deployd [server](internal-api/server.md) object. The server is always available at `process.server`. This means you don't need to require anything to use most of the [internal APIs](internal-api).
 
-### Types of Modules
-
-Modules created for Deployd usually fall into one category depending on the problem it solves.
-
-#### One Off Modules
+### One Off Modules
 
 The simplest kind of module is a **one-off module**. These are easy to create but hard to reuse. Typically any behavior that is specific to just your app that can't be implemented using an existing module can be built with a simple **one-off module**. 
 
@@ -43,7 +43,7 @@ Here's an example one off module that maintains a count of requests to the url `
       fs.writeFile('hits.json', JSON.stringify({hits: process.server.hits}));
     }, 60000);
 
-#### Reusable Modules
+### Reusable Modules
 
 Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are incredibly easy to reuse. See the [custom resource type guide](custom-resource-types.md) for more info.
 

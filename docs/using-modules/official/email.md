@@ -1,6 +1,7 @@
 <!--{
   title: 'Email',
-  tags: ['resource type', 'module', 'email']
+  tags: ['resource type', 'module', 'email'],
+  description: 'Send emails from clients or during events.'
 }-->
 
 ## Email Resource

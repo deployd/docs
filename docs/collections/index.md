@@ -1,6 +1,6 @@
 ## Collections
 
-Deployd collections allow you to query, update and sync data from any client that supports HTTP without having to write backend code.
+The most commonly used resource in a Deployd app is the Collection. It exposes a database like API that allows any client to query, modify and sync the data in your app, all without having to write a ton of boilerplate code on the server.
 
 ### Properties
 
