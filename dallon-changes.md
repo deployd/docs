@@ -6,9 +6,10 @@ Done:
 - Show "doc" icons on the "Guides" page
 - Rearrange "APIs" page
 - Fix search typeahead flash
+- Show real titles on table of contents (turned out to be a Windows bug)
 
 Want to do:
-- Show real titles on table of contents (not parsed from file names)
+- Mess with nav
 
 High level problems:
 - It's not obvious that clicking into a parent page (i.e. Getting Started) takes me to the "All pages" view. I'm not sure what I'd expect, but not that. Maybe a table of contents?
