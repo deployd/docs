@@ -5204,26 +5204,38 @@ body {
 /**
  * Explorer
  */
+#explorer {
+  margin-bottom: 20px;
+}
 #explorer a {
   text-transform: capitalize;
   color: #555555;
 }
-#explorer #files {
+#explorer #files,
+#explorer #dirs {
   margin-left: 10px;
+  margin-bottom: 10px;
 }
-#explorer #files li {
+#explorer #files li,
+#explorer #dirs li {
   *zoom: 1;
   margin-top: 10px;
   opacity: 0.6;
 }
 #explorer #files li:before,
-#explorer #files li:after {
+#explorer #dirs li:before,
+#explorer #files li:after,
+#explorer #dirs li:after {
   display: table;
   content: "";
   line-height: 0;
 }
-#explorer #files li:after {
+#explorer #files li:after,
+#explorer #dirs li:after {
   clear: both;
+}
+#explorer #dirs {
+  border-top: 1px #ccc solid;
 }
 #explorer .active {
   opacity: 1 !important;

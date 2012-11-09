@@ -8,12 +8,9 @@ Done:
 - Fix search typeahead flash
 - Show real titles on table of contents (turned out to be a Windows bug)
 - Made navigation and breadcrumbs more intuitive (in my opinion)
+- Seperated folders from files in the sidebar
 
 Want to do:
 
 High level problems:
-- It's not obvious that clicking into a parent page (i.e. Getting Started) takes me to the "All pages" view. I'm not sure what I'd expect, but not that. Maybe a table of contents?
-- Clicking on a folder changes my navigation drastically and unexpectedly
-
-Technical problems:
-- The "All pages" view (i.e. Getting Started) shows the pages in a completely different order than is presented on the nav
+- Clicking on a folder changes my navigation somewhat unexpectedly
