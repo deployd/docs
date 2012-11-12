@@ -5,7 +5,7 @@
 
 ## Dpd.js
 
-`dpd.js` is an auto-generated library that provides access to Collections and other Deployd features on the front-end. For a basic overview, see [Accessing Collections with dpd.js](../accessing-collections.md)
+`dpd.js` is an auto-generated library that provides access to Collections and other Deployd features on the front-end. For a basic overview, see [Accessing Collections with dpd.js](../accessing-collections.md).
 
 ### Accessing the Collection
 
@@ -159,13 +159,13 @@ The `.post(object, fn)` function creates an object in the collection with the sp
 
 The `.post(id, object, fn)` function, or `.post(object, fn)` where `object` has an `id` property, will update an object. Using the `.post()` function in this way behaves the same as the `put()` function.
 
-This is useful if you want to insert an object if it does not exist and update it if it does.
+This is useful when you want to insert an object if it does not exist and update it if it does.
 
 #### .put([id or query], object, fn) <!-- api -->
 
 ##### Updating an Object
 
-The `.put(id, object, fn)` function will update an object that is already in the collection. It will only change the properties that are provided. It is also possible to incrementally update certain properties; see [Updating Objects in Collections](../updating-objects.md) for details.
+The `.put(id, object, fn)` function will update an object that is already in the collection. It will only change the properties that are provided. It is also possible to incrementally update certain properties; see [Updating Objects in Collections](./updating-objects.md) for details.
 
     // Update a todo
     dpd.todos.put("91c621a3026ca8ef", {title: "Walk the cat"}, function(result, error)) {
@@ -226,12 +226,12 @@ You can also use the syntax `.del(query, fn)` if `object` has an `id` property. 
 
 ### Realtime API
 
-#### dpd.on(event, fn) <!-- api -->
+#### dpd.on(message, fn) <!-- api -->
 
-The `dpd.on(event, fn)` function listens for realtime events emitted from the server. See [Scripting Collections with Events](../scripting-collection-with-events.md) for information on sending realtime events with the `emit()` function.
+The `dpd.on(message, fn)` function listens for realtime messages emitted from the server. See [Notifying the Client of Changes](../notifying-clients.md) for information on sending realtime messages with the `emit()` function.
 
-* `event` - The name of the event to listen for
-* `fn` - Callback `function(eventData)`. Called every time the event is received. There is no `error` argument.
+* `message` - The name of the message to listen for
+* `fn` - Callback `function(messageData)`. Called every time the message is received. There is no `error` argument.
 
 <!--seperate-->
 
@@ -245,16 +245,16 @@ In your Collection Event:
     // On Post
     emit('todos:create', this); 
 
-Calling `.on()` on the collection itself will namespace the event by the collection name:
+Calling `.on()` on the collection itself will namespace the message by the collection name:
   
     // Same as dpd.on('todos:create', fn)
     dpd.todos.on('create', function(post) {
       // Do something
     });
 
-#### dpd.off(event, [fn]) <!-- api -->
+#### dpd.off(message, [fn]) <!-- api -->
 
-The `dpd.off(event)` function stops listening for the specified event.
+The `dpd.off(message)` function stops listening for the specified message.
 
     dpd.off('todos:create');
 
@@ -268,20 +268,20 @@ You can also provide a function that was originally set as a listener to remove 
 
     dpd.off('todos:create', onTodoCreated);
 
-Calling `.off()` on the collection itself will namespace the event by the collection name:
+Calling `.off()` on the collection itself will namespace the message by the collection name:
 
     // Same as dpd.off('todos:create');
     dpd.todos.off('create');
 
-#### dpd.once(event, fn) <!-- api -->
+#### dpd.once(message, fn) <!-- api -->
 
-The `dpd.once(event, fn)` function listens for a realtime event emitted by the server and runs the `fn` callback exactly once.
+The `dpd.once(message, fn)` function listens for a realtime message emitted by the server and runs the `fn` callback exactly once.
 
     dpd.once('todos:create', function(post) {
       // Do something
     });
 
-Calling `.once()` on the collection itself will namespace the event by the collection name:
+Calling `.once()` on the collection itself will namespace the message by the collection name:
 
     // Same as dpd.once('todos:create');
     dpd.todos.once('create', function(post) {
@@ -292,7 +292,7 @@ Calling `.once()` on the collection itself will namespace the event by the colle
 
 The `dpd.socketReady(fn)` function waits for a connection to be established to the server and executes the `fn` callback with no arguments. If a connection has already been established, it will execute the `fn` callback immediately. 
 
-It can sometimes take a second or more to establish a connection, and events sent during this time will not be received by your front end. This function is useful for ensuring that you will receive an event when it is broadcast.
+It can sometimes take a second or more to establish a connection, and messages sent during this time will not be received by your front end. This function is useful for ensuring that you will receive an message when it is broadcast.
 
     dpd.socketReady(function() {
       // Do something
@@ -300,4 +300,4 @@ It can sometimes take a second or more to establish a connection, and events sen
 
 #### dpd.socket <!-- api -->
 
-The `dpd.socket` object is a [socket.io](http://socket.io/#how-to-use) object. This is useful if you want to finely control how events are received.
+The `dpd.socket` object is a [socket.io](http://socket.io/#how-to-use) object. This is useful if you want to finely control how messages are received.

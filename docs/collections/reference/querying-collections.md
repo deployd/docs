@@ -7,11 +7,12 @@
 
 ### Simple Queries
 
-Collections can be queried over HTTP using the query string:
+Collections can be queried over HTTP using the query string.
 
-	GET /posts?author=Joe
-	
-Will return all the `posts` with an author "Joe".
+This example will return all the `posts` with an author "Joe":
+
+	GET /posts?author=Joe	
+
 
 ### Advanced Queries
 
@@ -88,6 +89,19 @@ The `$fields` command allows you to include or exclude properties from your resu
     		$fields: {title: 1}
     	}
 
+#### $or <!-- api -->
+
+The `$or` command allows you to specify multiple queries for an object to match in an array.
+
+    // Get all public posts and all posts by a specified user (even if those are private)
+    {
+        $or: [{
+          isPublic: true
+        }, {
+          creator: "Bob"
+        }]
+    }
+
 #### $sort <!-- api -->
 
 The `$sort` command allows you to order your results by the value of a property. The value can be 1 for ascending sort (lowest first; A-Z, 0-10) or -1 for descending (highest first; Z-A, 10-0)
@@ -103,7 +117,7 @@ The `$limit` command allows you to limit the amount of objects that are returned
 
     // Return the top 10 scores
     {
-    	$sort: {score: -1}
+    	$sort: {score: -1},
     	$limit: 10
     }
 
@@ -113,10 +127,10 @@ The `$skip` command allows you to exclude a given number of the first objects re
 
 	// Return the third page of posts, with 10 posts per page
 	{
-		$skip: 20
+		$skip: 20,
 		$limit: 10
 	}
 	
 #### $limitRecursion <!-- api -->
 
-The `$limitRecursion` command allows you to override the default recursive limits in Deployd. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](relationships-between-collections.md) for more info.
+The `$limitRecursion` command allows you to override the default recursive limits in Deployd. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](../relationships-between-collections.md) for more info.
