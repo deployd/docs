@@ -3,8 +3,15 @@
   <li>Modules</li>
 </ul>
 
+<ul id="modules" class="unstyled">
 <% data.info.children().forEach(function (c) { %>
-  <h4>
-    <a href="<%= c.url() %>"><%= c.title() %></a> - <%= c.meta.description %>
-  </h4>
+  <li>
+    <h4>
+      <a href="<%= c.url() %>">
+        <i class="icon-certificate"></i>
+        <%= c.title() %>
+      </a> - <%= c.meta.description %>
+    </h4>
+  </li>
 <% }); %>
+</ul>

@@ -5382,3 +5382,16 @@ body {
 #examples > .section p > img {
   display: none;
 }
+/**
+ * Modules
+ */
+#modules li {
+  padding: 10px;
+}
+#modules li i {
+  position: relative;
+  top: 3px;
+}
+#modules li + li {
+  border-top: solid 1px #eeeeee;
+}
