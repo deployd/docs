@@ -5,11 +5,11 @@
 
 ## Accessing Collections - Building a Custom Client
 
-In this guide we will build an HTTP client from scratch to perform CRUD as well as listen for events from a Collection.
+In this guide, we will build an HTTP client from scratch to perform CRUD as well as listen for events from a Collection.
 
 ### REST
 
-Most REST clients should work with Deployd Collections right away, though Deployd does not strictly follow REST. For example, Backbone.js and Angular's http utilities work with Deployd without modification.
+Most REST clients should work with Deployd Collections right away, though Deployd does not strictly follow REST. For example, Backbone.js and AngularJS's HTTP utilities work with Deployd without modification.
 
 ### WebSockets
 
@@ -17,7 +17,7 @@ To fully implement the Collection API, a client must be compatible with WebSocke
     
 ### Building a Node.js Client
 
-The following is implemented in node but the basic idea can be applied to any language/platform.
+The following is implemented in [Node.js](http://nodejs.org/), but the basic idea can be applied to any language or platform.
 
 #### Basics
 

@@ -2,16 +2,15 @@
   title: 'The "dpd" Command Line Tool'
 }-->
 
-## Using the dpd command line tool.
+## Using the dpd command line tool
 
 ### Commands
 
 #### dpd
 
-Start Deployd the current project in development mode
-with an interactive shell/repl for interacting with the running server.
+Start Deployd the current project in development mode with an interactive shell/repl for interacting with the running server.
 
-#### dpd create name
+#### dpd create [name]
     
 Create a Deployd project in a new directory with the given `name`.
 

@@ -1,8 +1,12 @@
 <%
 var crumbs = [];
 var info = data.info;
+if (data.include !== 'all') {
+  info = info.parent();
+} 
 var c = info;
 var p;
+
 while(p = c.parent()) {
   crumbs.push(p);
   c = p;
@@ -15,4 +19,7 @@ crumbs = crumbs.reverse();
   <li><a href="<%= c.url() %>"><%= c.title() %></a><span>/</span></li>
 <% }); %>
   <li><%= info.title() %></li>
+  <% if (data.include !== 'all') { %>
+  <li>(<a href="<%= info.url() %>?include=all">View All</a>)</li>
+  <% } %>
 </ul>

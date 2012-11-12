@@ -15,7 +15,7 @@ A `Resource` can execute `Script`s during the handling of an http request when c
 
 For example, the `Collection` resource executes the *get.js* event script when it retrieves each object from its store. If a *get.js* file exists in the instance folder of a resource (eg. `/my-project/resources/my-collection/get.js`), it will be pulled in by the resource and exposed as `myResource.scripts.get`.
 
-### Class: Resource
+### Class: Resource <!-- ref -->
 
 A `Resource` inherits from `EventEmitter`. The following events are available.
 
@@ -65,19 +65,20 @@ The following resource would respond with a file at the url `/my-file.html`.
         next();
       }
     }
-    
+
+
+
 ### Overriding Behavior
 
-Certain method's on a `Resource` prototype are called by the runtime. Their default behavior should be overriden to define an inherited `Resources` behavior.
+Certain methods on a `Resource` prototype are called by the runtime. Their default behavior should be overriden to define an inherited `Resources` behavior.
 
 ### resource.handle(ctx, next) <!-- api -->
 
 Handle an incoming request. This gets called by the router.
-Call `next()` if the resource cannot handle the request.
-Otherwise call `cxt.done(err, res)` when the resource
-is ready to respond.
 
-* ctx {Context}
+The resource can either handle this context and call `ctx.done(err, obj)` with an error or result JSON object, or call `next()` to give the context back to the router. If a resource calls `next()` the router might find another match for the resource, or respond with a `404`.
+
+* ctx {[Context](context.md)}
 
 The http context created by the `Router`. This provides an abstraction between the actual request and response. A `Resource` should call `ctx.done` or pipe to `ctx.res` if it can handle a request. Otherwise it should call `next()`.
 
@@ -95,7 +96,23 @@ Override the handle method to return a string:
     
 ### resource.load(fn) <!-- api -->
 
-Load any dependencies and call `fn(err)` with any errors that occur. This is automatically called by the runtime to support asynchronous construction of a resource (such as loading files). If this method is overridden the super method must be called to support loading of the `MyResource.events` array.
+Load any dependencies and call `fn(err)` with any errors that occur. This is automatically called by the runtime to support asynchronous construction of a resource (such as loading files).
+
+*Note: If this method is overridden, the super method must be called to support loading of the `MyResource.events` array.*
+
+### resource.clientGeneration <!-- api -->
+
+If `true`, ensures that this resource is included in `dpd.js`.
+
+    MyResource.prototype.clientGeneration = true;
+
+### resource.config <!-- api -->
+
+The instance configuration object; used to access the resource's configuration from member functions.
+
+    MyResource.prototype.handle = function (ctx, next) {
+      fs.readFile(this.config.filePath, ctx.done);
+    }
 
 ### External Prototype  <!-- ref -->
 
@@ -139,7 +156,7 @@ If a `Resource` constructor includes an array of events, it will try to load the
 
     MyResource.events = ['get'];
     
-This will be available to each instance of this resource. 
+This will be available to each instance of this resource as `this.events`. 
 
 `/my-project/node_modules/my-resource.js`
 
@@ -158,7 +175,49 @@ This will be available to each instance of this resource.
 
     say('hello world');
 
-### Custom Dashboard
+### Resource.label <!-- api -->
+
+The resource type's name as it appears in the dashboard. If this is not set, it will appear with its constructor name.
+
+    Hello.label = 'Hello World';
+
+### Resource.defaultPath <!-- api -->
+
+The default path suggested to users creating a resource. If this is not set, it will use the constructor's name in lowercase.
+
+    Hello.defaultPath = '/hello-world'; 
+
+### Collection.basicDashboard <!-- api -->
+
+Set this property to an object to create a custom configuration page for your resource type.
+
+`settings` - An array of objects describing which properties to display. 
+- `name` - The name of the property. This is how the value will be passed into the `config` object, so make sure it's something JavaScript-friendly, e.g. `maxItems`.
+- `type` - The type of control to edit this property. Allowed types are `text`, `textarea`, `number`, and `checkbox`.
+- `description` (Optional) - Explanatory text to appear below the field.
+
+    Hello.basicDashboard = {
+      settings: [{
+          name: 'propertyName',
+          type: 'text',
+          description: "This description appears below the text field"
+      }, {
+          name: 'longTextProperty',
+          type: 'textarea'
+      }, {
+          name: 'numericProperty',
+          type: 'number'
+      }, {
+          name: 'booleanProperty',
+          type: 'checkbox'
+      }]
+    };
+
+The above sample will produce the following dashboard page:
+
+![Example basic dashboard](/images/basic-dashboard.png)
+
+### Collection.dashboard <!-- api -->
 
 A resource can describe the dependencies of a fully custom dashboard editor ui. This will be passed to the dashboard during rendering to create a custom ui.
 
@@ -190,29 +249,85 @@ The dashboard will load content from `[current-page].html` and `js/[current-page
 * `scripts` {Array} *(optional)*
 
 An array of extra JavaScript files to load with the dashboard pages.
+
+#### Dashboard asset loading <!-- ref -->
+
+When you request a page from a custom dashboard, it will load the following files from the `dashboard.path` directory by default, if available:
+
+ - `[current-page].html`
+ - `js/[current-page].js`
+ - `style.css`
+
+The default page is `index`; the `config` page will also redirect to `index`. 
+
+The `config` or `index` page will load the basic dashboard if no `index.html` file is provided.
+The `events` page will load the default event editor if no `events.html` file is provided.
+
+It will also load the files in the `dashboard.scripts` property.
+
+#### Creating a custom dashboard
+
+##### Event editor control <!-- ref -->
+
+To embed the event editor in your dashboard, include this empty div:
+  
+    <div id="event-editor" class="default-editor"></div>
+
+##### Styling <!-- ref -->
+
+For styling, the dashboard uses a reskinned version of [Twitter Bootstrap 2.0.2](http://twitter.github.com/bootstrap/). 
+
+##### JavaScript <!-- ref -->
+
+The dashboard provides several JavaScript libraries by default:
+
+- [jQuery 1.7.2](http://jquery.com/)
+- [jquery.cookie](https://github.com/carhartl/jquery-cookie/)
+- [Underscore 1.3.3](http://underscorejs.org/)
+- [Twitter Bootstrap 2.0.2](http://twitter.github.com/bootstrap/javascript.html)
+- [UIKit](http://visionmedia.github.com/uikit/)
+- [Ace Editor](https://github.com/ajaxorg/ace) (noconflict version)
+    - JavaScript mode
+    - JSON mode
+    - Custom theme for the Dashboard (`ace/theme/deployd`)
+- [Google Code Prettify](http://code.google.com/p/google-code-prettify/)
+- dpd.js
+    - *Note:* all dpd.js requests will be sent as [root](/docs/collections/reference/http.md#s-root-requests)
+
+Within the dashboard, a `Context` object is available:
+
+    //Automatically generated by Deployd:
+    window.Context = {
+      resourceId: '/hello', // The id of the current resource
+      resourceType: 'Hello', // The type of the current resource
+      page: 'properties', // The current page, in multi page editors
+      basicDashboard: {} // The configuration of the basic dashboard - not ordinarily useful
+    };
+
+You can use this to query the current resource:
+
+    dpd(Context.resourceId).get(function(result, err) {
+      //Do something
+    });
+
+In the dashboard, you also have access to the special `__resources` resource, which lets you update your app's configuration files:
+
+    // Get the config for the current resource
+    dpd('__resources').get(Context.resourceId, function(result, err) {
+      //Do something
+    });
     
-### Basic Dashboard
-
-In cases where a custom ui is not practical, a resource can describe the setting to render for a basic dashboard. The following example would render a single textbox.
-
-    Proxy.basicDashboard = {
-      settings: [{
-        name: "remote"
-        , type: "text"
-        , description: "The remote server to proxy to."
-      }]
-    }
-
-The `settings` object is an array of objects with these properties:
-
-* `name` {String}
-
-The name of the property in your config object. Make sure this is something easily accessible through JavaScript, i.e. `maxItems` rather than "Maximum Amount of Items".
-
-* `type` {String}
-
-The type of field to render in the dashboard. Supported options are `text`, `textarea`, `number`, and `checkbox`.
-
-* `description` {String}
-
-Text to appear beneath the property in the dashboard.
+    // Set a property for the current resource
+    dpd('__resources').put(Context.resourceId, {someProperty: true}, function(result, err) {
+      //Do something
+    });
+    
+    // Set all properties for the current resource, deleting any that are not provided
+    dpd('__resources').put(Context.resourceId, {someProperty: true, $setAll: true}, function(result, err) {
+      //Do something
+    });
+    
+    // Save another file, which will be loaded by the resource
+    dpd('__resources').post(Context.resourceId + '/content.md', {value: "# Hello World!"}, function(result, err)) {
+      //Do something
+    });

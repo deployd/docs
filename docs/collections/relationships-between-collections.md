@@ -5,7 +5,7 @@
 
 ## Relationships Between Collections with Events
 
-Designing the relationships between the collections in your application is crucial to a useful API. In typical databases there are very specific ways to implement the relation of objects in one table (or collection) and another. Deployd lets you relate your data however your application requires and is flexible enough to allow you to easily change the way objects are related.
+Designing the relationships between the collections in your application is crucial to a useful API. In typical databases, there are very specific ways to implement the relation of objects in one table (or collection) and another. Deployd lets you relate your data however your application requires and is flexible enough to allow you to easily change the way objects are related.
 
 ### Types of Relationships
 
@@ -23,7 +23,7 @@ Deployd allows your collection to store complex structures such as nested object
       }
     }
     
-This style relationship allows users of the collection to display the name of the author without running any other queries. The downside is an update event is required to keep the author name in sync if it ever changes. If your data changes often, this may not be the best approach.
+This style of relationship allows users of the collection to display the name of the author without running any other queries. The downside is an update event is required to keep the author name in sync if it ever changes. If your data changes often, this may not be the best approach.
 
 #### Contains Many or One-to-Many
 
@@ -49,13 +49,13 @@ Continuing with the gradebook example, a student may have many classes, and a cl
 
 This lets you query each collection to get the students in a class or the classes a student is taking by providing the id of the class or student.
 
-    dpd.students.get({$in: class.students}, function(students) {
+    dpd.students.get({id: {$in: class.students}}, function(students) {
       console.log(students);
     }); 
     
     // or
     
-    dpd.classes.get({$in: student.classes}, function(classes) {
+    dpd.classes.get({id: {$in: student.classes}}, function(classes) {
       console.log(classes);
     });
     
@@ -63,17 +63,15 @@ If you wanted to include the full objects when querying the API you could implem
 
     // on GET /students
 
-    var student = this;
-
-    if(query.$include === 'classes') {
-      dpd.classes.get({$in: student.classes}, function(classes) {
-        student.classes = classes;
+    if(query.include === 'classes') {
+      dpd.classes.get({id: {$in: student.classes}}, function(classes) {
+        this.classes = classes;
       });
     }
 
-Then if you added the $include param when querying from the browser, a student would come back with all of its classes.
+Then if you added the `include` param when querying from the browser, a student would come back with all of its classes.
 
-    dpd.students.get({id: '2ef0f7d515764991', $include: 'classes'}, console.log);
+    dpd.students.get({id: '2ef0f7d515764991', include: 'classes'}, fn);
 
 would output
 
@@ -90,7 +88,7 @@ would output
 
 Some collections contain objects related to other objects in the same collection. A simple example of this is threaded comments. Where a comment can be in reply to another comment, creating a tree-like structure when rendered.
 
-To accomplish this, all you need is a `parent` property containing the `id` of a parent object if one exists. Since Deployd supports recursive queries in a collection's `GET` event the following just works as you would expect.
+To accomplish this, all you need is a `parent` property containing the `id` of a parent object if one exists. Since Deployd supports recursive queries in a collection's `GET` event, the following works as you would expect.
 
     // on GET /comments
     var comment = this;
@@ -126,3 +124,12 @@ would output
         }
       ]
     }
+
+If you expect that a query could become an infinite loop (or if it already is an infinite loop; a good sign of this is requests that time out before returning a result), put a `$limitRecursion` property on your query with the maximum number of levels to iterate:
+
+    // on GET /comments
+    var comment = this;
+
+    dpd.comments.get({parent: comment.id, $limitRecursion: 10}, function(comments) {
+      if(comments && comments.length) comments.children = comments;
+    });

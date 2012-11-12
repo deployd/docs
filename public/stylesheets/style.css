@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.2.0
+ * Bootstrap v2.2.1
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -5096,11 +5096,14 @@ body {
 /**
  * Table of Contents
  */
-#index .file {
-  margin-left: 20px;
-}
 #index .nav-tabs a {
   font-size: 18px;
+}
+#index .nav-list .file,
+#index .nav-list .nav-list {
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: solid 1px #999999;
 }
 #index .section {
   *zoom: 1;
@@ -5116,7 +5119,6 @@ body {
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   float: right;
-  width: 460px;
   padding: 0 10px 10px 10px;
 }
 #index .section:before,
@@ -5152,6 +5154,7 @@ body {
   margin-left: -20px;
 }
 #guides .guide-list {
+  list-style: none;
   width: 278px;
   padding: 0px 10px 10px 10px;
   float: left;
@@ -5175,11 +5178,16 @@ body {
 #guides .guide-list .file {
   font-size: 14px;
   font-weight: bold;
-  margin-left: 30px;
+  margin-left: 15px;
   padding-right: 20px;
 }
 #guides .guide-list .file a:hover {
   background: none;
+}
+#guides .guide-list .file .title {
+  display: inline-block;
+  width: 220px;
+  vertical-align: top;
 }
 #guides ul {
   list-style: disc;
@@ -5196,26 +5204,38 @@ body {
 /**
  * Explorer
  */
+#explorer {
+  margin-bottom: 20px;
+}
 #explorer a {
   text-transform: capitalize;
   color: #555555;
 }
-#explorer #files {
+#explorer #files,
+#explorer #dirs {
   margin-left: 10px;
+  margin-bottom: 10px;
 }
-#explorer #files li {
+#explorer #files li,
+#explorer #dirs li {
   *zoom: 1;
   margin-top: 10px;
   opacity: 0.6;
 }
 #explorer #files li:before,
-#explorer #files li:after {
+#explorer #dirs li:before,
+#explorer #files li:after,
+#explorer #dirs li:after {
   display: table;
   content: "";
   line-height: 0;
 }
-#explorer #files li:after {
+#explorer #files li:after,
+#explorer #dirs li:after {
   clear: both;
+}
+#explorer #dirs {
+  border-top: 1px #ccc solid;
 }
 #explorer .active {
   opacity: 1 !important;
@@ -5332,6 +5352,10 @@ body {
   color: #ffffff;
   font-weight: bold;
   text-shadow: none;
+}
+#api h3 {
+  margin-left: 20px;
+  border-bottom: 1px #555555 solid;
 }
 #api .nav-header {
   color: #555555;

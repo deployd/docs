@@ -65,7 +65,7 @@ Called when an object is created. Commonly used to prevent unauthorized creation
 
 ### On Put
 
-Called when an object is updated. Commonly used to restrict editing access to certain roles, or to protect certain properties from editing. It is strongly recommended that you `protect()` any properties that should be modifiable by users after an object is created.
+Called when an object is updated. Commonly used to restrict editing access to certain roles, or to protect certain properties from editing. It is strongly recommended that you `protect()` any properties that should not be modifiable by users after an object is created.
 
     // Example On Put: Protect readonly/automatic properties
     protect('createdDate');

@@ -5,7 +5,7 @@
 
 ## Notifying the Client of Changes with Sockets
 
-Keeping all of the clients of your API up-to-date with your collection's latest data is simple with collection events. For example in a `PUT` event you can notify all connected clients of the changes to the object being updated by calling the `emit()` function.
+Keeping all of the clients of your API up-to-date with your collection's latest data is simple with collection events. For example, in a `PUT` event, you can notify all connected clients of the changes to the object being updated by calling the [emit()](reference/event-api.md#s-emit) function.
 
 The `emit()` function takes an event argument and an arbitrary data object to send to all of the connected clients  (eg. `emit('my event', {foo: 'bar'})`). Dpd.js clients can listen for these events using the `on()` method (eg. `dpd.todos.on('my event', fn)`).
 

@@ -5,7 +5,7 @@
 
 ## Dpd.js
 
-`dpd.js` is an auto-generated library that provides access to Collections and other Deployd features on the front-end. For information on including it, see [Accessing Collections with dpd.js](../accessing-collections.md)
+`dpd.js` is an auto-generated library that provides access to Collections and other Deployd features on the front-end. For a basic overview, see [Accessing Collections with dpd.js](../accessing-collections.md)
 
 ### Accessing the Collection
 
@@ -27,7 +27,7 @@ Examples:
     dpd('users')
     dpd('todo-lists')
 
-*Note: Collections accessed in this way will not have helper functions besides `get`, `post`, `put`, `del`, and `exec` (see [Accessing Custom Resources](../../extensions/accessing-custom-resources.md) for details on these generic functions)*
+*Note: Collections accessed in this way will not have helper functions besides `get`, `post`, `put`, `del`, and `exec` (see [Dpd.js for Custom Resources](/docs/using-modules/reference/dpd-js.md) for details on these generic functions)*
 
 
 ### Collection API
@@ -53,9 +53,9 @@ The `error` argument, if there was an error, is an object:
   - 401 - Unauthorized: The current session is not authorized to perform that action
   - 500 - Internal Server Error: Something went wrong on the server
  - `message` (string): A message describing the error. Not always present.
- - `errors` (object): A hash of error messages corresponding to the properties of the object that was sent - usually indicates validation errors. Not always present.
+ - `errors` (object): A hash of error messages corresponding to the properties of the object that were sent - usually indicates validation errors. Not always present.
 
-Examples:
+Examples of errors:
   
     {
       "status": 401,
@@ -103,7 +103,7 @@ If the collection has no objects, it will be an empty array:
 
 ##### Querying Data
 
-The `.get(query, fn)` function filters results by the specified query object. See [Querying Collections](../querying-collections.md) for information on constructing a query.
+The `.get(query, fn)` function filters results by the specified query object. See [Querying Collections](./querying-collections.md) for information on constructing a query.
 
     // Get all todos that are in the pets category
     dpd.todos.get({category: 'pets'}, function(results, error) {

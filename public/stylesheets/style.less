@@ -135,17 +135,19 @@ body {
  */
  
 #index {
- .file {
-   margin-left: 20px;
- }
  .nav-tabs a {
    font-size: 18px;
+ }
+ .nav-list .file, .nav-list .nav-list {
+    margin-left: 20px;
+    padding-left: 15px;
+    border-left: solid 1px @grayLight;
  }
  .section {
    .clearfix();
    .well();
    .pull-right();
-   width: 460px;
+   //width: 460px;
    padding: 0 10px 10px 10px;
    h3 {
      font-size: 18px;
@@ -169,6 +171,7 @@ body {
     margin-left: -20px;
   }
   .guide-list {
+    list-style: none;
     width: 278px;
     padding: 0px 10px 10px 10px;
     float: left;
@@ -189,9 +192,15 @@ body {
     .file {
       font-size: 14px;
       font-weight: bold;
-      margin-left: 30px;
+      margin-left: 15px;
       padding-right: 20px;
       a:hover {background: none;}
+
+      .title {
+        display: inline-block;
+        width: 220px;
+        vertical-align: top;
+      }
     }
   }
   ul {list-style: disc;}
@@ -203,14 +212,20 @@ body {
  */
  
 #explorer {
+  margin-bottom: 20px;
   a {text-transform: capitalize; color: @gray;}
-  #files {
+  #files, #dirs {
     margin-left: 10px;
+    margin-bottom: 10px;
     li {
       .clearfix();
       margin-top: 10px;
       opacity: 0.6;
     }
+  }
+
+  #dirs {
+    border-top: 1px #ccc solid;
   }
   .active {
     a {font-weight: bold; color: @black;}
@@ -295,6 +310,10 @@ body {
     width: 400px;
     margin-left: 20px;
     a:hover {background: @blue; color: @white; font-weight: bold; text-shadow: none;}
+  }
+  h3 {
+    margin-left: 20px;
+    border-bottom: 1px @gray solid;
   }
   .nav-header {
     color: @gray;

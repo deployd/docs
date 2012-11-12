@@ -3,7 +3,7 @@
   tags: ['example', 'collection', 'backbone']
 }-->
 
-## A Simple Todo App
+## A Simple Todo App with Backbone.js
 
 ![Todo app](/examples/images/todo-app.png)
 

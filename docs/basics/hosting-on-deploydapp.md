@@ -5,7 +5,7 @@
 
 ## Hosting your API on deploydapp.com
 
-During the development of Deployd deploydapp.com exists as a free service to quickly push and test your app.
+During the development of Deployd, deploydapp.com exists as a free service to quickly push and test your app.
 
 *Note: this service is heavily in development and will change drastically in the future*
 
@@ -15,7 +15,7 @@ In your Deployd app folder, type the command:
 
 If you do not provide a subdomain, it will automatically use the app's folder name.
 
-*Note: if you recieve a "not allowed" error, it means that the subdomain you requested is in use by another app and you don't have the credentials to push to it. In that case, you choose another subdomain.*
+*Note: if you recieve a "not allowed" error, it means that the subdomain you requested is in use by another app and you don't have the credentials to push to it. In that case, you should choose another subdomain.*
 
 When it is done, you can access your app at `[subdomain].deploydapp.com`. 
 

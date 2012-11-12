@@ -21,17 +21,17 @@ Create a new collection by selecting it from the Resource **+** dropdown. In the
 
 Give your 'things' collection a property of `name` and press enter. Most screens in the dashboard have keyboard shortcuts.
 
-Add some data to the collection by opening up the data editor. Click the "Data" menu item under "Things". With the data editor open and the new row selected you can just start typing a name. Type: "foo" then hit enter, "bat" enter, "baz" enter.
+Add some data to the collection by opening up the data editor. Click the "Data" menu item under "Things". With the data editor open and the new row selected, you can just start typing a name. Type "foo", then hit enter, "bat", enter, "baz", enter.
 
 Now you should have a data editor that looks like this.
 
 ![Dashboard](/tutorials/first-api/images/data-editor.png)
 
-Click the "API" menu item to see documentation for accessing your collection. If you open up `http://localhost:2403/things` in a browser, you should see the following JSON.
+Click the "API" menu item to see documentation for accessing your collection. If you open up `http://localhost:2403/things` in a browser, you should see the following JSON:
 
 ![Dashboard](/tutorials/first-api/images/json.png)
 
-Using Chrome (or a browser with a console) open up: `http://localhost:2403` and pull up your console. Try the following:
+Open up `http://localhost:2403` in your browser and pull up your console. Try the following:
 
     dpd.things.get(console.log);
     dpd.things.get({$limit: 1}, console.log);

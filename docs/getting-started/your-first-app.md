@@ -5,7 +5,7 @@
 
 ## Building your first app with Deployd
 
-In this tutorial, you'll see how to create a simple app from the ground up in Deployd. This tutorial assumes a working knowledge of jQuery. It doesn't assume any knowledge of Deployd, but it's recommended to read [Your First API with Deployd](./your-first-appi.md) if you haven't already.
+In this tutorial, you'll see how to create a simple app from the ground up in Deployd. This tutorial assumes a working knowledge of jQuery. It doesn't assume any knowledge of Deployd, but it's recommended to read [Your First API with Deployd](./your-first-api.md) if you haven't already.
 
 ### Getting started
 
@@ -120,7 +120,7 @@ This will add a reference to [dpd.js](../collections/accessing-collections.md), 
 In `script.js`, add a `loadComments()` function inside of `$(document).ready`:
 
 	function loadComments() {
-		dpd.comments.get(function(comments, error) { //Use dpd.js to send a request to the backend
+		dpd.comments.get(function(comments, error) { //Use dpd.js to access the API
 			$('#comments').empty(); //Empty the list
 			comments.forEach(function(comment) { //Loop through the result
 				addComment(comment); //Add it to the DOM.
@@ -140,9 +140,9 @@ And call it when the page loads:
 
 If you run the app now, you should see the comments that you created in the Dashboard.
 
-The `get` function that makes this work sends an HTTP `GET` request to `/comments`, and returns an array of objects in the resource. There's nothing magical hapenning in dpd.js; you can use standard AJAX or HTTP requests if you prefer, or if you're not working in JavaScript (i.e. mobile apps)
+The `get()` function that makes this work sends an HTTP `GET` request to `/comments`, and returns an array of objects in the resource. There's nothing magical happening in dpd.js; you can use standard AJAX or HTTP requests if you prefer, or if you're unable to use dpd.js. (e.g. for mobile apps)
 
-**Note**: If you haven't used AJAX much, note that all dpd.js functions are *asynchronous* and don't directly return a value.
+*Note: If you haven't used AJAX much, note that all dpd.js functions are asynchronous and don't directly return a value.*
 
 	//Won't work: 
 	var comments = dpd.comments.get(); 
