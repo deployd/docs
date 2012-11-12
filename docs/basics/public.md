@@ -5,7 +5,9 @@
 
 ## The Public Directory
 
-Deployd serves static files from your app's `/public` directory. This directory is created when you run `dpd create`. These files will be served with the appropriate cache headers (Last-Modified and Etag) so browsers will cache them.
+Deployd serves static files from your app's `/public` directory. This directory is created when you run `dpd create`. These files will be served with the appropriate cache headers (`Last-Modified` and `Etag`) so browsers will cache them.
+
+If available, Deployd will serve `index.html` as the default file in a folder.
 
 ### Environments
 
