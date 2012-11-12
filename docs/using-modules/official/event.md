@@ -1,7 +1,7 @@
 <!--{
   title: 'Event Resource',
   tags: ['resource type', 'module'],
-  description: 'Create custom events at arbitrary URLs'
+  description: 'Create custom events at a specified URL.'
 }-->
 
 ## Event Resource
