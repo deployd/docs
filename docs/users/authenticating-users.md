@@ -5,7 +5,7 @@
 
 ## Authenticating Users
 
-A User Collection can be accessed in the same ways as a Collection, both with [dpd.js](/docs/collections/accessing-collections.mdaccessing-collections.mdaccessing-collections/dpd-js.md) and [HTTP](/do/docs/collections/accessing-collections.mdessing-collections.mdaccessing-collections/http.md). It also adds new methods to the API for authentication.
+A User Collection can be accessed in the same ways as a Collection, both with [dpd.js](/docs/collections/accessing-collections.md) and [HTTP](/docs/collections/reference/http.md). It also adds new methods to the API for authentication.
 
 The examples below use a User Collection called `/users` with the following schema:
 
@@ -19,7 +19,7 @@ The examples below use a User Collection called `/users` with the following sche
 Log in a user with their username and password. If successful, the browser will save a secure cookie for their session. This request responds with the session details:
 
     {
-      "id": "s0446b993caaad577a..." //Session id - usually not needed
+      "id": "s0446b993caaad577a..." //Session id
       "path": "/users" // The path of the User Collection - useful if you have different types of users.
       "uid": "ec54ad870eaca95f" //The id of the user
     }

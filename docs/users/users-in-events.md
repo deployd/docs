@@ -5,12 +5,12 @@
 
 ## Accessing Users in Events with "me"
 
-In any Collection Event, the `me` object refers to the current user. You can use this to secure your app and protect your users. This page lists a few exaxmples of how to use the `me` object effectively.
+In any Collection Event, the `me` object refers to the current user. You can use this to secure your app and protect your users. This page lists a few examples of how to use the `me` object effectively.
 
 ### Keeping track of an object's creator
 
     // On Post /todo-lists
-    if (!me) cancel("You must be logged in to create a todo list", 401);
+    cancelUnless(me, "You must be logged in to create a todo list", 401);
 
     this.creatorId = me.id;
 
