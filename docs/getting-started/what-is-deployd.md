@@ -23,7 +23,7 @@ Though we didn’t want to have our users write code for the structural setup th
 
 At the same time, we can’t force business logic out of the server-side and onto the client; that would leave your app open to attack by people who figure out your API.
 
-We decided that there’s no better way to define logic than by writing code, so we made Deployd scriptable. By writing events, or hooks into the default functionality (such as creating objects, 
+We decided that there’s no better way to define logic than by writing code, so we made Deployd scriptable. By writing events, or hooks into the default functionality (such as creating objects, updating them, and querying them), you can create almost any app with any rules: validation, security, query optimizations, relationships, and more.
 
 ### An API Engine
 
@@ -35,7 +35,7 @@ Similarly, Deployd assumes that every API you build has [collections of data obj
 
 Continuing with the analogy, a game engine also knows that your game will need things like collision detection and movement, but it doesn’t know exactly how you want to implement that, so it allows you to write scripts at strategic points like “on collision” or “on tick”.  
 
-How a rocket it is rendered to the screen is pretty consistent for any game, but what happens when that rocket hits an enemy is always different, so you write the latter behavior as a short script, and the game engine runs it at the right time. This strategy spares you from boilerplate without taking away the power and flexibility of writing custom code.
+How a rocket is rendered to the screen is pretty consistent for any game, but what happens when that rocket hits an enemy is always different, so you write the latter behavior as a short script, and the game engine runs it at the right time. This strategy spares you from boilerplate without taking away the power and flexibility of writing custom code.
 
 In Deployd, the low-level, redundant parts are routing and database access, so those are built into the core and you don’t have to worry about them. Business logic, which is different for every app, is scripted in [Events](/docs/collections/adding-logic.md) - hooks into the CRUD operations.
 
