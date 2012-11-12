@@ -9,7 +9,7 @@
 
     <script src="/dpd.js" type="text/javascript"></script>
 
-*Note: The dpd.js file will not appear in the `public` directory because it is generated at runtime.`
+*Note: The dpd.js file will not appear in the `public` directory because it is generated at runtime.*
 
 ### Example Usage
 
