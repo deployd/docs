@@ -42,7 +42,15 @@ module.exports = function (views) {
 
   function render(template, data) {
     data = data || {};
-    return ejs.render(template, {body: data.body || '', data: data || {}, partial: partial, script: script});
+    var content;
+    
+    try {
+      content = ejs.render(template, {body: data.body || '', data: data || {}, partial: partial, script: script});
+    } catch(e) {
+      console.error(e);
+    }
+    
+    return content;
   }
   
   function script(f) {
