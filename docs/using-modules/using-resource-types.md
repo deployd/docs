@@ -7,7 +7,7 @@
 
 Deployd modules can register new *Resource Types*, which can be created with a route and configured per instance. Deployd comes with two built-in Resource Types: "Collection" and "User Collection". 
 
-To add more Resource Types, you can [install](./installing-modules.md) a module that includes one. The examples on this page use the [Event resource](./official/event.md).
+To add more Resource Types, you can [install](/docs/using-modules/installing-modules.md) a module that includes one. The examples on this page use the [Event resource](/docs/using-modules/official/event.md).
 
 #### Creating an instance of a Custom Resource Type
 

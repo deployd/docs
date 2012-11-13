@@ -27,7 +27,7 @@ On the client, you would listen for that event using `dpd.on()` and respond by u
 
 The `message` argument is the value you passed on the server (`this`).
 
-See the [Chatroom Example](./examples/chatroom.md) for a working version of this code.
+See the [Chatroom Example](/docs/collections/examples/chatroom.md) for a working version of this code.
 
 ### Browser and Server Support
 
@@ -46,7 +46,7 @@ The realtime features of Deployd are built on [Socket.IO](http://socket.io/) and
 
 ### Further Reading
 
-- [Event API](./reference/event-api.md)
-- [dpd.js Reference](./reference/dpd-js.md)
-- [HTTP API Reference](./reference/http.md)
+- [Event API](/docs/collections/notifying-clients.md)
+- [dpd.js Reference](/docs/collections/reference/dpd-js.md)
+- [HTTP API Reference](/docs/collections/reference/http.md)
 

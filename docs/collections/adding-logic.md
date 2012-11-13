@@ -5,7 +5,7 @@
 
 ## Adding Custom Business Logic with Events
 
-Events allow you to add custom business logic to your Collection. By writing Events, you can add validation, relationships, and security to your app. Events are written in JavaScript (specifically, the ECMAScript 5 standard) and have access to the [Collection Events API](./reference/event-api.md).
+Events allow you to add custom business logic to your Collection. By writing Events, you can add validation, relationships, and security to your app. Events are written in JavaScript (specifically, the ECMAScript 5 standard) and have access to the [Collection Events API](/docs/collections/reference/event-api.md).
 
 The following events are available for scripting:
 
