@@ -1,6 +1,15 @@
 var md = require('node-markdown').Markdown
   , path = require('path')
-  , Query = require('../lib/query');
+  , Query = require('../lib/query')
+  , redirects = require('../redirects.json');
+  
+// redirects
+app.get('/redirect', function (req, res) {
+  var redirect = redirects[req.param('url')];
+  console.log('redirect to', redirect);
+  
+  res.redirect(redirect || '/');
+});
 
 app.get('/search', function (req, res) {
   var query = new Query(req.param('q'), app.index.root(), app.docs);
@@ -114,3 +123,5 @@ function formatPreview(query, str) {
   
   return str;
 }
+
+
