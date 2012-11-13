@@ -5034,6 +5034,11 @@ body {
   background: #049cdb;
   color: #fff;
 }
+#search-terms li:hover {
+  background: #049cdb;
+  cursor: pointer;
+  color: #ffffff;
+}
 #search-terms .highlight {
   font-weight: bold;
   color: #000000;
