@@ -115,7 +115,7 @@ In `index.html`, add the following script reference in between jQuery and `scrip
 
 	<script type="text/javascript" src="/dpd.js"></script>
 
-This will add a reference to [dpd.js](../collections/accessing-collections.md), a simple library dynamically built specifically for your app's backend. Dpd.js will automatically detect what resources you have added to your app and add them to the `dpd` object. Each resource object has asynchronous functions to communicate with your Deployd app. 
+This will add a reference to [dpd.js](/docs/collections/accessing-collections.md), a simple library dynamically built specifically for your app's backend. Dpd.js will automatically detect what resources you have added to your app and add them to the `dpd` object. Each resource object has asynchronous functions to communicate with your Deployd app. 
 
 In `script.js`, add a `loadComments()` function inside of `$(document).ready`:
 
