@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.2.1
+ * Bootstrap v2.2.0
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -5108,7 +5108,7 @@ body {
 #index .nav-list .nav-list {
   margin-left: 20px;
   padding-left: 15px;
-  border-left: solid 1px #999999;
+  border-left: solid 1px #e6e6e6;
 }
 #index .section {
   *zoom: 1;
@@ -5145,6 +5145,10 @@ body {
   margin: 5px 0 10px 0;
   padding: 5px 0 7px 0;
   border-bottom: solid 1px #555555;
+}
+#index .span7 {
+  width: 400px;
+  margin-left: 100px;
 }
 /**
  * Guides

@@ -90,8 +90,15 @@ app.get(/^\/docs\/(.+)$/, function (req, res, next) {
   }
 
   if (info.dir && req.param('include') !== 'all') {
-    res.redirect(info.children()[0].url());
-    return;
+    var children = info.children(true);
+    if(children) {
+      for (var i=0; i < children.length; i++) {
+        if(children[i].file) {
+          res.redirect(children[i].url());
+          return;
+        }
+      };
+    }
   }
   
   app.index.root().children(true).forEach(function (c) {
