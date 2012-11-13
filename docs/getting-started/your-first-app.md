@@ -180,7 +180,7 @@ And replace them with:
 Add a utility function at the very top of `script.js` to alert any errors we get:
 
 	function showError(error) {
-			var message = "An error occured";
+			var message = "An error occurred";
 			if (error.message) {
 					message = error.message;
 			} else if (error.errors) {

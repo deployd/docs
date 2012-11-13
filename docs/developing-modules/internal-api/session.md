@@ -9,7 +9,7 @@ An in-memory representation of a client or user connection that can be saved to 
 
 ### Class: Session
 
-A store for persisting sessions inbetween connection and disconnection. Automatically creates session IDs on inserted objects.
+A store for persisting sessions in-between connection and disconnection. Automatically creates session IDs on inserted objects.
 
     var session = new Session({id: 'my-sid', new SessionStore('sessions', db)});
     session.set({uid: 'my-uid'}).save();

@@ -14,7 +14,7 @@ Otherwise, you will need to install Deployd as a dependency of your app itself u
 
 You can use the `dpd` CLI to run your server; this will start up an instance of MongoDB automatically, using the "data" folder. (Requires MongoDB installed on the server)
 
-### Dashboard Accesss
+### Dashboard Access
 
 To set up the dashboard on your server, type `dpd keygen` on your server's command line to create a remote access key. Type `dpd showkey` to get the key; you should store this somewhere secure.
 

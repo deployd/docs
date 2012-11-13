@@ -26,7 +26,7 @@ Continuous callback sugar for easily calling `res.end()`. Conforms to the idioma
 
 * `err` {Error | Object}
 
-An error if one occured during handling of the `ctx`. Otherwise it should be `null`.
+An error if one occurred during handling of the `ctx`. Otherwise it should be `null`.
 
 * `result` {Object}
 

@@ -36,7 +36,7 @@ All we need to create a collection client is a constructor and a single method f
         options.url = url + (options.url || '');
     
         if(res.statusCode >= 400) {
-          err = body || {message: 'an unknown error occured'};
+          err = body || {message: 'an unknown error occurred'};
           return fn(err);
         }
     

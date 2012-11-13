@@ -7,7 +7,7 @@
 
 ### this <!--api-->
 
-The current object is represented as `this`. You can always read its properties. Modifying its properties in an `On Get` request will change the result that the client recieves, while modifying its properties in an `On Post`, `On Put`, or `On Validate` will change the value in the database.
+The current object is represented as `this`. You can always read its properties. Modifying its properties in an `On Get` request will change the result that the client receives, while modifying its properties in an `On Post`, `On Put`, or `On Validate` will change the value in the database.
 
     // Example: On Validate
     // If a property is too long, truncate it

@@ -62,7 +62,7 @@ The URL of the request, without the resource's base URL. If the resource is call
 
 #### parts <!-- api -->
 
-An array of the parts of the url, seperated by `/`. If the resource is called `/add-follower` and receives a request at `/add-follower/320d6151a9aad8ce/6d75e75d9bd9b8a6`, the `parts` value will be `['320d6151a9aad8ce', '6d75e75d9bd9b8a6']`.
+An array of the parts of the url, separated by `/`. If the resource is called `/add-follower` and receives a request at `/add-follower/320d6151a9aad8ce/6d75e75d9bd9b8a6`, the `parts` value will be `['320d6151a9aad8ce', '6d75e75d9bd9b8a6']`.
 
     // On POST /add-score
     // Give the specified user (/add-score/:userId) 5 points

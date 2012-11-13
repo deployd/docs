@@ -13,7 +13,7 @@ When designing the collections in your application keep in mind the following st
 
 #### Embedding Data
 
-Deployd allows your collection to store complex structures such as nested objects or arrays. This is useful if you want to embed data inside your collection's objects. Keep in mind this is only recommended when the embeded data is not likely to change. For example, a `blog-posts` collection could have an `author` property with a type set to `Object`.
+Deployd allows your collection to store complex structures such as nested objects or arrays. This is useful if you want to embed data inside your collection's objects. Keep in mind this is only recommended when the embedded data is not likely to change. For example, a `blog-posts` collection could have an `author` property with a type set to `Object`.
 
     {
       "title": "Foo Bar Bat Baz?",

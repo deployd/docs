@@ -123,7 +123,7 @@ The `next` function gives control back to the router.
 
 	var result = {};
 
-Set up some local variables; `parts` is an array of the `/`-seperated parts in the URL.
+Set up some local variables; `parts` is an array of the `/`-separated parts in the URL.
 
 	var domain = {
 			url: ctx.url
