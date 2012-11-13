@@ -5,7 +5,7 @@
 
 ## Building your first app with Deployd
 
-In this tutorial, you'll see how to create a simple app from the ground up in Deployd. This tutorial assumes a working knowledge of jQuery. It doesn't assume any knowledge of Deployd, but it's recommended to read [Your First API with Deployd](./your-first-api.md) if you haven't already.
+In this tutorial, you'll see how to create a simple app from the ground up in Deployd. This tutorial assumes a working knowledge of jQuery. It doesn't assume any knowledge of Deployd, but it's recommended to read [Your First API with Deployd](/docs/your-first-api.md) if you haven't already.
 
 ### Getting started
 
