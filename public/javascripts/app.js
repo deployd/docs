@@ -32,6 +32,10 @@
         }, 1);
       }
     }
+
+    //prettify
+    $('.section pre code').addClass('prettyprint');
+    prettyPrint();
   });
   
 })();
