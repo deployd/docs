@@ -5360,6 +5360,9 @@ body {
 #api .nav-header {
   color: #555555;
 }
+#api .nav-header a {
+  color: #555555;
+}
 #api .collections {
   background: #f2f8f2;
 }

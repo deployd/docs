@@ -31,7 +31,7 @@
   </head>
   <%
   function active(page, data) {
-    if(data.url === ('/' + page)) return 'active';
+    if(~data.url.indexOf('/' + page)) return 'active';
     return '';
   }
   %>
