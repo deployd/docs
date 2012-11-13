@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="docs">
   <head>
-    <title>Deployd</title>
+    <% if (data.data && data.data.info) { %>
+      <title><%= data.data.info.title() %> - Deployd</title>
+    <% } else { %>
+      <title>Deployd Docs</title>
+    <% } %>
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
     <link href="/stylesheets/style.css" rel='stylesheet' type='text/css'>
     <%- script('libs/angular') %>

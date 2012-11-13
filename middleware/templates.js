@@ -14,12 +14,11 @@ module.exports = function (views) {
         var body = render(contents, data);
         read(req.layout, function (err, contents) {
           if(err) return next(err);
-          var data = {body: body};
+          var d = {body: body, locals: req.locals, data: data};
           Object.keys(req.locals).forEach(function (k) {
-            data[k] = req.locals[k];
+            d[k] = req.locals[k];
           });
-          
-          res.send(render(contents, data));
+          res.send(render(contents, d));
         });
       });
     }
@@ -54,7 +53,7 @@ module.exports = function (views) {
   }
   
   function script(f) {
-    src = '<script src="' + '/javascripts' + '/' + f + '.js' + '"></script>';
+    var src = '<script src="' + '/javascripts' + '/' + f + '.js' + '"></script>';
     return render(src);
   }
 }
