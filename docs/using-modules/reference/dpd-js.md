@@ -119,4 +119,4 @@ Makes an RPC-style POST HTTP request at the URL `/<resource>/<func>/<path>`. Use
 
 ### Realtime API
 
-The Generic Realtime API behaves the same way as the [Collection Realtime API](../../collections/reference/dpd-js.md#s-Realtime-API).
+The Generic Realtime API behaves the same way as the [Collection Realtime API](/docs/collections/reference/dpd-js.md#s-Realtime-API).

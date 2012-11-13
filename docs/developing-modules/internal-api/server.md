@@ -62,7 +62,7 @@ The **socket.io** sockets `Manager` object ([view source](https://github.com/Lea
 
 ### Server.sessions <!-- api -->
 
-The server's [SessionStore](session-store.md).
+The server's [SessionStore](/docs/developing-modules/internal-api/session-store.md).
 
 ### Server.router <!-- api -->
 
@@ -70,4 +70,4 @@ The server's `Router`.
 
 ### Server.resources <!-- api -->
 
-An `Array` of the server's [Resource](./resource.md) instances. These a built from the config and type loaders.
+An `Array` of the server's [Resource](/docs/developing-modules/internal-api/resource.md) instances. These are built from the config and type loaders.

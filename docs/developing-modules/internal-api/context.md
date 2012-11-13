@@ -11,7 +11,7 @@ A `Context` is built from a request and response and passed to a matching `Resou
 
 ### Mock Contexts
 
-Contexts may be created without a real request and response such as during an internal request using the `dpd` object. See [Internal Client](./internal-client.md) for more info.
+Contexts may be created without a real request and response such as during an internal request using the `dpd` object. See [Internal Client](/docs/developing-modules/internal-api/internal-client.md) for more info.
 
 ### Class: Context
 

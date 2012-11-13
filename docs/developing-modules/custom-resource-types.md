@@ -5,7 +5,7 @@
 
 ## Creating a Custom Resource Type
 
-Deployd modules can register new *Resource Types*, which can be created with a route and configured per instance. Deployd comes with two built-in Resource Types: "Collection" and "User Collection". You can create your own custom resource types by extending the [Resource](./internal-api/resource.md) constructor and implementing a `handle()` method. Deployd will automatically load any Resource Types that are exported by a module.
+Deployd modules can register new *Resource Types*, which can be created with a route and configured per instance. Deployd comes with two built-in Resource Types: "Collection" and "User Collection". You can create your own custom resource types by extending the [Resource](/docs/developing-modules/internal-api/resource.md) constructor and implementing a `handle()` method. Deployd will automatically load any Resource Types that are exported by a module.
 
 Here is a simple custom resource type:
 

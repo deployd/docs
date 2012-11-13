@@ -5,7 +5,7 @@
 
 ## Collection Resource Type
 
-Collections are the most common Resource Type in Deployd. They allow the user to store and load data from their app's [Store](./store.md). Behind the scenes, they validate incoming requests and execute event scripts for `get`, `post`, `put`, `delete`, and `validate`. If all event scripts execute without error (or `cancel()`ing), the request is proxied to the collection's `Store`.
+Collections are the most common Resource Type in Deployd. They allow the user to store and load data from their app's [Store](/docs/developing-modules/internal-api/store.md). Behind the scenes, they validate incoming requests and execute event scripts for `get`, `post`, `put`, `delete`, and `validate`. If all event scripts execute without error (or `cancel()`ing), the request is proxied to the collection's `Store`.
 
 ### Class: Collection
 
@@ -27,7 +27,7 @@ Example inheriting from `Collection`:
 
 * {Store}
 
-The backing persistence abstraction layer. Supports saving and reading data from a database. See [Store](./store.md) for more info.
+The backing persistence abstraction layer. Supports saving and reading data from a database. See [Store](/docs/developing-modules/internal-api/store.md) for more info.
 
 ### collection.validate(body, create) <!-- api -->
 
