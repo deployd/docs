@@ -85,8 +85,6 @@ app.get(/^\/docs\/(.+)$/, function (req, res, next) {
     , refs = []
     , mainParent = info && info.mainParent();
 
-    console.log(info);
-
   if(!info) {
     return next();
   }
