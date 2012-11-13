@@ -5,7 +5,7 @@
 
 ## Dpd.js
 
-`dpd.js` is an auto-generated library that provides access to Collections and other Deployd features on the front-end. For a basic overview, see [Accessing Collections with dpd.js](../accessing-collections.md).
+`dpd.js` is an auto-generated library that provides access to Collections and other Deployd features on the front-end. For a basic overview, see [Accessing Collections with dpd.js](/docs/collections/accessing-collections.md).
 
 ### Accessing the Collection
 
@@ -103,7 +103,7 @@ If the collection has no objects, it will be an empty array:
 
 ##### Querying Data
 
-The `.get(query, fn)` function filters results by the specified query object. See [Querying Collections](./querying-collections.md) for information on constructing a query.
+The `.get(query, fn)` function filters results by the specified query object. See [Querying Collections](/docs/collections/reference/querying-collections.md) for information on constructing a query.
 
     // Get all todos that are in the pets category
     dpd.todos.get({category: 'pets'}, function(results, error) {
@@ -165,7 +165,7 @@ This is useful when you want to insert an object if it does not exist and update
 
 ##### Updating an Object
 
-The `.put(id, object, fn)` function will update an object that is already in the collection. It will only change the properties that are provided. It is also possible to incrementally update certain properties; see [Updating Objects in Collections](./updating-objects.md) for details.
+The `.put(id, object, fn)` function will update an object that is already in the collection. It will only change the properties that are provided. It is also possible to incrementally update certain properties; see [Updating Objects in Collections](/docs/collections/reference/updating-objects.md) for details.
 
     // Update a todo
     dpd.todos.put("91c621a3026ca8ef", {title: "Walk the cat"}, function(result, error)) {
@@ -228,7 +228,7 @@ You can also use the syntax `.del(query, fn)` if `object` has an `id` property. 
 
 #### dpd.on(message, fn) <!-- api -->
 
-The `dpd.on(message, fn)` function listens for realtime messages emitted from the server. See [Notifying the Client of Changes](../notifying-clients.md) for information on sending realtime messages with the `emit()` function.
+The `dpd.on(message, fn)` function listens for realtime messages emitted from the server. See [Notifying the Client of Changes](/docs/collections/notifying-clients.md) for information on sending realtime messages with the `emit()` function.
 
 * `message` - The name of the message to listen for
 * `fn` - Callback `function(messageData)`. Called every time the message is received. There is no `error` argument.

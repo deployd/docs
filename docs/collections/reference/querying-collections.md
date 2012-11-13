@@ -16,7 +16,7 @@ This example will return all the `posts` with an author "Joe":
 
 ### Advanced Queries
 
-When querying a [Collection](../resources/collection.md), you can use special commands to create a more advanced query. 
+When querying a [Collection](/docs/collections/), you can use special commands to create a more advanced query. 
 
 Deployd supports all of [MongoDB's conditional operators](http://www.mongodb.org/display/DOCS/Advanced+Queries#AdvancedQueries-ConditionalOperators); only the common operators and Deployd's custom commands are documented here.
 
@@ -133,4 +133,4 @@ The `$skip` command allows you to exclude a given number of the first objects re
 	
 #### $limitRecursion <!-- api -->
 
-The `$limitRecursion` command allows you to override the default recursive limits in Deployd. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](../relationships-between-collections.md) for more info.
+The `$limitRecursion` command allows you to override the default recursive limits in Deployd. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the [Collection Relationships guide](/docs/collections/relationships-between-collections.md) for more info.
