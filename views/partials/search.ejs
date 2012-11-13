@@ -3,7 +3,7 @@
     <input value="<%= data.q || '' %>" placeholder="search" id="search-input" type="text" ng-change="change()" ng-model="input" />
   </form>
   <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
-    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}">
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
       {{ term.title || term.reference }}
     </li>
   </ul>
