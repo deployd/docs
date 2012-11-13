@@ -3,7 +3,8 @@
     "creating-modules.md",
     "custom-resource-types.md",
     "examples",
-    "internal-api"
+    "internal-api",
+    "modules"
   ],
   "aliases": {
     "internal-api": "Internal API Reference"
