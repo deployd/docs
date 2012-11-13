@@ -78,7 +78,7 @@ Handle an incoming request. This gets called by the router.
 
 The resource can either handle this context and call `ctx.done(err, obj)` with an error or result JSON object, or call `next()` to give the context back to the router. If a resource calls `next()` the router might find another match for the request, or respond with a `404`.
 
-* ctx {[Context](context.md)}
+* ctx {[Context](/docs/developing-modules/internal-api/context.md)}
 
 The http context created by the `Router`. This provides an abstraction between the actual request and response. A `Resource` should call `ctx.done` or pipe to `ctx.res` if it can handle a request. Otherwise it should call `next()`.
 

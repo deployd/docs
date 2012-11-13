@@ -22,6 +22,6 @@ You can then go to the `/dashboard` route on the server and type in that key to 
 
 ### Server Script
 
-Since Deployd is itself a node module, you can write your own scripts to run in production instead of using the command line interface. Read the [Building a Custom Run Script](run-script.md) Guide.
+Since Deployd is itself a node module, you can write your own scripts to run in production instead of using the command line interface. Read the [Building a Custom Run Script](/docs/server/run-script.md) Guide.
 
 *Note: Some hosts do not support WebSockets, so `dpd.on()` may not work correctly on certain deployments.*

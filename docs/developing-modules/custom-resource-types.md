@@ -83,7 +83,7 @@ Let's look at it line-by-line:
 	var Resource = require('deployd/lib/resource')
 		, util = require('util');
 
- To create a Resource, you'll need the [Resource](internal-api/resource.md) module and Node's [util](http://nodejs.org/api/util.html) module.
+ To create a Resource, you'll need the [Resource](/docs/developing-modules/internal-api/resource.md) module and Node's [util](http://nodejs.org/api/util.html) module.
 
 	function EventResource() {
 		Resource.apply(this, arguments);
@@ -97,11 +97,11 @@ Causes `EventResource` to inherit its prototype from `Resource` using Node's [ut
 
 	EventResource.label = "Event";
 
-Changes the [Resource.label](internal-api/resource.md#s-Resource.label) property to set how the `EventResource` appears in the "Add Resource" menu in the Dashboard. Without this setting, it would appear using the constructor name, `EventResource`.
+Changes the [Resource.label](/docs/developing-modules/internal-api/resource.md#s-Resource.label) property to set how the `EventResource` appears in the "Add Resource" menu in the Dashboard. Without this setting, it would appear using the constructor name, `EventResource`.
 
 	EventResource.events = ["get", "post"];
 
-Configures two [events](internal-api/resource.md#s-Resource.events) for the Resource type: `get` and `post`. These will appear on the "Events" page in the Dashboard with no extra configuration. 
+Configures two [events](/docs/developing-modules/internal-api/resource.md#s-Resource.events) for the Resource type: `get` and `post`. These will appear on the "Events" page in the Dashboard with no extra configuration. 
 
 *Note: The Dashboard provides the "On" prefix, e.g. "On Get"*
 
@@ -111,11 +111,11 @@ Exports the `EventResource` constructor. This is how Deployd finds and loads the
 
 	EventResource.prototype.clientGeneration = true;
 
-Sets the [clientGeneration](internal-api/resource.md#s-resource.clientGeneration) flag, which ensures that resources created with this resource type will be generated into dpd.js.
+Sets the [clientGeneration](/docs/developing-modules/internal-api/resource.md#s-resource.clientGeneration) flag, which ensures that resources created with this resource type will be generated into dpd.js.
 
 	EventResource.prototype.handle = function (ctx, next) {
 
-Defines a [handle()](internal-api/resource.md#s-resource.handle-ctx-next) function. This function will be called whenever a request is routed to this resource. The `ctx` object is a [Context](internal-api/context.md), which includes useful properties ([body](internal-api/context.md#s-ctx.body), [query](internal-api/context.md#s-ctx.query), etc.) and functions (particularly [done()](internal-api/context.md#s-ctx.done-err-result)) to simplify working with HTTP.
+Defines a [handle()](/docs/developing-modules/internal-api/resource.md#s-resource.handle-ctx-next) function. This function will be called whenever a request is routed to this resource. The `ctx` object is a [Context](/docs/developing-modules/internal-api/context.md), which includes useful properties ([body](/docs/developing-modules/internal-api/context.md#s-ctx.body), [query](/docs/developing-modules/internal-api/context.md#s-ctx.query), etc.) and functions (particularly [done()](/docs/developing-modules/internal-api/context.md#s-ctx.done-err-result)) to simplify working with HTTP.
 
 The `next` function gives control back to the router.
 
@@ -144,13 +144,13 @@ Create a *domain* for the events. These are objects and functions that will be a
 		});
 	}
 
-Run the `POST` event using the [Script.run()](internal-api/script.md#s-script.run-ctx-domain-[fn]) function if applicable, passing it the current context and domain. 
+Run the `POST` event using the [Script.run()](/docs/developing-modules/internal-api/script.md#s-script.run-ctx-domain-[fn]) function if applicable, passing it the current context and domain. 
 
-The [this.events](internal-api/resource.md#s-Resource.events) object contains all of the available events; if the user has not written a `POST` event, though, `this.events.post` might be `null`.
+The [this.events](/docs/developing-modules/internal-api/resource.md#s-Resource.events) object contains all of the available events; if the user has not written a `POST` event, though, `this.events.post` might be `null`.
 
 The callback for `Script.run` returns an error `err` if something went wrong in the script (or if the script writer called [cancel()](/docs/using-modules/reference/event-api.md#s-cancel))
 
-Finally, call [ctx.done()](internal-api/context.md#s-ctx.done-err-result) with both the error and result (`result` is the local variable we set up earlier which the scriptwriter can change using `setResult()`. The response body is always the second parameter, but it is ignored if an error is passed.
+Finally, call [ctx.done()](/docs/developing-modules/internal-api/context.md#s-ctx.done-err-result) with both the error and result (`result` is the local variable we set up earlier which the scriptwriter can change using `setResult()`. The response body is always the second parameter, but it is ignored if an error is passed.
 
 	} else if (ctx.method === "GET" && this.events.get) {
 		this.events.get.run(ctx, domain, function(err) {
