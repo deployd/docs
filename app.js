@@ -30,7 +30,7 @@ app.configure(function(){
       console.error('------');
       console.error('404 - ', req.url, req.headers.referer);
       res.render('404.ejs', { url: req.url });
-      return;
+      return; 
     }
 
     // respond with json
