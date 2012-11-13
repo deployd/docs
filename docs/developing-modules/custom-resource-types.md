@@ -148,7 +148,7 @@ Run the `POST` event using the [Script.run()](internal-api/script.md#s-script.ru
 
 The [this.events](internal-api/resource.md#s-Resource.events) object contains all of the available events; if the user has not written a `POST` event, though, `this.events.post` might be `null`.
 
-The callback for `Script.run` returns an error `err` if something went wrong in the script (or if the script writer called [cancel()](/docs/using-modules/reference/event-api.md#s-cancel)
+The callback for `Script.run` returns an error `err` if something went wrong in the script (or if the script writer called [cancel()](/docs/using-modules/reference/event-api.md#s-cancel))
 
 Finally, call [ctx.done()](internal-api/context.md#s-ctx.done-err-result) with both the error and result (`result` is the local variable we set up earlier which the scriptwriter can change using `setResult()`. The response body is always the second parameter, but it is ignored if an error is passed.
 

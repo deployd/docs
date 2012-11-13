@@ -19,6 +19,6 @@ If you used the Deployd installer, you will need to download [node.js](http://no
 
 ### From Source
     
-You can also install a module from source by putting it in your projects `node_modules` folder. Even a single file is valid (eg: /node_module/foo.js).
+You can also install a module from source by putting it in your project's `node_modules` folder. Even a single file is valid (eg: `/node_modules/foo.js`).
 
  

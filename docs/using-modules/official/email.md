@@ -6,7 +6,7 @@
 
 ## Email Resource
 
-This custom resource type allows you to write an event when the resource's route receives a `GET` or `POST` request.
+This custom resource type allows you to send an email to your users.
 
 The Email resource is built on the [Nodemailer](https://github.com/andris9/Nodemailer) module for Node.js; much of the documentation on this page is taken from their README.
 
@@ -21,6 +21,7 @@ See [Installing Modules](../installing-modules.md) for details.
 Before using the email resource, you must go to its Dashboard page and configure it.
 
 These settings are required:
+
 - `host`: The hostname of your SMTP provider.
 - `port`: The port number of your SMTP provider. Defaults to 25; 587 is also common.
 - `ssl`: If checked, use SSL to communicate with your SMTP provider. Unneeded for port 587; as it will automatically upgrade to a secure connection.
@@ -28,6 +29,7 @@ These settings are required:
 - `password`: The SMTP username for your app.
 
 These settings are optional:
+
 - `defaultFromAddress`: A "from" email address to provide by default. If this is not provided, you will need to provide this address in every request.
 - `internalOnly`: If checked, only allow internal requests (such as those from events) to send emails. Recommended for security.
 - `productionOnly`: If checked, attempting to send an email in the `development` environment will simply print it to the Deployd console. 
@@ -52,5 +54,5 @@ To send an email, call `dpd.email.post(options, callback)` (replacing `email` wi
       to: this.email,
       subject: "MyApp registration",
       text: this.username + ",\n\n" +
-            "Thank you for registerting for MyApp!"
+            "Thank you for registering for MyApp!"
     }, function() {});

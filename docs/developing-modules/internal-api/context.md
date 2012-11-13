@@ -11,7 +11,7 @@ A `Context` is built from a request and response and passed to a matching `Resou
 
 ### Mock Contexts
 
-Contexts may be created without a real request and response such as during an internal request using the `dpd` object. See: `internalClient` for more info.
+Contexts may be created without a real request and response such as during an internal request using the `dpd` object. See [Internal Client](./internal-client.md) for more info.
 
 ### Class: Context
 
@@ -30,7 +30,7 @@ An error if one occured during handling of the `ctx`. Otherwise it should be `nu
 
 * `result` {Object}
 
-The result of executing the `ctx`. This should be a `typeof` object and serialize-able as JSON.
+The result of executing the `ctx`. This should be an object that is serializable as JSON.
 
 #### ctx.body <!-- api -->
 

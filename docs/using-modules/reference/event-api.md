@@ -9,16 +9,16 @@
 
 Custom Resources may load **event scripts** to allow you to inject business logic during requests to the resource. For example, the collection resource exposes an event called *validate*. Given the following todo resource folder:
 
-/my-app
-  /resources
-    /todos
-      validate.js
-      
-The collection resource would run the contents of `validate.js` every time the `validate` event occurs.
+    /my-app
+      /resources
+        /todos
+          validate.js
+        
+The collection resource would load the contents of `validate.js` as the `validate` event.
 
 ### Default Event Script Domain
 
-Event scripts do not share a global scope with other modules in your app. Instead each time an [event script](/developing-modules/internal-api/script) is run a [domain](/terms/domain) object is constructed as the global scope.
+Event scripts do not share a global scope with other modules in your app. Instead each time an event script is run, a new scope is created for it.
 
 The following functions and objects are available to all event scripts.
 
@@ -36,13 +36,13 @@ Returns true if the current user (`me`) matches the provided `id`.
 
 If the resource does not implement a custom domain, this will be an empty object. Otherwise `this` usually refers to the current domain's instance (eg. an object in a collection).
 
-### cancel() <!-- api -->
+#### cancel() <!-- api -->
 
     cancel(message, [statusCode])
 
 Stops the current request with the provided error message and HTTP status code. Status code defaults to `400`.
 
-### cancelIf(), cancelUnless() <!-- api -->
+#### cancelIf(), cancelUnless() <!-- api -->
 
     cancelIf(condition, message, [statusCode])
     cancelUnless(condition, message, [statusCode])
@@ -61,12 +61,11 @@ A boolean property, true if this request is authenticated as root (from the dash
 
 The current HTTP query. (eg ?foo=bar - query would be {foo: 'bar'}).
 
-### emit() <!-- api -->
+#### emit() <!-- api -->
 
     emit([userCollection, query], message, [data])
 
-Emits a realtime message to the client
-You can use `userCollection` and `query` parameters to limit the message broadcast to specific users.
+Emits a realtime message to the client. You can use `userCollection` and `query` parameters to limit the message broadcast to specific users.
 
 #### console <!-- api --> 
 

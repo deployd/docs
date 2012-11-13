@@ -14,6 +14,7 @@ The app supports registering, logging in, making posts, and mentioning other use
 ### Useful files
 
 Events:
+
 - [On Validate /posts](https://github.com/deployd/examples/blob/master/users/micro-blog/resources/posts/validate.js) (responsible for calculating the `mentions` property)
 - [On POST /posts](https://github.com/deployd/examples/blob/master/users/micro-blog/resources/posts/post.js)
 

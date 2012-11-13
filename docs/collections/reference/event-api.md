@@ -15,7 +15,7 @@ The current object is represented as `this`. You can always read its properties.
       this.message = this.message.substring(0, 137) + '...';
     }
 
-*Note*: In some cases, the meaning of `this` will change to something less useful inside of a function. If you are using functional programming (such as `Array.forEach()`), you may need to bind another variable to `this`:
+*Note*: In some cases, the meaning of `this` will change to something less useful inside of a function. If you are using functions such as `Array.forEach()`, you may need to bind another variable to `this`:
 
     // Won't work - sum remains at 0
     this.sum = 0;
@@ -93,7 +93,7 @@ It is strongly recommended that you `cancel()` any events that are not accessibl
     cancelIf(condition, message, [statusCode])
     cancelUnless(condition, message, [statusCode])
 
-Calls `cancel(message, statusCode)` if the provided condition is truthy (for `cancelIf()`) or falsy (for `cancelUnless`).
+Calls `cancel(message, statusCode)` if the provided condition is truthy (for `cancelIf()`) or falsy (for `cancelUnless()`).
 
     Example: On Post
     // Prevent banned users from posting
@@ -104,7 +104,7 @@ Calls `cancel(message, statusCode)` if the provided condition is truthy (for `ca
 
     error(key, message)
 
-Adds an error message to an `errors` object in the response. Cancels the request, but continues running the event so it can to collect multiple errors to display to the user. Commonly used for validation.
+Adds an error message to an `errors` object in the response. Cancels the request, but continues running the event so it can collect multiple errors to display to the user. Commonly used for validation.
 
     // Example: On Validate
     // Don't allow certain words
@@ -118,7 +118,7 @@ Adds an error message to an `errors` object in the response. Cancels the request
     errorIf(condition, key, message)
     errorUnless(condition, key, message)
 
-Calls `error(key, message)` if the provided condition is truthy (for `errorIf()`) or falsy (for `errorUnless`).
+Calls `error(key, message)` if the provided condition is truthy (for `errorIf()`) or falsy (for `errorUnless()`).
 
     // Example: On Validate
     // Require message to be a certain length
@@ -180,16 +180,7 @@ An `Object` containing the previous values of the item to be updated.
 
     emit([userCollection, query], message, [data])
 
-Emits a realtime message to the client
-You can use `userCollection` and `query` parameters to limit the message broadcast to specific users.
-
-    // Example: On Put
-    // Alert the owner that their post has been modified
-    if (me.id !== this.creatorId) {
-      emit(dpd.users, {id: this.creatorId}, 'postModified', this); 
-    } 
-
-<!--seperate-->
+Emits a realtime message to the client. 
 
     // Example: On Post
     // Alert clients that a new post has been created
@@ -202,11 +193,19 @@ In the front end:
         //do something...
     });
 
+You can use `userCollection` and `query` parameters to limit the message broadcast to specific users.
+
+    // Example: On Put
+    // Alert the owner that their post has been modified
+    if (me.id !== this.creatorId) {
+      emit(dpd.users, {id: this.creatorId}, 'postModified', this); 
+    } 
+
 See [Notifying Clients of Changes with Sockets](../notifying-clients.md) for an overview on realtime functionality.
 
 ### dpd <!-- ref -->
 
-The entire [dpd.js](/docs/reference/dpdjs.html) library, except for `dpd.on()`, is available from events. It will also properly bind `this` in callbacks.
+The entire [dpd.js](./dpd-js.md) library, except for the realtime functions, is available in events. It will also properly bind `this` in callbacks.
 
     // Example: On Get
     // If specific query, get comments
@@ -220,7 +219,7 @@ The entire [dpd.js](/docs/reference/dpdjs.html) library, except for `dpd.on()`, 
     // Log item elsewhere
     dpd.archived.post(this);
 
-Dpd.js will prevent recursive queries. This works by returning `null` from a `dpd` function call that has already been called several times further up in the stack. You can change this with the [$limitRecursion](./querying-collections.md#s-$limitRecursion) property
+Dpd.js will prevent recursive requests if you set the [$limitRecursion](./querying-collections.md#s-$limitRecursion) property. This works by returning `null` from a `dpd` function call that has already been called several times further up in the stack.
 
     // Example: On Get /recursive
     // Call self
@@ -255,7 +254,7 @@ Equal to true if this request has been sent by another script.
 
 ### isRoot <!-- api -->
 
-Equal to true if this request has been authenticated as root (has the `dpd-ssh-key` header with the appropriate key; such as from the dashboard)
+Equal to true if this request has been authenticated as [root](./http.md#s-Root-Requests) (has the `dpd-ssh-key` header with the appropriate key; such as from the dashboard)
 
     // Example: On PUT /users
     // Protect reputation property - should only be calculated by a custom script.

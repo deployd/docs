@@ -7,7 +7,7 @@
 
 The `internal-client` module is responsible for building a server-side version of **dpd.js**. It is intended for use in `Script`s but can be used by resources to access other resources' REST APIs.
 
-*Note: As in dpd.js, the callback for an internal client request recieves the arguments `(data, err)`, which is different than the Node convention of `(err, data)`. This is for a better experience in writings `Script`s and events.*
+*Note: As in dpd.js, the callback for an internal client request recieves the arguments `(data, err)`, which is different than the Node convention of `(err, data)`.*
 
 ### internalClient.build(server, [session], [stack])
 

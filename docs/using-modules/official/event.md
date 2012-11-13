@@ -6,7 +6,7 @@
 
 ## Event Resource
 
-This custom resource type allows you to write an event when the resource's route receives a `GET` or `POST` request.
+This custom resource type allows you to write an event that will run when the resource's route receives a `GET` or `POST` request.
 
 ### Installation
 

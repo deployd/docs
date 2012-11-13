@@ -5,9 +5,9 @@
 
 ## Server
 
-Deployd's `Server` extends node's `http.Server`. A `Server` is created with an options object that tells deployd what port to serve on and which database to connect to.
+Deployd's `Server` extends node's `http.Server`. A `Server` is created with an options object that tells Deployd what port to serve on and which database to connect to.
 
-The `Server` object is also the main entry point for modules. After it is started the `Server` instance is available at `process.server`.
+The `Server` object is also the main entry point for modules. After it is started, the `Server` instance is available at `process.server`.
 
 ### Class: Server
 
@@ -19,15 +19,15 @@ Servers are created when calling the Deployd exported function.
     
 * `options` {Object}
 
-  - port {Number} - the port to listen on
-  - db {Object} - the database to connect to
-    - port {Number} - the port of the database server
-    - host {String} - the ip or domain of the database server
-    - name {String} - the name of the database
-    - credentials {Object} - credentials for the server
-      - username {String}
-      - password {String}
-  - env {String} - the environment to run in.
+  - `port` {Number} - the port to listen on
+  - `db` {Object} - the database to connect to
+    - `port` {Number} - the port of the database server
+    - `host` {String} - the ip or domain of the database server
+    - `name` {String} - the name of the database
+    - `credentials` {Object} - credentials for the server
+      - `username` {String}
+      - `password` {String}
+  - `env` {String} - the environment to run in.
 
 *Note:* If `options.env` is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.
 
@@ -62,7 +62,7 @@ The **socket.io** sockets `Manager` object ([view source](https://github.com/Lea
 
 ### Server.sessions <!-- api -->
 
-The server's `SessionStore`.
+The server's [SessionStore](session-store.md).
 
 ### Server.router <!-- api -->
 
@@ -70,4 +70,4 @@ The server's `Router`.
 
 ### Server.resources <!-- api -->
 
-An `Array` of the server's resource instances. These a built from the config and type loaders.
+An `Array` of the server's [Resource](./resource.md) instances. These a built from the config and type loaders.

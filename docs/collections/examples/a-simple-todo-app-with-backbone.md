@@ -7,7 +7,7 @@
 
 ![Todo app](/examples/images/todo-app.png)
 
-This app demonstrates how to access a Collection's API using the [Backbone.js](http://backbonejs.org/).
+This app demonstrates how to access a Collection's API using [Backbone.js](http://backbonejs.org/).
 
 <a href="https://github.com/downloads/deployd/examples/todo-app-backbone.zip" class="btn btn-primary">Download</a> <a href="https://github.com/deployd/examples/tree/master/collection/todo-app-backbone" class="btn">View Source</a>
 
