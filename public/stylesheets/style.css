@@ -5304,6 +5304,7 @@ body {
 }
 .section {
   padding: 10px;
+  padding-left: 0;
 }
 .section .linked {
   border: solid 1px #049cdb;
@@ -5338,7 +5339,7 @@ body {
  * API
  */
 #sidebar #api .nav-list {
-  width: 190px;
+  width: 180px;
 }
 #api {
   margin-top: 20px;
@@ -5366,7 +5367,7 @@ body {
 #api .nav-list a:hover {
   background: #049cdb;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: normal;
   text-shadow: none;
 }
 #api h3 {
