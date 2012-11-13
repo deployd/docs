@@ -22,7 +22,8 @@
   
   $(function () {
     // fix for scroll
-    if(window.location.hash) {
+
+    function fixScroll() {
       var $a = $('a[name="' + window.location.hash.replace('#', '') + '"]');
       if($a.length) {
         setTimeout(function () {
@@ -32,6 +33,20 @@
         }, 1);
       }
     }
+    if(window.location.hash) {
+      fixScroll();
+    }
+
+    $('a[href]').click(function() {
+      var href = $(this).attr('href');
+
+      if (href.indexOf('#') !== -1) {
+        setTimeout(function() {
+          $('.section.linked').removeClass('linked');
+          fixScroll();
+        }, 1);
+      }
+    });
 
     //prettify
     $('.section pre').addClass('prettyprint');

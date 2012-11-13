@@ -5300,7 +5300,9 @@ body {
 }
 .section {
   padding: 10px;
-  padding-left: 0;
+}
+.section .section {
+  margin-left: -10px;
 }
 .section .linked {
   border: solid 1px #049cdb;

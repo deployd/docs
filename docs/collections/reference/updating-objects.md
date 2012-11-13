@@ -47,7 +47,7 @@ The `$pull` command removes a value from an Array property.
 
 *Note: If there is more than one matching value in the Array, this will remove all of them*
 
-## $pullAll <!-- api -->
+### $pullAll <!-- api -->
 
 The `$pullAll` command removes multiple values from an Array property.
 
