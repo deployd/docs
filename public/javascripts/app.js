@@ -34,7 +34,7 @@
     }
 
     //prettify
-    $('.section pre code').addClass('prettyprint');
+    $('.section pre').addClass('prettyprint');
     prettyPrint();
   });
   
