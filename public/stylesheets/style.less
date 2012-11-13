@@ -267,6 +267,17 @@ body {
 
 .section {
   padding: 10px;
+  background: white;
+
+  h2, h3, h4, h5, h6 {
+    .anchor-link {
+      display: none;
+    }
+
+    &:hover .anchor-link {
+      display: inline;
+    }
+  }
   
   .section { margin-left: -10px;}
 
