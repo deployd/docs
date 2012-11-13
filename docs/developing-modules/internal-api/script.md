@@ -66,7 +66,7 @@ If a callback is provided the script will be run in **async mode**. The callback
 
 * `fn(err, script)`
 
-Load a new `script` at the given file `path`. Runs the callback with an error if one occured, or a new `Script` loaded from the contents of the file.
+Load a new `script` at the given file `path`. Runs the callback with an error if one occurred, or a new `Script` loaded from the contents of the file.
     
 ### Default Domain
 

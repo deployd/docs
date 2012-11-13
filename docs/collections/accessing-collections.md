@@ -35,9 +35,9 @@ Dpd.js functions are *asynchronous*: they do not return a value, but execute a c
       // Work with result
     });
 
-For details on using dpd.js, see the [dpd.js reference](./reference/dpd-js.md)
+For details on using dpd.js, see the [dpd.js reference](/docs/collections/reference/dpd-js.md)
 
-Also see [A Simple Todo App](./examples/a-simple-todo-app.md) for a working example.
+Also see [A Simple Todo App](/docs/collections/examples/a-simple-todo-app.md) for a working example.
 
 ### Using dpd.js on a different origin
 
@@ -50,6 +50,6 @@ This will not work on browsers that do not support Cross-Origin Resource Sharing
 
 ### Accessing Collections without Dpd.js
 
-The dpd.js library is not required; it is only a utility library for accessing Deployd's HTTP API with AJAX. For details on the HTTP API, see the [HTTP API Refernence](./reference/http.md).
+The dpd.js library is not required; it is only a utility library for accessing Deployd's HTTP API with AJAX. For details on the HTTP API, see the [HTTP API Refernence](/docs/collections/reference/http.md).
 
-Some front-end libraries include support for HTTP or REST APIs; for examples of how to use these instead of dpd.js, see [A Simple Todo App with Backbone](./examples/a-simple-todo-app-with-backbone.md) and [A Simple Todo App with AngularJS](./examples/a-simple-todo-app-with-angular.md)
+Some front-end libraries include support for HTTP or REST APIs; for examples of how to use these instead of dpd.js, see [A Simple Todo App with Backbone](/docs/collections/examples/a-simple-todo-app-with-backbone.md) and [A Simple Todo App with AngularJS](/docs/collections/examples/a-simple-todo-app-with-angular.md)

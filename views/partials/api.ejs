@@ -4,11 +4,7 @@
     %>
       <% if(!data.related) { %>
         <section>
-        <!-- <ul class="nav nav-list api-section <%= r.parent().basename() %>">
-          <li class="nav-header"> -->
-            <h3><%= r.parent().title() %></h3>
-          <!-- <li>
-        </ul> -->
+          <h3><%= r.parent().title() %></h3>
         <div class="sections">
       <% } %>
         <%
@@ -17,9 +13,9 @@
           if(hasApi(c.sections)) {
             %>
             <ul class="nav nav-list <%= r.parent().basename() %>">
-            <li class="nav-header"><%= c.title() %></li>
+              <li class="nav-header"><a href="<%= c.url() %>"><%= c.title() %></a></li>
             <%
-            c.sections.forEach(renderSections);
+              c.sections.forEach(renderSections);
             %>
             </ul>
             <%

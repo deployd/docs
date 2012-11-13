@@ -5,7 +5,7 @@
 
 ## Building your first app with Deployd
 
-In this tutorial, you'll see how to create a simple app from the ground up in Deployd. This tutorial assumes a working knowledge of jQuery. It doesn't assume any knowledge of Deployd, but it's recommended to read [Your First API with Deployd](./your-first-api.md) if you haven't already.
+In this tutorial, you'll see how to create a simple app from the ground up in Deployd. This tutorial assumes a working knowledge of jQuery. It doesn't assume any knowledge of Deployd, but it's recommended to read [Your First API with Deployd](/docs/your-first-api.md) if you haven't already.
 
 ### Getting started
 
@@ -115,7 +115,7 @@ In `index.html`, add the following script reference in between jQuery and `scrip
 
 	<script type="text/javascript" src="/dpd.js"></script>
 
-This will add a reference to [dpd.js](../collections/accessing-collections.md), a simple library dynamically built specifically for your app's backend. Dpd.js will automatically detect what resources you have added to your app and add them to the `dpd` object. Each resource object has asynchronous functions to communicate with your Deployd app. 
+This will add a reference to [dpd.js](/docs/collections/accessing-collections.md), a simple library dynamically built specifically for your app's backend. Dpd.js will automatically detect what resources you have added to your app and add them to the `dpd` object. Each resource object has asynchronous functions to communicate with your Deployd app.  
 
 In `script.js`, add a `loadComments()` function inside of `$(document).ready`:
 
@@ -180,7 +180,7 @@ And replace them with:
 Add a utility function at the very top of `script.js` to alert any errors we get:
 
 	function showError(error) {
-			var message = "An error occured";
+			var message = "An error occurred";
 			if (error.message) {
 					message = error.message;
 			} else if (error.errors) {

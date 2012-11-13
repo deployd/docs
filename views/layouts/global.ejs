@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="docs">
   <head>
-    <title>Deployd</title>
-    <link href='/css/prettify.css' rel='stylesheet' type='text/css'>
+    <% if (data.data && data.data.info) { %>
+      <title><%= data.data.info.title() %> - Deployd</title>
+    <% } else { %>
+      <title>Deployd Docs</title>
+    <% } %>
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
-    <link href="/stylesheets/bootstrap.css" rel='stylesheet' type='text/css'>
     <link href="/stylesheets/style.css" rel='stylesheet' type='text/css'>
     <%- script('libs/angular') %>
     <%- script('libs/angular-sanitize') %>
@@ -12,10 +14,24 @@
     <%- script('libs/bootstrap') %>
     <%- script('libs/jquery.highlight') %>
     <%- script('libs/jquery.masonry') %>
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
   </head>
   <%
   function active(page, data) {
-    if(data.url === ('/' + page)) return 'active';
+    if(~data.url.indexOf('/' + page)) return 'active';
     return '';
   }
   %>

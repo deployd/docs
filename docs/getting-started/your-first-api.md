@@ -5,7 +5,7 @@
 
 ## Your first Deployd API
 
-If you haven't already, [install Deployd](installing-deployd.md).
+If you haven't already, [install Deployd](/docs/getting-started/installing-deployd.md).
 
 You can create a new project with the following commands.
 
@@ -43,5 +43,5 @@ You should see something like the following:
 
 ### More Tutorials and Examples
 
- - [Your first App](your-first-app.md)
+ - [Your first App](/docs/getting-started/your-first-app.md)
 

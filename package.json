@@ -12,6 +12,7 @@
     "natural": "~0.1.17",
     "markdown": "~0.4.0",
     "node-markdown": "~0.1.1",
-    "walkdir": "0.0.5"
+    "walkdir": "0.0.5",
+    "shelljs": "0.0.8"
   }
 }

@@ -20,7 +20,7 @@ You don't have to `require()` or load anything to instantiate your module. The f
     
 ### Accessing the Server
 
-In order to do anything interesting you need a reference to the current Deployd [server](internal-api/server.md) object. The server is always available at `process.server`. This means you don't need to require anything to use most of the [internal APIs](internal-api).
+In order to do anything interesting you need a reference to the current Deployd [server](/docs/developing-modules/internal-api/server.md) object. The server is always available at `process.server`. This means you don't need to require anything to use most of the [internal APIs](/docs/developing-modules/internal-api/collection.md).
 
 ### One Off Modules
 
@@ -45,5 +45,5 @@ Here's an example one off module that maintains a count of requests to the url `
 
 ### Reusable Modules
 
-Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are much easier to reuse, and you can share them with other Deployd developers. See the [custom resource type guide](custom-resource-types.md) for more info.
+Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are much easier to reuse, and you can share them with other Deployd developers. See the [custom resource type guide](/docs/developing-modules/custom-resource-types.md) for more info.
 

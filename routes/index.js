@@ -1,6 +1,15 @@
 var md = require('node-markdown').Markdown
   , path = require('path')
-  , Query = require('../lib/query');
+  , Query = require('../lib/query')
+  , redirects = require('../redirects.json');
+  
+// redirects
+app.get('/redirect', function (req, res) {
+  var redirect = redirects[req.param('url')];
+  console.log('redirect to', redirect);
+  
+  res.redirect(redirect || '/');
+});
 
 app.get('/search', function (req, res) {
   var query = new Query(req.param('q'), app.index.root(), app.docs);
@@ -28,13 +37,13 @@ app.get('/docs', function (req, res) {
   res.redirect('/');
 });
 
-app.get('/modules', function (req, res) {
+app.get('/modules', function (req, res, next) {
   var info = app.docs['docs/using-modules/official'];
   
   res.render('modules.ejs', {info: info});
 });
 
-app.get('/:page', function (req, res) {
+app.get('/:page', function (req, res, next) {
   var page = req.param('page');
   var info = app.docs['docs/' + page];
   var root = app.index.root();
@@ -56,8 +65,12 @@ app.get('/:page', function (req, res) {
     data.refs = refs;
   }
   
+  if(~['api', 'guides', 'modules'].indexOf(page)) {
+    res.render('page.ejs', data);
+  } else {
+    next();
+  }
 
-  res.render('page.ejs', data);
 });
 
 app.get('/', function (req, res) {
@@ -66,11 +79,15 @@ app.get('/', function (req, res) {
   res.render('page.ejs', {info: info});
 });
 
-app.get(/^\/docs\/(.+)$/, function (req, res) {
+app.get(/^\/docs\/(.+)$/, function (req, res, next) {
   var p = req.params[0]
     , info = app.docs['docs/' + p]
     , refs = []
-    , mainParent = info.mainParent();
+    , mainParent = info && info.mainParent();
+
+  if(!info) {
+    return next();
+  }
 
   if (info.dir && req.param('include') !== 'all') {
     res.redirect(info.children()[0].url());
@@ -114,3 +131,5 @@ function formatPreview(query, str) {
   
   return str;
 }
+
+

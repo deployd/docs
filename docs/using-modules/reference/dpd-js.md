@@ -69,7 +69,7 @@ Examples of errors:
 Makes a GET HTTP request at the URL `/<resource>/<func>/<path>`, using the `query` object as the query string if provided.
 
 - `func` - A special identifier, i.e. `/me`.
-- `path` - An idenitifier for a particular object, usually the id
+- `path` - An identifier for a particular object, usually the id
 - `query` - An object defining the querystring. If the object is complex, it will be serialized as JSON.
 - `fn` - Callback `function(result, error)`.
 
@@ -79,7 +79,7 @@ Makes a GET HTTP request at the URL `/<resource>/<func>/<path>`, using the `quer
 
 Makes a POST HTTP request at the URL `/<resource>/<path>`, using the `query` object as the query string if provided and `body` as the request body.
 
-- `path` - An idenitifier for a particular object, usually the id
+- `path` - An identifier for a particular object, usually the id
 - `query` - An object defining the querystring. If the object is complex, it will be serialized as JSON.
 - `body` - The body of the request; will be serialized as JSON and sent with `Content-Type: application/json` header.
 - `fn` - Callback `function(result, error)`.
@@ -90,7 +90,7 @@ Makes a POST HTTP request at the URL `/<resource>/<path>`, using the `query` obj
 
 Makes a PUT HTTP request at the URL `/<resource>/<path>`, using the `query` object as the query string if provided and `body` as the request body.
 
-- `path` - An idenitifier for a particular object, usually the id
+- `path` - An identifier for a particular object, usually the id
 - `query` - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the `q` parameter. 
 - `body` - The body of the request; will be serialized as JSON and sent with `Content-Type: application/json` header.
 - `fn` - Callback `function(result, error)`.
@@ -101,7 +101,7 @@ Makes a PUT HTTP request at the URL `/<resource>/<path>`, using the `query` obje
 
 Makes a DELETE HTTP request at the URL `/<resource>/<path>`, using the `query` object as the query string if provided.
 
-- `path` - An idenitifier for a particular object, usually the id
+- `path` - An identifier for a particular object, usually the id
 - `query` - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the `q` parameter.
 - `fn` - Callback `function(result, error)`.
 
@@ -113,10 +113,10 @@ Makes a DELETE HTTP request at the URL `/<resource>/<path>`, using the `query` o
 Makes an RPC-style POST HTTP request at the URL `/<resource>/<func>/<path>`. Useful for functions that don't make sense in REST-style APIs, such as `/users/login`.
 
 - `func` - The name of the function to call
-- `path` - An idenitifier for a particular object, usually the id
+- `path` - An identifier for a particular object, usually the id
 - `body` - The body of the request; will be serialized as JSON and sent with `Content-Type: application/json` header.
 - `fn` - Callback `function(result, error)`.
 
 ### Realtime API
 
-The Generic Realtime API behaves the same way as the [Collection Realtime API](../../collections/reference/dpd-js.md#s-Realtime-API).
+The Generic Realtime API behaves the same way as the [Collection Realtime API](/docs/collections/reference/dpd-js.md#s-Realtime-API).

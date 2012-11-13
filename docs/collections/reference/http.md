@@ -86,7 +86,7 @@ If the collection has no objects, it will be an empty array:
 
 #### Querying Data <!-- ref -->
 
-To filter results by the specified query object, send a `GET` request to your collection's path with a query string.  See [Querying Collections](./querying-collections.md) for information on constructing a query.
+To filter results by the specified query object, send a `GET` request to your collection's path with a query string.  See [Querying Collections](/docs/collections/reference/querying-collections.md) for information on constructing a query.
 
     GET /todos?category=pets
 
@@ -138,7 +138,7 @@ The response body is the object that you posted, with any additional calculated 
 
 #### Updating an Object <!-- ref -->
 
-To update an object that is already in the collection, send a `POST` or `PUT` request with the `id` value as the path and with the properties you wish to update in the body. It will only change the properties that are provided. It is also possible to incrementally update certain properties; see [Updating Objects in Collections](./updating-objects.md) for details.
+To update an object that is already in the collection, send a `POST` or `PUT` request with the `id` value as the path and with the properties you wish to update in the body. It will only change the properties that are provided. It is also possible to incrementally update certain properties; see [Updating Objects in Collections](/docs/collections/reference/updating-objects.md) for details.
 
     PUT /todos/91c621a3026ca8ef
     {
@@ -214,7 +214,7 @@ The Socket.io community has created client libraries for other languages and pla
 
 ### Root Requests
 
-You can elevate your session to root access by adding the header `dpd-ssh-key`. It must have the value of your app's key (you can find this by typing `dpd showkey` into the command line); althought in the `development` environment, the `dpd-ssh-key` header can have any value.
+You can elevate your session to root access by adding the header `dpd-ssh-key`. It must have the value of your app's key (you can find this by typing `dpd showkey` into the command line); although in the `development` environment, the `dpd-ssh-key` header can have any value.
 
 Sending a request as root has several effects. Most notably, you can use the `{$skipEvents: true}` property in either the query string or request body. This will cause events not to run. This is useful for bypassing authentication or validation. 
 

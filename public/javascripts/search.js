@@ -47,6 +47,19 @@ function SearchCtrl($scope, $http, $sanitize) {
     }
   }
   
+  $scope.choose = function (index) {
+    var terms = $scope.terms;
+    $scope.current = index;
+
+    for(var i = 0; i < terms.length; i++) {
+      terms[i].active = false;
+    }
+
+    terms[$scope.current].active = true;
+    $scope.input = terms[$scope.current].reference || terms[$scope.current].title;
+    $scope.search();
+  }
+  
   $scope.deselect = function () {
     $scope.terms = [];
     $scope.current = 0;
@@ -54,7 +67,7 @@ function SearchCtrl($scope, $http, $sanitize) {
   
   $scope.move = function (direction) {
     var terms = $scope.terms;
-    var cur = 0;
+    var cur = $scope.current || 0;
     
     if(!terms.length) return;
     

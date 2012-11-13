@@ -70,7 +70,7 @@ The following resource would respond with a file at the url `/my-file.html`.
 
 ### Overriding Behavior
 
-Certain methods on a `Resource` prototype are called by the runtime. Their default behavior should be overriden to define an inherited `Resources` behavior.
+Certain methods on a `Resource` prototype are called by the runtime. Their default behavior should be overridden to define an inherited `Resources` behavior.
 
 ### resource.handle(ctx, next) <!-- api -->
 
@@ -78,7 +78,7 @@ Handle an incoming request. This gets called by the router.
 
 The resource can either handle this context and call `ctx.done(err, obj)` with an error or result JSON object, or call `next()` to give the context back to the router. If a resource calls `next()` the router might find another match for the request, or respond with a `404`.
 
-* ctx {[Context](context.md)}
+* ctx {[Context](/docs/developing-modules/internal-api/context.md)}
 
 The http context created by the `Router`. This provides an abstraction between the actual request and response. A `Resource` should call `ctx.done` or pipe to `ctx.res` if it can handle a request. Otherwise it should call `next()`.
 
@@ -275,7 +275,7 @@ To embed the event editor in your dashboard, include this empty div:
 
 ##### Styling <!-- ref -->
 
-For styling, the dashboard uses a reskinned version of [Twitter Bootstrap 2.0.2](http://twitter.github.com/bootstrap/). 
+For styling, the dashboard uses a re-skinned version of [Twitter Bootstrap 2.0.2](http://twitter.github.com/bootstrap/). 
 
 ##### JavaScript <!-- ref -->
 
@@ -286,7 +286,7 @@ The dashboard provides several JavaScript libraries by default:
 - [Underscore 1.3.3](http://underscorejs.org/)
 - [Twitter Bootstrap 2.0.2](http://twitter.github.com/bootstrap/javascript.html)
 - [UIKit](http://visionmedia.github.com/uikit/)
-- [Ace Editor](https://github.com/ajaxorg/ace) (noconflict version)
+- [Ace Editor](https://github.com/ajaxorg/ace) (no-conflict version)
     - JavaScript mode
     - JSON mode
     - Custom theme for the Dashboard (`ace/theme/deployd`)

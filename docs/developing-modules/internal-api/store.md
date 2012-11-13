@@ -11,7 +11,7 @@ An abstraction of a collection of objects in a database. Collections are HTTP wr
 
 ### Class: Store
 
-You shouldn't construct `Store`s directly. Instead use the [process.server.createStore()](server.md#s-Server.createStore-namespace) method.
+You shouldn't construct `Store`s directly. Instead use the [process.server.createStore()](/docs/developing-modules/internal-api/server.md#s-Server.createStore-namespace) method.
 
 #### Store.insert(object, fn) <!-- api -->
 

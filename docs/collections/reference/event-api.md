@@ -7,7 +7,7 @@
 
 ### this <!--api-->
 
-The current object is represented as `this`. You can always read its properties. Modifying its properties in an `On Get` request will change the result that the client recieves, while modifying its properties in an `On Post`, `On Put`, or `On Validate` will change the value in the database.
+The current object is represented as `this`. You can always read its properties. Modifying its properties in an `On Get` request will change the result that the client receives, while modifying its properties in an `On Post`, `On Put`, or `On Validate` will change the value in the database.
 
     // Example: On Validate
     // If a property is too long, truncate it
@@ -201,11 +201,11 @@ You can use `userCollection` and `query` parameters to limit the message broadca
       emit(dpd.users, {id: this.creatorId}, 'postModified', this); 
     } 
 
-See [Notifying Clients of Changes with Sockets](../notifying-clients.md) for an overview on realtime functionality.
+See [Notifying Clients of Changes with Sockets](/docs/collections/notifying-clients.md) for an overview on realtime functionality.
 
 ### dpd <!-- ref -->
 
-The entire [dpd.js](./dpd-js.md) library, except for the realtime functions, is available in events. It will also properly bind `this` in callbacks.
+The entire [dpd.js](/docs/collections/reference/dpd-js.md) library, except for the realtime functions, is available in events. It will also properly bind `this` in callbacks.
 
     // Example: On Get
     // If specific query, get comments
@@ -219,7 +219,7 @@ The entire [dpd.js](./dpd-js.md) library, except for the realtime functions, is 
     // Log item elsewhere
     dpd.archived.post(this);
 
-Dpd.js will prevent recursive requests if you set the [$limitRecursion](./querying-collections.md#s-$limitRecursion) property. This works by returning `null` from a `dpd` function call that has already been called several times further up in the stack.
+Dpd.js will prevent recursive requests if you set the [$limitRecursion](/docs/collections/reference/querying-collections.md#s-$limitRecursion) property. This works by returning `null` from a `dpd` function call that has already been called several times further up in the stack.
 
     // Example: On Get /recursive
     // Call self
@@ -254,7 +254,7 @@ Equal to true if this request has been sent by another script.
 
 ### isRoot <!-- api -->
 
-Equal to true if this request has been authenticated as [root](./http.md#s-Root-Requests) (has the `dpd-ssh-key` header with the appropriate key; such as from the dashboard)
+Equal to true if this request has been authenticated as [root](/docs/collections/reference/http.md#s-Root-Requests) (has the `dpd-ssh-key` header with the appropriate key; such as from the dashboard)
 
     // Example: On PUT /users
     // Protect reputation property - should only be calculated by a custom script.

@@ -38,7 +38,7 @@ To verify that Deployd installed correctly, open a command prompt (Windows-R, cm
 Windows is unable to find the `dpd` command line tool. There are a couple of things you can try:
 
  - restart the command line or open a new `cmd` window
- - Add the Deployd path to your PATH variabe ([instructions](http://www.computerhope.com/issues/ch000549.htm))
+ - Add the Deployd path to your PATH variable ([instructions](http://www.computerhope.com/issues/ch000549.htm))
   - For 64-bit systems, use the path `C:\Program Files (x86)\Deployd\bin`
   - For 32-bit systems, use the path `C:\Program Files\Deployd\bin`.
 

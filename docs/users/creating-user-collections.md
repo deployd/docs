@@ -14,7 +14,7 @@ A User Collection extends a [Collection](/docs/collections/creating-collections.
 User Collections can have the same properties as a Collection, with two additional non-removable properties:
 
 - `username` - The user's identifier; must be unique.
-- `password` - An encrypted password. It can never be retreived from the database, only queried against.
+- `password` - An encrypted password. It can never be retrieved from the database, only queried against.
 
 In addition to the above constraints, these two properties can only be modified by:
 

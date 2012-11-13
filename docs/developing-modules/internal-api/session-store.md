@@ -9,7 +9,7 @@ Sessions are persisted in a modified store. This store has several methods to he
 
 ### Class: SessionStore
 
-A store for persisting sessions inbetween connection and disconnection. Automatically creates session IDs on inserted objects.
+A store for persisting sessions in-between connection and disconnection. Automatically creates session IDs on inserted objects.
 
     var db = process.server.db;
     var sockets = process.server.sockets;
