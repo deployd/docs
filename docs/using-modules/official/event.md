@@ -10,7 +10,7 @@ This custom resource type allows you to write an event that will run when the re
 
 ### Installation
 
-In your app's root directory, type `npm install dpd-event` into the command line. This should create a `dpd-event` directory in your app's `node_modules` directory.
+In your app's root directory, type `npm install dpd-event` into the command line or [download the source](https://github.com/deployd/dpd-event). This should create a `dpd-event` directory in your app's `node_modules` directory.
 
 See [Installing Modules](/docs/using-modules/installing-modules.md) for details.
 

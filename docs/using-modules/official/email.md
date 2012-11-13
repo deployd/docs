@@ -12,7 +12,7 @@ The Email resource is built on the [Nodemailer](https://github.com/andris9/Nodem
 
 ### Installation
 
-In your app's root directory, type `npm install dpd-email` into the command line. This should create a `dpd-email` directory in your app's `node_modules` directory.
+In your app's root directory, type `npm install dpd-email` into the command line or [download from source](https://github.com/deployd/dpd-email). This should create a `dpd-email` directory in your app's `node_modules` directory.
 
 See [Installing Modules](/docs/using-modules/installing-modules.md) for details.
 
