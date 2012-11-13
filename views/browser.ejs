@@ -22,5 +22,33 @@
     <% } else { %>
       <%- partial('contents', {info: data.info}) %>
     <% } %>
+    <h3 style="text-align: center;">More</h3>
+
+    <% var examples = data.info.mainParent().examples(); %>
+    <% var hasExamples = examples && examples.length; %>
+    <div class="row-fluid">
+      <div class="<%= hasExamples ? 'span6' : 'span6 offset3' %>">
+        <div class="well">
+          <h4>Other docs in "<%= data.info.parent().title() %>"</h4>
+          <ul>
+            <% data.info.parent().children(true).filter(function(i) { return i !== data.info }).forEach(function (info) { %>
+              <li><a href="<%= info.url() %>"><%= info.title() %></a></li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+      <% if(hasExamples) { %> 
+        <div class="span6">
+          <div class="well">
+            <h4>Related Examples</h4>
+            <ul>
+              <% examples.filter(function(i) { return i !== data.info }).forEach(function (info) { %>
+                <li><a href="<%= info.url() %>"><%= info.title() %></a></li>
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+      <% } %>
+    </div>
   </div>
 </div>
