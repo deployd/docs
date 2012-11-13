@@ -5,7 +5,7 @@
 
 ## Session
 
-An in memory representation of a client or user connection that can be saved to disk. Data will be passed around via a `Context` to resources.
+An in-memory representation of a client or user connection that can be saved to disk. Data will be passed around via a [Context](context.md) to resources.
 
 ### Class: Session
 

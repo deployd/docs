@@ -75,7 +75,7 @@ When running in non-local environments we recommend using a simple node script t
     
 ### Running Your App in Production
 
-To run your app as a daemon use the `forever` module. You can install it from npm.
+To run your app as a daemon, use the `forever` module. You can install it from npm.
 
     npm install forever -g
     
@@ -83,4 +83,4 @@ Then start the appropriate run script based on your environment.
 
     forever start production.js
     
-This will daemonize your app and make sure it runs even after it crashes.
+This will daemonize your app and make sure it runs even if it crashes.

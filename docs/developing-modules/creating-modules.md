@@ -11,7 +11,7 @@ Deployd modules are 100% compatible with regular [node modules](http://npmjs.org
 
 ### Hello World
 
-Any module in your app's `node_module` folder will be loaded when the Deployd server starts.
+Any module in your app's `node_modules` folder will be loaded when the Deployd server starts.
 
 You don't have to `require()` or load anything to instantiate your module. The following will log 'hello world' when you run `dpd`.
 
@@ -45,5 +45,5 @@ Here's an example one off module that maintains a count of requests to the url `
 
 ### Reusable Modules
 
-Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are incredibly easy to reuse. See the [custom resource type guide](custom-resource-types.md) for more info.
+Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are much easier to reuse, and you can share them with other Deployd developers. See the [custom resource type guide](custom-resource-types.md) for more info.
 

@@ -5,7 +5,7 @@
 
 ## Resource Types
 
-Resources provide a way to handle http requests at a root url. They must implement a `handle(ctx, next)` method that either handles a request or calls `next()` to give the request back to the router.
+Resources are the building block of a Deployd app. They provide a way to handle http requests at a root url. They must implement a `handle(ctx, next)` method that either handles a request or calls `next()` to give the request back to the router.
 
 Resources can also be attributed with meta-data to allow the dashboard to dynamically render an editor gui for configuring a resource instance.
 
@@ -76,7 +76,7 @@ Certain methods on a `Resource` prototype are called by the runtime. Their defau
 
 Handle an incoming request. This gets called by the router.
 
-The resource can either handle this context and call `ctx.done(err, obj)` with an error or result JSON object, or call `next()` to give the context back to the router. If a resource calls `next()` the router might find another match for the resource, or respond with a `404`.
+The resource can either handle this context and call `ctx.done(err, obj)` with an error or result JSON object, or call `next()` to give the context back to the router. If a resource calls `next()` the router might find another match for the request, or respond with a `404`.
 
 * ctx {[Context](context.md)}
 
@@ -138,7 +138,7 @@ Here is an example of a simple resource that exposes a method on the external pr
       console.log(options.msg); // 'hello world'
     }
 
-When the `hello()` method is called a context does not need to be provided as the `dpd` object is built with a context. A callback may be provided which will be executed with results of `fn(err, result)`.
+When the `hello()` method is called, a context does not need to be provided as the `dpd` object is built with a context. A callback may be provided which will be executed with results of `fn(err, result)`.
 
 `/my-project/public/hello.js`
 
@@ -152,7 +152,7 @@ When the `hello()` method is called a context does not need to be provided as th
 
 * {Array}
 
-If a `Resource` constructor includes an array of events, it will try to load the scripts in its instance folder (eg. `/my-project/resources/my-resource/get.js`) using `resource.loadScripts(eventNames, fn)`.
+If a `Resource` constructor includes an array of events, it will try to load the scripts in its instance folder (eg. `/my-project/resources/my-resource/get.js`) using [resource.loadScripts(eventNames, fn)](#s-resource.load-fn).
 
     MyResource.events = ['get'];
     
@@ -191,10 +191,12 @@ The default path suggested to users creating a resource. If this is not set, it 
 
 Set this property to an object to create a custom configuration page for your resource type.
 
-`settings` - An array of objects describing which properties to display. 
+- `settings` - An array of objects describing which properties to display. 
 - `name` - The name of the property. This is how the value will be passed into the `config` object, so make sure it's something JavaScript-friendly, e.g. `maxItems`.
 - `type` - The type of control to edit this property. Allowed types are `text`, `textarea`, `number`, and `checkbox`.
 - `description` (Optional) - Explanatory text to appear below the field.
+
+<!-- separate -->
 
     Hello.basicDashboard = {
       settings: [{
@@ -219,9 +221,9 @@ The above sample will produce the following dashboard page:
 
 ### Collection.dashboard <!-- api -->
 
-A resource can describe the dependencies of a fully custom dashboard editor ui. This will be passed to the dashboard during rendering to create a custom ui.
+A resource can describe the dependencies of a fully custom dashboard editor UI. This will be passed to the dashboard during rendering to create a custom UI.
 
-This example creates a custom dashboard for the `Collection` resource. It automatically includes pages, and separate scripts.
+This example creates the custom dashboard for the `Collection` resource. It automatically includes pages and page-specific scripts:
 
     Collection.dashboard = {
         path: path.join(__dirname, 'dashboard')
@@ -244,15 +246,13 @@ The dashboard will load content from `[current-page].html` and `js/[current-page
 
 *Note: The "Config" page will load from `index.html` and `js/index.js`.*
 
-*Note: `events.html` is optional - if not provided, the dashboard will load a default event editor.*
-
 * `scripts` {Array} *(optional)*
 
 An array of extra JavaScript files to load with the dashboard pages.
 
 #### Dashboard asset loading <!-- ref -->
 
-When you request a page from a custom dashboard, it will load the following files from the `dashboard.path` directory by default, if available:
+When you request a page from a custom dashboard, it will load the following files, if they are available, from the `dashboard.path`:
 
  - `[current-page].html`
  - `js/[current-page].js`
@@ -263,7 +263,7 @@ The default page is `index`; the `config` page will also redirect to `index`.
 The `config` or `index` page will load the basic dashboard if no `index.html` file is provided.
 The `events` page will load the default event editor if no `events.html` file is provided.
 
-It will also load the files in the `dashboard.scripts` property.
+It will also load the JavaScript files in the `dashboard.scripts` property.
 
 #### Creating a custom dashboard
 
@@ -300,8 +300,8 @@ Within the dashboard, a `Context` object is available:
     window.Context = {
       resourceId: '/hello', // The id of the current resource
       resourceType: 'Hello', // The type of the current resource
-      page: 'properties', // The current page, in multi page editors
-      basicDashboard: {} // The configuration of the basic dashboard - not ordinarily useful
+      page: 'properties', // The current page, in multi-page dashboards
+      basicDashboard: {} // The configuration of the basic dashboard
     };
 
 You can use this to query the current resource:

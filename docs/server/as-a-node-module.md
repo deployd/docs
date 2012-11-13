@@ -9,11 +9,11 @@ Deployd is a node module and can be used inside other node programs or as the ba
 
 ### Installing
 
-For an app in your current directory
+For an app in your current directory:
 
     npm install deployd
 
-You can also install globally
+You can also install globally:
 
     npm install deployd -g
 
@@ -44,7 +44,7 @@ Run this like any other node program.
   - **db.credentials.password** {String}
 - **env** {String} - the environment to run in.
 
-*Note*: If options.env is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.
+*Note: If options.env is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.*
 
 ### Caveats
 

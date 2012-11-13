@@ -62,33 +62,12 @@ If a callback is provided the script will be run in **async mode**. The callback
     
 ### Script.load(path, fn) <!-- api -->
 
-* path {String}
+* `path` {String}
 
-* fn(err, script)
+* `fn(err, script)`
 
-Load a new `script` at the given file `path`. Callback with an error if one occured or a new `Script` loaded from the contents of the file.
+Load a new `script` at the given file `path`. Runs the callback with an error if one occured, or a new `Script` loaded from the contents of the file.
     
 ### Default Domain
 
-Scripts are executed with a default sandbox and set of domain functions. These are functions that every `Script` needs. The following are available to every `Script`. These can be overridden by passing a value such as `{cancel: ...}` in a `domain`.
-
-#### cancel(msg, status) <!-- api -->
-
-Throws an error that immediately stops the execution of a context and calls the callback passed to `script.run()` passing the error as the first argument. 
-
-#### emit([collection], [query], event, data) <!-- api -->
-
-    Stability: will change in 0.7
-
-Emits an `event` to all sessions. Can be passed an optional `UserCollection` and `query` to emit the event to only the users in the collection that match the query.
-
-#### Sandbox
-
-The default sandbox or global object in a `Script` comes with several other properties:
-
- - `me` - the current user if one exists on the `Context`
- - `this` - an empty object if not overridden by the `domain`
- - `internal` - a boolean property, true if this request has been initiated by another script
- - `isRoot` - a boolean property, true if this request is authenticated as root (from the dashboard or a custom script)
- - `query` - the current `Context`'s query
- - `console` - support for `console.log()` and other `console` methods
+Scripts are executed with a default sandbox and set of domain functions. These are functions that every `Script` usually needs, and are available to every `Script`. These can be overridden by passing a value such as `{cancel: ...}` in a `domain`. See [Event API for Custom Resources](/docs/using-modules/reference/event-api.md) for documentation on this default domain.
