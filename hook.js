@@ -20,6 +20,7 @@ http.createServer(function (req, res) {
   }
   
   if(req.url === '/hook') {
+    output += exec('git stash').output;
     output += exec('git pull origin master').output;
     output += exec('forever restart app.js').output;
     console.log('restarting docs.deployd.com %s', new Date().toString());
