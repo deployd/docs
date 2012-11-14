@@ -887,7 +887,7 @@ body{padding-top:80px;}
 #browser .sections{margin-top:-20px;}#browser .sections h2{border-bottom:solid 1px;}
 #browser p+p{margin-top:30px;}
 .sections>.section+.section{margin-top:50px;padding-top:50px;border-top:solid 1px #eeeeee;}
-.section{padding:10px;}.section .api h3,.section .api h4,.section .api h5,.section .api h6,.section .api h7{font-family:Monaco,Menlo,Consolas,"Courier New",monospace;background:#F7F7F9;border:solid 1px #bdbdcd;padding:5px 10px;margin-bottom:20px;color:#D14;border-radius:3px;}
+.section{padding:10px;}.section .api>h3,.section .api>h4,.section .api>h5,.section .api>h6,.section .api>h7{font-family:Monaco,Menlo,Consolas,"Courier New",monospace;}
 .section h2 .anchor-link,.section h3 .anchor-link,.section h4 .anchor-link,.section h5 .anchor-link,.section h6 .anchor-link{display:none;position:absolute;margin-left:10px;}
 .section h2:hover .anchor-link,.section h3:hover .anchor-link,.section h4:hover .anchor-link,.section h5:hover .anchor-link,.section h6:hover .anchor-link{display:inline;}
 .section .section{margin-left:-10px;}
