@@ -26,7 +26,7 @@ When using an advanced query in REST, you must pass JSON as the query string, fo
 
 If you are using dpd.js, this will be handled automatically.
 
-### Comparison ($gt, $lt, $gte, $lte) <!-- api -->
+#### Comparison ($gt, $lt, $gte, $lte) <!-- api -->
 
 Compares a Number property to a given value.
 

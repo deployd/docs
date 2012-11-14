@@ -50,19 +50,7 @@ app.get('/:page', function (req, res, next) {
   var data = {info: info, page: page, root: root};
   
   if(page === 'api') {
-    var refs = [];
-    
-    root.children(true).forEach(function (c) {
-      if(c.dir) {
-        c.children(true).forEach(function (cc) {
-          var bn = cc.basename();
-          if(cc.dir && bn === 'reference' || bn === 'internal-api') {
-            refs.push(cc);
-          }
-        });
-      }
-    });
-    data.refs = refs;
+    data.refs = root.subReferences();
   }
   
   if(~['api', 'guides', 'modules'].indexOf(page)) {

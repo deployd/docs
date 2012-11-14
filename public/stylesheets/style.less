@@ -26,6 +26,12 @@ body {
   z-index: 999;
 }
 
+.navbar {
+  i {opacity: 0.5}
+  li:hover {i {opacity: 1}}
+  .active {i {opacity: 1}}
+}
+
 /**
  * Highlight
  */
@@ -42,8 +48,8 @@ body {
   width: 217px;
   position: fixed;
   top: 40px;
-  background: white;
-  border: solid 1px @blue;
+  background: lighten(@black, 20);
+  border: solid 1px lighten(@black, 30);
   padding: 10px 0;
   margin: 0;
   li {
@@ -61,13 +67,19 @@ body {
   }
   .highlight {
     font-weight: bold;
-    color: @black;
+    color: @white;
   }
 }
 
 #search {
   #search-input {
     margin-bottom: 0;
+    background: lighten(@black, 20);
+    border: solid 1px lighten(@black, 30);
+    &:focus {box-shadow: none;}
+    color: @white;
+    font-weight: bold;
+    letter-spacing: 1px;
   }
 }
 
@@ -95,14 +107,17 @@ body {
  */
  
 #breadcrumb {
+  .breadcrumb();
   text-transform: capitalize;
   font-size: 18px;
   span {
-    margin: 0 10px;
+    margin: 0 5px 0 10px;
   }
   li {
     display: inline-block;
   }
+  margin-bottom: 28px;
+  padding: 10px;
 }
 
 /**
@@ -153,7 +168,7 @@ body {
    .well();
    .pull-right();
    //width: 460px;
-   padding: 0 10px 10px 10px;
+   padding: 0 20px 10px 20px;
    h3 {
      font-size: 18px;
      height: 25px;
@@ -263,6 +278,18 @@ body {
  * Section
  */
 
+#browser {
+  .sections {
+    margin-top: -20px;
+    h2 {
+      border-bottom: solid 1px;
+    }
+  }
+  p + p {
+    margin-top: 30px;
+  }
+}
+
 .sections > .section + .section {
   margin-top: 50px;
   padding-top: 50px;
@@ -271,7 +298,18 @@ body {
 
 .section {
   padding: 10px;
-  background: white;
+  
+  .api {
+    h3, h4, h5, h6, h7 {
+      font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+      background: #F7F7F9;
+      border: solid 1px darken(#F7F7F9, 20);
+      padding: 5px 10px;
+      margin-bottom: 20px;
+      color: #D14;
+      border-radius: 3px;
+    }
+  }
 
   h2, h3, h4, h5, h6 {
     .anchor-link {
@@ -404,3 +442,25 @@ body {
     border-top: solid 1px @grayLighter;
   }
 }
+
+/**
+ * Footer
+ */
+ 
+footer {
+  margin-top: 100px;
+  padding: 20px 0 50px 0;
+  * {color: lighten(@blue, 50)}
+  h3 {font-size: 18px; border-bottom: solid 1px @white}
+  background: @blue;
+  a:hover {
+    background: none !important;
+    color: lighten(@blue, 40);
+  }
+  #feedback, #download {
+    a {text-decoration: underline;}
+  }
+  #footer-logo {margin: 60px 0 0 68px; opacity: 0.5;}
+}
+
+.brand {margin-top: -2px}

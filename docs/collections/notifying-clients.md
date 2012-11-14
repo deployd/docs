@@ -1,13 +1,13 @@
 <!--{
-  title: 'Notifying the Client of Changes with Sockets',
+  title: 'Notifying the Client of Changes with Messages',
   tags: ['guide', 'collection', 'sockets', 'emit']
 }-->
 
-## Notifying the Client of Changes with Sockets
+## Notifying the Client of Changes with Messages
 
-Keeping all of the clients of your API up-to-date with your collection's latest data is simple with collection events. For example, in a `PUT` event, you can notify all connected clients of the changes to the object being updated by calling the [emit()](/docs/collections/reference/event-api.md#s-emit) function.
+Keeping all of the clients of your API up-to-date with your collection's latest data is simple with collection events. For example, in a `PUT` event, you can notify all connected clients of the changes to the object being updated by calling the [emit()](/docs/collections/reference/event-api.md#s-emit) function to send all connected users a message.
 
-The `emit()` function takes an event argument and an arbitrary data object to send to all of the connected clients  (eg. `emit('my event', {foo: 'bar'})`). Dpd.js clients can listen for these events using the `on()` method (eg. `dpd.todos.on('my event', fn)`).
+The `emit()` function takes an event argument and an arbitrary data object to send to all of the connected clients  (eg. `emit('my message', {foo: 'bar'})`). Dpd.js clients can listen for these events using the `on()` method (eg. `dpd.todos.on('my message', fn)`).
 
 ### Example
 
@@ -31,7 +31,7 @@ See the [Chatroom Example](/docs/collections/examples/chatroom.md) for a working
 
 ### Browser and Server Support
 
-The realtime features of Deployd are built on [Socket.IO](http://socket.io/) and work on almost every major browser:
+The realtime messaging features of Deployd are built on [Socket.IO](http://socket.io/) and work on almost every major browser:
 
 - Internet Explorer 5.5+
 - Safari 3+

@@ -2,9 +2,9 @@
 <html lang="en" ng-app="docs">
   <head>
     <% if (data.data && data.data.info) { %>
-      <title><%= data.data.info.title() %> - Deployd</title>
+      <title><%= data.data.info.title() %> - Deployd Docs</title>
     <% } else { %>
-      <title>Deployd Docs</title>
+      <title>deployd</title>
     <% } %>
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
     <link href="/stylesheets/style.css" rel='stylesheet' type='text/css'>
@@ -33,21 +33,25 @@
   </head>
   <%
   function active(page, data) {
+    if(page === data.url) return 'active';
     if(~data.url.indexOf('/' + page)) return 'active';
     return '';
   }
   %>
   
   <body>
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/#home">deployd docs</a>
+          <a class="brand" href="http://deployd.com">
+            <img src="http://deployd.com/img/logo-text.png" />
+          </a>
           <ul class="nav">
-            <li class="<%= active('guides', data) %>" ><a href="/guides">Guides</a></li>
-            <li class="<%= active('api', data) %>"><a href="/api">APIs</a></li>
-            <li class="<%= active('examples', data) %>"><a href="/examples">Examples</a></li>
-            <li class="<%= active('modules', data) %>"><a href="/modules">Modules</a></li>
+            <li class="<%= active('/', data) %>" ><a href="/"><i class="icon-home icon-white"></i> docs</a></li>
+            <li class="<%= active('guides', data) %>" ><a href="/guides"><i class="icon-file icon-white"></i> guides</a></li>
+            <li class="<%= active('api', data) %>"><a href="/api"><i class="icon-info-sign icon-white"></i> api</a></li>
+            <li class="<%= active('examples', data) %>"><a href="/examples"><i class="icon-download icon-white"></i> examples</a></li>
+            <li class="<%= active('modules', data) %>"><a href="/modules"><i class="icon-asterisk icon-white"></i> modules</a></li>
           </ul>
           <%- partial('search', {info: data.info}) %>
         </div>
@@ -56,6 +60,56 @@
     <div class="container">
       <%- body %>
     </div>
+    <%
+      var rootChildren = app.index.root().children(true);
+    %>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              <% rootChildren.forEach(function (c) { %>
+                <li><a href="<%= c.url() %>"><%= c.title() %></a></li>
+              <% }) %>
+            </ul>
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">availbe on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+          <div class="span4">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              <% app.index.root().subReferences().forEach(function (c) { %>
+                <li class="nav-header"><a href="<%= c.url() %>"><%= c.parent().title() %></a></li>
+                <% c.children().forEach(function (cc) { %>
+                  <li><a href="<%= cc.url() %>"><%= cc.title() %></a></li>
+                <% }) %>
+              <% }) %>  
+            </ul>
+          </div>
+          <div class="span4">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              <% rootChildren.forEach(function (c) { 
+                var examples = c.examples();
+                if(!examples || !examples.length) return; %>
+                <li class="nav-header"><a href="<%= c.url() %>"><%= c.title() %></a></li>
+                <% examples.forEach(function (ex) { %>
+                  <li><a href="<%= c.parent().url() %>"><%= ex.title() %></a></li>
+                <% }) %>
+              <% }) %>  
+            </ul>
+            <a href="http://deployd.com"><img id="footer-logo" src="http://deployd.com/img/logo.png" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
     <%- script('app') %>
   </body>
 </html>
