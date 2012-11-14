@@ -1,6 +1,6 @@
 <ul id="breadcrumb" class="unstyled">
   <li><a href="/">Docs</a> <span>/</span></li>
-  <li>Search Results</li>
+  <li>Search Results&nbsp;<span>-</span>&nbsp;<strong>"<%= data.q %>"</strong></li>
 </ul>
 
 <% if(data.results.length) { %> 
@@ -11,7 +11,7 @@
           
           <h3 class="api-title">
             <a href="<%= r.section.url() %>">
-              <%= r.section.title %> (<%= r.score %>)
+              <%= r.section.title %>
             </a>
             <em class="api-parent">- <%= r.section.info.title() %></em>
           </h3>
@@ -28,7 +28,6 @@
               <%= ptitle %> -
             <% } %>
             <%= r.section.title %>
-            (<%= r.score %>)
           </a>
           </h4>
           <% if(r.preview) {%>
