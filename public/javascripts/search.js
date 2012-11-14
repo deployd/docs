@@ -57,7 +57,10 @@ function SearchCtrl($scope, $http, $sanitize) {
 
     terms[$scope.current].active = true;
     $scope.input = $scope.query = terms[$scope.current].reference || terms[$scope.current].title;
-    $scope.search();
+    var current = $scope.terms[$scope.current];
+    if(current && current.active && current.url) {
+      window.location = current.url;
+    }
   }
   
   $scope.deselect = function () {
