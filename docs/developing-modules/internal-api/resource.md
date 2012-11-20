@@ -24,16 +24,13 @@ A `Resource` inherits from `EventEmitter`. The following events are available.
 
 Inheriting from Resource:
 
-    var Resource = require('deployd/lib/resource')
-      , util = require('util');
-      
-    function MyResource(name, options) {
-      // run the parent constructor
-      // before using any properties/methods
-      Resource.apply(this, arguments);
-    }
-    util.inherits(MyResource, Resource);
-    module.exports = MyResource;
+    var Resource = require('deployd').Resource;
+
+    module.exports = Resource.extend('MyResource', {
+      init: function() {
+        // Set up any values that you'll need to use
+      }
+    });
 
 * `name` {String}
 
@@ -49,32 +46,37 @@ The name of the resource.
 
 The following resource would respond with a file at the url `/my-file.html`.
 
-    function MyFileResource(name, options) {
-      Resource.apply(this, arguments);
+    Resource.extend('MyFileResource', {
 
-      this.on('changed', function(config) {
-        console.log('MyFileResource changed', config);
-      });
-    }
-    util.inherits(MyFileResource, Resource);
+      init: function() {
+        this.on('changed', function(config) {
+          console.log('MyFileResource changed', config);
+        });
+      },
 
-    MyFileResource.prototype.handle = function (ctx, next) {
-      if (ctx.url === '/my-file.html') {
-        fs.createReadStream('my-file.html').pipe(ctx.res);
-      } else {
-        next();
+      get: function(ctx, next) {
+        if (ctx.url === '/my-file.html') {
+          fs.createReadStream('my-file.html').pipe(ctx.res);
+        } else {
+          next();
+        }
       }
-    }
 
+    });
 
 
 ### Overriding Behavior
 
 Certain methods on a `Resource` prototype are called by the runtime. Their default behavior should be overridden to define an inherited `Resources` behavior.
 
-### resource.handle(ctx, next) <!-- api -->
+### resource.[get|post|put|del](ctx, next) <!-- api -->
 
-Handle an incoming request. This gets called by the router.
+    resource.get(ctx, next) // Handles a GET request.
+    resource.post(ctx, next) // Handles a POST request.
+    resource.put(ctx, next) // Handles a PUT request.
+    resource.del(ctx, next) // Handles a DELETE request.
+
+Handles an incoming GET request with the specified verb.
 
 The resource can either handle this context and call `ctx.done(err, obj)` with an error or result JSON object, or call `next()` to give the context back to the router. If a resource calls `next()` the router might find another match for the request, or respond with a `404`.
 
@@ -82,18 +84,48 @@ The resource can either handle this context and call `ctx.done(err, obj)` with a
 
 The http context created by the `Router`. This provides an abstraction between the actual request and response. A `Resource` should call `ctx.done` or pipe to `ctx.res` if it can handle a request. Otherwise it should call `next()`.
 
-Override the handle method to return a string:
+Example:
 
-    function MyResource(settings) {
-      Resource.apply(this, arguments);
-    }
-    util.inherits(MyResource, Resource);
+    Resource.extend("MyResource", {
 
-    MyResource.prototype.handle = function (ctx, next) {
-      // respond with the file contents (or an error if one occurs)
-      fs.readFile('myfile.txt', ctx.done);
-    }
-    
+      get: function(ctx, next) {
+        getValueFromDatabase(function(err, value) {
+          ctx.done(err, value);  
+        });
+      },
+
+      post: function(ctx, next) {
+        saveValueToDatabase(ctx.body, function(err, value) {
+          ctx.done(err, value);  
+        });
+      }
+    });
+
+### resource.handle(ctx, next) <!-- api -->
+
+Handle any incoming request. This gets called by the router. The default implementation checks `ctx.method` and calls `resource.get()`, `resource.post()`, `resource.put()`, or `resource.del()`.
+
+*Note: If you override this function, the `get()`, `post()`, `put()`, and `del()` functions will no longer be called.*
+
+The resource can either handle this context and call `ctx.done(err, obj)` with an error or result JSON object, or call `next()` to give the context back to the router. If a resource calls `next()` the router might find another match for the request, or respond with a `404`.
+
+* ctx {[Context](/docs/developing-modules/internal-api/context.md)}
+
+The http context created by the `Router`. This provides an abstraction between the actual request and response. A `Resource` should call `ctx.done` or pipe to `ctx.res` if it can handle a request. Otherwise it should call `next()`.
+
+An example of overriding the handle method to return a string:
+
+    Resource.extend("MyResource", {
+      handle: function(ctx, next) {
+        if (ctx.method === "GET") {
+          // respond with the file contents (or an error if one occurs)
+          fs.readFile('myfile.txt', ctx.done);
+        } else {
+          next();
+        }
+      }
+    });
+
 ### resource.load(fn) <!-- api -->
 
 Load any dependencies and call `fn(err)` with any errors that occur. This is automatically called by the runtime to support asynchronous construction of a resource (such as loading files).
@@ -104,15 +136,19 @@ Load any dependencies and call `fn(err)` with any errors that occur. This is aut
 
 If `true`, ensures that this resource is included in `dpd.js`.
 
-    MyResource.prototype.clientGeneration = true;
+    Resource.extend("MyResource", {
+      clientGeneration: true
+    });
 
 ### resource.config <!-- api -->
 
 The instance configuration object; used to access the resource's configuration from member functions.
 
-    MyResource.prototype.handle = function (ctx, next) {
-      fs.readFile(this.config.filePath, ctx.done);
-    }
+    Resource.extend("MyResource", {
+      handle: function(ctx, next) {
+        fs.readFile(this.config.filePath, ctx.done);
+      }
+    });
 
 ### External Prototype  <!-- ref -->
 
@@ -125,18 +161,16 @@ Here is an example of a simple resource that exposes a method on the external pr
 
 `/my-project/node_modules/example.js`
 
-    var util = require('util');
-    var Resource = require('deployd/lib/resource');
-    function Example(name, options) {
-      Resource.apply(this, arguments);
-    }
-    util.inherits(Example, Resource);
+    var Resource = require('deployd').Resource;
 
-    Example.external = {};
-
-    Example.external.hello = function(options, ctx, fn) {
-      console.log(options.msg); // 'hello world'
-    }
+    module.exports = Resource.extend("Example", {
+      external: {
+        hello: function(options, ctx, fn) {
+          console.log(options.msg);
+          fn();
+        }
+      }
+    });
 
 When the `hello()` method is called, a context does not need to be provided as the `dpd` object is built with a context. A callback may be provided which will be executed with results of `fn(err, result)`.
 
@@ -154,22 +188,28 @@ When the `hello()` method is called, a context does not need to be provided as t
 
 If a `Resource` constructor includes an array of events, it will try to load the scripts in its instance folder (eg. `/my-project/resources/my-resource/get.js`) using [resource.loadScripts(eventNames, fn)](#s-resource.load-fn).
 
-    MyResource.events = ['get'];
+    Resource.extend("MyResource", {
+      events: ['get']
+    });
     
 This will be available to each instance of this resource as `this.events`. 
 
 `/my-project/node_modules/my-resource.js`
 
-    MyResource.prototype.handle = function(ctx, next) {
-      if(this.events && this.events.get) {
-        var domain = {
-          say: function(msg) {
-            console.log(msg); // 'hello world'
+    Resource.extend("MyResource", {
+      events: ['get'],
+
+      get: function(ctx, next) {
+        if(this.events && this.events.get) {
+          var domain = {
+            say: function(msg) {
+              console.log(msg); // 'hello world'
+            }
           }
+          this.events.get.run(ctx, domain, ctx.done);
         }
-        this.events.get.run(ctx, domain, ctx.done);
       }
-    }
+    });
 
 `/my-project/resources/my-resource/get.js`
 
@@ -179,13 +219,17 @@ This will be available to each instance of this resource as `this.events`.
 
 The resource type's name as it appears in the dashboard. If this is not set, it will appear with its constructor name.
 
-    Hello.label = 'Hello World';
+    Resource.extend("MyResource", {
+      label: 'Hello World'
+    });
 
 ### Resource.defaultPath <!-- api -->
 
 The default path suggested to users creating a resource. If this is not set, it will use the constructor's name in lowercase.
 
-    Hello.defaultPath = '/hello-world'; 
+    Resource.extend("MyResource", {
+      defaultPath: '/hello-world'
+    });
 
 ### Collection.basicDashboard <!-- api -->
 
@@ -198,21 +242,23 @@ Set this property to an object to create a custom configuration page for your re
 
 <!-- separate -->
 
-    Hello.basicDashboard = {
-      settings: [{
-          name: 'propertyName',
-          type: 'text',
-          description: "This description appears below the text field"
-      }, {
-          name: 'longTextProperty',
-          type: 'textarea'
-      }, {
-          name: 'numericProperty',
-          type: 'number'
-      }, {
-          name: 'booleanProperty',
-          type: 'checkbox'
-      }]
+    Resource.extend("MyResource", {
+      basicDashboard: {
+        settings: [{
+            name: 'propertyName',
+            type: 'text',
+            description: "This description appears below the text field"
+        }, {
+            name: 'longTextProperty',
+            type: 'textarea'
+        }, {
+            name: 'numericProperty',
+            type: 'number'
+        }, {
+            name: 'booleanProperty',
+            type: 'checkbox'
+        }]
+      }
     };
 
 The above sample will produce the following dashboard page:
@@ -225,14 +271,16 @@ A resource can describe the dependencies of a fully custom dashboard editor UI. 
 
 This example creates the custom dashboard for the `Collection` resource. It automatically includes pages and page-specific scripts:
 
-    Collection.dashboard = {
-        path: path.join(__dirname, 'dashboard')
-      , pages: ['Properties', 'Data', 'Events', 'API']
-      , scripts: [
-          '/js/ui.js'
-        , '/js/util.js'
-      ]
-    }
+    Resource.extend("Collection", {
+      dashboard: {
+          path: path.join(__dirname, 'dashboard')
+        , pages: ['Properties', 'Data', 'Events', 'API']
+        , scripts: [
+            '/js/ui.js'
+          , '/js/util.js'
+        ]
+      }
+    });
 
 * `path` {String}
 
