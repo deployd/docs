@@ -47,3 +47,24 @@ Here's an example one off module that maintains a count of requests to the url `
 
 Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are much easier to reuse, and you can share them with other Deployd developers. See the [custom resource type guide](/docs/developing-modules/custom-resource-types.md) for more info.
 
+### Common Pitfalls
+
+Deployd is designed to be run on the cloud, which is very different from a local development environment. Here are some things to keep in mind when developing modules:
+
+#### Don't store state in memory
+
+In the cloud, a server could be stopped or started at any time. In addition, in development mode, Deployd will recreate Resources and Modules on every request in order to keep the server up to date with its config without needing to restart. As a result, you can't depend on any value being accessible in memory or as an instance member. 
+
+It's recommended that you write to the database if you want to store state.
+
+#### Writing to the file system
+
+A cloud app's file system is not synced between different instances, and is lost whenever a server shuts down. For example, if you store file uploads in an `upload` folder on your app, it may work well on your local development environment, but in production, your users will find that their uploads are not reliably accessible, and may disappear entirely after a time.
+
+If you only need to store state or object data, write to the database. It's recommended that you upload files to an external service, such as Amazon S3.
+
+#### Running scheduled jobs
+
+Be cautious when setting up tasks to run which aren't caused by an HTTP or WebSockets request. In a cloud environment with multiple instances, your task could inadvertantly execute more than once, which, depending on the task, could be wasteful or destructive.
+
+Instead of using a naive approach such as `setInterval` or `setTimeout` to schedule tasks, consider creating a job queue which is stored in the database. Keep an eye out for an official Job Queue module.
