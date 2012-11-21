@@ -69,7 +69,7 @@ The following resource would respond with a file at the url `/my-file.html`.
 
 Certain methods on a `Resource` prototype are called by the runtime. Their default behavior should be overridden to define an inherited `Resources` behavior.
 
-### resource.[get|post|put|del](ctx, next) <!-- api -->
+### resource.get|post|put|del(ctx, next) <!-- api -->
 
     resource.get(ctx, next) // Handles a GET request.
     resource.post(ctx, next) // Handles a POST request.
@@ -139,6 +139,32 @@ If `true`, ensures that this resource is included in `dpd.js`.
     Resource.extend("MyResource", {
       clientGeneration: true
     });
+
+### resource.clientGenerationGet <!-- api -->
+
+Array of strings. If `clientGeneration` is `true`, this will generate several utility functions on `dpd.js` for that resource type that alias to `.get(path)`.
+
+This is a sample of how the Users Collection implements the `me()` function:
+
+    Resource.extend("UserCollection", {
+      clientGeneration: true,
+      clientGenerationGet: ['me']
+    });
+
+The above example will create a utility method `dpd.users.me([query], fn)`, which is a shortcut for `dpd.users.get('me', [query], fn)`, and will translate to a `GET /users/me` HTTP request.
+
+### resource.clientGenerationExec <!-- api -->
+
+Array of strings. If `clientGeneration` is `true`, this will generate several utility functions on `dpd.js` for that resource type that alias to `.exec(path)`.
+
+This is a sample of how the Users Collection implements the `login()` and `logout()` functions:
+
+    Resource.extend("MyResource", {
+      clientGeneration: true,
+      clientGenerationGet: ['login', 'logout']  
+    });
+
+The above example will create a utility method `dpd.myresource.login([body], fn)`, which is a shortcut for `dpd.myresource.exec('login', [body], fn)`, and will translate to a `POST /users/login` HTTP request.
 
 ### resource.config <!-- api -->
 
