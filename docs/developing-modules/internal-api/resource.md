@@ -27,9 +27,20 @@ Inheriting from Resource:
     var Resource = require('deployd').Resource;
 
     module.exports = Resource.extend('MyResource', {
-      init: function() {
+      init: function(options) {
         // Set up any values that you'll need to use
       }
+    });
+
+Constructing a Resource instance:
+
+    var Resource = require('deployd').Resource;
+
+    var resource = new Resource('my-resource', {
+      config: {
+        someOption: true
+      },
+      server: process.server
     });
 
 * `name` {String}
@@ -68,6 +79,10 @@ The following resource would respond with a file at the url `/my-file.html`.
 ### Overriding Behavior
 
 Certain methods on a `Resource` prototype are called by the runtime. Their default behavior should be overridden to define an inherited `Resources` behavior.
+
+### resource.init(options) 
+
+Called when the Resource is created. Passed the `options` argument from the constructor.
 
 ### resource.get|post|put|del(ctx, next) <!-- api -->
 
@@ -176,7 +191,7 @@ The instance configuration object; used to access the resource's configuration f
       }
     });
 
-### External Prototype  <!-- ref -->
+### resource.external  <!-- ref -->
 
 This is a special type of prototype object that is used to build the `dpd` object. Each function on the `Resource.external` prototype `Object` are exposed externally in two places
 
@@ -208,14 +223,14 @@ When the `hello()` method is called, a context does not need to be provided as t
 
     dpd.example.hello({msg: 'hello world'});
 
-### Resource.events <!-- api -->
+### Resource.eventNames <!-- api -->
 
 * {Array}
 
-If a `Resource` constructor includes an array of events, it will try to load the scripts in its instance folder (eg. `/my-project/resources/my-resource/get.js`) using [resource.loadScripts(eventNames, fn)](#s-resource.load-fn).
+If a `Resource` prototype includes an array of events as `eventNames`, it will try to load the scripts in its instance folder (eg. `/my-project/resources/my-resource/get.js`) using [resource.loadScripts(eventNames, fn)](#s-resource.load-fn).
 
     Resource.extend("MyResource", {
-      events: ['get']
+      eventNames: ['get']
     });
     
 This will be available to each instance of this resource as `this.events`. 
@@ -223,7 +238,7 @@ This will be available to each instance of this resource as `this.events`.
 `/my-project/node_modules/my-resource.js`
 
     Resource.extend("MyResource", {
-      events: ['get'],
+      eventNames: ['get'],
 
       get: function(ctx, next) {
         if(this.events && this.events.get) {
