@@ -43,6 +43,7 @@ Run this like any other node program.
   - **db.credentials.username** {String}
   - **db.credentials.password** {String}
 - **env** {String} - the environment to run in.
+- **dir** {String} - the base directory to load config from (will not change the current working directory).
 
 *Note: If options.env is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.*
 
