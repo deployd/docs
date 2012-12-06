@@ -1,11 +1,11 @@
-
 /**
  * Module dependencies.
  */
 
 var express = require('express')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , cluster = require('cluster');
 
 app = express();
 
@@ -26,7 +26,6 @@ app.configure(function(){
   
     // respond with html page
     if (req.accepts('html')) {
-      console.error('------');
       console.error('404 - ', req.url, req.headers.referer);
       res.render('404.ejs', { url: req.url });
       return; 
@@ -76,3 +75,15 @@ var index = app.index = new Index();
 index.crawl('docs', function (cache) {
   app.docs = cache;
 });
+
+
+/**
+ * nodefly 
+ */
+ 
+if(process.env.NODEFLY_ID) {
+  require('nodefly').profile(
+    process.env.NODEFLY_ID,
+    ['docs', 'docs.deployd.com', cluster.worker.id]
+  );
+}
