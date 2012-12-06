@@ -101,7 +101,7 @@ Next, we'll add a Deployd backend to this app, so that users can interact with e
 
 ### Creating a backend
 
-Open the dashboard by by typing `dashboard` into the `dpd>` prompt. 
+Open the dashboard by typing `dashboard` into the `dpd>` prompt. 
 
 1. Create a new Collection Resource and call it `/comments`.
 2. On the Properties editor, add two "string" properties called `name` and `comment`.
