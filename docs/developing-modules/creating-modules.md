@@ -50,7 +50,7 @@ Modules can also expose useful APIs of their own. The simplest way to create reu
 
 ### Reusable Modules
 
-You can define advanced Modules as well by extending the `Module` type. These modules can be configured and can modify the way the server works in more abstract ways.
+You can define advanced Modules as well by extending the [Module](/docs/developing-modules/internal-api/module.md] class. These modules can be configured and can modify the way the server works in more abstract ways.
 
 Modules can also encapsulate several Resource Types. Here is an example of a basic Module which defines two resource types:
 
