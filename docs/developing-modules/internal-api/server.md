@@ -55,6 +55,32 @@ Create a new `Store` for persisting data using the database info that was passed
 
     // Use the store to CRUD data
     todos.insert({name: 'go to the store', done: true}, ...); // see `Store` for more info
+
+### Server.executeMiddleware(type, args, callback, [options]) <!-- api -->
+
+Executes a stack of [middleware](/docs/developing-modules/middleware.md) defined by modules.
+
+- `type` - The type of middleware to execute
+- `args` - An array of arguments to pass to the middleware functions
+- `callback` - A callback with the signature `function(error, args...)` that will run when the stack is finished or when it throws an error. If there was no error, the callback will be passed the original `args` with any modifications that the middleware may have made.
+- `options` (Optional) - An object with additional settings for executing middleware:
+  - `timeout` - The default time in milliseconds before the function will consider a middleware function to have timed out. Defaults to 2000 (2 seconds). Has no effect if `onTimeout` is not set.
+  - `onTimeout` - A function that will be called with the signature `function(middleware)` if the middleware stack times out. The `middleware` argument is the specific middleware object that timed out - you can use its `module` property and `name` property (if the latter is available) to inform the user that they probably forgot to call `next()`.
+
+<!-- seperate -->
+
+    var result = {};
+    server.executeMiddleware('custom-middleware', [result], function(err, finalResult) {
+      if (finalResult.foo) {
+        console.log("Bar");
+      } else {
+        console.log("Baz");
+      }
+    }, {
+      onTimeout: function(middleware) {
+        console.error("Error: custom middleware timed out on " + middleware.module + " " + middle.name);  
+      }
+    })
     
 ### Server.sockets <!-- api -->
 

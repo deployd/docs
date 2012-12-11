@@ -94,3 +94,57 @@ Adds a [Resource Type](/docs/developing-modules/internal-api/resource.md) to the
       }
     });
 
+#### module.addResource(resource) <!-- api -->
+
+Adds a Resource instance to the app. Incoming requests that match the resource's path will be routed but the resource will not appear in the dashboard.
+
+    Module.extend({
+      init: function(options) {
+        this.addResource(new Collection('todos', {
+          server: this.server,
+          db: this.server.db,
+          config: {
+            properties: {
+              name: "title",
+              type: "string"
+            }
+          }
+        }))
+      }
+    })
+
+#### module.addMiddleware(type, [name], middleware, [options]) <!-- api -->
+
+Adds [middleware](/docs/developing-modules/middleware.md) to the app. 
+
+- `type` - The type of middleware to add.
+- `name` (Optional) - The name of this middleware that will appear in the Dashboard. Strongly recommended if your app module more than one middleware of the same type.
+- `middleware` - A function that takes in the middleware stack's arguments as well as a `next(err)` callback. This function will be bound so that `this` is the current module.
+- `options` (Optional) - An object with additional properties:
+  - `timeout` - The number of milliseconds before this middleware will be considered to have timed out. The module that executes the middleware stack will define the default. Has no effect if the middleware stack does not watch for timeouts.
+  - `lenient` - If true, supresses errors that the middleware type does not exist - useful if you are making a module that can optionally extend another module if it is available.
+  - `description` - A description of what this middleware does; will appear as a tooltip in the Dashboard.
+
+<!-- seperate -->
+
+    Module.extend({
+      init: function(options) {
+
+        this.addMiddleware('request', "Logger", function(ctx, next) {
+          console.log(this.config.loggerName + ": " ctx.method + " " + ctx.url + " at " + new Date().toString());
+          next();
+        }, {
+          timeout: 1000
+        });
+
+      }
+    })
+
+#### module.addMiddlewareType(type, [options]) <!-- api -->
+
+Registers a middleware type for other modules to define middleware. Usually paired with `executeMiddleware()`.
+
+`options` is an optional object with additional properties:
+  - `friendlyName` - A string that will appear in the Dashboard as the name of this middleware type.
+  - `description` - A description of when this middleware stack will execute. Will appear in the Dashboard.
+  - `documentationLink` - An absolute link to a web page documenting this middleware type. Will appear in the Dashboard.
