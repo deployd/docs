@@ -19,15 +19,18 @@ Servers are created when calling the Deployd exported function.
     
 * `options` {Object}
 
-  - `port` {Number} - the port to listen on
-  - `db` {Object} - the database to connect to
-    - `port` {Number} - the port of the database server
-    - `host` {String} - the ip or domain of the database server
-    - `name` {String} - the name of the database
-    - `credentials` {Object} - credentials for the server
-      - `username` {String}
-      - `password` {String}
-  - `env` {String} - the environment to run in.
+  - **port** {Number} - the port to listen on
+  - **db** {Object} - the database to connect to
+   - **db.port** {Number} - the port of the database server
+   - **db.host** {String} - the ip or domain of the database server
+   - **db.name** {String} - the name of the database
+   - **db.credentials** {Object} - credentials for db
+    - **db.credentials.username** {String}
+    - **db.credentials.password** {String}
+  - **env** {String} - the environment to run in.
+  - **dir** {String} - the base directory to load config from (will not change the current working directory).
+  - **errorTemplate** {String} - change the default error template. Checkout an [example](https://github.com/ritch/doh/blob/master/assets/error.html).
+  
 
 *Note:* If `options.env` is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.
 
