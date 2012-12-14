@@ -9,22 +9,13 @@ Deployd modules can register new *Resource Types*, which can be created with a r
 
 Here is a simple custom resource type:
 
-	var Resource = require('deployd/lib/resource')
-		, util = require('util');
+	var Resource = require('deployd').Resource;
 
-	function Hello(name, options) {
-		Resource.apply(this, arguments);
-	}
-	util.inherits(Hello, Resource);
-	module.exports = Hello;
-
-	Hello.prototype.clientGeneration = true;
-
-	Hello.prototype.handle = function (ctx, next) {
-		if(ctx.req && ctx.req.method !== 'GET') return next();
-
-		ctx.done(null, {hello: 'world'});
-	}
+	module.exports = Resource.extend("Hello", {
+		get: function(ctx, next) {
+			ctx.done(null, {hello: 'world'});		
+		}
+	})
 
 This will allow you to add a "Hello" resource in the Dashboard. This resource will respond to every GET request with `{"hello": "world"}`.
 
