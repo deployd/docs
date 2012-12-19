@@ -238,17 +238,17 @@ The examples below show how to use various JavaScript front-end libraries to acc
 
     $.ajax('/todos', {
       type: "POST",
-      contentType: "application/json"
-      body: JSON.stringify({
+      contentType: "application/json",
+      data: JSON.stringify({
         title: "Walk the dog"
-      })
+      }),
       success: function(todo) {
         // Do something
       }, 
       error: function(xhr) {
         alert(xhr.responseText);
       }
-    })
+    });
 
 *Note: When providing a request body, jQuery defaults to form encoding. Deployd works best with a JSON body, so you'll need to set the contentType option and manually convert to JSON.*
 
