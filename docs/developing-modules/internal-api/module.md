@@ -75,6 +75,19 @@ The `load()` method allows you to load additional configuration asynchronously.
       }
     });
 
+### Configuration
+
+### Module.basicDashboard <!-- api -->
+
+Set this property to an object to create a custom configuration page for your module.
+
+See [Creating a Custom Dashboard](/docs/developing-modules/custom-dashboards.md) for details.
+
+### CoModulellection.dashboard <!-- api -->
+
+A module can describe the dependencies of a fully custom dashboard editor UI. This will be passed to the dashboard during rendering to create a custom UI.
+
+See [Creating a Custom Dashboard](/docs/developing-modules/custom-dashboards.md) for details.
 
 ### Defining Features 
 
