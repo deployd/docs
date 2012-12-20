@@ -5,7 +5,7 @@
 
 ## Deploying to your own Server
 
-To deploy your app on your server, or on a cloud hosting service such as EC2 or Heroku. The server must support [Node.js](http://nodejs.org/). 
+To deploy your app on your server, or on a cloud hosting service such as EC2 or Heroku, the server must support [Node.js](http://nodejs.org/). 
 
 Deployd also requires a [MongoDB](http://www.mongodb.org/) database, which can be hosted on the same server or externally. 
 

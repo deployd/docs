@@ -13,6 +13,7 @@
     "markdown": "~0.4.0",
     "node-markdown": "~0.1.1",
     "walkdir": "0.0.5",
-    "shelljs": "0.0.8"
+    "shelljs": "0.0.8",
+    "nodefly": "~0.1.15"
   }
 }
