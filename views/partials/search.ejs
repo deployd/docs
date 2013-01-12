@@ -1,6 +1,6 @@
 <div id="search" ng-controller="SearchCtrl" class="pull-right">
   <form class="navbar-search">
-    <input value="<%= data.q || '' %>" placeholder="search" id="search-input" type="text" ng-change="change()" ng-model="input" />
+    <input value="<%= data.q || '' %>" placeholder="search docs" id="search-input" type="text" ng-change="change()" ng-model="input" />
   </form>
   <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
     <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
