@@ -23,9 +23,10 @@ Here is a simple *hello world* using Deployd as a node module.
 
     // hello.js
     var deployd = require('deployd')
-      , options: {port: 3000}
-      , dpd = deployd();
-  
+      , options = {port: 3000};
+
+    var dpd = deployd(options);
+
     dpd.listen();
     
 Run this like any other node program.
