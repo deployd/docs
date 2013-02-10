@@ -5095,8 +5095,8 @@ a.badge:hover {
   border: none;
 }
 .secondary-nav .navbar-inner .nav li:first-child {
-  margin-left: 178px;
-  background: url('//cloud.deployd.com/img/nav-up-arrow.png') no-repeat 5px top;
+  margin-left: 99px;
+  /*background:url('//cloud.deployd.com/img/nav-up-arrow.png') no-repeat 5px top;*/
   padding-top: 6px;
   margin-top: -6px;
 }
@@ -5255,6 +5255,19 @@ footer .email-container input#mc-embedded-subscribe {
   background-image: linear-gradient(to bottom, #414040, #2b2a2a);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff414040', endColorstr='#ff2b2a2a', GradientType=0);
+}
+.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+input[type=text] {
+  border-style: inset;
+  background-color: #e5f7f4;
+  height: 24px;
+  line-height: 24px;
+  color: #333333;
+  padding: 4px 14px;
 }
 body > .container {
   padding-top: 24px;
