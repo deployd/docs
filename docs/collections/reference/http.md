@@ -340,3 +340,45 @@ Deployd sends all the required CORS headers by default to any domain. The most c
     Origin, Accept, Accept-Language, Content-Language, Content-Type, Last-Event-ID
 
 This will not work on browsers that do not support Cross-Origin Resource Sharing (namely Internet Explorer 7 and below).
+
+### HTTP method override
+
+Provides faux HTTP method support.
+
+Most browsers doesn’t support methods other than “GET” and “POST” when it comes to submitting forms. So It's support something like 'Rails'.
+
+Pass an optional key to use when checking for a method override, othewise defaults to _method. The original method is available via req.originalMethod.
+
+It's support both URL query and POST body
+
+    URL       : ?_method=METHOD_NAME or
+    JSON body : { _method: 'METHOD_NAME' }
+
+$.ajax({
+            type: "POST",
+            url : "/todos/"+ todoId,
+            data: { _method:"DELETE" },
+            success: function(res) {
+#### Ajax Example
+    $.ajax({
+      type : "POST",
+      url  : "/todos/OBJECT_ID"
+      data : { _method:"DELETE" },
+      success: function(todo) {
+        // Object was deleted. response body empty.
+      }, 
+      error: function(xhr) {}
+    });
+
+    or
+
+    $.ajax({
+      type : "POST",
+      url  : "/todos/OBJECT_ID?_method=DELETE",
+      success: function(todo) {
+        // Object was deleted. response body empty.
+      }, 
+      error: function(xhr) {}
+    });
+
+
