@@ -31,10 +31,8 @@ All we need to create a collection client is a constructor and a single method f
 
     Collection.prototype.request = function (options, fn) {
       var url = this.url;
-  
+      options.url = url + (options.url || '');  
       request(options, function (err, res, body) {
-        options.url = url + (options.url || '');
-    
         if(res.statusCode >= 400) {
           err = body || {message: 'an unknown error occurred'};
           return fn(err);
