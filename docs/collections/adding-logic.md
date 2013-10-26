@@ -53,7 +53,7 @@ Called whenever an object's values change, including when it is first created. C
 Called when an object is created. Commonly used to prevent unauthorized creation and save data relevant to the creation of an object, such as its creator.
 
     // Example On Post: Save the date created
-    this.createdDate = new Date.getTime();
+    this.createdDate = new Date().getTime();
 
 <!--seperate-->
 
