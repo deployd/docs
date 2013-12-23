@@ -61,7 +61,7 @@ Find the first object in the store that match the given query.
 
 Update an object or objects in the store that match the given query only modifying the values in the given changes object.
 
-#### Store.update(query, fn) <!-- api -->
+#### Store.remove(query, fn) <!-- api -->
 
 * `query` {Object}
 
