@@ -94,7 +94,7 @@ To accomplish this, all you need is a `parent` property containing the `id` of a
     var comment = this;
 
     dpd.comments.get({parent: comment.id}, function(comments) {
-      if(comments && comments.length) comments.children = comments;
+      if(comments && comments.length) comment.children = comments;
     });
     
 Running the following query from the browser would result in a nested structure of all possible comments:
