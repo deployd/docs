@@ -333,13 +333,52 @@ Using [ngResource](http://docs.angularjs.org/api/ngResource.$resource):
 
 
 ### Cross-Origin Requests
-
-Deployd sends all the required CORS headers by default to any domain. The most common bug when implementing a CORS client for Deploy is to include headers that are not allowed. A client must not send any custom headers besides the following:
+The most common bug when implementing a CORS client for Deploy is to include headers that are not allowed. A client must not send any custom headers besides the following:
 
 
     Origin, Accept, Accept-Language, Content-Language, Content-Type, Last-Event-ID
 
 This will not work on browsers that do not support Cross-Origin Resource Sharing (namely Internet Explorer 7 and below).
+
+#### Cross-Origin Requests with dpd.js
+When using dpd.js, all the required CORS headers are sent by default to any domain.  You don't have to make any changes to your requests.  dpd.js takes care of it for you.
+
+#### Cross-Origin Requests with jQuery
+
+When using jQuery.ajax() on cross-origin requests the credentials are not sent along with the request automatically.  You have to add them to each ajax() request using the xhrFields parameter.  Here is an example  of login followed by getting some data.
+
+	// Logging a user in.
+	$.ajax({
+	  url: 'http://<domain>:<port>/users/login',
+	  type: "POST",
+	  data: {username:"un", password:"pw"},
+	  cache: false,
+	  xhrFields:{
+	    withCredentials: true
+	  },
+	  success: function(data) {
+	    console.log(data);
+	  },
+	  error: function(xhr) {
+	    console.log(xhr.responseText);
+	  }
+	});
+
+	// On subsequent requests or in the success callback above.  (After having logged in) 
+	$.ajax({
+	  url: 'http://<domain>:<port>/<collection>',
+	  type: "GET",
+	  cache: false,
+	  xhrFields:{
+	    withCredentials: true
+	  },
+	  success: function(data) {
+	    console.log(data);
+	  },
+	  error: function(xhr) {
+	    console.log(xhr.responseText);
+	  }
+	});
 
 ### HTTP method override
 
