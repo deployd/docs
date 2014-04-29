@@ -204,7 +204,7 @@ The response body will always be empty.
 
 Deployd uses [Socket.io](http://socket.io/#home) for its realtime functionality. If you are not using dpd.js, you can use the [Socket.io client library](https://github.com/LearnBoost/socket.io-client/blob/master/dist/socket.io.js). 
 
-    var socket = io.connect('/'); // Or io.connect('http://my-app.deploydapp.com')
+    var socket = io.connect('/');
     socket.on('todos:create', function(todo) {
       // Do something
     });

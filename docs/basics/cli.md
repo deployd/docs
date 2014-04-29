@@ -14,10 +14,6 @@ Start Deployd the current project in development mode with an interactive shell/
     
 Create a Deployd project in a new directory with the given `name`.
 
-#### dpd deploy [subdomain]
-    
-Deploy the current project to a testing instance on **deploydapp.com**. If a key does not exist, one will be generated before deploying.
-
 #### dpd showkey
     
 Print the app's key for use in a remote dashboard or for making remote authenticated / administrative requests.
@@ -50,9 +46,7 @@ Here is the help output of `dpd -h`:
   
       remote 
       	open the remote dashboard in your browser
-  
-      deploy [subdomain]
-      	deploy a testing instance on deploydapp.com
+
   
       * 
       	[default] start the server in the current project in development mode

@@ -41,9 +41,7 @@ Also see [A Simple Todo App](/docs/collections/examples/a-simple-todo-app.md) fo
 
 ### Using dpd.js on a different origin
 
-You can use the dpd.js library outside of the `public` folder by using an absolute URL to the file. If your app is hosted at `my-app.deploydapp.com`, it would look something like this:
-
-    <script src="http://my-app.deploydapp.com/dpd.js"></script>
+You can use the dpd.js library outside of the `public` folder by using an absolute URL to the file.
 
 This will not work on browsers that do not support Cross-Origin Resource Sharing (namely Internet Explorer 7 and below).
 
