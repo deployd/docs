@@ -58,7 +58,7 @@ app.configure(function(){
     // here and next(err) appropriately, or if
     // we possibly recovered from the error, simply next().
     res.status(err.status || 500);
-    res.render('500.ejs', { error: err });
+    res.render('500.ejs', { data: {error: err} });
   });
 });
 
