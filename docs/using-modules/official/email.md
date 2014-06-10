@@ -52,6 +52,7 @@ To send an email, call `dpd.email.post(options, callback)` (replacing `email` wi
 
     dpd.email.post({
       to: this.email,
+      from: "deployd-server@example.com", 
       subject: "MyApp registration",
       text: this.username + ",\n\n" +
             "Thank you for registering for MyApp!"
