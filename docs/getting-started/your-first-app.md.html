@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docs">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+      <title>Your first app with Deployd - Deployd Docs</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="../../stylesheets/style.css" rel='stylesheet' type='text/css'>
+    <link href="../../stylesheets/prettify.css" rel='stylesheet' type='text/css'>
+    <script src="../../javascripts/libs/angular.js"></script>
+    <script src="../../javascripts/libs/angular-sanitize.js"></script>
+    <script src="../../javascripts/libs/jquery-1.8.2.js"></script>
+    <script src="../../javascripts/libs/bootstrap.js"></script>
+    <script src="../../javascripts/libs/jquery.highlight.js"></script>
+    <script src="../../javascripts/libs/jquery.masonry.js"></script>
+    <script src="../../javascripts/libs/prettify.js"></script>
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  
+  
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="http://deployd.com">
+            <img src="http://deployd.com/img/logo-text.png">
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--<li><a href="http://cloud.deployd.com">cloud</a></li>-->
+              <li class="active"><a href="http://docs.deployd.com">docs</a></li>
+              <li><a href="http://deployd.com/community.html">community</a></li>
+              <li><a href="http://deployd.com/blog.html">blog</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          
+          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+  <form class="navbar-search">
+    <input value="" placeholder="search docs" id="search-input" type="text" ng-change="change()" ng-model="input" />
+  </form>
+  <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
+      {{ term.title || term.reference }}
+    </li>
+  </ul>
+</div>
+
+<script src="../../javascripts/search.js"></script>
+          
+          <div id="social" class="nav-collapse pull-left">
+            <ul class="nav">
+              <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&count=horizontal&id=twitter-widget-0&lang=en&original_referer=http:/deployd.com/&size=m&text=Deployd%20Platform%20(@deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&url=http:/www.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+      <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script id="twitter-wjs" src="http://platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-static-top secondary-nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">        
+            <li class=""><a href="../../index.html">home</a></li>
+            <li class="" ><a href="../../guides.html">guides</a></li>
+            <li class=""><a href="../../api.html">api</a></li>
+            <li class=""><a href="../../examples/index.html">examples</a></li>
+            <li class=""><a href="../../modules.html">modules</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+
+<ul id="breadcrumb" class="unstyled">
+
+  <li><a href="../../index.html">Docs</a><span>/</span></li>
+
+  <li>Getting Started</li>
+  
+  <li>(<a href="../getting-started-include=all.html">View All</a>)</li>
+  
+</ul>
+
+<div id="browser" class="row">
+  <div id="sidebar" class="span3">
+    
+
+<div id="explorer">
+  <ul id="files" class="nav">
+    
+      <li class=""><a href="what-is-deployd.md.html"><i class="icon-file"></i> <span>What is Deployd?</span></a></li>
+    
+      <li class=""><a href="faq.md.html"><i class="icon-file"></i> <span>FAQ</span></a></li>
+    
+      <li class=""><a href="installing-deployd.md.html"><i class="icon-file"></i> <span>Installing Deployd</span></a></li>
+    
+      <li class=""><a href="your-first-api.md.html"><i class="icon-file"></i> <span>Your first Deployd API</span></a></li>
+    
+      <li class="active"><a href="your-first-app.md.html"><i class="icon-file"></i> <span>Your first app with Deployd</span></a></li>
+    
+    
+  </ul>
+  
+</div>
+
+
+    
+  </div>
+  <div class="span9 sections">
+    
+      
+
+  <div class="section"><a name="s-Building your first app with Deployd"></a><h2>Building your first app with Deployd <a class="anchor-link" href="your-first-app.md.html#s-Building%20your%20first%20app%20with%20Deployd">#</a></h2>
+
+<p>In this tutorial, you'll see how to create a simple app from the ground up in Deployd. This tutorial assumes a working knowledge of jQuery. It doesn't assume any knowledge of Deployd, but it's recommended to read <a href="your-first-api.md.html">Your First API with Deployd</a> if you haven't already.</p><div class="section"><a name="s-Getting started-3475"></a><h3>Getting started <a class="anchor-link" href="your-first-app.md.html#s-Getting%20started-3475">#</a></h3>
+
+<p>Create a new app in the command line:</p>
+
+<pre><code>$ dpd create comments
+$ cd comments
+</code></pre>
+
+<p>Using your text editor of choice, replace the default <code>index.html</code> file in the <code>public</code> folder:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Deployd Tutorial&lt;/title&gt;
+    &lt;style type="text/css"&gt;
+        body { font-size: 16pt; }
+        .container { width: 960px; margin-left: auto; margin-right: auto; }
+        form { border: #cccccc 1px solid; padding: 20px; margin-bottom: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+        .form-element { margin-bottom: 10px; }
+        #refresh-btn { margin-bottom: 20px; }
+        .comment { padding: 10px; margin-bottom: 10px; border-bottom: #cccccc 1px solid; }
+        .comment .links { float: right; }
+        .comment .links a { margin-left: 10px; }
+        .comment .author { font-style: italic; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;div id="comments"&gt;
+        &lt;/div&gt;
+        &lt;form id="comment-form"&gt;
+            &lt;div class="form-element"&gt;
+                &lt;label for="name"&gt;Name: &lt;/label&gt;
+                &lt;input type="text" id="name" name="name" /&gt;
+            &lt;/div&gt;
+            &lt;div class="form-element"&gt;
+                &lt;textarea id="comment" name="comment" rows="5" cols="50"&gt;
+                &lt;/textarea&gt;
+            &lt;/div&gt;
+            &lt;div class="form-element"&gt;
+                &lt;button type="submit"&gt;Add New Comment&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Also add a file <code>script.js</code> and paste this code:</p>
+
+<pre><code>$(document).ready(function() {
+
+    $('#comment-form').submit(function() {
+        //Get the data from the form
+        var name = $('#name').val();
+        var comment = $('#comment').val();
+
+        //Clear the form elements
+        $('#name').val('');
+        $('#comment').val('');
+
+        addComment({
+            name: name,
+            comment: comment
+        });
+
+        return false;
+    });
+
+    function addComment(comment) {
+        $('&lt;div class="comment"&gt;')
+            .append('&lt;div class="author"&gt;Posted by: ' + comment.name + '&lt;/div&gt;')
+            .append('&lt;p&gt;' + comment.comment + '&lt;/p&gt;')
+            .appendTo('#comments');
+    }
+
+});
+</code></pre>
+
+<p>Run the app:</p>
+
+<pre><code>$ dpd --open
+dpd&gt;
+</code></pre>
+
+<p>The <code>open</code> command will automatically open <code>http://localhost:2403</code> in your browser.</p>
+
+<p><img src="../../tutorials/first-app/images/comments-app-preview.png" alt="App Preview" title="" /></p>
+
+<p>This basic app asks for a name and message body to post a comment. Take a moment to read the code and see how it works. </p>
+
+<p>Next, we'll add a Deployd backend to this app, so that users can interact with each other and post comments.</p></div><div class="section"><a name="s-Creating a backend-3475"></a><h3>Creating a backend <a class="anchor-link" href="your-first-app.md.html#s-Creating%20a%20backend-3475">#</a></h3>
+
+<p>Open the dashboard by typing <code>dashboard</code> into the <code>dpd&gt;</code> prompt. </p>
+
+<ol>
+<li>Create a new Collection Resource and call it <code>/comments</code>.</li>
+<li>On the Properties editor, add two "string" properties called <code>name</code> and <code>comment</code>.</li>
+<li>In the Data editor, add a couple of comments so you can start testing right away.</li>
+</ol>
+
+<p>That's all you have to do in the backend for now!</p></div><div class="section"><a name="s-Integrating in the frontend-3475"></a><h3>Integrating in the frontend <a class="anchor-link" href="your-first-app.md.html#s-Integrating%20in%20the%20frontend-3475">#</a></h3>
+
+<p>In <code>index.html</code>, add the following script reference in between jQuery and <code>script.js</code> (near line 37):</p>
+
+<pre><code>&lt;script type="text/javascript" src="/dpd.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>This will add a reference to <a href="../collections/accessing-collections.md.html">dpd.js</a>, a simple library dynamically built specifically for your app's backend. Dpd.js will automatically detect what resources you have added to your app and add them to the <code>dpd</code> object. Each resource object has asynchronous functions to communicate with your Deployd app.  </p>
+
+<p>In <code>script.js</code>, add a <code>loadComments()</code> function inside of <code>$(document).ready</code>:</p>
+
+<pre><code>function loadComments() {
+    dpd.comments.get(function(comments, error) { //Use dpd.js to access the API
+        $('#comments').empty(); //Empty the list
+        comments.forEach(function(comment) { //Loop through the result
+            addComment(comment); //Add it to the DOM.
+        });
+    });
+}
+</code></pre>
+
+<p>And call it when the page loads:</p>
+
+<pre><code>$(document).ready(function() {
+
+    loadComments();
+
+    //...
+
+});
+</code></pre>
+
+<p>If you run the app now, you should see the comments that you created in the Dashboard.</p>
+
+<p>The <code>get()</code> function that makes this work sends an HTTP <code>GET</code> request to <code>/comments</code>, and returns an array of objects in the resource. There's nothing magical happening in dpd.js; you can use standard AJAX or HTTP requests if you prefer, or if you're unable to use dpd.js. (e.g. for mobile apps)</p>
+
+<p><em>Note: If you haven't used AJAX much, note that all dpd.js functions are asynchronous and don't directly return a value.</em></p>
+
+<pre><code>//Won't work: 
+var comments = dpd.comments.get(); 
+</code></pre>
+
+<p>This means that your JavaScript will continue to execute and respond to user input while data is loading, which will make your app feel much faster to your users.</p></div><div class="section"><a name="s-Saving data-3475"></a><h3>Saving data <a class="anchor-link" href="your-first-app.md.html#s-Saving%20data-3475">#</a></h3>
+
+<p>Notice that any comments you add through the app's form are still gone when you refresh. Let's make the form save comments to the database. </p>
+
+<p>Delete these lines from <code>script.js</code> (near line 10, depending on where you put your <code>loadComments()</code> function):</p>
+
+<pre><code>//Clear the form elements
+$('#name').val('');
+$('#comment').val('');
+
+addComment({
+    name: name,
+    comment: comment
+});
+</code></pre>
+
+<p>And replace them with: </p>
+
+<pre><code>dpd.comments.post({
+        name: name,
+        comment: comment
+}, function(comment, error) {
+        if (error) return showError(error);
+
+        addComment(comment);
+        $('#name').val('');
+        $('#comment').val('');
+});
+</code></pre>
+
+<p>Add a utility function at the very top of <code>script.js</code> to alert any errors we get:</p>
+
+<pre><code>function showError(error) {
+        var message = "An error occurred";
+        if (error.message) {
+                message = error.message;
+        } else if (error.errors) {
+                var errors = error.errors;
+                message = "";
+                Object.keys(errors).forEach(function(k) {
+                        message += k + ": " + errors[k] + "\n";
+                });
+        }
+
+        alert(message);
+}
+</code></pre>
+
+<p>An <code>error</code> object can include either a <code>message</code> property or an <code>errors</code> object containing validation errors. </p>
+
+<p>If you load the page now, you should be able to submit a comment that appears even after you refresh.</p></div><div class="section"><a name="s-Conclusion-3475"></a><h3>Conclusion <a class="anchor-link" href="your-first-app.md.html#s-Conclusion-3475">#</a></h3>
+
+<p>In this tutorial, you saw how to create a simple app in Deployd. In the next part (coming soon), you'll see how to secure this app with Events.</p>
+
+<p>The source code for this chapter includes a few extra features. If you're feeling adventurous, try adding them yourself:</p>
+
+<ul>
+<li>A refresh button that reloads the comments without refreshing the page</li>
+<li>Edit and Delete links next to each comment. Hint: use the <code>put()</code> and <code>del()</code> functions from dpd.js.</li>
+</ul>
+
+<p><a class="btn btn-primary" href="https://github.com/downloads/deployd/examples/comments-1.zip"><i class="icon-white icon-download"></i> Download Source</a></p></div></div>  
+
+    
+    <h3 style="text-align: center;">More</h3>
+
+    
+    
+    <div class="row-fluid">
+      <div class="span6 offset3">
+        <div class="well">
+          <h4>Other docs in "Getting Started"</h4>
+          <ul>
+            
+              <li><a href="what-is-deployd.md.html">What is Deployd?</a></li>
+            
+              <li><a href="faq.md.html">FAQ</a></li>
+            
+              <li><a href="installing-deployd.md.html">Installing Deployd</a></li>
+            
+              <li><a href="your-first-api.md.html">Your first Deployd API</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+    <div class="docs-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              
+                <li><a href="what-is-deployd.md.html">Getting Started</a></li>
+              
+                <li><a href="../basics/cli.md.html">Basics</a></li>
+              
+                <li><a href="../collections/creating-collections.md.html">Collections</a></li>
+              
+                <li><a href="../users/creating-user-collections.md.html">Users</a></li>
+              
+                <li><a href="../using-modules/installing-modules.md.html">Using Modules</a></li>
+              
+                <li><a href="../server/as-a-node-module.md.html">The Deployd Server</a></li>
+              
+                <li><a href="../developing-modules/creating-modules.md.html">Developing Modules</a></li>
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../collections/reference/event-api.md.html">Collections</a></li>
+                
+                  <li><a href="../collections/reference/event-api.md.html">Event API</a></li>
+                
+                  <li><a href="../collections/reference/http.md.html">Over HTTP</a></li>
+                
+                  <li><a href="../collections/reference/querying-collections.md.html">Querying Collections</a></li>
+                
+                  <li><a href="../collections/reference/updating-objects.md.html">Updating Objects in Collections</a></li>
+                
+                  <li><a href="../collections/reference/dpd-js.md.html">Using dpd.js</a></li>
+                
+              
+                <li class="nav-header"><a href="../using-modules/reference/dpd-js.md.html">Using Modules</a></li>
+                
+                  <li><a href="../using-modules/reference/dpd-js.md.html">Dpd.js for Custom Resources</a></li>
+                
+                  <li><a href="../using-modules/reference/event-api.md.html">Event API for Custom Resources</a></li>
+                
+              
+                <li class="nav-header"><a href="../developing-modules/internal-api/collection.md.html">Developing Modules</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/collection.md.html">Collection Resource Type</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/context.md.html">Context</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/script.md.html">Event Scripts</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/internal-client.md.html">Internal Client</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/resource.md.html">Resource Types</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/server.md.html">Server</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/session.md.html">Session</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/session-store.md.html">Session Store</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/store.md.html">Store</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../collections/creating-collections.md.html">Collections</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App with AngularJS</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App with Backbone.js</a></li>
+                
+                  <li><a href="../../index.html">Chatroom</a></li>
+                
+              
+                <li class="nav-header"><a href="../users/creating-user-collections.md.html">Users</a></li>
+                
+                  <li><a href="../../index.html">Microblogging app</a></li>
+                
+                  <li><a href="../../index.html">Simple Login Form</a></li>
+                
+              
+                <li class="nav-header"><a href="../developing-modules/creating-modules.md.html">Developing Modules</a></li>
+                
+                  <li><a href="../../index.html">Email Resource</a></li>
+                
+                  <li><a href="../../index.html">Event Resource</a></li>
+                
+                  <li><a href="../../index.html">S3 Bucket Resource</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">available on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span navigation">
+            <dl>
+              <dt><img src="http://deployd.com/img/footer-dt.png" alt="deployd"></dt>
+              <dd><a href="http://deployd.com/">Home</a></dd>
+              <dd><a href="http://deployd.com/video.html">Screencast</a></dd>
+              <dd><a href="http://deployd.com/features.html">Features</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Support</a></dd>
+            </dl>
+            <dl>
+              <dt>documentation</dt>
+              <dd><a href="http://docs.deployd.com/guides">Guides</a></dd>
+              <dd><a href="http://docs.deployd.com/api">API</a></dd>
+              <dd><a href="http://docs.deployd.com/examples">Examples</a></dd>
+              <dd><a href="http://docs.deployd.com/modules">Modules</a></dd>
+            </dl>
+            <dl>
+              <dt>community</dt>
+              <dd><a href="http://deployd.com/community.html">Questions</a></dd>
+              <dd><a href="https://twitter.com/deploydapp">Tweets</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Issues</a></dd>
+              <dd><a href="https://github.com/deployd/deployd">Github</a></dd>
+            </dl>
+            <dl>
+              <dt>contact</dt>
+              <dd><a href="mailto:hello@deployd.com">hello@deployd.com</a></dd>
+            </dl>
+          </div>
+          <div class="span logo-container">
+            <div class="logo">
+              <img src="http://deployd.com/img/footer-logo.png" alt="deployd">
+            </div>
+          </div>
+          <div class="span email-container">
+            <dl id="mc_embed_signup" class="span4">
+            <dt>Get deployd emails</dt>
+            <dd>
+              <form action="http://deployd.us2.list-manage.com/subscribe/post?u=4f1b944ba8c90738eb8e3fa3c&amp;id=7bb18e6b80" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-vertical" target="_blank" novalidate="">
+              <div class="mc-field-group">
+                <input type="email" placeholder="your@email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../../javascripts/app.js"></script>
+  </body>
+</html>

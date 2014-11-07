@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docs">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+      <title>Using Modules - Deployd Docs</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="../stylesheets/style.css" rel='stylesheet' type='text/css'>
+    <link href="../stylesheets/prettify.css" rel='stylesheet' type='text/css'>
+    <script src="../javascripts/libs/angular.js"></script>
+    <script src="../javascripts/libs/angular-sanitize.js"></script>
+    <script src="../javascripts/libs/jquery-1.8.2.js"></script>
+    <script src="../javascripts/libs/bootstrap.js"></script>
+    <script src="../javascripts/libs/jquery.highlight.js"></script>
+    <script src="../javascripts/libs/jquery.masonry.js"></script>
+    <script src="../javascripts/libs/prettify.js"></script>
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  
+  
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="http://deployd.com">
+            <img src="http://deployd.com/img/logo-text.png">
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--<li><a href="http://cloud.deployd.com">cloud</a></li>-->
+              <li class="active"><a href="http://docs.deployd.com">docs</a></li>
+              <li><a href="http://deployd.com/community.html">community</a></li>
+              <li><a href="http://deployd.com/blog.html">blog</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          
+          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+  <form class="navbar-search">
+    <input value="" placeholder="search docs" id="search-input" type="text" ng-change="change()" ng-model="input" />
+  </form>
+  <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
+      {{ term.title || term.reference }}
+    </li>
+  </ul>
+</div>
+
+<script src="../javascripts/search.js"></script>
+          
+          <div id="social" class="nav-collapse pull-left">
+            <ul class="nav">
+              <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&count=horizontal&id=twitter-widget-0&lang=en&original_referer=http:/deployd.com/&size=m&text=Deployd%20Platform%20(@deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&url=http:/www.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+      <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script id="twitter-wjs" src="http://platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-static-top secondary-nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">        
+            <li class=""><a href="../index.html">home</a></li>
+            <li class="" ><a href="../guides.html">guides</a></li>
+            <li class=""><a href="../api.html">api</a></li>
+            <li class=""><a href="../examples/index.html">examples</a></li>
+            <li class=""><a href="../modules.html">modules</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+
+<ul id="breadcrumb" class="unstyled">
+
+  <li><a href="../index.html">Docs</a><span>/</span></li>
+
+  <li>Using Modules</li>
+  
+</ul>
+
+<div id="browser" class="row">
+  <div id="sidebar" class="span3">
+    
+
+<div id="explorer">
+  <ul id="files" class="nav">
+    
+      <li class=""><a href="using-modules/installing-modules.md.html"><i class="icon-file"></i> <span>Installing a Module</span></a></li>
+    
+      <li class=""><a href="using-modules/using-resource-types.md.html"><i class="icon-file"></i> <span>Using a Custom Resource Type</span></a></li>
+    
+    
+  </ul>
+  
+  <ul id="dirs" class="nav">
+  
+      <li class=""><a href="using-modules/reference/dpd-js.md.html"><i class="icon-folder-close"></i> <span>Reference</span></a></li>
+    
+      <li class=""><a href="using-modules/official/email.md.html"><i class="icon-folder-close"></i> <span>Official</span></a></li>
+    
+  </ul>
+  
+</div>
+
+
+    
+      <h4>Related APIs</h4>
+      <div id="related-apis">
+        <div id="api">
+  
+      
+        
+            <ul class="nav nav-list using-modules">
+              <li class="nav-header"><a href="using-modules/reference/dpd-js.md.html">Dpd.js for Custom Resources</a></li>
+            
+      <li><a href="using-modules/reference/dpd-js.md.html#s-get()-2560">get()</a></li>
+    
+      <li><a href="using-modules/reference/dpd-js.md.html#s-post()-2560">post()</a></li>
+    
+      <li><a href="using-modules/reference/dpd-js.md.html#s-put()-2560">put()</a></li>
+    
+      <li><a href="using-modules/reference/dpd-js.md.html#s-del()-2560">del()</a></li>
+    
+      <li><a href="using-modules/reference/dpd-js.md.html#s-exec()-2560">exec()</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list using-modules">
+              <li class="nav-header"><a href="using-modules/reference/event-api.md.html">Event API for Custom Resources</a></li>
+            
+      <li><a href="using-modules/reference/event-api.md.html#s-me-2548">me</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-isMe()-2548">isMe()</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-this-2548">this</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-cancel()-2548">cancel()</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-cancelIf(),%20cancelUnless()-2548">cancelIf(), cancelUnless()</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-internal-2548">internal</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-isRoot-2548">isRoot</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-query-2548">query</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-emit()-2548">emit()</a></li>
+    
+      <li><a href="using-modules/reference/event-api.md.html#s-console-2548">console</a></li>
+    
+            </ul>
+            
+      
+    
+</div>
+
+
+
+
+      </div>
+    
+  </div>
+  <div class="span9 sections">
+    
+      
+      
+        
+
+    
+
+      
+        
+
+  <div class="section"><a name="s-Installing a Module"></a><h2>Installing a Module <a class="anchor-link" href="using-modules-include=all.html#s-Installing%20a%20Module">#</a></h2><div class="section"><a name="s-From NPM-1820"></a><h3>From NPM <a class="anchor-link" href="using-modules-include=all.html#s-From%20NPM-1820">#</a></h3>
+
+<p>Deployd modules are 100% compatible with <a href="http://npmjs.org">node modules</a>. This means you can install a module with <a href="http://npmjs.org">npm</a> from your project's root directory.</p>
+
+<pre><code>cd my-dpd-project
+mkdir -p node_modules
+npm install my-dpd-module
+</code></pre>
+
+<p>To find deployd modules available on npm <a href="https://encrypted.google.com/search?q=dpd&q=site:npmjs.org&hl=en">search for <code>dpd</code></a>.</p>
+
+<p>If you used the Deployd installer, you will need to download <a href="http://nodejs.org/download/">node.js</a> in order to use npm.</p></div><div class="section"><a name="s-From Source-1820"></a><h3>From Source <a class="anchor-link" href="using-modules-include=all.html#s-From%20Source-1820">#</a></h3>
+
+<p>You can also install a module from source by putting it in your project's <code>node_modules</code> folder. Even a single file is valid (eg: <code>/node_modules/foo.js</code>).</p></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Dpd.js for Custom Resources"></a><h2>Dpd.js for Custom Resources <a class="anchor-link" href="using-modules-include=all.html#s-Dpd.js%20for%20Custom%20Resources">#</a></h2>
+
+<p>Because Custom Resource Types can specify APIs very different from a Collection, Dpd.js acts as a generic HTTP library for Custom Resources.</p><div class="section"><a name="s-Accessing the Resource-2560"></a><h3>Accessing the Resource <a class="anchor-link" href="using-modules-include=all.html#s-Accessing%20the%20Resource-2560">#</a></h3>
+
+<p>The API for your Resource is automatically generated as <code>dpd.[resource]</code>.</p>
+
+<p>Examples:</p>
+
+<pre><code>dpd.emails
+dpd.addfollower
+dpd.uploads
+</code></pre>
+
+<p><em>Note: If your Resource name has a dash in it (e.g. <code>/add-follower</code>), the dash is removed when accessing it in this way (e.g. <code>dpd.addfollower</code>).</em></p>
+
+<p>You can also access your resource by using <code>dpd(resourceName)</code> as a function.</p>
+
+<p>Examples:</p>
+
+<pre><code>dpd('emails')
+dpd('add-follower')
+dpd('uploads')
+</code></pre></div><div class="section"><a name="s-Callbacks-2560"></a><h3>Callbacks <a class="anchor-link" href="using-modules-include=all.html#s-Callbacks-2560">#</a></h3>
+
+<p>Every function in the Dpd.js API takes a callback function (represented by <code>fn</code> in the docs) with the signature <code>function(result, error)</code>.</p>
+
+<p>The callback will be executed asynchronously when the API has received a response from the server. </p>
+
+<p>The <code>result</code> argument differs depending on the function. If the result failed, it will be <code>null</code> and the <code>error</code> argument will contain the error message.</p>
+
+<p>The <code>error</code> argument, if there was an error, is an object:</p>
+
+<ul>
+<li><code>status</code> (number): The HTTP status code of the request. Common codes include:
+<ul><li>400 - Bad Request: The request contained invalid data and could not be completed</li>
+<li>401 - Unauthorized: The current session is not authorized to perform that action</li>
+<li>500 - Internal Server Error: Something went wrong on the server</li></ul></li>
+<li><code>message</code> (string): A message describing the error. Not always present.</li>
+<li><code>errors</code> (object): A hash of error messages corresponding to the properties of the object that was sent - usually indicates validation errors. Not always present.</li>
+</ul>
+
+<p>Examples of errors:</p>
+
+<pre><code>{
+    "status": 401,
+    "message": "You are not allowed to access that resource!"
+}
+</code></pre>
+
+<!--...-->
+
+<pre><code>{
+    "status": 400,
+    "errors": {
+        "title": "Title must be less than 100 characters",
+        "category": "Not a valid category"
+    }
+}
+</code></pre></div><div class="section api"><a name="s-get()-2560"></a><h3>get() <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-get()-2560">#</a></h3>
+
+<pre><code>dpd.[resource].get([func], [path], [query], fn)
+</code></pre>
+
+<p>Makes a GET HTTP request at the URL <code>/&lt;resource&gt;/&lt;func&gt;/&lt;path&gt;</code>, using the <code>query</code> object as the query string if provided.</p>
+
+<ul>
+<li><code>func</code> - A special identifier, i.e. <code>/me</code>.</li>
+<li><code>path</code> - An identifier for a particular object, usually the id</li>
+<li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON.</li>
+<li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
+</ul></div><div class="section api"><a name="s-post()-2560"></a><h3>post() <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-post()-2560">#</a></h3>
+
+<pre><code>dpd.[resource].post([path], [query], body, fn)
+</code></pre>
+
+<p>Makes a POST HTTP request at the URL <code>/&lt;resource&gt;/&lt;path&gt;</code>, using the <code>query</code> object as the query string if provided and <code>body</code> as the request body.</p>
+
+<ul>
+<li><code>path</code> - An identifier for a particular object, usually the id</li>
+<li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON.</li>
+<li><code>body</code> - The body of the request; will be serialized as JSON and sent with <code>Content-Type: application/json</code> header.</li>
+<li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
+</ul></div><div class="section api"><a name="s-put()-2560"></a><h3>put() <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-put()-2560">#</a></h3>
+
+<pre><code>dpd.[resource].put([path], [query], body, fn)
+</code></pre>
+
+<p>Makes a PUT HTTP request at the URL <code>/&lt;resource&gt;/&lt;path&gt;</code>, using the <code>query</code> object as the query string if provided and <code>body</code> as the request body.</p>
+
+<ul>
+<li><code>path</code> - An identifier for a particular object, usually the id</li>
+<li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the <code>q</code> parameter. </li>
+<li><code>body</code> - The body of the request; will be serialized as JSON and sent with <code>Content-Type: application/json</code> header.</li>
+<li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
+</ul></div><div class="section api"><a name="s-del()-2560"></a><h3>del() <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-del()-2560">#</a></h3>
+
+<pre><code>dpd.[resource].del([path], [query], fn)
+</code></pre>
+
+<p>Makes a DELETE HTTP request at the URL <code>/&lt;resource&gt;/&lt;path&gt;</code>, using the <code>query</code> object as the query string if provided.</p>
+
+<ul>
+<li><code>path</code> - An identifier for a particular object, usually the id</li>
+<li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the <code>q</code> parameter.</li>
+<li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
+</ul></div><div class="section api"><a name="s-exec()-2560"></a><h3>exec() <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-exec()-2560">#</a></h3>
+
+<pre><code>dpd.[resource].exec(func, [path], [body], fn)
+</code></pre>
+
+<p>Makes an RPC-style POST HTTP request at the URL <code>/&lt;resource&gt;/&lt;func&gt;/&lt;path&gt;</code>. Useful for functions that don't make sense in REST-style APIs, such as <code>/users/login</code>.</p>
+
+<ul>
+<li><code>func</code> - The name of the function to call</li>
+<li><code>path</code> - An identifier for a particular object, usually the id</li>
+<li><code>body</code> - The body of the request; will be serialized as JSON and sent with <code>Content-Type: application/json</code> header.</li>
+<li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
+</ul></div><div class="section"><a name="s-Realtime API-2560"></a><h3>Realtime API <a class="anchor-link" href="using-modules-include=all.html#s-Realtime%20API-2560">#</a></h3>
+
+<p>The Generic Realtime API behaves the same way as the <a href="collections/reference/dpd-js.md.html#s-Realtime-API">Collection Realtime API</a>.</p></div></div><div class="section"><a name="s-Event API for Custom Resources"></a><h2>Event API for Custom Resources <a class="anchor-link" href="using-modules-include=all.html#s-Event%20API%20for%20Custom%20Resources">#</a></h2><div class="section"><a name="s-Background-2777"></a><h3>Background <a class="anchor-link" href="using-modules-include=all.html#s-Background-2777">#</a></h3>
+
+<p>Custom Resources may load <strong>event scripts</strong> to allow you to inject business logic during requests to the resource. For example, the collection resource exposes an event called <em>validate</em>. Given the following todo resource folder:</p>
+
+<pre><code>/my-app
+  /resources
+    /todos
+      validate.js
+</code></pre>
+
+<p>The collection resource would load the contents of <code>validate.js</code> as the <code>validate</code> event.</p></div><div class="section"><a name="s-Default Event Script Domain-2777"></a><h3>Default Event Script Domain <a class="anchor-link" href="using-modules-include=all.html#s-Default%20Event%20Script%20Domain-2777">#</a></h3>
+
+<p>Event scripts do not share a global scope with other modules in your app. Instead each time an event script is run, a new scope is created for it.</p>
+
+<p>The following functions and objects are available to all event scripts.</p><div class="section api"><a name="s-me-2548"></a><h4>me <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-me-2548">#</a></h4>
+
+<p>The current user if one exists on the current <code>Context</code>.</p></div><div class="section api"><a name="s-isMe()-2548"></a><h4>isMe() <!-- api -->  <a class="anchor-link" href="using-modules-include=all.html#s-isMe()-2548">#</a></h4>
+
+<pre><code>isMe(id)
+</code></pre>
+
+<p>Returns true if the current user (<code>me</code>) matches the provided <code>id</code>.</p></div><div class="section api"><a name="s-this-2548"></a><h4>this <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-this-2548">#</a></h4>
+
+<p>If the resource does not implement a custom domain, this will be an empty object. Otherwise <code>this</code> usually refers to the current domain's instance (eg. an object in a collection).</p></div><div class="section api"><a name="s-cancel()-2548"></a><h4>cancel() <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-cancel()-2548">#</a></h4>
+
+<pre><code>cancel(message, [statusCode])
+</code></pre>
+
+<p>Stops the current request with the provided error message and HTTP status code. Status code defaults to <code>400</code>.</p></div><div class="section api"><a name="s-cancelIf(), cancelUnless()-2548"></a><h4>cancelIf(), cancelUnless() <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-cancelIf(),%20cancelUnless()-2548">#</a></h4>
+
+<pre><code>cancelIf(condition, message, [statusCode])
+cancelUnless(condition, message, [statusCode])
+</code></pre>
+
+<p>Calls <code>cancel(message, statusCode)</code> if the provided condition is truthy (for <code>cancelIf()</code>) or falsy (for <code>cancelUnless</code>).</p></div><div class="section api"><a name="s-internal-2548"></a><h4>internal <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-internal-2548">#</a></h4>
+
+<p>A boolean property, true if this request has been initiated by another script.</p></div><div class="section api"><a name="s-isRoot-2548"></a><h4>isRoot <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-isRoot-2548">#</a></h4>
+
+<p>A boolean property, true if this request is authenticated as root (from the dashboard or a custom script).</p></div><div class="section api"><a name="s-query-2548"></a><h4>query <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-query-2548">#</a></h4>
+
+<p>The current HTTP query. (eg ?foo=bar - query would be {foo: 'bar'}).</p></div><div class="section api"><a name="s-emit()-2548"></a><h4>emit() <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-emit()-2548">#</a></h4>
+
+<pre><code>emit([userCollection, query], message, [data])
+</code></pre>
+
+<p>Emits a realtime message to the client. You can use <code>userCollection</code> and <code>query</code> parameters to limit the message broadcast to specific users.</p></div><div class="section api"><a name="s-console-2548"></a><h4>console <!-- api -->  <a class="anchor-link" href="using-modules-include=all.html#s-console-2548">#</a></h4>
+
+<p>Support for console.log() and other console methods.</p></div></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Email Resource"></a><h2>Email Resource <a class="anchor-link" href="using-modules-include=all.html#s-Email%20Resource">#</a></h2>
+
+<p>This custom resource type allows you to send an email to your users.</p>
+
+<p>The Email resource is built on the <a href="https://github.com/andris9/Nodemailer">Nodemailer</a> module for Node.js; much of the documentation on this page is taken from their README.</p><div class="section"><a name="s-Installation-1360"></a><h3>Installation <a class="anchor-link" href="using-modules-include=all.html#s-Installation-1360">#</a></h3>
+
+<p>In your app's root directory, type <code>npm install dpd-email</code> into the command line or <a href="https://github.com/deployd/dpd-email">download from source</a>. This should create a <code>dpd-email</code> directory in your app's <code>node_modules</code> directory.</p>
+
+<p>See <a href="using-modules/installing-modules.md.html">Installing Modules</a> for details.</p></div><div class="section"><a name="s-Configuration-1360"></a><h3>Configuration <a class="anchor-link" href="using-modules-include=all.html#s-Configuration-1360">#</a></h3>
+
+<p>Before using the email resource, you must go to its Dashboard page and configure it.</p>
+
+<p>These settings are required:</p>
+
+<ul>
+<li><code>host</code>: The hostname of your SMTP provider.</li>
+<li><code>port</code>: The port number of your SMTP provider. Defaults to 25; 587 is also common.</li>
+<li><code>ssl</code>: If checked, use SSL to communicate with your SMTP provider. Unneeded for port 587; as it will automatically upgrade to a secure connection.</li>
+<li><code>username</code>: The SMTP username for your app.</li>
+<li><code>password</code>: The SMTP username for your app.</li>
+</ul>
+
+<p>These settings are optional:</p>
+
+<ul>
+<li><code>defaultFromAddress</code>: A "from" email address to provide by default. If this is not provided, you will need to provide this address in every request.</li>
+<li><code>internalOnly</code>: If checked, only allow internal requests (such as those from events) to send emails. Recommended for security.</li>
+<li><code>productionOnly</code>: If checked, attempting to send an email in the <code>development</code> environment will simply print it to the Deployd console. </li>
+</ul></div><div class="section"><a name="s-Usage-1360"></a><h3>Usage <a class="anchor-link" href="using-modules-include=all.html#s-Usage-1360">#</a></h3>
+
+<p>To send an email, call <code>dpd.email.post(options, callback)</code> (replacing <code>email</code> with your resource name). The <code>options</code> argument is an object:</p>
+
+<ul>
+<li><code>from</code>: The email address of the sender. Required if <code>defaultFromAddress</code> is not configured. All e-mail addresses can be plain (<code>sender@server.com</code>) or formatted (<code>Sender Name &lt;sender@server.com&gt;</code>)</li>
+<li><code>to</code>: Comma separated list of recipients e-mail addresses that will appear on the To: field</li>
+<li><code>cc</code>: Comma separated list of recipients e-mail addresses that will appear on the Cc: field</li>
+<li><code>bcc</code>: Comma separated list of recipients e-mail addresses that will appear on the Bcc: field</li>
+<li><code>subject</code>: The subject of the e-mail.</li>
+<li><code>text</code>: The plaintext version of the message</li>
+<li><code>html</code>: The HTML version of the message</li>
+</ul></div><div class="section"><a name="s-Example Usage-1360"></a><h3>Example Usage <a class="anchor-link" href="using-modules-include=all.html#s-Example%20Usage-1360">#</a></h3>
+
+<pre><code>// On POST /users
+
+dpd.email.post({
+  to: this.email,
+  from: "deployd-server@example.com", 
+  subject: "MyApp registration",
+  text: this.username + ",\n\n" +
+        "Thank you for registering for MyApp!"
+}, function() {});
+</code></pre></div></div><div class="section"><a name="s-Event Resource"></a><h2>Event Resource <a class="anchor-link" href="using-modules-include=all.html#s-Event%20Resource">#</a></h2>
+
+<p>This custom resource type allows you to write an event that will run when the resource's route receives a <code>GET</code> or <code>POST</code> request.</p><div class="section"><a name="s-Installation-1386"></a><h3>Installation <a class="anchor-link" href="using-modules-include=all.html#s-Installation-1386">#</a></h3>
+
+<p>In your app's root directory, type <code>npm install dpd-event</code> into the command line or <a href="https://github.com/deployd/dpd-event">download the source</a>. This should create a <code>dpd-event</code> directory in your app's <code>node_modules</code> directory.</p>
+
+<p>See <a href="using-modules/installing-modules.md.html">Installing Modules</a> for details.</p></div><div class="section"><a name="s-Usage-1386"></a><h3>Usage <a class="anchor-link" href="using-modules-include=all.html#s-Usage-1386">#</a></h3>
+
+<p>The <code>On POST</code> event will be executed when the resource's route (or a subroute) receives a <code>POST</code> request, and likewise with the <code>On GET</code> event.</p>
+
+<p>It is strongly recommended that you reserve the <code>On GET</code> event for operations that return a value, but don't have any side effects of modifying the database or performing some other operation.  </p>
+
+<p>If your resource is called <code>/add-follower</code>, you can trigger its <code>POST</code> event from dpd.js:</p>
+
+<pre><code>dpd.addfollower.post('320d6151a9aad8ce', {userId: '6d75e75d9bd9b8a6'}, function(result, error) {
+  // Do something
+})
+</code></pre>
+
+<p>And over HTTP:</p>
+
+<pre><code>POST /add-follower/320d6151a9aad8ce
+Content-Type: application/json
+{
+  "userId": "6d75e75d9bd9b8a6"
+}
+</code></pre></div><div class="section"><a name="s-Event API-1386"></a><h3>Event API <a class="anchor-link" href="using-modules-include=all.html#s-Event%20API-1386">#</a></h3>
+
+<p>In addition to the generic <a href="using-modules/reference/event-api.md.html">custom resource event API</a>, the following functions and variables are available while scripting the Event resource:</p><div class="section api"><a name="s-setResult(result)-764"></a><h4>setResult(result) <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-setResult(result)-764">#</a></h4>
+
+<p>Sets the response body. The <code>result</code> argument can be a string or an object.</p>
+
+<pre><code>// On GET /top-score
+dpd.scores.get({$limit: 1, $sort: {score: -1}, function(result) {
+  setResult(result[0]);
+});
+</code></pre></div><div class="section api"><a name="s-url-764"></a><h4>url <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-url-764">#</a></h4>
+
+<p>The URL of the request, without the resource's base URL. If the resource is called <code>/add-follower</code> and receives a request at <code>/add-follower/320d6151a9aad8ce</code>, the <code>url</code> value will be <code>/320d6151a9aad8ce</code>.</p>
+
+<pre><code>// On GET /statistics
+// Get the top score
+if (url === '/top-score') {
+  dpd.scores.get({$limit: 1, $sort: {score: -1}, function(result) {
+    setResult(result[0]);
+  });
+}
+</code></pre></div><div class="section api"><a name="s-parts-764"></a><h4>parts <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-parts-764">#</a></h4>
+
+<p>An array of the parts of the url, separated by <code>/</code>. If the resource is called <code>/add-follower</code> and receives a request at <code>/add-follower/320d6151a9aad8ce/6d75e75d9bd9b8a6</code>, the <code>parts</code> value will be <code>['320d6151a9aad8ce', '6d75e75d9bd9b8a6']</code>.</p>
+
+<pre><code>// On POST /add-score
+// Give the specified user (/add-score/:userId) 5 points
+var userId = parts[0];
+if (!userId) cancel("You must provide a user");
+
+dpd.users.put({id: userId}, {score: {$inc: 5}}, function(result, err) {
+  if (err) cancel(err);
+});
+</code></pre></div><div class="section api"><a name="s-query-764"></a><h4>query <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-query-764">#</a></h4>
+
+<p>The query string object.</p>
+
+<pre><code>// On GET /sum
+// Return the sum of the a and b properties (/sum?a=5&amp;b=1)
+
+setResult(query.a + query.b);
+</code></pre></div><div class="section api"><a name="s-body-764"></a><h4>body <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-body-764">#</a></h4>
+
+<p>The body of the request.</p>
+
+<pre><code>// On POST /sum
+// Return the sum of the a and b properties {a: 5, b: 1}
+
+setResult(body.a + body.b);
+</code></pre></div></div></div><div class="section"><a name="s-Importer"></a><h2>Importer <a class="anchor-link" href="using-modules-include=all.html#s-Importer">#</a></h2>
+
+<p>This custom resource type allows you to import collections from an existing MongoDB.</p><div class="section"><a name="s-Installation-850"></a><h3>Installation <a class="anchor-link" href="using-modules-include=all.html#s-Installation-850">#</a></h3>
+
+<p>Create a project. Then install the dpd-importer module.</p>
+
+<pre><code>dpd create my-app
+cd my-app
+mkdir node_modules
+npm install dpd-importer
+dpd -d
+</code></pre>
+
+<p>In your dashboard - click the green new resource button and choose <strong>Importer</strong>.</p>
+
+<p>Give the new resource the default name "/importer". Open it by clicking "IMPOTER" in the left menu.</p>
+
+<p>Enter the information of your old MongoDB server. Clicking on <strong>Start Import</strong> will start creating deployd collections from data in the provided db by streaming data directly from the old db into your new deployd db. The importer will do its best to create properties based on the types it infers from your data.</p></div></div><div class="section"><a name="s-S3 Bucket Resource"></a><h2>S3 Bucket Resource <a class="anchor-link" href="using-modules-include=all.html#s-S3%20Bucket%20Resource">#</a></h2>
+
+<p>This custom resource type allows you to store and retrieve files from an <a href="http://aws.amazon.com/s3/">Amazon S3</a> bucket.</p><div class="section"><a name="s-Installation-1644"></a><h3>Installation <a class="anchor-link" href="using-modules-include=all.html#s-Installation-1644">#</a></h3>
+
+<p>In your app's root directory, type <code>npm install s3-bucket-resource</code> into the command line or <a href="https://github.com/deployd/dpd-s3">download the source</a>. This should create a <code>dpd-s3</code> directory in your app's <code>node_modules</code> directory.</p>
+
+<p>See <a href="using-modules/installing-modules.md.html">Installing Modules</a> for details.</p></div><div class="section"><a name="s-Configuration-1644"></a><h3>Configuration <a class="anchor-link" href="using-modules-include=all.html#s-Configuration-1644">#</a></h3>
+
+<p>Before you can use the S3 Bucket resource, you must set the three properties on its "Config" page:</p>
+
+<ul>
+<li><code>bucket</code>: The name of your S3 Bucket</li>
+<li><code>key</code>: The security key of your S3 Bucket</li>
+<li><code>secret</code>: The secret key of your S3 Bucket</li>
+</ul></div><div class="section"><a name="s-Usage-1644"></a><h3>Usage <a class="anchor-link" href="using-modules-include=all.html#s-Usage-1644">#</a></h3><div class="section reference"><a name="s-Upload-501"></a><h4>Upload <!-- ref --> <a class="anchor-link" href="using-modules-include=all.html#s-Upload-501">#</a></h4>
+
+<p>There are two ways to upload files. Both ways require HTTP access; you cannot upload files with dpd.js.</p><div class="section"><a name="s-Direct upload -613"></a><h5>Direct upload  <a class="anchor-link" href="using-modules-include=all.html#s-Direct%20upload%20-613">#</a></h5>
+
+<p>Send a <code>POST</code> request to the url where you want to upload the file, including the file name. Set the <code>Content-Type</code> header to that of the file you are uploading and pass the file's content in the request body.</p>
+
+<p>It will return a <code>200 OK</code> if the upload was successful. If there was an error, it will return the error directly from S3. This is usually in XML; see <a href="http://aws.amazon.com/documentation/s3/">Amazon's S3 documentation</a> for information.</p>
+
+<pre><code>POST /my-bucket/README.txt
+Content-Type: text/plain
+Hello, world!
+
+200 OK
+</code></pre></div><div class="section"><a name="s-Multipart upload-613"></a><h5>Multipart upload <a class="anchor-link" href="using-modules-include=all.html#s-Multipart%20upload-613">#</a></h5>
+
+<p>You can upload files directly from a browser using the <code>multipart/form-data</code> type and the <code>&lt;input type="file" /&gt;</code> tag:</p>
+
+<pre><code>&lt;form action="/installer-downloads" enctype="multipart/form-data" method="post"&gt;
+    &lt;input type="file" name="upload" multiple="multiple" /&gt;
+    &lt;button type="submit"&gt;Upload&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>To send a multipart request manually, send a <code>POST</code> request to the url where you want to upload the file, <em>not</em> including the file name. The <code>Content-Type</code> header must be <code>multipart/form-data</code>. Set the request body according to the <a href="http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.2">multipart/form-data standard</a>.</p>
+
+<p>If the upload was successful and there is a <code>Referrer</code> header on the request (e.g. if it was submitted as a form from a browser), the response will redirect to the referrer. Otherwise, it will return <code>200 OK</code>. If there was an error, it will return the error directly from S3. This is usually in XML; see <a href="http://aws.amazon.com/documentation/s3/">Amazon's S3 documentation</a> for information.</p></div><div class="section reference"><a name="s-Retrieving files"></a><h4>Retrieving files <!-- ref --> <a class="anchor-link" href="using-modules-include=all.html#s-Retrieving%20files">#</a></h4>
+
+<p>To download a file, send a <code>GET</code> request to the url where the file exists. </p>
+
+<pre><code>GET /my-bucket/README.txt
+
+200 OK
+Content-Type: text/plain
+Hello, world!
+</code></pre></div><div class="section reference"><a name="s-Deleting files"></a><h4>Deleting files <!-- ref --> <a class="anchor-link" href="using-modules-include=all.html#s-Deleting%20files">#</a></h4>
+
+<p>To delete a file, send a <code>DELETE</code> request to the url where the file exists.</p>
+
+<pre><code>DELETE /my-bucket/README.txt
+
+200 OK
+</code></pre>
+
+<p>This can also be done with dpd.js:</p>
+
+<pre><code>dpd.mybucket.del('README.txt', function(response, error) {
+    // Do something
+});
+</code></pre></div></div></div></div><div class="section"><a name="s-Events"></a><h3>Events <a class="anchor-link" href="using-modules-include=all.html#s-Events">#</a></h3>
+
+<p>The S3 Bucket Resource has three events:</p>
+
+<ul>
+<li><code>On Upload</code>: Executed before a file is uploaded to S3.</li>
+<li><code>On Get</code>: Executed before a file is downloaded from S3.</li>
+<li><code>On Delete</code>: Executed before a file is deleted.</li>
+</ul></div><div class="section"><a name="s-Event API"></a><h3>Event API <a class="anchor-link" href="using-modules-include=all.html#s-Event%20API">#</a></h3><div class="section api"><a name="s-url-764"></a><h4>url <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-url-764">#</a></h4>
+
+<p>The URL of the request. Does not include the resource's name; if the request URL is <code>/my-bucket/README.txt</code>, the <code>url</code> property will be <code>/README.txt</code>.</p></div><div class="section api"><a name="s-fileSize -764"></a><h4>fileSize  <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-fileSize%20-764">#</a></h4>
+
+<p>Only available in <code>On Upload</code>. The size of the file, in bytes.</p>
+
+<pre><code>    // On Upload
+    // Set a limit on file size
+    if (fileSize &gt; 1024*1024*1024) { // 1GB
+        cancel("File is too big; limit is 1GB");
+    }
+</code></pre></div><div class="section api"><a name="s-fileName-764"></a><h4>fileName <!-- api --> <a class="anchor-link" href="using-modules-include=all.html#s-fileName-764">#</a></h4>
+
+<p>Only available in <code>On Upload</code>. The name of the file that is being uploaded.</p>
+
+<pre><code>    // On Upload
+    dpd.uploads.post({ filename: fileName, creator: me.id }, function() {})
+</code></pre></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Using a Custom Resource Type"></a><h3>Using a Custom Resource Type <a class="anchor-link" href="using-modules-include=all.html#s-Using%20a%20Custom%20Resource%20Type">#</a></h3>
+
+<p>Deployd modules can register new <em>Resource Types</em>, which can be created with a route and configured per instance. Deployd comes with two built-in Resource Types: "Collection" and "User Collection". </p>
+
+<p>To add more Resource Types, you can <a href="using-modules/installing-modules.md.html">install</a> a module that includes one. The examples on this page use the <a href="using-modules/official/event.md.html">Event resource</a>.</p><div class="section"><a name="s-Creating an instance of a Custom Resource Type-2636"></a><h4>Creating an instance of a Custom Resource Type <a class="anchor-link" href="using-modules-include=all.html#s-Creating%20an%20instance%20of%20a%20Custom%20Resource%20Type-2636">#</a></h4>
+
+<p>Once the module is properly installed, you can add the custom resource just like a Collection. Custom Resources will usually have an asterisk <i class="icon-asterisk"></i> icon. </p>
+
+<p><img src="../tutorials/resource-type/creating-custom-resource.png" alt="Creating an Event resource" title="" /></p>
+
+<p><em>Note: After adding any module, you will have to restart the Deployd server to see its effects. If you don't see the custom resource type in the list, you may have to restart the server and refresh the dashboard.</em></p></div><div class="section"><a name="s-Configuring a Custom Resource Type-2636"></a><h4>Configuring a Custom Resource Type <a class="anchor-link" href="using-modules-include=all.html#s-Configuring%20a%20Custom%20Resource%20Type-2636">#</a></h4>
+
+<p>See the documentation of your Custom Resource Type module for details on configuration options. Most custom resource types implement a "Config" page and an "Events" page.</p>
+
+<p>The "Config" page can take different forms. For very basic modules, it's often a simple JSON editor where you can enter optional values. Others will list their available configuration values in a form.</p>
+
+<p>The "Events" page is similar to the Collection "Events" page.</p>
+
+<p>Depending on the complexity of the custom resource type, it may have different configuration pages.</p></div></div>  
+
+      
+    
+    <h3 style="text-align: center;">More</h3>
+
+    
+    
+    <div class="row-fluid">
+      <div class="span6 offset3">
+        <div class="well">
+          <h4>Other docs in "Docs"</h4>
+          <ul>
+            
+              <li><a href="getting-started/what-is-deployd.md.html">Getting Started</a></li>
+            
+              <li><a href="basics/cli.md.html">Basics</a></li>
+            
+              <li><a href="collections/creating-collections.md.html">Collections</a></li>
+            
+              <li><a href="users/creating-user-collections.md.html">Users</a></li>
+            
+              <li><a href="server/as-a-node-module.md.html">The Deployd Server</a></li>
+            
+              <li><a href="developing-modules/creating-modules.md.html">Developing Modules</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+    <div class="docs-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              
+                <li><a href="getting-started/what-is-deployd.md.html">Getting Started</a></li>
+              
+                <li><a href="basics/cli.md.html">Basics</a></li>
+              
+                <li><a href="collections/creating-collections.md.html">Collections</a></li>
+              
+                <li><a href="users/creating-user-collections.md.html">Users</a></li>
+              
+                <li><a href="using-modules/installing-modules.md.html">Using Modules</a></li>
+              
+                <li><a href="server/as-a-node-module.md.html">The Deployd Server</a></li>
+              
+                <li><a href="developing-modules/creating-modules.md.html">Developing Modules</a></li>
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="collections/reference/event-api.md.html">Collections</a></li>
+                
+                  <li><a href="collections/reference/event-api.md.html">Event API</a></li>
+                
+                  <li><a href="collections/reference/http.md.html">Over HTTP</a></li>
+                
+                  <li><a href="collections/reference/querying-collections.md.html">Querying Collections</a></li>
+                
+                  <li><a href="collections/reference/updating-objects.md.html">Updating Objects in Collections</a></li>
+                
+                  <li><a href="collections/reference/dpd-js.md.html">Using dpd.js</a></li>
+                
+              
+                <li class="nav-header"><a href="using-modules/reference/dpd-js.md.html">Using Modules</a></li>
+                
+                  <li><a href="using-modules/reference/dpd-js.md.html">Dpd.js for Custom Resources</a></li>
+                
+                  <li><a href="using-modules/reference/event-api.md.html">Event API for Custom Resources</a></li>
+                
+              
+                <li class="nav-header"><a href="developing-modules/internal-api/collection.md.html">Developing Modules</a></li>
+                
+                  <li><a href="developing-modules/internal-api/collection.md.html">Collection Resource Type</a></li>
+                
+                  <li><a href="developing-modules/internal-api/context.md.html">Context</a></li>
+                
+                  <li><a href="developing-modules/internal-api/script.md.html">Event Scripts</a></li>
+                
+                  <li><a href="developing-modules/internal-api/internal-client.md.html">Internal Client</a></li>
+                
+                  <li><a href="developing-modules/internal-api/resource.md.html">Resource Types</a></li>
+                
+                  <li><a href="developing-modules/internal-api/server.md.html">Server</a></li>
+                
+                  <li><a href="developing-modules/internal-api/session.md.html">Session</a></li>
+                
+                  <li><a href="developing-modules/internal-api/session-store.md.html">Session Store</a></li>
+                
+                  <li><a href="developing-modules/internal-api/store.md.html">Store</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="collections/creating-collections.md.html">Collections</a></li>
+                
+                  <li><a href="../index.html">A Simple Todo App</a></li>
+                
+                  <li><a href="../index.html">A Simple Todo App with AngularJS</a></li>
+                
+                  <li><a href="../index.html">A Simple Todo App with Backbone.js</a></li>
+                
+                  <li><a href="../index.html">Chatroom</a></li>
+                
+              
+                <li class="nav-header"><a href="users/creating-user-collections.md.html">Users</a></li>
+                
+                  <li><a href="../index.html">Microblogging app</a></li>
+                
+                  <li><a href="../index.html">Simple Login Form</a></li>
+                
+              
+                <li class="nav-header"><a href="developing-modules/creating-modules.md.html">Developing Modules</a></li>
+                
+                  <li><a href="../index.html">Email Resource</a></li>
+                
+                  <li><a href="../index.html">Event Resource</a></li>
+                
+                  <li><a href="../index.html">S3 Bucket Resource</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">available on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span navigation">
+            <dl>
+              <dt><img src="http://deployd.com/img/footer-dt.png" alt="deployd"></dt>
+              <dd><a href="http://deployd.com/">Home</a></dd>
+              <dd><a href="http://deployd.com/video.html">Screencast</a></dd>
+              <dd><a href="http://deployd.com/features.html">Features</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Support</a></dd>
+            </dl>
+            <dl>
+              <dt>documentation</dt>
+              <dd><a href="http://docs.deployd.com/guides">Guides</a></dd>
+              <dd><a href="http://docs.deployd.com/api">API</a></dd>
+              <dd><a href="http://docs.deployd.com/examples">Examples</a></dd>
+              <dd><a href="http://docs.deployd.com/modules">Modules</a></dd>
+            </dl>
+            <dl>
+              <dt>community</dt>
+              <dd><a href="http://deployd.com/community.html">Questions</a></dd>
+              <dd><a href="https://twitter.com/deploydapp">Tweets</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Issues</a></dd>
+              <dd><a href="https://github.com/deployd/deployd">Github</a></dd>
+            </dl>
+            <dl>
+              <dt>contact</dt>
+              <dd><a href="mailto:hello@deployd.com">hello@deployd.com</a></dd>
+            </dl>
+          </div>
+          <div class="span logo-container">
+            <div class="logo">
+              <img src="http://deployd.com/img/footer-logo.png" alt="deployd">
+            </div>
+          </div>
+          <div class="span email-container">
+            <dl id="mc_embed_signup" class="span4">
+            <dt>Get deployd emails</dt>
+            <dd>
+              <form action="http://deployd.us2.list-manage.com/subscribe/post?u=4f1b944ba8c90738eb8e3fa3c&amp;id=7bb18e6b80" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-vertical" target="_blank" novalidate="">
+              <div class="mc-field-group">
+                <input type="email" placeholder="your@email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../javascripts/app.js"></script>
+  </body>
+</html>

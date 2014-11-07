@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docs">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+      <title>Relationships Between Collections with Events - Deployd Docs</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="../../stylesheets/style.css" rel='stylesheet' type='text/css'>
+    <link href="../../stylesheets/prettify.css" rel='stylesheet' type='text/css'>
+    <script src="../../javascripts/libs/angular.js"></script>
+    <script src="../../javascripts/libs/angular-sanitize.js"></script>
+    <script src="../../javascripts/libs/jquery-1.8.2.js"></script>
+    <script src="../../javascripts/libs/bootstrap.js"></script>
+    <script src="../../javascripts/libs/jquery.highlight.js"></script>
+    <script src="../../javascripts/libs/jquery.masonry.js"></script>
+    <script src="../../javascripts/libs/prettify.js"></script>
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  
+  
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="http://deployd.com">
+            <img src="http://deployd.com/img/logo-text.png">
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--<li><a href="http://cloud.deployd.com">cloud</a></li>-->
+              <li class="active"><a href="http://docs.deployd.com">docs</a></li>
+              <li><a href="http://deployd.com/community.html">community</a></li>
+              <li><a href="http://deployd.com/blog.html">blog</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          
+          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+  <form class="navbar-search">
+    <input value="" placeholder="search docs" id="search-input" type="text" ng-change="change()" ng-model="input" />
+  </form>
+  <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
+      {{ term.title || term.reference }}
+    </li>
+  </ul>
+</div>
+
+<script src="../../javascripts/search.js"></script>
+          
+          <div id="social" class="nav-collapse pull-left">
+            <ul class="nav">
+              <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&count=horizontal&id=twitter-widget-0&lang=en&original_referer=http:/deployd.com/&size=m&text=Deployd%20Platform%20(@deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&url=http:/www.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+      <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script id="twitter-wjs" src="http://platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-static-top secondary-nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">        
+            <li class=""><a href="../../index.html">home</a></li>
+            <li class="" ><a href="../../guides.html">guides</a></li>
+            <li class=""><a href="../../api.html">api</a></li>
+            <li class=""><a href="../../examples/index.html">examples</a></li>
+            <li class=""><a href="../../modules.html">modules</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+
+<ul id="breadcrumb" class="unstyled">
+
+  <li><a href="../../index.html">Docs</a><span>/</span></li>
+
+  <li>Collections</li>
+  
+  <li>(<a href="../collections-include=all.html">View All</a>)</li>
+  
+</ul>
+
+<div id="browser" class="row">
+  <div id="sidebar" class="span3">
+    
+
+<div id="explorer">
+  <ul id="files" class="nav">
+    
+      <li class=""><a href="creating-collections.md.html"><i class="icon-file"></i> <span>Creating Collections</span></a></li>
+    
+      <li class=""><a href="accessing-collections.md.html"><i class="icon-file"></i> <span>Accessing Collections with dpd.js</span></a></li>
+    
+      <li class=""><a href="adding-logic.md.html"><i class="icon-file"></i> <span>Adding Custom Business Logic with Events</span></a></li>
+    
+      <li class="active"><a href="relationships-between-collections.md.html"><i class="icon-file"></i> <span>Relationships Between Collections with Events</span></a></li>
+    
+      <li class=""><a href="notifying-clients.md.html"><i class="icon-file"></i> <span>Notifying the Client of Changes with Messages</span></a></li>
+    
+    
+  </ul>
+  
+  <ul id="dirs" class="nav">
+  
+      <li class=""><a href="advanced-guides/custom-client.md.html"><i class="icon-folder-close"></i> <span>Advanced Guides</span></a></li>
+    
+      <li class=""><a href="reference/event-api.md.html"><i class="icon-folder-close"></i> <span>Reference</span></a></li>
+    
+      <li class=""><a href="examples/a-simple-todo-app.md.html"><i class="icon-folder-close"></i> <span>Examples</span></a></li>
+    
+  </ul>
+  
+</div>
+
+
+    
+      <h4>Related APIs</h4>
+      <div id="related-apis">
+        <div id="api">
+  
+      
+        
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="reference/event-api.md.html">Event API</a></li>
+            
+      <li><a href="reference/event-api.md.html#s-this-764">this</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-me-764">me</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-isMe()-764">isMe()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-query-764">query</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-cancel()-764">cancel()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-cancelIf(),%20cancelUnless()-764">cancelIf(), cancelUnless()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-error()-764">error()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-errorIf(),%20errorUnless()-764">errorIf(), errorUnless()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-hide()-764">hide()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-protect()-764">protect()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-changed()-764">changed()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-previous-764">previous</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-emit()-764">emit()</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-internal-764">internal</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-isRoot-764">isRoot</a></li>
+    
+      <li><a href="reference/event-api.md.html#s-console.log()-764">console.log()</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="reference/querying-collections.md.html">Querying Collections</a></li>
+            
+      <li><a href="reference/querying-collections.md.html#s-Comparison%20($gt,%20$lt,%20$gte,%20$lte)-1556">Comparison ($gt, $lt, $gte, $lte)</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$ne%20(Not%20Equal)-1556">$ne (Not Equal)</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$in-1556">$in</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$regex-1556">$regex</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$fields-1416">$fields</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$or-1416">$or</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$sort-1416">$sort</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$limit-1416">$limit</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$skip-1416">$skip</a></li>
+    
+      <li><a href="reference/querying-collections.md.html#s-$limitRecursion-1416">$limitRecursion</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="reference/updating-objects.md.html">Updating Objects in Collections</a></li>
+            
+      <li><a href="reference/updating-objects.md.html#s-$inc-3004">$inc</a></li>
+    
+      <li><a href="reference/updating-objects.md.html#s-$push-3004">$push</a></li>
+    
+      <li><a href="reference/updating-objects.md.html#s-$pushAll-3004">$pushAll</a></li>
+    
+      <li><a href="reference/updating-objects.md.html#s-$pull-3004">$pull</a></li>
+    
+      <li><a href="reference/updating-objects.md.html#s-$pullAll-3004">$pullAll</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="reference/dpd-js.md.html">Using dpd.js</a></li>
+            
+      <li><a href="reference/dpd-js.md.html#s-.get(%5Bid%5D,%20%5Bquery%5D,%20fn)-1286">.get([id], [query], fn)</a></li>
+    
+      <li><a href="reference/dpd-js.md.html#s-.post(%5Bid%5D,%20object,%20fn)">.post([id], object, fn)</a></li>
+    
+      <li><a href="reference/dpd-js.md.html#s-.put(%5Bid%20or%20query%5D,%20object,%20fn)">.put([id or query], object, fn)</a></li>
+    
+      <li><a href="reference/dpd-js.md.html#s-.del(id%20or%20query,%20fn)">.del(id or query, fn)</a></li>
+    
+      <li><a href="reference/dpd-js.md.html#s-dpd.on(message,%20fn)-1069">dpd.on(message, fn)</a></li>
+    
+      <li><a href="reference/dpd-js.md.html#s-dpd.off(message,%20%5Bfn%5D)-1069">dpd.off(message, [fn])</a></li>
+    
+      <li><a href="reference/dpd-js.md.html#s-dpd.once(message,%20fn)-1069">dpd.once(message, fn)</a></li>
+    
+      <li><a href="reference/dpd-js.md.html#s-dpd.socketReady(fn)-1069">dpd.socketReady(fn)</a></li>
+    
+      <li><a href="reference/dpd-js.md.html#s-dpd.socket-1069">dpd.socket</a></li>
+    
+            </ul>
+            
+      
+    
+</div>
+
+
+
+
+      </div>
+    
+  </div>
+  <div class="span9 sections">
+    
+      
+
+  <div class="section"><a name="s-Relationships Between Collections with Events"></a><h2>Relationships Between Collections with Events <a class="anchor-link" href="relationships-between-collections.md.html#s-Relationships%20Between%20Collections%20with%20Events">#</a></h2>
+
+<p>Designing the relationships between the collections in your application is crucial to a useful API. In typical databases, there are very specific ways to implement the relation of objects in one table (or collection) and another. Deployd lets you relate your data however your application requires and is flexible enough to allow you to easily change the way objects are related.</p><div class="section"><a name="s-Types of Relationships-4447"></a><h3>Types of Relationships <a class="anchor-link" href="relationships-between-collections.md.html#s-Types%20of%20Relationships-4447">#</a></h3>
+
+<p>When designing the collections in your application keep in mind the following strategies for relating data. There isn't a single best way to create relationships, so you will have to take into account how data will change in your collections. </p><div class="section"><a name="s-Embedding Data-2191"></a><h4>Embedding Data <a class="anchor-link" href="relationships-between-collections.md.html#s-Embedding%20Data-2191">#</a></h4>
+
+<p>Deployd allows your collection to store complex structures such as nested objects or arrays. This is useful if you want to embed data inside your collection's objects. Keep in mind this is only recommended when the embedded data is not likely to change. For example, a <code>blog-posts</code> collection could have an <code>author</code> property with a type set to <code>Object</code>.</p>
+
+<pre><code>{
+  "title": "Foo Bar Bat Baz?",
+  "author": {
+    "name": "Joe Bob",
+    "id": "5ef0f7d515764998"
+  }
+}
+</code></pre>
+
+<p>This style of relationship allows users of the collection to display the name of the author without running any other queries. The downside is an update event is required to keep the author name in sync if it ever changes. If your data changes often, this may not be the best approach.</p></div><div class="section"><a name="s-Contains Many or One-to-Many-2191"></a><h4>Contains Many or One-to-Many <a class="anchor-link" href="relationships-between-collections.md.html#s-Contains%20Many%20or%20One-to-Many-2191">#</a></h4>
+
+<p>Similarly to storing nested objects in your collection, you can also store arrays of arbitrary JSON. This is useful when you want to setup a <strong>contains</strong> relationship. For example, in a gradebook application, your <code>classes</code> collection objects could <strong>contain</strong> <code>students</code>.</p>
+
+<pre><code>{
+  "title": "Language Arts",
+  "students": ["5ef0f7d515764998", "5ef0f7d515764531", ...] 
+}
+</code></pre>
+
+<p>By storing an array of student ids you can easily query classes by student.</p>
+
+<pre><code>dpd.classes.get({students: '5ef0f7d515764998'}, function(classes) {
+  console.log(classes); // [...] - all the classes the student is in.
+});
+</code></pre></div><div class="section"><a name="s-Many-to-Many-2191"></a><h4>Many-to-Many <a class="anchor-link" href="relationships-between-collections.md.html#s-Many-to-Many-2191">#</a></h4>
+
+<p>There are several ways to handle <strong>many-to-many</strong> relationships. The most common way is to include an <code>Array</code> property that stores the <code>id</code>s of the related objects on both collections.</p>
+
+<p>Continuing with the gradebook example, a student may have many classes, and a class may have many students. The <code>classes</code> collection would have a <code>students</code> <code>Array</code> property containing the student ids and the <code>students</code> collection would have a classes <code>Array</code> property containing class ids.</p>
+
+<p>This lets you query each collection to get the students in a class or the classes a student is taking by providing the id of the class or student.</p>
+
+<pre><code>dpd.students.get({id: {$in: class.students}}, function(students) {
+  console.log(students);
+}); 
+
+// or
+
+dpd.classes.get({id: {$in: student.classes}}, function(classes) {
+  console.log(classes);
+});
+</code></pre>
+
+<p>If you wanted to include the full objects when querying the API you could implement a simple <code>GET</code> event.</p>
+
+<pre><code>// on GET /students
+
+if(query.include === 'classes') {
+  dpd.classes.get({id: {$in: student.classes}}, function(classes) {
+    this.classes = classes;
+  });
+}
+</code></pre>
+
+<p>Then if you added the <code>include</code> param when querying from the browser, a student would come back with all of its classes.</p>
+
+<pre><code>dpd.students.get({id: '2ef0f7d515764991', include: 'classes'}, fn);
+</code></pre>
+
+<p>would output</p>
+
+<pre><code>{
+  "id": "2ef0f7d515764991",
+  "name": "Joe Bob",
+  "classes": [{
+    "id": "...",
+    "title": "Language Arts"
+  }, ...]
+}
+</code></pre></div><div class="section"><a name="s-Parent-Child-2191"></a><h4>Parent-Child <a class="anchor-link" href="relationships-between-collections.md.html#s-Parent-Child-2191">#</a></h4>
+
+<p>Some collections contain objects related to other objects in the same collection. A simple example of this is threaded comments. Where a comment can be in reply to another comment, creating a tree-like structure when rendered.</p>
+
+<p>To accomplish this, all you need is a <code>parent</code> property containing the <code>id</code> of a parent object if one exists. Since Deployd supports recursive queries in a collection's <code>GET</code> event, the following works as you would expect.</p>
+
+<pre><code>// on GET /comments
+var comment = this;
+
+dpd.comments.get({parent: comment.id}, function(comments) {
+  if(comments &amp;&amp; comments.length) comment.children = comments;
+});
+</code></pre>
+
+<p>Running the following query from the browser would result in a nested structure of all possible comments:</p>
+
+<pre><code>// from the browser
+dpd.comments.get({id: '2ef0f7d515764991'}, console.log);
+</code></pre>
+
+<p>would output</p>
+
+<pre><code>{
+  "id": "2ef0f7d515764991"
+  "text": "Hello, World!",
+  "children": [
+    {
+      "id": "tef0f7d515761234",
+      "text": "Foo bar...",
+      "children": [
+        {
+          "id": "ff00f7d515764642",
+          "text": "I agree!"
+        },
+        {
+          "id": "2200f7d51576123",
+          "text": "I do not agree!"
+        },
+      ]
+    }
+  ]
+}
+</code></pre>
+
+<p>If you expect that a query could become an infinite loop (or if it already is an infinite loop; a good sign of this is requests that time out before returning a result), put a <code>$limitRecursion</code> property on your query with the maximum number of levels to iterate:</p>
+
+<pre><code>// on GET /comments
+var comment = this;
+
+dpd.comments.get({parent: comment.id, $limitRecursion: 10}, function(comments) {
+  if(comments &amp;&amp; comments.length) comments.children = comments;
+});
+</code></pre></div></div></div>  
+
+    
+    <h3 style="text-align: center;">More</h3>
+
+    
+    
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="well">
+          <h4>Other docs in "Collections"</h4>
+          <ul>
+            
+              <li><a href="creating-collections.md.html">Creating Collections</a></li>
+            
+              <li><a href="accessing-collections.md.html">Accessing Collections with dpd.js</a></li>
+            
+              <li><a href="adding-logic.md.html">Adding Custom Business Logic with Events</a></li>
+            
+              <li><a href="notifying-clients.md.html">Notifying the Client of Changes with Messages</a></li>
+            
+              <li><a href="advanced-guides/custom-client.md.html">Advanced Guides</a></li>
+            
+              <li><a href="reference/event-api.md.html">Reference</a></li>
+            
+              <li><a href="examples/a-simple-todo-app.md.html">Examples</a></li>
+            
+          </ul>
+        </div>
+      </div>
+       
+        <div class="span6">
+          <div class="well">
+            <h4>Related Examples</h4>
+            <ul>
+              
+                <li><a href="examples/a-simple-todo-app.md.html">A Simple Todo App</a></li>
+              
+                <li><a href="examples/a-simple-todo-app-with-angular.md.html">A Simple Todo App with AngularJS</a></li>
+              
+                <li><a href="examples/a-simple-todo-app-with-backbone.md.html">A Simple Todo App with Backbone.js</a></li>
+              
+                <li><a href="examples/chatroom.md.html">Chatroom</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+    <div class="docs-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              
+                <li><a href="../getting-started/what-is-deployd.md.html">Getting Started</a></li>
+              
+                <li><a href="../basics/cli.md.html">Basics</a></li>
+              
+                <li><a href="creating-collections.md.html">Collections</a></li>
+              
+                <li><a href="../users/creating-user-collections.md.html">Users</a></li>
+              
+                <li><a href="../using-modules/installing-modules.md.html">Using Modules</a></li>
+              
+                <li><a href="../server/as-a-node-module.md.html">The Deployd Server</a></li>
+              
+                <li><a href="../developing-modules/creating-modules.md.html">Developing Modules</a></li>
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="reference/event-api.md.html">Collections</a></li>
+                
+                  <li><a href="reference/event-api.md.html">Event API</a></li>
+                
+                  <li><a href="reference/http.md.html">Over HTTP</a></li>
+                
+                  <li><a href="reference/querying-collections.md.html">Querying Collections</a></li>
+                
+                  <li><a href="reference/updating-objects.md.html">Updating Objects in Collections</a></li>
+                
+                  <li><a href="reference/dpd-js.md.html">Using dpd.js</a></li>
+                
+              
+                <li class="nav-header"><a href="../using-modules/reference/dpd-js.md.html">Using Modules</a></li>
+                
+                  <li><a href="../using-modules/reference/dpd-js.md.html">Dpd.js for Custom Resources</a></li>
+                
+                  <li><a href="../using-modules/reference/event-api.md.html">Event API for Custom Resources</a></li>
+                
+              
+                <li class="nav-header"><a href="../developing-modules/internal-api/collection.md.html">Developing Modules</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/collection.md.html">Collection Resource Type</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/context.md.html">Context</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/script.md.html">Event Scripts</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/internal-client.md.html">Internal Client</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/resource.md.html">Resource Types</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/server.md.html">Server</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/session.md.html">Session</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/session-store.md.html">Session Store</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/store.md.html">Store</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="creating-collections.md.html">Collections</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App with AngularJS</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App with Backbone.js</a></li>
+                
+                  <li><a href="../../index.html">Chatroom</a></li>
+                
+              
+                <li class="nav-header"><a href="../users/creating-user-collections.md.html">Users</a></li>
+                
+                  <li><a href="../../index.html">Microblogging app</a></li>
+                
+                  <li><a href="../../index.html">Simple Login Form</a></li>
+                
+              
+                <li class="nav-header"><a href="../developing-modules/creating-modules.md.html">Developing Modules</a></li>
+                
+                  <li><a href="../../index.html">Email Resource</a></li>
+                
+                  <li><a href="../../index.html">Event Resource</a></li>
+                
+                  <li><a href="../../index.html">S3 Bucket Resource</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">available on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span navigation">
+            <dl>
+              <dt><img src="http://deployd.com/img/footer-dt.png" alt="deployd"></dt>
+              <dd><a href="http://deployd.com/">Home</a></dd>
+              <dd><a href="http://deployd.com/video.html">Screencast</a></dd>
+              <dd><a href="http://deployd.com/features.html">Features</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Support</a></dd>
+            </dl>
+            <dl>
+              <dt>documentation</dt>
+              <dd><a href="http://docs.deployd.com/guides">Guides</a></dd>
+              <dd><a href="http://docs.deployd.com/api">API</a></dd>
+              <dd><a href="http://docs.deployd.com/examples">Examples</a></dd>
+              <dd><a href="http://docs.deployd.com/modules">Modules</a></dd>
+            </dl>
+            <dl>
+              <dt>community</dt>
+              <dd><a href="http://deployd.com/community.html">Questions</a></dd>
+              <dd><a href="https://twitter.com/deploydapp">Tweets</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Issues</a></dd>
+              <dd><a href="https://github.com/deployd/deployd">Github</a></dd>
+            </dl>
+            <dl>
+              <dt>contact</dt>
+              <dd><a href="mailto:hello@deployd.com">hello@deployd.com</a></dd>
+            </dl>
+          </div>
+          <div class="span logo-container">
+            <div class="logo">
+              <img src="http://deployd.com/img/footer-logo.png" alt="deployd">
+            </div>
+          </div>
+          <div class="span email-container">
+            <dl id="mc_embed_signup" class="span4">
+            <dt>Get deployd emails</dt>
+            <dd>
+              <form action="http://deployd.us2.list-manage.com/subscribe/post?u=4f1b944ba8c90738eb8e3fa3c&amp;id=7bb18e6b80" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-vertical" target="_blank" novalidate="">
+              <div class="mc-field-group">
+                <input type="email" placeholder="your@email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../../javascripts/app.js"></script>
+  </body>
+</html>

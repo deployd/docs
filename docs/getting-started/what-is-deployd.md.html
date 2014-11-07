@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docs">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+      <title>What is Deployd? - Deployd Docs</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="../../stylesheets/style.css" rel='stylesheet' type='text/css'>
+    <link href="../../stylesheets/prettify.css" rel='stylesheet' type='text/css'>
+    <script src="../../javascripts/libs/angular.js"></script>
+    <script src="../../javascripts/libs/angular-sanitize.js"></script>
+    <script src="../../javascripts/libs/jquery-1.8.2.js"></script>
+    <script src="../../javascripts/libs/bootstrap.js"></script>
+    <script src="../../javascripts/libs/jquery.highlight.js"></script>
+    <script src="../../javascripts/libs/jquery.masonry.js"></script>
+    <script src="../../javascripts/libs/prettify.js"></script>
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  
+  
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="http://deployd.com">
+            <img src="http://deployd.com/img/logo-text.png">
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--<li><a href="http://cloud.deployd.com">cloud</a></li>-->
+              <li class="active"><a href="http://docs.deployd.com">docs</a></li>
+              <li><a href="http://deployd.com/community.html">community</a></li>
+              <li><a href="http://deployd.com/blog.html">blog</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          
+          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+  <form class="navbar-search">
+    <input value="" placeholder="search docs" id="search-input" type="text" ng-change="change()" ng-model="input" />
+  </form>
+  <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
+      {{ term.title || term.reference }}
+    </li>
+  </ul>
+</div>
+
+<script src="../../javascripts/search.js"></script>
+          
+          <div id="social" class="nav-collapse pull-left">
+            <ul class="nav">
+              <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&count=horizontal&id=twitter-widget-0&lang=en&original_referer=http:/deployd.com/&size=m&text=Deployd%20Platform%20(@deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&url=http:/www.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+      <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script id="twitter-wjs" src="http://platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-static-top secondary-nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">        
+            <li class=""><a href="../../index.html">home</a></li>
+            <li class="" ><a href="../../guides.html">guides</a></li>
+            <li class=""><a href="../../api.html">api</a></li>
+            <li class=""><a href="../../examples/index.html">examples</a></li>
+            <li class=""><a href="../../modules.html">modules</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+
+<ul id="breadcrumb" class="unstyled">
+
+  <li><a href="../../index.html">Docs</a><span>/</span></li>
+
+  <li>Getting Started</li>
+  
+  <li>(<a href="../getting-started-include=all.html">View All</a>)</li>
+  
+</ul>
+
+<div id="browser" class="row">
+  <div id="sidebar" class="span3">
+    
+
+<div id="explorer">
+  <ul id="files" class="nav">
+    
+      <li class="active"><a href="what-is-deployd.md.html"><i class="icon-file"></i> <span>What is Deployd?</span></a></li>
+    
+      <li class=""><a href="faq.md.html"><i class="icon-file"></i> <span>FAQ</span></a></li>
+    
+      <li class=""><a href="installing-deployd.md.html"><i class="icon-file"></i> <span>Installing Deployd</span></a></li>
+    
+      <li class=""><a href="your-first-api.md.html"><i class="icon-file"></i> <span>Your first Deployd API</span></a></li>
+    
+      <li class=""><a href="your-first-app.md.html"><i class="icon-file"></i> <span>Your first app with Deployd</span></a></li>
+    
+    
+  </ul>
+  
+</div>
+
+
+    
+  </div>
+  <div class="span9 sections">
+    
+      
+
+  <div class="section"><a name="s-What is Deployd?"></a><h2>What is Deployd? <a class="anchor-link" href="what-is-deployd.md.html#s-What%20is%20Deployd?">#</a></h2><div class="section"><a name="s-Deployd is a tool that makes building APIs simple by providing important ready-made functionality out of the box that meet the demands of complex applications.-1472"></a><h4>Deployd is a tool that makes building APIs simple by providing important ready-made functionality out of the box that meet the demands of complex applications. <a class="anchor-link" href="what-is-deployd.md.html#s-Deployd%20is%20a%20tool%20that%20makes%20building%20APIs%20simple%20by%20providing%20important%20ready-made%20functionality%20out%20of%20the%20box%20that%20meet%20the%20demands%20of%20complex%20applications.-1472">#</a></h4></div><div class="section"><a name="s-Configuration should feel like creation-1472"></a><h3>Configuration should feel like creation <a class="anchor-link" href="what-is-deployd.md.html#s-Configuration%20should%20feel%20like%20creation-1472">#</a></h3>
+
+<p>In a tool like Deployd, where its purpose is to provide ready-made functionality, a lot of configuration is necessary to make sure the end result behaves the way you need it to. We didn’t want to send users to a configuration file, though. That’s not inspiring, and it’s tedious. When you’re making an app, it should feel like you’re creating something, not just selecting values.</p>
+
+<p>Some frameworks bypass this by allowing you to configure the app with code. In Deployd, you might have created your API by writing a class that inherits from a Collection base class. This is better than writing configuration files, but ultimately it leads to a lot of boilerplate code. In a Convention Over Configuration environment, when you want to use the default functionality, you write an essentially empty file. When you want to override the default functionality, you write everything from scratch.</p>
+
+<p>Our solution is the Dashboard. Simply put, it’s a web-based IDE for Deployd configuration files. It’s an expressive interface that lets you create your app’s API visually.</p></div><div class="section"><a name="s-Logic should be code-1472"></a><h3>Logic should be code <a class="anchor-link" href="what-is-deployd.md.html#s-Logic%20should%20be%20code-1472">#</a></h3>
+
+<p>Though we didn’t want to have our users write code for the structural setup that’s better handled in a custom interface, we realized that we can’t have users add business logic in this way. Business logic is different for every app, and we can’t account for every use case.</p>
+
+<p>At the same time, we can’t force business logic out of the server-side and onto the client; that would leave your app open to attack by people who figure out your API.</p>
+
+<p>We decided that there’s no better way to define logic than by writing code, so we made Deployd scriptable. By writing events, or hooks into the default functionality (such as creating objects, updating them, and querying them), you can create almost any app with any rules: validation, security, query optimizations, relationships, and more.</p></div><div class="section"><a name="s-An API Engine-1472"></a><h3>An API Engine <a class="anchor-link" href="what-is-deployd.md.html#s-An%20API%20Engine-1472">#</a></h3>
+
+<p>We call Deployd an <strong>API Engine</strong> - because we think its closest relative is actually a video game engine.</p>
+
+<p>A game engine assumes that every game has levels (or maps, or rooms, or scenes) which contain game objects, which need to be rendered to the screen and interact with each other. Most engines have a level editor, where you can build up these levels without any programming or code generation; when you’re finished with your level, it’s not exactly a playable game, but it works and you can walk around in a map that you built - this is the creation over configuration principle in effect.</p>
+
+<p>Similarly, Deployd assumes that every API you build has <a href="../collections/creating-collections.md.html">collections of data objects</a> which need to support CRUD operations, (Create, Read, Update, Delete). Collections are created in Deployd's version of a level editor called the dashboard.</p>
+
+<p>Continuing with the analogy, a game engine also knows that your game will need things like collision detection and movement, but it doesn’t know exactly how you want to implement that, so it allows you to write scripts at strategic points like “on collision” or “on tick”.  </p>
+
+<p>How a rocket is rendered to the screen is pretty consistent for any game, but what happens when that rocket hits an enemy is always different, so you write the latter behavior as a short script, and the game engine runs it at the right time. This strategy spares you from boilerplate without taking away the power and flexibility of writing custom code.</p>
+
+<p>In Deployd, the low-level, redundant parts are routing and database access, so those are built into the core and you don’t have to worry about them. Business logic, which is different for every app, is scripted in <a href="../collections/adding-logic.md.html">Events</a> - hooks into the CRUD operations.</p>
+
+<p>For some people, this isn’t the right approach for a final app; they prefer to have full control over the backend to tweak the performance and low-level functionality as they see fit and feel uncomfortable being limited to business logic. (Many game developers choose not to use a game engine and prefer a lower-level rendering library for virtually the same reasons) In those cases, we recommend Deployd as a prototyping tool rather than a full backend framework.</p>
+
+<p>For the developers who prefer to spend their time building user interfaces, though, the scriptable engine approach is liberating. </p></div></div>  
+
+    
+    <h3 style="text-align: center;">More</h3>
+
+    
+    
+    <div class="row-fluid">
+      <div class="span6 offset3">
+        <div class="well">
+          <h4>Other docs in "Getting Started"</h4>
+          <ul>
+            
+              <li><a href="faq.md.html">FAQ</a></li>
+            
+              <li><a href="installing-deployd.md.html">Installing Deployd</a></li>
+            
+              <li><a href="your-first-api.md.html">Your first Deployd API</a></li>
+            
+              <li><a href="your-first-app.md.html">Your first app with Deployd</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+    <div class="docs-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              
+                <li><a href="what-is-deployd.md.html">Getting Started</a></li>
+              
+                <li><a href="../basics/cli.md.html">Basics</a></li>
+              
+                <li><a href="../collections/creating-collections.md.html">Collections</a></li>
+              
+                <li><a href="../users/creating-user-collections.md.html">Users</a></li>
+              
+                <li><a href="../using-modules/installing-modules.md.html">Using Modules</a></li>
+              
+                <li><a href="../server/as-a-node-module.md.html">The Deployd Server</a></li>
+              
+                <li><a href="../developing-modules/creating-modules.md.html">Developing Modules</a></li>
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../collections/reference/event-api.md.html">Collections</a></li>
+                
+                  <li><a href="../collections/reference/event-api.md.html">Event API</a></li>
+                
+                  <li><a href="../collections/reference/http.md.html">Over HTTP</a></li>
+                
+                  <li><a href="../collections/reference/querying-collections.md.html">Querying Collections</a></li>
+                
+                  <li><a href="../collections/reference/updating-objects.md.html">Updating Objects in Collections</a></li>
+                
+                  <li><a href="../collections/reference/dpd-js.md.html">Using dpd.js</a></li>
+                
+              
+                <li class="nav-header"><a href="../using-modules/reference/dpd-js.md.html">Using Modules</a></li>
+                
+                  <li><a href="../using-modules/reference/dpd-js.md.html">Dpd.js for Custom Resources</a></li>
+                
+                  <li><a href="../using-modules/reference/event-api.md.html">Event API for Custom Resources</a></li>
+                
+              
+                <li class="nav-header"><a href="../developing-modules/internal-api/collection.md.html">Developing Modules</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/collection.md.html">Collection Resource Type</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/context.md.html">Context</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/script.md.html">Event Scripts</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/internal-client.md.html">Internal Client</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/resource.md.html">Resource Types</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/server.md.html">Server</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/session.md.html">Session</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/session-store.md.html">Session Store</a></li>
+                
+                  <li><a href="../developing-modules/internal-api/store.md.html">Store</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../collections/creating-collections.md.html">Collections</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App with AngularJS</a></li>
+                
+                  <li><a href="../../index.html">A Simple Todo App with Backbone.js</a></li>
+                
+                  <li><a href="../../index.html">Chatroom</a></li>
+                
+              
+                <li class="nav-header"><a href="../users/creating-user-collections.md.html">Users</a></li>
+                
+                  <li><a href="../../index.html">Microblogging app</a></li>
+                
+                  <li><a href="../../index.html">Simple Login Form</a></li>
+                
+              
+                <li class="nav-header"><a href="../developing-modules/creating-modules.md.html">Developing Modules</a></li>
+                
+                  <li><a href="../../index.html">Email Resource</a></li>
+                
+                  <li><a href="../../index.html">Event Resource</a></li>
+                
+                  <li><a href="../../index.html">S3 Bucket Resource</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">available on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span navigation">
+            <dl>
+              <dt><img src="http://deployd.com/img/footer-dt.png" alt="deployd"></dt>
+              <dd><a href="http://deployd.com/">Home</a></dd>
+              <dd><a href="http://deployd.com/video.html">Screencast</a></dd>
+              <dd><a href="http://deployd.com/features.html">Features</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Support</a></dd>
+            </dl>
+            <dl>
+              <dt>documentation</dt>
+              <dd><a href="http://docs.deployd.com/guides">Guides</a></dd>
+              <dd><a href="http://docs.deployd.com/api">API</a></dd>
+              <dd><a href="http://docs.deployd.com/examples">Examples</a></dd>
+              <dd><a href="http://docs.deployd.com/modules">Modules</a></dd>
+            </dl>
+            <dl>
+              <dt>community</dt>
+              <dd><a href="http://deployd.com/community.html">Questions</a></dd>
+              <dd><a href="https://twitter.com/deploydapp">Tweets</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Issues</a></dd>
+              <dd><a href="https://github.com/deployd/deployd">Github</a></dd>
+            </dl>
+            <dl>
+              <dt>contact</dt>
+              <dd><a href="mailto:hello@deployd.com">hello@deployd.com</a></dd>
+            </dl>
+          </div>
+          <div class="span logo-container">
+            <div class="logo">
+              <img src="http://deployd.com/img/footer-logo.png" alt="deployd">
+            </div>
+          </div>
+          <div class="span email-container">
+            <dl id="mc_embed_signup" class="span4">
+            <dt>Get deployd emails</dt>
+            <dd>
+              <form action="http://deployd.us2.list-manage.com/subscribe/post?u=4f1b944ba8c90738eb8e3fa3c&amp;id=7bb18e6b80" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-vertical" target="_blank" novalidate="">
+              <div class="mc-field-group">
+                <input type="email" placeholder="your@email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../../javascripts/app.js"></script>
+  </body>
+</html>

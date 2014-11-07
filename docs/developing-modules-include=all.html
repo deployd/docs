@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docs">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+      <title>Developing Modules - Deployd Docs</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="../stylesheets/style.css" rel='stylesheet' type='text/css'>
+    <link href="../stylesheets/prettify.css" rel='stylesheet' type='text/css'>
+    <script src="../javascripts/libs/angular.js"></script>
+    <script src="../javascripts/libs/angular-sanitize.js"></script>
+    <script src="../javascripts/libs/jquery-1.8.2.js"></script>
+    <script src="../javascripts/libs/bootstrap.js"></script>
+    <script src="../javascripts/libs/jquery.highlight.js"></script>
+    <script src="../javascripts/libs/jquery.masonry.js"></script>
+    <script src="../javascripts/libs/prettify.js"></script>
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  
+  
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="http://deployd.com">
+            <img src="http://deployd.com/img/logo-text.png">
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--<li><a href="http://cloud.deployd.com">cloud</a></li>-->
+              <li class="active"><a href="http://docs.deployd.com">docs</a></li>
+              <li><a href="http://deployd.com/community.html">community</a></li>
+              <li><a href="http://deployd.com/blog.html">blog</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          
+          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+  <form class="navbar-search">
+    <input value="" placeholder="search docs" id="search-input" type="text" ng-change="change()" ng-model="input" />
+  </form>
+  <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
+      {{ term.title || term.reference }}
+    </li>
+  </ul>
+</div>
+
+<script src="../javascripts/search.js"></script>
+          
+          <div id="social" class="nav-collapse pull-left">
+            <ul class="nav">
+              <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&count=horizontal&id=twitter-widget-0&lang=en&original_referer=http:/deployd.com/&size=m&text=Deployd%20Platform%20(@deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&url=http:/www.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+      <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script id="twitter-wjs" src="http://platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-static-top secondary-nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">        
+            <li class=""><a href="../index.html">home</a></li>
+            <li class="" ><a href="../guides.html">guides</a></li>
+            <li class=""><a href="../api.html">api</a></li>
+            <li class=""><a href="../examples/index.html">examples</a></li>
+            <li class=""><a href="../modules.html">modules</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+
+<ul id="breadcrumb" class="unstyled">
+
+  <li><a href="../index.html">Docs</a><span>/</span></li>
+
+  <li>Developing Modules</li>
+  
+</ul>
+
+<div id="browser" class="row">
+  <div id="sidebar" class="span3">
+    
+
+<div id="explorer">
+  <ul id="files" class="nav">
+    
+      <li class=""><a href="developing-modules/creating-modules.md.html"><i class="icon-file"></i> <span>Creating a Module</span></a></li>
+    
+      <li class=""><a href="developing-modules/custom-resource-types.md.html"><i class="icon-file"></i> <span>Creating a Custom Resource Type</span></a></li>
+    
+    
+  </ul>
+  
+  <ul id="dirs" class="nav">
+  
+      <li class=""><a href="developing-modules/examples/email.md.html"><i class="icon-folder-close"></i> <span>Examples</span></a></li>
+    
+      <li class=""><a href="developing-modules/internal-api/collection.md.html"><i class="icon-folder-close"></i> <span>Internal API Reference</span></a></li>
+    
+  </ul>
+  
+</div>
+
+
+    
+      <h4>Related APIs</h4>
+      <div id="related-apis">
+        <div id="api">
+  
+      
+        
+            <ul class="nav nav-list developing-modules">
+              <li class="nav-header"><a href="developing-modules/internal-api/collection.md.html">Collection Resource Type</a></li>
+            
+      <li><a href="developing-modules/internal-api/collection.md.html#s-collection.store-2358">collection.store</a></li>
+    
+      <li><a href="developing-modules/internal-api/collection.md.html#s-collection.validate(body,%20create)-2358">collection.validate(body, create)</a></li>
+    
+      <li><a href="developing-modules/internal-api/collection.md.html#s-collection.sanitize(body)-2358">collection.sanitize(body)</a></li>
+    
+      <li><a href="developing-modules/internal-api/collection.md.html#s-collection.sanitizeQuery(query)-2358">collection.sanitizeQuery(query)</a></li>
+    
+      <li><a href="developing-modules/internal-api/collection.md.html#s-collection.parseId(ctx)-2358">collection.parseId(ctx)</a></li>
+    
+      <li><a href="developing-modules/internal-api/collection.md.html#s-collection.find(ctx,%20fn)-2358">collection.find(ctx, fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/collection.md.html#s-collection.remove(ctx,%20fn)-2358">collection.remove(ctx, fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/collection.md.html#s-collection.save(ctx,%20fn)-2358">collection.save(ctx, fn)</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list developing-modules">
+              <li class="nav-header"><a href="developing-modules/internal-api/context.md.html">Context</a></li>
+            
+      <li><a href="developing-modules/internal-api/context.md.html#s-ctx.done(err,%20result)-1333">ctx.done(err, result)</a></li>
+    
+      <li><a href="developing-modules/internal-api/context.md.html#s-ctx.body-1333">ctx.body</a></li>
+    
+      <li><a href="developing-modules/internal-api/context.md.html#s-ctx.query-1333">ctx.query</a></li>
+    
+      <li><a href="developing-modules/internal-api/context.md.html#s-ctx.method-1333">ctx.method</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list developing-modules">
+              <li class="nav-header"><a href="developing-modules/internal-api/script.md.html">Event Scripts</a></li>
+            
+      <li><a href="developing-modules/internal-api/script.md.html#s-script.run(ctx,%20domain,%20%5Bfn%5D)-1290">script.run(ctx, domain, [fn])</a></li>
+    
+      <li><a href="developing-modules/internal-api/script.md.html#s-Script.load(path,%20fn)-1290">Script.load(path, fn)</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list developing-modules">
+              <li class="nav-header"><a href="developing-modules/internal-api/resource.md.html">Resource Types</a></li>
+            
+      <li><a href="developing-modules/internal-api/resource.md.html#s-resource.handle(ctx,%20next)-1405">resource.handle(ctx, next)</a></li>
+    
+      <li><a href="developing-modules/internal-api/resource.md.html#s-resource.load(fn)-1405">resource.load(fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/resource.md.html#s-resource.clientGeneration-1405">resource.clientGeneration</a></li>
+    
+      <li><a href="developing-modules/internal-api/resource.md.html#s-resource.config-1405">resource.config</a></li>
+    
+      <li><a href="developing-modules/internal-api/resource.md.html#s-Resource.events-1405">Resource.events</a></li>
+    
+      <li><a href="developing-modules/internal-api/resource.md.html#s-Resource.label-1405">Resource.label</a></li>
+    
+      <li><a href="developing-modules/internal-api/resource.md.html#s-Resource.defaultPath-1405">Resource.defaultPath</a></li>
+    
+      <li><a href="developing-modules/internal-api/resource.md.html#s-Collection.basicDashboard-1405">Collection.basicDashboard</a></li>
+    
+      <li><a href="developing-modules/internal-api/resource.md.html#s-Collection.dashboard-1405">Collection.dashboard</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list developing-modules">
+              <li class="nav-header"><a href="developing-modules/internal-api/server.md.html">Server</a></li>
+            
+      <li><a href="developing-modules/internal-api/server.md.html#s-Server.listen(%5Bport%5D,%20%5Bhost%5D)-631">Server.listen([port], [host])</a></li>
+    
+      <li><a href="developing-modules/internal-api/server.md.html#s-Server.createStore(namespace)%20-631">Server.createStore(namespace) </a></li>
+    
+      <li><a href="developing-modules/internal-api/server.md.html#s-Server.sockets-631">Server.sockets</a></li>
+    
+      <li><a href="developing-modules/internal-api/server.md.html#s-Server.sessions-631">Server.sessions</a></li>
+    
+      <li><a href="developing-modules/internal-api/server.md.html#s-Server.router-631">Server.router</a></li>
+    
+      <li><a href="developing-modules/internal-api/server.md.html#s-Server.resources-631">Server.resources</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list developing-modules">
+              <li class="nav-header"><a href="developing-modules/internal-api/session.md.html">Session</a></li>
+            
+      <li><a href="developing-modules/internal-api/session.md.html#s-Session.set(changes)-1332">Session.set(changes)</a></li>
+    
+      <li><a href="developing-modules/internal-api/session.md.html#s-Session.save(fn)-1332">Session.save(fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/session.md.html#s-Session.fetch(fn)-1332">Session.fetch(fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/session.md.html#s-Session.remove(fn)-1332">Session.remove(fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/session.md.html#s-Session.emitToAll(event,%20data)-1332">Session.emitToAll(event, data)</a></li>
+    
+      <li><a href="developing-modules/internal-api/session.md.html#s-Session.emitToUsers(collection,%20query,%20event,%20data)-1332">Session.emitToUsers(collection, query, event, data)</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list developing-modules">
+              <li class="nav-header"><a href="developing-modules/internal-api/session-store.md.html">Session Store</a></li>
+            
+      <li><a href="developing-modules/internal-api/session-store.md.html#s-SessionStore.createSession(sid,%20fn)-1857">SessionStore.createSession(sid, fn)</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list developing-modules">
+              <li class="nav-header"><a href="developing-modules/internal-api/store.md.html">Store</a></li>
+            
+      <li><a href="developing-modules/internal-api/store.md.html#s-Store.insert(object,%20fn)-1117">Store.insert(object, fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/store.md.html#s-Store.count(query,%20fn)-1117">Store.count(query, fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/store.md.html#s-Store.find(query,%20fn)-1117">Store.find(query, fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/store.md.html#s-Store.first(query,%20fn)-1117">Store.first(query, fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/store.md.html#s-Store.update(query,%20changes,%20fn)-1117">Store.update(query, changes, fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/store.md.html#s-Store.remove(query,%20fn)-1117">Store.remove(query, fn)</a></li>
+    
+      <li><a href="developing-modules/internal-api/store.md.html#s-Store.rename(name,%20fn)-1117">Store.rename(name, fn)</a></li>
+    
+            </ul>
+            
+      
+    
+</div>
+
+
+
+
+      </div>
+    
+  </div>
+  <div class="span9 sections">
+    
+      
+      
+        
+
+  <div class="section"><a name="s-Creating a Module"></a><h2>Creating a Module <a class="anchor-link" href="developing-modules-include=all.html#s-Creating%20a%20Module">#</a></h2><div class="section"><a name="s-Background-1588"></a><h3>Background <a class="anchor-link" href="developing-modules-include=all.html#s-Background-1588">#</a></h3>
+
+<p>Deployd modules are 100% compatible with regular <a href="http://npmjs.org">node modules</a>. This means you can use any of the 17,000+ node modules when building your Deployd app.</p></div><div class="section"><a name="s-Hello World-1588"></a><h3>Hello World <a class="anchor-link" href="developing-modules-include=all.html#s-Hello%20World-1588">#</a></h3>
+
+<p>Any module in your app's <code>node_modules</code> folder will be loaded when the Deployd server starts.</p>
+
+<p>You don't have to <code>require()</code> or load anything to instantiate your module. The following will log 'hello world' when you run <code>dpd</code>.</p>
+
+<pre><code>// /my-app/node_modules/hello.js
+console.log('hello world');
+</code></pre></div><div class="section"><a name="s-Accessing the Server-1588"></a><h3>Accessing the Server <a class="anchor-link" href="developing-modules-include=all.html#s-Accessing%20the%20Server-1588">#</a></h3>
+
+<p>In order to do anything interesting you need a reference to the current Deployd <a href="developing-modules/internal-api/server.md.html">server</a> object. The server is always available at <code>process.server</code>. This means you don't need to require anything to use most of the <a href="developing-modules/internal-api/collection.md.html">internal APIs</a>.</p></div><div class="section"><a name="s-One Off Modules-1588"></a><h3>One Off Modules <a class="anchor-link" href="developing-modules-include=all.html#s-One%20Off%20Modules-1588">#</a></h3>
+
+<p>The simplest kind of module is a <strong>one-off module</strong>. These are easy to create but hard to reuse. Typically any behavior that is specific to just your app that can't be implemented using an existing module can be built with a simple <strong>one-off module</strong>. </p>
+
+<p>Here's an example one off module that maintains a count of requests to the url <code>/hits</code> and writes it to a file every minute.</p>
+
+<pre><code>// /my-app/node_modules/hits.js
+var fs = require('fs');
+process.server.hits = 0;
+
+process.server.on('request', function(req) {
+  if(req.url === '/hits') {
+    process.server.hits++;
+  }
+});
+
+// write a file every minute
+setInterval(function() {
+  fs.writeFile('hits.json', JSON.stringify({hits: process.server.hits}));
+}, 60000);
+</code></pre></div><div class="section"><a name="s-Reusable Modules-1588"></a><h3>Reusable Modules <a class="anchor-link" href="developing-modules-include=all.html#s-Reusable%20Modules-1588">#</a></h3>
+
+<p>Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a <code>Resource Type</code>. <code>Resource Types</code> are exposed in the dashboard and are much easier to reuse, and you can share them with other Deployd developers. See the <a href="developing-modules/custom-resource-types.md.html">custom resource type guide</a> for more info.</p></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Creating a Custom Resource Type"></a><h2>Creating a Custom Resource Type <a class="anchor-link" href="developing-modules-include=all.html#s-Creating%20a%20Custom%20Resource%20Type">#</a></h2>
+
+<p>Deployd modules can register new <em>Resource Types</em>, which can be created with a route and configured per instance. Deployd comes with two built-in Resource Types: "Collection" and "User Collection". You can create your own custom resource types by extending the <a href="developing-modules/internal-api/resource.md.html">Resource</a> constructor and implementing a <code>handle()</code> method. Deployd will automatically load any Resource Types that are exported by a module.</p>
+
+<p>Here is a simple custom resource type:</p>
+
+<pre><code>var Resource = require('deployd/lib/resource')
+    , util = require('util');
+
+function Hello(name, options) {
+    Resource.apply(this, arguments);
+}
+util.inherits(Hello, Resource);
+module.exports = Hello;
+
+Hello.prototype.clientGeneration = true;
+
+Hello.prototype.handle = function (ctx, next) {
+    if(ctx.req &amp;&amp; ctx.req.method !== 'GET') return next();
+
+    ctx.done(null, {hello: 'world'});
+}
+</code></pre>
+
+<p>This will allow you to add a "Hello" resource in the Dashboard. This resource will respond to every GET request with <code>{"hello": "world"}</code>.</p><div class="section"><a name="s-Example Resource Type-2931"></a><h3>Example Resource Type <a class="anchor-link" href="developing-modules-include=all.html#s-Example%20Resource%20Type-2931">#</a></h3>
+
+<p>The most basic Custom Resource Type that is useful is the <a href="using-modules/official/event.md.html">Event Resource</a>, which will simply execute an <code>On GET</code> event when it receives a <code>GET</code> request and an <code>On POST</code> event when it receives a <code>POST</code> request.</p>
+
+<p>This is the source for that module: </p>
+
+<pre><code>var Resource = require('deployd/lib/resource')
+    , util = require('util');
+
+function EventResource() {
+    Resource.apply(this, arguments);
+}
+util.inherits(EventResource, Resource);
+
+EventResource.label = "Event";
+EventResource.events = ["get", "post"];
+
+module.exports = EventResource;
+
+EventResource.prototype.clientGeneration = true;
+
+EventResource.prototype.handle = function (ctx, next) {
+    var parts = ctx.url.split('/').filter(function(p) { return p; });
+
+    var result = {};
+
+    var domain = {
+            url: ctx.url
+        , parts: parts
+        , query: ctx.query
+        , body: ctx.body
+        , 'this': result
+        , setResult: function(val) {
+            result = val;
+        }
+    };
+
+    if (ctx.method === "POST" &amp;&amp; this.events.post) {
+        this.events.post.run(ctx, domain, function(err) {
+            ctx.done(err, result);
+        });
+    } else if (ctx.method === "GET" &amp;&amp; this.events.get) {
+        this.events.get.run(ctx, domain, function(err) {
+            ctx.done(err, domain.result);
+        });
+    } else {
+        next();
+    }
+};
+</code></pre>
+
+<p>Let's look at it line-by-line:</p>
+
+<pre><code>var Resource = require('deployd/lib/resource')
+    , util = require('util');
+</code></pre>
+
+<p>To create a Resource, you'll need the <a href="developing-modules/internal-api/resource.md.html">Resource</a> module and Node's <a href="http://nodejs.org/api/util.html">util</a> module.</p>
+
+<pre><code>function EventResource() {
+    Resource.apply(this, arguments);
+}
+</code></pre>
+
+<p>Creates the constructor for the <code>EventResource</code>, also applying the base <code>Resource</code> constructor. </p>
+
+<pre><code>util.inherits(EventResource, Resource);
+</code></pre>
+
+<p>Causes <code>EventResource</code> to inherit its prototype from <code>Resource</code> using Node's <a href="http://nodejs.org/api/util.html#util_util_inherits_constructor_superconstructor">util.inherits()</a> function.</p>
+
+<pre><code>EventResource.label = "Event";
+</code></pre>
+
+<p>Changes the <a href="developing-modules/internal-api/resource.md.html#s-Resource.label">Resource.label</a> property to set how the <code>EventResource</code> appears in the "Add Resource" menu in the Dashboard. Without this setting, it would appear using the constructor name, <code>EventResource</code>.</p>
+
+<pre><code>EventResource.events = ["get", "post"];
+</code></pre>
+
+<p>Configures two <a href="developing-modules/internal-api/resource.md.html#s-Resource.events">events</a> for the Resource type: <code>get</code> and <code>post</code>. These will appear on the "Events" page in the Dashboard with no extra configuration. </p>
+
+<p><em>Note: The Dashboard provides the "On" prefix, e.g. "On Get"</em></p>
+
+<pre><code>module.exports = EventResource;
+</code></pre>
+
+<p>Exports the <code>EventResource</code> constructor. This is how Deployd finds and loads the resource type.</p>
+
+<pre><code>EventResource.prototype.clientGeneration = true;
+</code></pre>
+
+<p>Sets the <a href="developing-modules/internal-api/resource.md.html#s-resource.clientGeneration">clientGeneration</a> flag, which ensures that resources created with this resource type will be generated into dpd.js.</p>
+
+<pre><code>EventResource.prototype.handle = function (ctx, next) {
+</code></pre>
+
+<p>Defines a <a href="developing-modules/internal-api/resource.md.html#s-resource.handle-ctx-next">handle()</a> function. This function will be called whenever a request is routed to this resource. The <code>ctx</code> object is a <a href="developing-modules/internal-api/context.md.html">Context</a>, which includes useful properties (<a href="developing-modules/internal-api/context.md.html#s-ctx.body">body</a>, <a href="developing-modules/internal-api/context.md.html#s-ctx.query">query</a>, etc.) and functions (particularly <a href="developing-modules/internal-api/context.md.html#s-ctx.done-err-result">done()</a>) to simplify working with HTTP.</p>
+
+<p>The <code>next</code> function gives control back to the router.</p>
+
+<pre><code>var parts = ctx.url.split('/').filter(function(p) { return p; });
+
+var result = {};
+</code></pre>
+
+<p>Set up some local variables; <code>parts</code> is an array of the <code>/</code>-separated parts in the URL.</p>
+
+<pre><code>var domain = {
+        url: ctx.url
+    , parts: parts
+    , query: ctx.query
+    , body: ctx.body
+    , 'this': result
+    , setResult: function(val) {
+        result = val;
+    }
+};
+</code></pre>
+
+<p>Create a <em>domain</em> for the events. These are objects and functions that will be accessible from the event. Notice that the <code>setResult</code> function is a closure that assigns its argument to the local <code>result</code> variable.</p>
+
+<pre><code>if (ctx.method === "POST" &amp;&amp; this.events.post) {
+    this.events.post.run(ctx, domain, function(err) {
+        ctx.done(err, result);
+    });
+}
+</code></pre>
+
+<p>Run the <code>POST</code> event using the <a href="developing-modules/internal-api/script.md.html#s-script.run-ctx-domain-%5Bfn%5D">Script.run()</a> function if applicable, passing it the current context and domain. </p>
+
+<p>The <a href="developing-modules/internal-api/resource.md.html#s-Resource.events">this.events</a> object contains all of the available events; if the user has not written a <code>POST</code> event, though, <code>this.events.post</code> might be <code>null</code>.</p>
+
+<p>The callback for <code>Script.run</code> returns an error <code>err</code> if something went wrong in the script (or if the script writer called <a href="using-modules/reference/event-api.md.html#s-cancel">cancel()</a>)</p>
+
+<p>Finally, call <a href="developing-modules/internal-api/context.md.html#s-ctx.done-err-result">ctx.done()</a> with both the error and result (<code>result</code> is the local variable we set up earlier which the scriptwriter can change using <code>setResult()</code>. The response body is always the second parameter, but it is ignored if an error is passed.</p>
+
+<pre><code>} else if (ctx.method === "GET" &amp;&amp; this.events.get) {
+    this.events.get.run(ctx, domain, function(err) {
+        ctx.done(err, domain.result);
+    });
+}
+</code></pre>
+
+<p>Do the same thing for the <code>GET</code> event.</p>
+
+<pre><code>} else {
+    next();
+}
+</code></pre>
+
+<p>If no event applies, call <code>next()</code>. This tells the router that this resource cannot handle the current request, and the router will allow other resources to handle it. If every resource calls <code>next()</code>, then Deployd will return a <code>404</code> status code.</p></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Email Resource Type"></a><h2>Email Resource Type <a class="anchor-link" href="developing-modules-include=all.html#s-Email%20Resource%20Type">#</a></h2>
+
+<p>This module demonstrates how to use a Node module such as <a href="https://github.com/andris9/Nodemailer">Nodemailer</a> to make a reusable resource type.</p>
+
+<p>For information on how to use this module in your app, see the <a href="using-modules/official/email.md.html">Email Resource documentation</a>.</p>
+
+<p><a href="https://github.com/deployd/dpd-email/archive/master.zip" class="btn btn-primary">Download</a> <a href="https://github.com/deployd/dpd-email" class="btn">View Source</a></p><div class="section"><a name="s-Useful files-1810"></a><h3>Useful files <a class="anchor-link" href="developing-modules-include=all.html#s-Useful%20files-1810">#</a></h3>
+
+<ul>
+<li><a href="https://github.com/deployd/dpd-email/blob/master/index.js">index.js</a></li>
+</ul></div></div><div class="section"><a name="s-Event Resource Type"></a><h2>Event Resource Type <a class="anchor-link" href="developing-modules-include=all.html#s-Event%20Resource%20Type">#</a></h2>
+
+<p>This module demonstrates how to run user-defined Events in your resource. See the <a href="developing-modules/custom-resource-types.md.html#s-Example-Resource-Type">Creating Custom Resource Types</a> page for an analysis of the source.</p>
+
+<p>For information on how to use this module in your app, see the <a href="using-modules/official/event.md.html">Event Resource documentation</a>.</p>
+
+<p><a href="https://github.com/deployd/dpd-event/archive/master.zip" class="btn btn-primary">Download</a> <a href="https://github.com/deployd/dpd-event" class="btn">View Source</a></p><div class="section"><a name="s-Useful files-1836"></a><h3>Useful files <a class="anchor-link" href="developing-modules-include=all.html#s-Useful%20files-1836">#</a></h3>
+
+<ul>
+<li><a href="https://github.com/deployd/dpd-event/blob/master/index.js">index.js</a></li>
+</ul></div></div><div class="section"><a name="s-S3 Bucket Resource Type"></a><h2>S3 Bucket Resource Type <a class="anchor-link" href="developing-modules-include=all.html#s-S3%20Bucket%20Resource%20Type">#</a></h2>
+
+<p>This module demonstrates how to receive file uploads in a custom resource type.</p>
+
+<p>For information on how to use this module in your app, see the <a href="using-modules/official/s3.md.html">S3 Bucket Resource documentation</a>.</p>
+
+<p><a href="https://github.com/deployd/dpd-s3/archive/master.zip" class="btn btn-primary">Download</a> <a href="https://github.com/deployd/dpd-s3" class="btn">View Source</a></p><div class="section"><a name="s-Useful files-2094"></a><h3>Useful files <a class="anchor-link" href="developing-modules-include=all.html#s-Useful%20files-2094">#</a></h3>
+
+<ul>
+<li><a href="https://github.com/deployd/dpd-s3/blob/master/index.js">index.js</a></li>
+</ul></div></div>  
+
+      
+        
+
+    
+
+      
+        
+
+  <div class="section"><a name="s-Collection Resource Type"></a><h2>Collection Resource Type <a class="anchor-link" href="developing-modules-include=all.html#s-Collection%20Resource%20Type">#</a></h2>
+
+<p>Collections are the most common Resource Type in Deployd. They allow the user to store and load data from their app's <a href="developing-modules/internal-api/store.md.html">Store</a>. Behind the scenes, they validate incoming requests and execute event scripts for <code>get</code>, <code>post</code>, <code>put</code>, <code>delete</code>, and <code>validate</code>. If all event scripts execute without error (or <code>cancel()</code>ing), the request is proxied to the collection's <code>Store</code>.</p><div class="section"><a name="s-Class: Collection-2358"></a><h3>Class: Collection <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20Collection-2358">#</a></h3>
+
+<p>A <code>Collection</code> inherits from <code>Resource</code>. Any constructor that inherits from <code>Collection</code> must include its own <code>Collection.external</code> prototype object.</p>
+
+<p>Example inheriting from <code>Collection</code>:</p>
+
+<pre><code>var Collection = require('deployd/lib/resources/collection');
+var util = require('util');
+
+function MyCollection(name, options) {
+  Collection.apply(this, arguments);
+}
+MyCollection.external = Collection.external;
+
+util.inherits(MyCollection, Collection);
+</code></pre></div><div class="section api"><a name="s-collection.store-2358"></a><h3>collection.store <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-collection.store-2358">#</a></h3>
+
+<ul>
+<li>{Store}</li>
+</ul>
+
+<p>The backing persistence abstraction layer. Supports saving and reading data from a database. See <a href="developing-modules/internal-api/store.md.html">Store</a> for more info.</p></div><div class="section api"><a name="s-collection.validate(body, create)-2358"></a><h3>collection.validate(body, create) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-collection.validate(body,%20create)-2358">#</a></h3>
+
+<p>Validate the request <code>body</code> against the Collection's properties
+and return an object containing any <code>errors</code>.</p>
+
+<ul>
+<li><code>body</code> {Object}</li>
+</ul>
+
+<p>The object to validate</p>
+
+<ul>
+<li><code>create</code> {Boolean}</li>
+</ul>
+
+<p>Should validate a new object being created</p>
+
+<ul>
+<li>return <code>errors</code> {Object}</li>
+</ul></div><div class="section api"><a name="s-collection.sanitize(body)-2358"></a><h3>collection.sanitize(body) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-collection.sanitize(body)-2358">#</a></h3>
+
+<p>Sanitize the request <code>body</code> against the Collection's properties 
+object and return an object containing only properties that exist in the
+<code>collection.config.properties</code> object.</p>
+
+<ul>
+<li><code>body</code> {Object}</li>
+<li>return <code>sanitized</code> {Object}</li>
+</ul></div><div class="section api"><a name="s-collection.sanitizeQuery(query)-2358"></a><h3>collection.sanitizeQuery(query) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-collection.sanitizeQuery(query)-2358">#</a></h3>
+
+<p>Sanitize the request <code>query</code> against the <code>collection.properties</code> 
+and return an object containing only properties that exist in the
+<code>collection.properties</code> object.</p>
+
+<ul>
+<li><code>query</code> {Object}</li>
+<li>return <code>sanitizedQuery</code> {Object}</li>
+</ul></div><div class="section api"><a name="s-collection.parseId(ctx)-2358"></a><h3>collection.parseId(ctx) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-collection.parseId(ctx)-2358">#</a></h3>
+
+<p>Parse the <code>ctx.url</code> for an id. Override this to change how an object's id is parsed out of a url.</p>
+
+<ul>
+<li><code>ctx</code> {Context}</li>
+</ul></div><div class="section api"><a name="s-collection.find(ctx, fn)-2358"></a><h3>collection.find(ctx, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-collection.find(ctx,%20fn)-2358">#</a></h3>
+
+<p>Find all the objects in a collection that match the given <code>ctx.query</code>. Then execute a <code>get</code> event script, if one exists, using each object found. Finally call <code>fn(err)</code> passing an <code>error</code> if one occurred.</p>
+
+<ul>
+<li><code>ctx</code> {Context}</li>
+<li><code>fn(err)</code></li>
+</ul></div><div class="section api"><a name="s-collection.remove(ctx, fn)-2358"></a><h3>collection.remove(ctx, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-collection.remove(ctx,%20fn)-2358">#</a></h3>
+
+<p>Execute a <code>delete</code> event script, if one exists, using each object found. Then remove a single object that matches the <code>ctx.query.id</code>. Finally call <code>fn(err)</code> passing an <code>error</code> if one occurred.</p>
+
+<ul>
+<li><code>ctx</code> {Context}</li>
+<li><code>fn(err)</code></li>
+</ul></div><div class="section api"><a name="s-collection.save(ctx, fn)-2358"></a><h3>collection.save(ctx, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-collection.save(ctx,%20fn)-2358">#</a></h3>
+
+<p>First execute a <code>validate</code> event script if one exists. If the event does not error, try to save the <code>ctx.body</code> into the store. If <code>ctx.body.id</code> exists, perform an <code>update</code> and execute the <code>put</code> event script. Otherwise perform an <code>insert</code> and execute the <code>post</code> event script. Finally call <code>fn(err)</code>, passing an <code>error</code> if one occurred.</p>
+
+<ul>
+<li><code>ctx</code> {Context}</li>
+<li><code>fn(err)</code></li>
+</ul></div></div><div class="section"><a name="s-Context"></a><h2>Context <a class="anchor-link" href="developing-modules-include=all.html#s-Context">#</a></h2>
+
+<p>Contexts are a thin abstraction between http requests, <code>Resource</code>s, and <code>Script</code>s. They provide utility methods to simplify interacting with node's <a href="http://nodejs.org/api/http.html#http_class_http_serverrequest">http.ServerRequest</a> and <a href="http://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a> objects.</p>
+
+<p>A <code>Context</code> is built from a request and response and passed to a matching <code>Resource</code> by the <code>Router</code>. This might originate from an external http request or a call to an <strong>internal client</strong> from a <code>Script</code>.</p><div class="section"><a name="s-Mock Contexts-741"></a><h3>Mock Contexts <a class="anchor-link" href="developing-modules-include=all.html#s-Mock%20Contexts-741">#</a></h3>
+
+<p>Contexts may be created without a real request and response such as during an internal request using the <code>dpd</code> object. See <a href="developing-modules/internal-api/internal-client.md.html">Internal Client</a> for more info.</p></div><div class="section"><a name="s-Class: Context-741"></a><h3>Class: Context <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20Context-741">#</a></h3>
+
+<pre><code>var Context = require('deployd/lib/context');
+var ctx = new Context(resource, req, res, server);
+</code></pre><div class="section api"><a name="s-ctx.done(err, result)-1333"></a><h4>ctx.done(err, result) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-ctx.done(err,%20result)-1333">#</a></h4>
+
+<p>Continuous callback sugar for easily calling <code>res.end()</code>. Conforms to the idiomatic callback signature for most node APIs. It can be passed directly to most APIs that require a callback in node.</p>
+
+<pre><code>fs.readFile('bar.txt', ctx.done);
+</code></pre>
+
+<ul>
+<li><code>err</code> {Error | Object}</li>
+</ul>
+
+<p>An error if one occurred during handling of the <code>ctx</code>. Otherwise it should be <code>null</code>.</p>
+
+<ul>
+<li><code>result</code> {Object}</li>
+</ul>
+
+<p>The result of executing the <code>ctx</code>. This should be an object that is serializable as JSON.</p></div><div class="section api"><a name="s-ctx.body-1333"></a><h4>ctx.body <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-ctx.body-1333">#</a></h4>
+
+<ul>
+<li>{Object}</li>
+</ul>
+
+<p>The body of the request if sent as <code>application/json</code> or <code>application/x-www-form-urlencoded</code>.</p></div><div class="section api"><a name="s-ctx.query-1333"></a><h4>ctx.query <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-ctx.query-1333">#</a></h4>
+
+<ul>
+<li>{Object}</li>
+</ul>
+
+<p>The query string of the request serialized as an <code>Object</code>. Supports both <code>?key=value</code> as well as <code>?{"key":"value"}</code>.</p></div><div class="section api"><a name="s-ctx.method-1333"></a><h4>ctx.method <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-ctx.method-1333">#</a></h4>
+
+<ul>
+<li>{Object}</li>
+</ul>
+
+<p>An alias to the request's method.</p></div></div></div><div class="section"><a name="s-Event Scripts"></a><h2>Event Scripts <a class="anchor-link" href="developing-modules-include=all.html#s-Event%20Scripts">#</a></h2>
+
+<p>A <code>Script</code> provides a mechanism to run JavaScript source in a sandbox. A <code>Script</code> is executed with a <code>Context</code> and a <code>domain</code> object using <a href="http://nodejs.org/api/vm.html">the node vm module</a>. Each <code>Script</code> runs independently. They do not share global scope or state with other scripts or modules.</p><div class="section"><a name="s-Async Mode-1290"></a><h3>Async Mode <a class="anchor-link" href="developing-modules-include=all.html#s-Async%20Mode-1290">#</a></h3>
+
+<p>Scripts can be run in an <strong>async mode</strong>. This mode is triggered when a <code>Script</code> is <code>run(ctx, domain, fn)</code> with a callback (<code>fn</code>). When run in this mode a <code>Script</code> will try scrub all functions in the domain for operations that require a callback. If a callback is required, the function is re-written to count the callbacks completion and notify the script. When all pending callbacks are complete the script is considered finished.</p></div><div class="section"><a name="s-Async Errors-1290"></a><h3>Async Errors <a class="anchor-link" href="developing-modules-include=all.html#s-Async%20Errors-1290">#</a></h3>
+
+<p>If a script is run with a callback (in <strong>async mode</strong>), any error will emit an internal <code>error</code> event. This will stop the execution of the script and pass the error to the script's callback.</p></div><div class="section"><a name="s-Class: Script-1290"></a><h3>Class: Script <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20Script-1290">#</a></h3>
+
+<pre><code>var Script = require('deployd/lib/script');
+var script = new Script('hello()', 'hello.js');
+</code></pre>
+
+<p>A <code>Script</code>'s source is compiled when its constructor is called. It can be <code>run()</code> many times with independent <code>Context</code>s and <code>domain</code>s.</p></div><div class="section api"><a name="s-script.run(ctx, domain, [fn])-1290"></a><h3>script.run(ctx, domain, [fn]) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-script.run(ctx,%20domain,%20%5Bfn%5D)-1290">#</a></h3>
+
+<ul>
+<li>ctx {Context}</li>
+</ul>
+
+<p>A <code>Context</code> with a <code>session</code>, <code>query</code>, <code>req</code> and <code>res</code>.</p>
+
+<ul>
+<li>domain {Object}</li>
+</ul>
+
+<p>An <code>Object</code> containing functions to be injected into the <code>Script</code>s sandbox. This will override any existing functions or objects in the <code>Script</code>s sandbox / global scope.</p>
+
+<p>This example <code>domain</code> provides a log function to a script.</p>
+
+<pre><code>var script = new Script('log("hello world")');
+var context = {};
+var domain = {};
+var msg;
+
+domain.log = function(str) {
+  console.log(msg = str);
+}
+
+script.run(ctx, domain, function(err) {
+  console.log(msg); // 'hello world'
+});
+</code></pre>
+
+<ul>
+<li>fn(err) <em>optional</em></li>
+</ul>
+
+<p>If a callback is provided the script will be run in <strong>async mode</strong>. The callback will receive any error even if the error occurs asynchronously. Otherwise it will be called without any arguments when the script is finished executing (see: async mode).</p>
+
+<pre><code>var s = new Script('setTimeout(function() { throw "test err" }, 22)');
+
+// give the script access to setTimeout
+var domain = {setTimeout: setTimeout};
+
+s.run({}, domain, function (e) {
+  console.log(e); // test err
+});
+</code></pre></div><div class="section api"><a name="s-Script.load(path, fn)-1290"></a><h3>Script.load(path, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Script.load(path,%20fn)-1290">#</a></h3>
+
+<ul>
+<li><p><code>path</code> {String}</p></li>
+<li><p><code>fn(err, script)</code></p></li>
+</ul>
+
+<p>Load a new <code>script</code> at the given file <code>path</code>. Runs the callback with an error if one occurred, or a new <code>Script</code> loaded from the contents of the file.</p></div><div class="section"><a name="s-Default Domain-1290"></a><h3>Default Domain <a class="anchor-link" href="developing-modules-include=all.html#s-Default%20Domain-1290">#</a></h3>
+
+<p>Scripts are executed with a default sandbox and set of domain functions. These are functions that every <code>Script</code> usually needs, and are available to every <code>Script</code>. These can be overridden by passing a value such as <code>{cancel: ...}</code> in a <code>domain</code>. See <a href="using-modules/reference/event-api.md.html">Event API for Custom Resources</a> for documentation on this default domain.</p></div></div><div class="section"><a name="s-Internal Client"></a><h2>Internal Client <a class="anchor-link" href="developing-modules-include=all.html#s-Internal%20Client">#</a></h2>
+
+<p>The <code>internal-client</code> module is responsible for building a server-side version of <strong>dpd.js</strong>. It is intended for use in <code>Script</code>s but can be used by resources to access other resources' REST APIs.</p>
+
+<p><em>Note: As in dpd.js, the callback for an internal client request receives the arguments <code>(data, err)</code>, which is different than the Node convention of <code>(err, data)</code>.</em></p><div class="section"><a name="s-internalClient.build(server, [session], [stack])-1468"></a><h3>internalClient.build(server, [session], [stack]) <a class="anchor-link" href="developing-modules-include=all.html#s-internalClient.build(server,%20%5Bsession%5D,%20%5Bstack%5D)-1468">#</a></h3>
+
+<pre><code>var internalClient = require('deployd/lib/internal-client');
+
+process.server.on('listening', function() {
+  var dpd = internalClient.build(process.server);
+  dpd.todos.get(function(data, err) {
+    // Do something
+  });  
+});
+</code></pre>
+
+<ul>
+<li><code>server</code> {Server}</li>
+</ul>
+
+<p>The Deployd server to build a client for. </p>
+
+<ul>
+<li><code>session</code> {Session} <em>(optional)</em></li>
+</ul>
+
+<p>The <code>Session</code> object on the current request.</p>
+
+<ul>
+<li><code>stack</code> {Array} <em>(optional)</em></li>
+</ul>
+
+<p>Used internally to prevent recursive calls to resources.</p></div><div class="section"><a name="s-Mock context-1468"></a><h3>Mock context <a class="anchor-link" href="developing-modules-include=all.html#s-Mock%20context-1468">#</a></h3>
+
+<p>In order to make requests on resources within the Deployd server, <code>internal-client</code> creates mock <code>req</code> and <code>res</code> objects. These objects are not Streams and cannot be treated exactly like the standard <code>http.ServerRequest</code> and <code>http.ServerResponse</code> objects in Node, but they imitate their interfaces with the following properties:</p><div class="section"><a name="s-req-1199"></a><h4>req <a class="anchor-link" href="developing-modules-include=all.html#s-req-1199">#</a></h4>
+
+<ul>
+<li><code>url</code> {String}</li>
+</ul>
+
+<p>The URL of the request, i.e. "/hello"</p>
+
+<ul>
+<li><code>method</code> {String}</li>
+</ul>
+
+<p>The method of the request, i.e. "GET", "POST"</p>
+
+<ul>
+<li><code>query</code> {Object}</li>
+</ul>
+
+<p>The query object.</p>
+
+<ul>
+<li><code>body</code> {Object}</li>
+</ul>
+
+<p>The body of the request.</p>
+
+<ul>
+<li><code>session</code> {Session}</li>
+</ul>
+
+<p>The current session, if any.</p>
+
+<ul>
+<li><code>internal</code> {Boolean}</li>
+</ul>
+
+<p>Always equal to <code>true</code> to indicate an internal request and a mock <code>req</code> object.</p></div><div class="section"><a name="s-res-1199"></a><h4>res <a class="anchor-link" href="developing-modules-include=all.html#s-res-1199">#</a></h4>
+
+<ul>
+<li><code>statusCode</code> {Number}</li>
+</ul>
+
+<p>Set this to a standard HTTP response code.</p>
+
+<ul>
+<li><code>setHeader()</code> {Function}</li>
+</ul>
+
+<p>No-op.</p>
+
+<ul>
+<li><code>end(data)</code> {Function}</li>
+</ul>
+
+<p>Returns data to the internal client call. If <code>data</code> is JSON, it will be parsed into an object, otherwise it will simply be passed as a string. If the <code>res.statusCode</code> is not 200 or 204, <code>data</code> will be passed as an error.</p>
+
+<ul>
+<li><code>internal</code> {Boolean}</li>
+</ul>
+
+<p>Always equal to <code>true</code> to indicate an internal request and a mock <code>res</code> object.</p></div></div></div><div class="section"><a name="s-Resource Types"></a><h2>Resource Types <a class="anchor-link" href="developing-modules-include=all.html#s-Resource%20Types">#</a></h2>
+
+<p>Resources are the building block of a Deployd app. They provide a way to handle http requests at a root url. They must implement a <code>handle(ctx, next)</code> method that either handles a request or calls <code>next()</code> to give the request back to the router.</p>
+
+<p>Resources can also be attributed with meta-data to allow the dashboard to dynamically render an editor gui for configuring a resource instance.</p><div class="section"><a name="s-Events / Scripts-1405"></a><h3>Events / Scripts <a class="anchor-link" href="developing-modules-include=all.html#s-Events%20/%20Scripts-1405">#</a></h3>
+
+<p>A <code>Resource</code> can execute <code>Script</code>s during the handling of an http request when certain events occur. This allows users of the resource to inject logic during specific events during an http request without having to extend the resource or create their own.</p>
+
+<p>For example, the <code>Collection</code> resource executes the <em>get.js</em> event script when it retrieves each object from its store. If a <em>get.js</em> file exists in the instance folder of a resource (eg. <code>/my-project/resources/my-collection/get.js</code>), it will be pulled in by the resource and exposed as <code>myResource.scripts.get</code>.</p></div><div class="section reference"><a name="s-Class: Resource-1405"></a><h3>Class: Resource <!-- ref --> <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20Resource-1405">#</a></h3>
+
+<p>A <code>Resource</code> inherits from <code>EventEmitter</code>. The following events are available.</p>
+
+<ul>
+<li><code>changed</code>      after a resource config has changed</li>
+<li><code>deleted</code>      after a resource config has been deleted</li>
+</ul>
+
+<p>Inheriting from Resource:</p>
+
+<pre><code>var Resource = require('deployd/lib/resource')
+  , util = require('util');
+
+function MyResource(name, options) {
+  // run the parent constructor
+  // before using any properties/methods
+  Resource.apply(this, arguments);
+}
+util.inherits(MyResource, Resource);
+module.exports = MyResource;
+</code></pre>
+
+<ul>
+<li><code>name</code> {String}</li>
+</ul>
+
+<p>The name of the resource.</p>
+
+<ul>
+<li><p><code>options</code> {Object}</p>
+
+<ul><li><code>configPath</code>        the project relative path to the resource instance</li>
+<li><code>path</code>              the base path a resource should handle</li>
+<li><code>db</code> <em>(optional)</em>   the database a resource will use for persistence</li>
+<li><code>config</code>            the instance configuration object</li>
+<li><code>server</code>            the server object</li></ul></li>
+</ul>
+
+<p>The following resource would respond with a file at the url <code>/my-file.html</code>.</p>
+
+<pre><code>function MyFileResource(name, options) {
+  Resource.apply(this, arguments);
+
+  this.on('changed', function(config) {
+    console.log('MyFileResource changed', config);
+  });
+}
+util.inherits(MyFileResource, Resource);
+
+MyFileResource.prototype.handle = function (ctx, next) {
+  if (ctx.url === '/my-file.html') {
+    fs.createReadStream('my-file.html').pipe(ctx.res);
+  } else {
+    next();
+  }
+}
+</code></pre></div><div class="section"><a name="s-Overriding Behavior-1405"></a><h3>Overriding Behavior <a class="anchor-link" href="developing-modules-include=all.html#s-Overriding%20Behavior-1405">#</a></h3>
+
+<p>Certain methods on a <code>Resource</code> prototype are called by the runtime. Their default behavior should be overridden to define an inherited <code>Resources</code> behavior.</p></div><div class="section api"><a name="s-resource.handle(ctx, next)-1405"></a><h3>resource.handle(ctx, next) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-resource.handle(ctx,%20next)-1405">#</a></h3>
+
+<p>Handle an incoming request. This gets called by the router.</p>
+
+<p>The resource can either handle this context and call <code>ctx.done(err, obj)</code> with an error or result JSON object, or call <code>next()</code> to give the context back to the router. If a resource calls <code>next()</code> the router might find another match for the request, or respond with a <code>404</code>.</p>
+
+<ul>
+<li>ctx {<a href="developing-modules/internal-api/context.md.html">Context</a>}</li>
+</ul>
+
+<p>The http context created by the <code>Router</code>. This provides an abstraction between the actual request and response. A <code>Resource</code> should call <code>ctx.done</code> or pipe to <code>ctx.res</code> if it can handle a request. Otherwise it should call <code>next()</code>.</p>
+
+<p>Override the handle method to return a string:</p>
+
+<pre><code>function MyResource(settings) {
+  Resource.apply(this, arguments);
+}
+util.inherits(MyResource, Resource);
+
+MyResource.prototype.handle = function (ctx, next) {
+  // respond with the file contents (or an error if one occurs)
+  fs.readFile('myfile.txt', ctx.done);
+}
+</code></pre></div><div class="section api"><a name="s-resource.load(fn)-1405"></a><h3>resource.load(fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-resource.load(fn)-1405">#</a></h3>
+
+<p>Load any dependencies and call <code>fn(err)</code> with any errors that occur. This is automatically called by the runtime to support asynchronous construction of a resource (such as loading files).</p>
+
+<p><em>Note: If this method is overridden, the super method must be called to support loading of the <code>MyResource.events</code> array.</em></p></div><div class="section api"><a name="s-resource.clientGeneration-1405"></a><h3>resource.clientGeneration <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-resource.clientGeneration-1405">#</a></h3>
+
+<p>If <code>true</code>, ensures that this resource is included in <code>dpd.js</code>.</p>
+
+<pre><code>MyResource.prototype.clientGeneration = true;
+</code></pre></div><div class="section api"><a name="s-resource.config-1405"></a><h3>resource.config <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-resource.config-1405">#</a></h3>
+
+<p>The instance configuration object; used to access the resource's configuration from member functions.</p>
+
+<pre><code>MyResource.prototype.handle = function (ctx, next) {
+  fs.readFile(this.config.filePath, ctx.done);
+}
+</code></pre></div><div class="section reference"><a name="s-External Prototype -1405"></a><h3>External Prototype  <!-- ref --> <a class="anchor-link" href="developing-modules-include=all.html#s-External%20Prototype%20-1405">#</a></h3>
+
+<p>This is a special type of prototype object that is used to build the <code>dpd</code> object. Each function on the <code>Resource.external</code> prototype <code>Object</code> are exposed externally in two places</p>
+
+<ol>
+<li>To the generated <code>dpd.js</code> browser JavaScript client</li>
+<li>To the <code>Context.dpd</code> object generated for inter-resource calls</li>
+</ol>
+
+<p>Here is an example of a simple resource that exposes a method on the external prototype.</p>
+
+<p><code>/my-project/node_modules/example.js</code></p>
+
+<pre><code>var util = require('util');
+var Resource = require('deployd/lib/resource');
+function Example(name, options) {
+  Resource.apply(this, arguments);
+}
+util.inherits(Example, Resource);
+
+Example.external = {};
+
+Example.external.hello = function(options, ctx, fn) {
+  console.log(options.msg); // 'hello world'
+}
+</code></pre>
+
+<p>When the <code>hello()</code> method is called, a context does not need to be provided as the <code>dpd</code> object is built with a context. A callback may be provided which will be executed with results of <code>fn(err, result)</code>.</p>
+
+<p><code>/my-project/public/hello.js</code></p>
+
+<pre><code>dpd.example.hello({msg: 'hello world'});
+</code></pre>
+
+<p><code>/my-project/resources/other-resource/get.js</code></p>
+
+<pre><code>dpd.example.hello({msg: 'hello world'});
+</code></pre></div><div class="section api"><a name="s-Resource.events-1405"></a><h3>Resource.events <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Resource.events-1405">#</a></h3>
+
+<ul>
+<li>{Array}</li>
+</ul>
+
+<p>If a <code>Resource</code> constructor includes an array of events, it will try to load the scripts in its instance folder (eg. <code>/my-project/resources/my-resource/get.js</code>) using <a href="developing-modules-include=all.html#s-resource.load-fn">resource.loadScripts(eventNames, fn)</a>.</p>
+
+<pre><code>MyResource.events = ['get'];
+</code></pre>
+
+<p>This will be available to each instance of this resource as <code>this.events</code>. </p>
+
+<p><code>/my-project/node_modules/my-resource.js</code></p>
+
+<pre><code>MyResource.prototype.handle = function(ctx, next) {
+  if(this.events &amp;&amp; this.events.get) {
+    var domain = {
+      say: function(msg) {
+        console.log(msg); // 'hello world'
+      }
+    }
+    this.events.get.run(ctx, domain, ctx.done);
+  }
+}
+</code></pre>
+
+<p><code>/my-project/resources/my-resource/get.js</code></p>
+
+<pre><code>say('hello world');
+</code></pre></div><div class="section api"><a name="s-Resource.label-1405"></a><h3>Resource.label <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Resource.label-1405">#</a></h3>
+
+<p>The resource type's name as it appears in the dashboard. If this is not set, it will appear with its constructor name.</p>
+
+<pre><code>Hello.label = 'Hello World';
+</code></pre></div><div class="section api"><a name="s-Resource.defaultPath-1405"></a><h3>Resource.defaultPath <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Resource.defaultPath-1405">#</a></h3>
+
+<p>The default path suggested to users creating a resource. If this is not set, it will use the constructor's name in lowercase.</p>
+
+<pre><code>Hello.defaultPath = '/hello-world'; 
+</code></pre></div><div class="section api"><a name="s-Collection.basicDashboard-1405"></a><h3>Collection.basicDashboard <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Collection.basicDashboard-1405">#</a></h3>
+
+<p>Set this property to an object to create a custom configuration page for your resource type.</p>
+
+<ul>
+<li><code>settings</code> - An array of objects describing which properties to display. </li>
+<li><code>name</code> - The name of the property. This is how the value will be passed into the <code>config</code> object, so make sure it's something JavaScript-friendly, e.g. <code>maxItems</code>.</li>
+<li><code>type</code> - The type of control to edit this property. Allowed types are <code>text</code>, <code>textarea</code>, <code>number</code>, and <code>checkbox</code>.</li>
+<li><code>description</code> (Optional) - Explanatory text to appear below the field.</li>
+</ul>
+
+<!-- separate -->
+
+<pre><code>Hello.basicDashboard = {
+  settings: [{
+      name: 'propertyName',
+      type: 'text',
+      description: "This description appears below the text field"
+  }, {
+      name: 'longTextProperty',
+      type: 'textarea'
+  }, {
+      name: 'numericProperty',
+      type: 'number'
+  }, {
+      name: 'booleanProperty',
+      type: 'checkbox'
+  }]
+};
+</code></pre>
+
+<p>The above sample will produce the following dashboard page:</p>
+
+<p><img src="../images/basic-dashboard.png" alt="Example basic dashboard" title="" /></p></div><div class="section api"><a name="s-Collection.dashboard-1405"></a><h3>Collection.dashboard <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Collection.dashboard-1405">#</a></h3>
+
+<p>A resource can describe the dependencies of a fully custom dashboard editor UI. This will be passed to the dashboard during rendering to create a custom UI.</p>
+
+<p>This example creates the custom dashboard for the <code>Collection</code> resource. It automatically includes pages and page-specific scripts:</p>
+
+<pre><code>Collection.dashboard = {
+    path: path.join(__dirname, 'dashboard')
+  , pages: ['Properties', 'Data', 'Events', 'API']
+  , scripts: [
+      '/js/ui.js'
+    , '/js/util.js'
+  ]
+}
+</code></pre>
+
+<ul>
+<li><code>path</code> {String}</li>
+</ul>
+
+<p>The absolute path to this resource's dashboard</p>
+
+<ul>
+<li><code>pages</code> {Array} <em>(optional)</em></li>
+</ul>
+
+<p>An array of pages to appear in the sidebar. If this is not provided, the only page available will be "Config" (and "Events", if <code>MyResource.events</code> is set).</p>
+
+<p>The dashboard will load content from <code>[current-page].html</code> and <code>js/[current-page].js</code>.</p>
+
+<p><em>Note: The "Config" page will load from <code>index.html</code> and <code>js/index.js</code>.</em></p>
+
+<ul>
+<li><code>scripts</code> {Array} <em>(optional)</em></li>
+</ul>
+
+<p>An array of extra JavaScript files to load with the dashboard pages.</p><div class="section reference"><a name="s-Dashboard asset loading-2018"></a><h4>Dashboard asset loading <!-- ref --> <a class="anchor-link" href="developing-modules-include=all.html#s-Dashboard%20asset%20loading-2018">#</a></h4>
+
+<p>When you request a page from a custom dashboard, it will load the following files, if they are available, from the <code>dashboard.path</code>:</p>
+
+<ul>
+<li><code>[current-page].html</code></li>
+<li><code>js/[current-page].js</code></li>
+<li><code>style.css</code></li>
+</ul>
+
+<p>The default page is <code>index</code>; the <code>config</code> page will also redirect to <code>index</code>. </p>
+
+<p>The <code>config</code> or <code>index</code> page will load the basic dashboard if no <code>index.html</code> file is provided.
+The <code>events</code> page will load the default event editor if no <code>events.html</code> file is provided.</p>
+
+<p>It will also load the JavaScript files in the <code>dashboard.scripts</code> property.</p></div><div class="section"><a name="s-Creating a custom dashboard-2018"></a><h4>Creating a custom dashboard <a class="anchor-link" href="developing-modules-include=all.html#s-Creating%20a%20custom%20dashboard-2018">#</a></h4><div class="section reference"><a name="s-Event editor control-2609"></a><h5>Event editor control <!-- ref --> <a class="anchor-link" href="developing-modules-include=all.html#s-Event%20editor%20control-2609">#</a></h5>
+
+<p>To embed the event editor in your dashboard, include this empty div:</p>
+
+<pre><code>&lt;div id="event-editor" class="default-editor"&gt;&lt;/div&gt;
+</code></pre></div><div class="section reference"><a name="s-Styling-2609"></a><h5>Styling <!-- ref --> <a class="anchor-link" href="developing-modules-include=all.html#s-Styling-2609">#</a></h5>
+
+<p>For styling, the dashboard uses a re-skinned version of <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2.0.2</a>. </p></div><div class="section reference"><a name="s-JavaScript-2609"></a><h5>JavaScript <!-- ref --> <a class="anchor-link" href="developing-modules-include=all.html#s-JavaScript-2609">#</a></h5>
+
+<p>The dashboard provides several JavaScript libraries by default:</p>
+
+<ul>
+<li><a href="http://jquery.com/">jQuery 1.7.2</a></li>
+<li><a href="https://github.com/carhartl/jquery-cookie/">jquery.cookie</a></li>
+<li><a href="http://underscorejs.org/">Underscore 1.3.3</a></li>
+<li><a href="http://twitter.github.com/bootstrap/javascript.html">Twitter Bootstrap 2.0.2</a></li>
+<li><a href="http://visionmedia.github.com/uikit/">UIKit</a></li>
+<li><a href="https://github.com/ajaxorg/ace">Ace Editor</a> (no-conflict version)
+<ul><li>JavaScript mode</li>
+<li>JSON mode</li>
+<li>Custom theme for the Dashboard (<code>ace/theme/deployd</code>)</li></ul></li>
+<li><a href="http://code.google.com/p/google-code-prettify/">Google Code Prettify</a></li>
+<li>dpd.js
+<ul><li><em>Note:</em> all dpd.js requests will be sent as <a href="collections/reference/http.md.html#s-root-requests">root</a></li></ul></li>
+</ul>
+
+<p>Within the dashboard, a <code>Context</code> object is available:</p>
+
+<pre><code>//Automatically generated by Deployd:
+window.Context = {
+  resourceId: '/hello', // The id of the current resource
+  resourceType: 'Hello', // The type of the current resource
+  page: 'properties', // The current page, in multi-page dashboards
+  basicDashboard: {} // The configuration of the basic dashboard
+};
+</code></pre>
+
+<p>You can use this to query the current resource:</p>
+
+<pre><code>dpd(Context.resourceId).get(function(result, err) {
+  //Do something
+});
+</code></pre>
+
+<p>In the dashboard, you also have access to the special <code>__resources</code> resource, which lets you update your app's configuration files:</p>
+
+<pre><code>// Get the config for the current resource
+dpd('__resources').get(Context.resourceId, function(result, err) {
+  //Do something
+});
+
+// Set a property for the current resource
+dpd('__resources').put(Context.resourceId, {someProperty: true}, function(result, err) {
+  //Do something
+});
+
+// Set all properties for the current resource, deleting any that are not provided
+dpd('__resources').put(Context.resourceId, {someProperty: true, $setAll: true}, function(result, err) {
+  //Do something
+});
+
+// Save another file, which will be loaded by the resource
+dpd('__resources').post(Context.resourceId + '/content.md', {value: "# Hello World!"}, function(result, err)) {
+  //Do something
+});
+</code></pre></div></div></div></div><div class="section"><a name="s-Server"></a><h2>Server <a class="anchor-link" href="developing-modules-include=all.html#s-Server">#</a></h2>
+
+<p>Deployd's <code>Server</code> extends node's <code>http.Server</code>. A <code>Server</code> is created with an options object that tells Deployd what port to serve on and which database to connect to.</p>
+
+<p>The <code>Server</code> object is also the main entry point for modules. After it is started, the <code>Server</code> instance is available at <code>process.server</code>.</p><div class="section"><a name="s-Class: Server-631"></a><h3>Class: Server <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20Server-631">#</a></h3>
+
+<p>Servers are created when calling the Deployd exported function.</p>
+
+<pre><code>var deployd = require('deployd')
+  , options = {port: 3000}
+  , server = deployd(options);
+</code></pre>
+
+<ul>
+<li><p><code>options</code> {Object}</p>
+
+<ul><li><code>port</code> {Number} - the port to listen on</li>
+<li><code>db</code> {Object} - the database to connect to</li>
+<li><code>port</code> {Number} - the port of the database server</li>
+<li><code>host</code> {String} - the ip or domain of the database server</li>
+<li><code>name</code> {String} - the name of the database</li>
+<li><code>credentials</code> {Object} - credentials for the server
+<ul><li><code>username</code> {String}</li>
+<li><code>password</code> {String}</li></ul></li>
+<li><code>env</code> {String} - the environment to run in.</li></ul></li>
+</ul>
+
+<p><em>Note:</em> If <code>options.env</code> is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.</p></div><div class="section api"><a name="s-Server.listen([port], [host])-631"></a><h3>Server.listen([port], [host]) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Server.listen(%5Bport%5D,%20%5Bhost%5D)-631">#</a></h3>
+
+<p>Load any configuration and start listening for incoming connections.</p>
+
+<pre><code>var dpd = require('deployd')
+  , server = dpd()
+
+dpd.listen();
+dpd.on('listening', function() {
+  console.log(server.options.port); // 2403
+});
+</code></pre></div><div class="section api"><a name="s-Server.createStore(namespace) -631"></a><h3>Server.createStore(namespace)  <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Server.createStore(namespace)%20-631">#</a></h3>
+
+<p>Create a new <code>Store</code> for persisting data using the database info that was passed to the server when it was created.</p>
+
+<pre><code>// Create a new server
+var server = new Server({port: 3000, db: {host: 'localhost', port: 27015, name: 'my-db'}});
+
+// Attach a store to the server
+var todos = server.createStore('todos');
+
+// Use the store to CRUD data
+todos.insert({name: 'go to the store', done: true}, ...); // see `Store` for more info
+</code></pre></div><div class="section api"><a name="s-Server.sockets-631"></a><h3>Server.sockets <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Server.sockets-631">#</a></h3>
+
+<p>The <strong>socket.io</strong> sockets <code>Manager</code> object (<a href="https://github.com/LearnBoost/socket.io/blob/master/lib/manager.js">view source</a>).</p></div><div class="section api"><a name="s-Server.sessions-631"></a><h3>Server.sessions <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Server.sessions-631">#</a></h3>
+
+<p>The server's <a href="developing-modules/internal-api/session-store.md.html">SessionStore</a>.</p></div><div class="section api"><a name="s-Server.router-631"></a><h3>Server.router <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Server.router-631">#</a></h3>
+
+<p>The server's <code>Router</code>.</p></div><div class="section api"><a name="s-Server.resources-631"></a><h3>Server.resources <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Server.resources-631">#</a></h3>
+
+<p>An <code>Array</code> of the server's <a href="developing-modules/internal-api/resource.md.html">Resource</a> instances. These are built from the config and type loaders.</p></div></div><div class="section"><a name="s-Session"></a><h2>Session <a class="anchor-link" href="developing-modules-include=all.html#s-Session">#</a></h2>
+
+<p>An in-memory representation of a client or user connection that can be saved to disk. Data will be passed around via a <a href="developing-modules/internal-api/context.md.html">Context</a> to resources.</p><div class="section"><a name="s-Class: Session-740"></a><h3>Class: Session <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20Session-740">#</a></h3>
+
+<p>A store for persisting sessions in-between connection and disconnection. Automatically creates session IDs on inserted objects.</p>
+
+<pre><code>var session = new Session({id: 'my-sid', new SessionStore('sessions', db)});
+session.set({uid: 'my-uid'}).save();
+</code></pre>
+
+<ul>
+<li><code>data</code> {Object} </li>
+</ul>
+
+<p>The data used to construct the session.</p>
+
+<ul>
+<li><code>store</code> {SessionStore} </li>
+</ul>
+
+<p>The store used to persist the session.</p>
+
+<ul>
+<li><code>sockets</code> {Socket.IO.sockets} </li>
+</ul>
+
+<p>The Socket.IO sockets object used to attach an existing socket.</p><div class="section api"><a name="s-Session.set(changes)-1332"></a><h4>Session.set(changes) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Session.set(changes)-1332">#</a></h4>
+
+<ul>
+<li><code>changes</code> {Object} </li>
+</ul>
+
+<p>An object containing changes to the session's data.</p></div><div class="section api"><a name="s-Session.save(fn)-1332"></a><h4>Session.save(fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Session.save(fn)-1332">#</a></h4>
+
+<ul>
+<li><code>fn(err, data)</code> {Function} <em>optional</em></li>
+</ul>
+
+<p>Save the in memory representation of a session to its store.</p></div><div class="section api"><a name="s-Session.fetch(fn)-1332"></a><h4>Session.fetch(fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Session.fetch(fn)-1332">#</a></h4>
+
+<ul>
+<li><code>fn(err, data)</code> {Function} <em>optional</em></li>
+</ul>
+
+<p>Reset the session using the data persisted in its store.</p></div><div class="section api"><a name="s-Session.remove(fn)-1332"></a><h4>Session.remove(fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Session.remove(fn)-1332">#</a></h4>
+
+<ul>
+<li><code>fn(err, data)</code> {Function} <em>optional</em></li>
+</ul>
+
+<p>Remove the session.</p></div><div class="section api"><a name="s-Session.emitToAll(event, data)-1332"></a><h4>Session.emitToAll(event, data) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Session.emitToAll(event,%20data)-1332">#</a></h4>
+
+<ul>
+<li><code>event</code> {String}</li>
+</ul>
+
+<p>The event to emit to all session's sockets.</p>
+
+<ul>
+<li><code>data</code> {Object} <em>optional</em></li>
+</ul>
+
+<p>The data to send to sockets listening to the given event.</p></div><div class="section api"><a name="s-Session.emitToUsers(collection, query, event, data)-1332"></a><h4>Session.emitToUsers(collection, query, event, data) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Session.emitToUsers(collection,%20query,%20event,%20data)-1332">#</a></h4>
+
+<ul>
+<li><code>collection</code> {Collection}</li>
+</ul>
+
+<p>The user-collection instance (eg. dpd.todos) to use to find users.</p>
+
+<ul>
+<li><code>query</code> {Object}</li>
+</ul>
+
+<p>Only emit the event to users that match this query.</p>
+
+<ul>
+<li><code>event</code> {String}</li>
+</ul>
+
+<p>The event to emit to all session's sockets.</p>
+
+<ul>
+<li><code>data</code> {Object} <em>optional</em></li>
+</ul>
+
+<p>The data to send to sockets listening to the given event.</p></div></div></div><div class="section"><a name="s-Session Store"></a><h2>Session Store <a class="anchor-link" href="developing-modules-include=all.html#s-Session%20Store">#</a></h2>
+
+<p>Sessions are persisted in a modified store. This store has several methods to help create and manage sessions.</p><div class="section"><a name="s-Class: SessionStore-1297"></a><h3>Class: SessionStore <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20SessionStore-1297">#</a></h3>
+
+<p>A store for persisting sessions in-between connection and disconnection. Automatically creates session IDs on inserted objects.</p>
+
+<pre><code>var db = process.server.db;
+var sockets = process.server.sockets;
+var name = 'sessions';
+var store = new SessionStore(name, db, sockets);
+</code></pre>
+
+<ul>
+<li><code>name</code> {String} </li>
+</ul>
+
+<p>The name of the db store.</p>
+
+<ul>
+<li><code>db</code> {Db} </li>
+</ul>
+
+<p>The server db instance</p>
+
+<ul>
+<li><code>sockets</code> {Socket.IO.sockets} </li>
+</ul>
+
+<p>The socket.io <code>sockets</code> object.</p><div class="section api"><a name="s-SessionStore.createSession(sid, fn)-1857"></a><h4>SessionStore.createSession(sid, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-SessionStore.createSession(sid,%20fn)-1857">#</a></h4>
+
+<ul>
+<li><code>sid</code> {String} <em>optional</em></li>
+</ul>
+
+<p>An existing session id.</p>
+
+<ul>
+<li><code>fn(err, session)</code> {Function}</li>
+</ul>
+
+<p>Called once the session has been created.</p></div></div></div><div class="section"><a name="s-Store"></a><h2>Store <a class="anchor-link" href="developing-modules-include=all.html#s-Store">#</a></h2>
+
+<p>An abstraction of a collection of objects in a database. Collections are HTTP wrappers around a <code>Store</code>. You can access or create a store the same way.</p>
+
+<pre><code>var myStore = process.server.createStore('my-store');
+</code></pre><div class="section"><a name="s-Class: Store-525"></a><h3>Class: Store <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20Store-525">#</a></h3>
+
+<p>You shouldn't construct <code>Store</code>s directly. Instead use the <a href="developing-modules/internal-api/server.md.html#s-Server.createStore-namespace">process.server.createStore()</a> method.</p><div class="section api"><a name="s-Store.insert(object, fn)-1117"></a><h4>Store.insert(object, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Store.insert(object,%20fn)-1117">#</a></h4>
+
+<ul>
+<li><code>object</code> {Object}</li>
+</ul>
+
+<p>The data to insert into the store.</p>
+
+<ul>
+<li><code>fn(err, result)</code> {Function}</li>
+</ul>
+
+<p>Called once the insert operation is finished.</p></div><div class="section api"><a name="s-Store.count(query, fn)-1117"></a><h4>Store.count(query, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Store.count(query,%20fn)-1117">#</a></h4>
+
+<ul>
+<li><code>query</code> {Object}</li>
+</ul>
+
+<p>Only count objects that match this query.</p>
+
+<ul>
+<li><code>fn(err, count)</code> {Function}</li>
+</ul>
+
+<p>Called once the count operation is finished. <code>count</code> is a number.</p></div><div class="section api"><a name="s-Store.find(query, fn)-1117"></a><h4>Store.find(query, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Store.find(query,%20fn)-1117">#</a></h4>
+
+<ul>
+<li><code>query</code> {Object}</li>
+</ul>
+
+<p>Only returns objects that match this query.</p>
+
+<ul>
+<li><code>fn(err, results)</code> {Function}</li>
+</ul>
+
+<p>Called once the find operation is finished.</p></div><div class="section api"><a name="s-Store.first(query, fn)-1117"></a><h4>Store.first(query, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Store.first(query,%20fn)-1117">#</a></h4>
+
+<ul>
+<li><p><code>query</code> {Object}</p></li>
+<li><p><code>fn(err, result)</code> {Function}</p></li>
+</ul>
+
+<p>Find the first object in the store that match the given query.</p></div><div class="section api"><a name="s-Store.update(query, changes, fn)-1117"></a><h4>Store.update(query, changes, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Store.update(query,%20changes,%20fn)-1117">#</a></h4>
+
+<ul>
+<li><p><code>query</code> {Object}</p></li>
+<li><p><code>changes</code> {Object}</p></li>
+<li><p><code>fn(err, updated)</code> {Function}</p></li>
+</ul>
+
+<p>Update an object or objects in the store that match the given query only modifying the values in the given changes object.</p></div><div class="section api"><a name="s-Store.remove(query, fn)-1117"></a><h4>Store.remove(query, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Store.remove(query,%20fn)-1117">#</a></h4>
+
+<ul>
+<li><p><code>query</code> {Object}</p></li>
+<li><p><code>fn(err, updated)</code> {Function}</p></li>
+</ul>
+
+<p>Remove an object or objects in the store that match the given query.</p></div><div class="section api"><a name="s-Store.rename(name, fn)-1117"></a><h4>Store.rename(name, fn) <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Store.rename(name,%20fn)-1117">#</a></h4>
+
+<ul>
+<li><p><code>name</code> {String}</p></li>
+<li><p><code>fn(err)</code> {Function}</p></li>
+</ul>
+
+<p>Rename the store.</p></div></div></div>  
+
+      
+    
+    <h3 style="text-align: center;">More</h3>
+
+    
+    
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="well">
+          <h4>Other docs in "Docs"</h4>
+          <ul>
+            
+              <li><a href="getting-started/what-is-deployd.md.html">Getting Started</a></li>
+            
+              <li><a href="basics/cli.md.html">Basics</a></li>
+            
+              <li><a href="collections/creating-collections.md.html">Collections</a></li>
+            
+              <li><a href="users/creating-user-collections.md.html">Users</a></li>
+            
+              <li><a href="using-modules/installing-modules.md.html">Using Modules</a></li>
+            
+              <li><a href="server/as-a-node-module.md.html">The Deployd Server</a></li>
+            
+          </ul>
+        </div>
+      </div>
+       
+        <div class="span6">
+          <div class="well">
+            <h4>Related Examples</h4>
+            <ul>
+              
+                <li><a href="developing-modules/examples/email.md.html">Email Resource</a></li>
+              
+                <li><a href="developing-modules/examples/event.md.html">Event Resource</a></li>
+              
+                <li><a href="developing-modules/examples/s3.md.html">S3 Bucket Resource</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+    <div class="docs-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              
+                <li><a href="getting-started/what-is-deployd.md.html">Getting Started</a></li>
+              
+                <li><a href="basics/cli.md.html">Basics</a></li>
+              
+                <li><a href="collections/creating-collections.md.html">Collections</a></li>
+              
+                <li><a href="users/creating-user-collections.md.html">Users</a></li>
+              
+                <li><a href="using-modules/installing-modules.md.html">Using Modules</a></li>
+              
+                <li><a href="server/as-a-node-module.md.html">The Deployd Server</a></li>
+              
+                <li><a href="developing-modules/creating-modules.md.html">Developing Modules</a></li>
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="collections/reference/event-api.md.html">Collections</a></li>
+                
+                  <li><a href="collections/reference/event-api.md.html">Event API</a></li>
+                
+                  <li><a href="collections/reference/http.md.html">Over HTTP</a></li>
+                
+                  <li><a href="collections/reference/querying-collections.md.html">Querying Collections</a></li>
+                
+                  <li><a href="collections/reference/updating-objects.md.html">Updating Objects in Collections</a></li>
+                
+                  <li><a href="collections/reference/dpd-js.md.html">Using dpd.js</a></li>
+                
+              
+                <li class="nav-header"><a href="using-modules/reference/dpd-js.md.html">Using Modules</a></li>
+                
+                  <li><a href="using-modules/reference/dpd-js.md.html">Dpd.js for Custom Resources</a></li>
+                
+                  <li><a href="using-modules/reference/event-api.md.html">Event API for Custom Resources</a></li>
+                
+              
+                <li class="nav-header"><a href="developing-modules/internal-api/collection.md.html">Developing Modules</a></li>
+                
+                  <li><a href="developing-modules/internal-api/collection.md.html">Collection Resource Type</a></li>
+                
+                  <li><a href="developing-modules/internal-api/context.md.html">Context</a></li>
+                
+                  <li><a href="developing-modules/internal-api/script.md.html">Event Scripts</a></li>
+                
+                  <li><a href="developing-modules/internal-api/internal-client.md.html">Internal Client</a></li>
+                
+                  <li><a href="developing-modules/internal-api/resource.md.html">Resource Types</a></li>
+                
+                  <li><a href="developing-modules/internal-api/server.md.html">Server</a></li>
+                
+                  <li><a href="developing-modules/internal-api/session.md.html">Session</a></li>
+                
+                  <li><a href="developing-modules/internal-api/session-store.md.html">Session Store</a></li>
+                
+                  <li><a href="developing-modules/internal-api/store.md.html">Store</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="collections/creating-collections.md.html">Collections</a></li>
+                
+                  <li><a href="../index.html">A Simple Todo App</a></li>
+                
+                  <li><a href="../index.html">A Simple Todo App with AngularJS</a></li>
+                
+                  <li><a href="../index.html">A Simple Todo App with Backbone.js</a></li>
+                
+                  <li><a href="../index.html">Chatroom</a></li>
+                
+              
+                <li class="nav-header"><a href="users/creating-user-collections.md.html">Users</a></li>
+                
+                  <li><a href="../index.html">Microblogging app</a></li>
+                
+                  <li><a href="../index.html">Simple Login Form</a></li>
+                
+              
+                <li class="nav-header"><a href="developing-modules/creating-modules.md.html">Developing Modules</a></li>
+                
+                  <li><a href="../index.html">Email Resource</a></li>
+                
+                  <li><a href="../index.html">Event Resource</a></li>
+                
+                  <li><a href="../index.html">S3 Bucket Resource</a></li>
+                
+                
+            </ul>
+          </div>
+          <div class="span3">
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">available on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span navigation">
+            <dl>
+              <dt><img src="http://deployd.com/img/footer-dt.png" alt="deployd"></dt>
+              <dd><a href="http://deployd.com/">Home</a></dd>
+              <dd><a href="http://deployd.com/video.html">Screencast</a></dd>
+              <dd><a href="http://deployd.com/features.html">Features</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Support</a></dd>
+            </dl>
+            <dl>
+              <dt>documentation</dt>
+              <dd><a href="http://docs.deployd.com/guides">Guides</a></dd>
+              <dd><a href="http://docs.deployd.com/api">API</a></dd>
+              <dd><a href="http://docs.deployd.com/examples">Examples</a></dd>
+              <dd><a href="http://docs.deployd.com/modules">Modules</a></dd>
+            </dl>
+            <dl>
+              <dt>community</dt>
+              <dd><a href="http://deployd.com/community.html">Questions</a></dd>
+              <dd><a href="https://twitter.com/deploydapp">Tweets</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Issues</a></dd>
+              <dd><a href="https://github.com/deployd/deployd">Github</a></dd>
+            </dl>
+            <dl>
+              <dt>contact</dt>
+              <dd><a href="mailto:hello@deployd.com">hello@deployd.com</a></dd>
+            </dl>
+          </div>
+          <div class="span logo-container">
+            <div class="logo">
+              <img src="http://deployd.com/img/footer-logo.png" alt="deployd">
+            </div>
+          </div>
+          <div class="span email-container">
+            <dl id="mc_embed_signup" class="span4">
+            <dt>Get deployd emails</dt>
+            <dd>
+              <form action="http://deployd.us2.list-manage.com/subscribe/post?u=4f1b944ba8c90738eb8e3fa3c&amp;id=7bb18e6b80" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-vertical" target="_blank" novalidate="">
+              <div class="mc-field-group">
+                <input type="email" placeholder="your@email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../javascripts/app.js"></script>
+  </body>
+</html>
