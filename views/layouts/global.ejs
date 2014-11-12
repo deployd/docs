@@ -16,7 +16,7 @@
     <%- script('libs/jquery.highlight') %>
     <%- script('libs/jquery.masonry') %>
     <%- script('libs/prettify') %>
-    
+
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -38,7 +38,7 @@
     return '';
   }
   %>
-  
+
   <body>
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
@@ -50,13 +50,13 @@
             <ul class="nav">
               <!--<li><a href="//cloud.deployd.com">cloud</a></li>-->
               <li class="active"><a href="//docs.deployd.com">docs</a></li>
-              <li><a href="//deployd.com/community.html">community</a></li>
-              <li><a href="//deployd.com/blog.html">blog</a></li>
+              <li><a href="https://groups.google.com/forum/?fromgroups#!forum/deployd-users">community</a></li>
+              <!--li><a href="//deployd.com/blog.html">blog</a></li-->
             </ul>
           </div><!--/.nav-collapse -->
-          
+
           <%- partial('search', {info: data.info}) %>
-          
+
           <div id="social" class="nav-collapse pull-left">
             <ul class="nav">
               <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fdeployd.com%2F&amp;size=m&amp;text=Deployd%20Platform%20(%40deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&amp;url=http%3A%2F%2Fwww.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
@@ -70,7 +70,7 @@
     <div class="navbar navbar-static-top secondary-nav">
       <div class="navbar-inner">
         <div class="container">
-          <ul class="nav">        
+          <ul class="nav">
             <li class="<%= active('home', data) %>"><a href="/">home</a></li>
             <li class="<%= active('guides', data) %>" ><a href="/guides">guides</a></li>
             <li class="<%= active('api', data) %>"><a href="/api">api</a></li>
@@ -106,20 +106,20 @@
                 <% c.children().forEach(function (cc) { %>
                   <li><a href="<%= cc.url() %>"><%= cc.title() %></a></li>
                 <% }) %>
-              <% }) %>  
+              <% }) %>
             </ul>
           </div>
           <div class="span3">
             <h3>Examples</h3>
             <ul class="nav nav-list">
-              <% rootChildren.forEach(function (c) { 
+              <% rootChildren.forEach(function (c) {
                 var examples = c.examples();
                 if(!examples || !examples.length) return; %>
                 <li class="nav-header"><a href="<%= c.url() %>"><%= c.title() %></a></li>
                 <% examples.forEach(function (ex) { %>
                   <li><a href="<%= c.parent().url() %>"><%= ex.title() %></a></li>
                 <% }) %>
-              <% }) %>  
+              <% }) %>
             </ul>
           </div>
           <div class="span3">

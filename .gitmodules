@@ -4,4 +4,4 @@
 	url = git://github.com/twitter/bootstrap.git
 [submodule "dpd-styles"]
 	path = dpd-styles
-	url = git@github.com:jeffbcross/dpd-styles.git
+	url = git@github.com/jeffbcross/dpd-styles.git
