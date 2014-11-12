@@ -6,14 +6,20 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "3.0.0",
     "ejs": "*",
+    "express": "3.0.0",
     "less-middleware": "*",
-    "natural": "~0.1.17",
     "markdown": "~0.4.0",
+    "natural": "~0.1.17",
     "node-markdown": "~0.1.1",
-    "walkdir": "0.0.5",
+    "nodefly": "~0.1.15",
     "shelljs": "0.0.8",
-    "nodefly": "~0.1.15"
+    "walkdir": "0.0.5"
+  },
+  "devDependencies": {
+    "fs-extra": "^0.12.0",
+    "gh-pages": "^0.2.0",
+    "glob": "^4.1.5",
+    "lodash": "^2.4.1"
   }
 }
