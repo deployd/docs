@@ -3,7 +3,7 @@
   <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     
-      <title>Installing Deployd - Deployd Docs</title>
+      <title>Using Deployd as an Express middleware - Deployd Docs</title>
     
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
     <link href="../../stylesheets/style.css" rel='stylesheet' type='text/css'>
@@ -92,9 +92,9 @@
 
   <li><a href="../../index.html">Docs</a><span>/</span></li>
 
-  <li>Getting Started</li>
+  <li>The Deployd Server</li>
   
-  <li>(<a href="../getting-started-include=all.html">View All</a>)</li>
+  <li>(<a href="../server-include=all.html">View All</a>)</li>
   
 </ul>
 
@@ -105,15 +105,13 @@
 <div id="explorer">
   <ul id="files" class="nav">
     
-      <li class=""><a href="what-is-deployd.md.html"><i class="icon-file"></i> <span>What is Deployd?</span></a></li>
+      <li class=""><a href="as-a-node-module.md.html"><i class="icon-file"></i> <span>Using Deployd as a Node.js Module</span></a></li>
     
-      <li class=""><a href="faq.md.html"><i class="icon-file"></i> <span>FAQ</span></a></li>
+      <li class="active"><a href="work-with-express.md.html"><i class="icon-file"></i> <span>Using Deployd as an Express middleware</span></a></li>
     
-      <li class="active"><a href="installing-deployd.md.html"><i class="icon-file"></i> <span>Installing Deployd</span></a></li>
+      <li class=""><a href="run-script.md.html"><i class="icon-file"></i> <span>Building a custom run script in Node.js</span></a></li>
     
-      <li class=""><a href="your-first-api.md.html"><i class="icon-file"></i> <span>Your first Deployd API</span></a></li>
-    
-      <li class=""><a href="your-first-app.md.html"><i class="icon-file"></i> <span>Your first app with Deployd</span></a></li>
+      <li class=""><a href="your-server.md.html"><i class="icon-file"></i> <span>Deploying to your own Server</span></a></li>
     
     
   </ul>
@@ -127,72 +125,65 @@
     
       
 
-  <div class="section"><a name="s-Installing Deployd"></a><h2>Installing Deployd <a class="anchor-link" href="installing-deployd.md.html#s-Installing%20Deployd">#</a></h2><div class="section"><a name="s-Mac-1798"></a><h3>Mac <a class="anchor-link" href="installing-deployd.md.html#s-Mac-1798">#</a></h3>
+  <div class="section"><a name="s-Using Deployd as an Express middleware"></a><h2>Using Deployd as an Express middleware <a class="anchor-link" href="work-with-express.md.html#s-Using%20Deployd%20as%20an%20Express%20middleware">#</a></h2>
 
-<p>Download the <a href="http://deployd.com">latest OSX installer</a>.</p>
+<p>Deployd can be used with express/connect. Deployd will attach functions and handler to express server object.</p><div class="section"><a name="s-Installing-3618"></a><h3>Installing <a class="anchor-link" href="work-with-express.md.html#s-Installing-3618">#</a></h3>
 
-<p>If everything installed correctly you should be able to open a terminal (/Applications/Utilities/Terminal.app) and type the following:</p>
+<p>For an app in your current directory:</p>
 
-<pre><code>dpd -V
+<pre><code>npm install deployd express socket.io@0.9.x
+</code></pre></div><div class="section"><a name="s-Hello World-3618"></a><h3>Hello World <a class="anchor-link" href="work-with-express.md.html#s-Hello%20World-3618">#</a></h3>
+
+<p>Here is a simple <em>hello world</em> using Deployd as an express middleware.</p>
+
+<pre><code>// hello-server-attach.js
+var PORT = process.env.PORT || 3000;
+var ENV = process.env.NODE_ENV || 'development';
+
+// setup http + express + socket.io
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server, {'log level': 0});
+
+// setup deployd
+require('deployd').attach(server, {
+    socketIo: io,  // if not provided, attach will create one for you.
+    env: ENV,
+    db: {host:'localhost', port:27017, name:'test-app'}
+});
+
+// After attach, express can use server.handleRequest as middleware
+app.use(server.handleRequest);
+
+// start server
+server.listen(PORT);
 </code></pre>
 
-<p>If you see something like <code>0.6.8</code> then Deployd has been successfully installed.</p><div class="section"><a name="s-Troubleshooting-273"></a><h4>Troubleshooting <a class="anchor-link" href="installing-deployd.md.html#s-Troubleshooting-273">#</a></h4><div class="section"><a name="s-"command not found"-1608"></a><h5>"command not found" <a class="anchor-link" href="installing-deployd.md.html#s-"command not found"-1608">#</a></h5>
+<p>Run this like any other express server.</p>
 
-<p>The terminal is not able to find the <code>dpd</code> program. There are a couple things you can try:</p>
-
-<ul>
-<li>restart the terminal app or open a new tab</li>
-<li>add <code>/usr/local/deployd/bin</code> to your PATH (<a href="http://www.tech-recipes.com/rx/2621/os_x_change_path_environment_variable/">instructions</a>)</li>
-</ul></div></div></div></div><div class="section"><a name="s-Windows"></a><h3>Windows <a class="anchor-link" href="installing-deployd.md.html#s-Windows">#</a></h3>
-
-<p>Download the <a href="http://deployd.com">latest Windows installer</a>.</p>
-
-<p>To verify that Deployd installed correctly, open a command prompt (Windows-R, cmd) and type <code>dpd -V</code>. You should see a version number such as <code>0.6.8</code>.</p><div class="section"><a name="s-Troubleshooting-747"></a><h4>Troubleshooting <a class="anchor-link" href="installing-deployd.md.html#s-Troubleshooting-747">#</a></h4><div class="section"><a name="s-"'dpd' is not recognized as an internal or external command"-1608"></a><h5>"'dpd' is not recognized as an internal or external command" <a class="anchor-link" href="installing-deployd.md.html#s-"'dpd' is not recognized as an internal or external command"-1608">#</a></h5>
-
-<p>Windows is unable to find the <code>dpd</code> command line tool. There are a couple of things you can try:</p>
+<pre><code>node hello-server-attach.js
+</code></pre></div><div class="section reference"><a name="s-Server Options-3618"></a><h3>Server Options <!-- ref --> <a class="anchor-link" href="work-with-express.md.html#s-Server%20Options-3618">#</a></h3>
 
 <ul>
-<li>restart the command line or open a new <code>cmd</code> window</li>
-<li>Add the Deployd path to your PATH variable (<a href="http://www.computerhope.com/issues/ch000549.htm">instructions</a>)
-<ul><li>For 64-bit systems, use the path <code>C:\Program Files (x86)\Deployd\bin</code></li>
-<li>For 32-bit systems, use the path <code>C:\Program Files\Deployd\bin</code>.</li></ul></li>
-</ul></div><div class="section"><a name="s-"'$' is not recognized as an internal or external command"-1608"></a><h5>"'
+<li><strong>db</strong> {Object} - the database to connect to
+<ul><li><strong>db.port</strong> {Number} - the port of the database server</li>
+<li><strong>db.host</strong> {String} - the ip or domain of the database server</li>
+<li><strong>db.name</strong> {String} - the name of the database</li>
+<li><strong>db.credentials</strong> {Object} - credentials for db</li>
+<li><strong>db.credentials.username</strong> {String}</li>
+<li><strong>db.credentials.password</strong> {String}</li></ul></li>
+<li><strong>env</strong> {String} - the environment to run in.</li>
+<li><strong>socketIo</strong> {Object} - socket.io instance.</li>
+</ul>
 
-`$` is not part of the syntax for the `dpd` command; it's only used as a placeholder for the command prompt throughout the Deployd documentation. If you see something like this:
+<p><em>Note: If options.env is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.</em></p></div><div class="section"><a name="s-Caveats-3618"></a><h3>Caveats <a class="anchor-link" href="work-with-express.md.html#s-Caveats-3618">#</a></h3>
 
-`$ dpd create my-app`
-
-You only need to type `dpd create my-app`.
-     is not recognized as an internal or external command" <a class="anchor-link" href="installing-deployd.md.html#s-"'
-
-`$` is not part of the syntax for the `dpd` command; it's only used as a placeholder for the command prompt throughout the Deployd documentation. If you see something like this:
-
-`$ dpd create my-app`
-
-You only need to type `dpd create my-app`.
-     is not recognized as an internal or external command"-1608">#</a></h5>
-
-<p><code>$</code> is not part of the syntax for the <code>dpd</code> command; it's only used as a placeholder for the command prompt throughout the Deployd documentation. If you see something like this:</p>
-
-<p><code>$ dpd create my-app</code></p>
-
-<p>You only need to type <code>dpd create my-app</code>.</p></div></div></div><div class="section"><a name="s-From NPM"></a><h3>From NPM <a class="anchor-link" href="installing-deployd.md.html#s-From%20NPM">#</a></h3>
-
-<p>You can install Deployd as a <strong>node module</strong> using <code>npm</code>. Just run the following:</p>
-
-<pre><code>npm install deployd -g
-</code></pre>
-
-<p>The <code>dpd</code> program should be available. Try <code>dpd -V</code>.</p></div><div class="section"><a name="s-From Source"></a><h3>From Source <a class="anchor-link" href="installing-deployd.md.html#s-From%20Source">#</a></h3>
-
-<p>You can download the latest source <a href="http://deployd.com">here</a> or on <a href="http://github.com/deployd/deployd">github</a>.</p>
-
-<pre><code>git clone https://github.com/deployd/deployd.git
-npm install
-npm link
-</code></pre><div class="section"><a name="s-Note - When installing from NPM or Source-1061"></a><h4>Note - When installing from NPM or Source <a class="anchor-link" href="installing-deployd.md.html#s-Note%20-%20When%20installing%20from%20NPM%20or%20Source-1061">#</a></h4>
-
-<p>You must have <code>mongod 2.0.x</code> and <code>node 0.8.x</code> installed and available in your PATH.</p></div></div>  
+<ul>
+<li>Deployd mounts its server on <code>process.server</code>. This means you can only run one Deployd server in a process.</li>
+<li>Deployd loads resources from the <code>process.cwd</code>. Add this to ensure you are in the right directory: <code>process.chdir(__dirname)</code>.</li>
+<li>In order to access the <code>/dashboard</code> without a key you must run Deployd with the <code>env</code> option set to <code>development</code>.</li>
+</ul></div></div>  
 
     
     <h3 style="text-align: center;">More</h3>
@@ -202,16 +193,14 @@ npm link
     <div class="row-fluid">
       <div class="span6 offset3">
         <div class="well">
-          <h4>Other docs in "Getting Started"</h4>
+          <h4>Other docs in "The Deployd Server"</h4>
           <ul>
             
-              <li><a href="what-is-deployd.md.html">What is Deployd?</a></li>
+              <li><a href="as-a-node-module.md.html">Using Deployd as a Node.js Module</a></li>
             
-              <li><a href="faq.md.html">FAQ</a></li>
+              <li><a href="run-script.md.html">Building a custom run script in Node.js</a></li>
             
-              <li><a href="your-first-api.md.html">Your first Deployd API</a></li>
-            
-              <li><a href="your-first-app.md.html">Your first app with Deployd</a></li>
+              <li><a href="your-server.md.html">Deploying to your own Server</a></li>
             
           </ul>
         </div>
@@ -229,7 +218,7 @@ npm link
             <h3>Guides</h3>
             <ul class="nav nav-list">
               
-                <li><a href="what-is-deployd.md.html">Getting Started</a></li>
+                <li><a href="../getting-started/what-is-deployd.md.html">Getting Started</a></li>
               
                 <li><a href="../basics/cli.md.html">Basics</a></li>
               
@@ -239,7 +228,7 @@ npm link
               
                 <li><a href="../using-modules/installing-modules.md.html">Using Modules</a></li>
               
-                <li><a href="../server/as-a-node-module.md.html">The Deployd Server</a></li>
+                <li><a href="as-a-node-module.md.html">The Deployd Server</a></li>
               
                 <li><a href="../developing-modules/creating-modules.md.html">Developing Modules</a></li>
               
