@@ -1209,7 +1209,31 @@ todos.insert({name: 'go to the store', done: true}, ...); // see `Store` for mor
 
 <p>The server's <code>Router</code>.</p></div><div class="section api"><a name="s-Server.resources-631"></a><h3>Server.resources <!-- api --> <a class="anchor-link" href="developing-modules-include=all.html#s-Server.resources-631">#</a></h3>
 
-<p>An <code>Array</code> of the server's <a href="developing-modules/internal-api/resource.md.html">Resource</a> instances. These are built from the config and type loaders.</p></div></div><div class="section"><a name="s-Session"></a><h2>Session <a class="anchor-link" href="developing-modules-include=all.html#s-Session">#</a></h2>
+<p>An <code>Array</code> of the server's <a href="developing-modules/internal-api/resource.md.html">Resource</a> instances. These are built from the config and type loaders.</p></div><div class="section"><a name="s-deployd.attach"></a><h2>deployd.attach <a class="anchor-link" href="developing-modules-include=all.html#s-deployd.attach">#</a></h2>
+
+<p>deployd.attach can attach functions similar to Server Class into a regular http server. It also provide <code>handleRequest</code> function to act as express middleware.</p>
+
+<pre><code>var deployd = require('deployd')
+  , options = {}
+  , server = require('http').createServer(app)
+  , server = deployd.attach(server, options);
+</code></pre>
+
+<ul>
+<li><p><code>options</code> {Object}</p>
+
+<ul><li><code>socketIo</code> {Object} - socket.io instance</li>
+<li><code>db</code> {Object} - the database to connect to</li>
+<li><code>port</code> {Number} - the port of the database server</li>
+<li><code>host</code> {String} - the ip or domain of the database server</li>
+<li><code>name</code> {String} - the name of the database</li>
+<li><code>credentials</code> {Object} - credentials for the server
+<ul><li><code>username</code> {String}</li>
+<li><code>password</code> {String}</li></ul></li>
+<li><code>env</code> {String} - the environment to run in.</li></ul></li>
+</ul>
+
+<p><em>Note:</em> If <code>options.env</code> is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.</p></div></div><div class="section"><a name="s-Session"></a><h2>Session <a class="anchor-link" href="developing-modules-include=all.html#s-Session">#</a></h2>
 
 <p>An in-memory representation of a client or user connection that can be saved to disk. Data will be passed around via a <a href="developing-modules/internal-api/context.md.html">Context</a> to resources.</p><div class="section"><a name="s-Class: Session-740"></a><h3>Class: Session <a class="anchor-link" href="developing-modules-include=all.html#s-Class:%20Session-740">#</a></h3>
 
