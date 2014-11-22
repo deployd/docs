@@ -20,6 +20,8 @@
     "fs-extra": "^0.12.0",
     "gh-pages": "^0.2.0",
     "glob": "^4.1.5",
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "superagent": "^0.21.0",
+    "wait-async": "^1.0.1"
   }
 }

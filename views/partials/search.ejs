@@ -1,4 +1,4 @@
-<div id="search" ng-controller="SearchCtrl" class="pull-right">
+<div id="search" removed-ng-controller="SearchCtrl" class="pull-right">
   <form class="navbar-search" method="get" action="http://www.google.com/search">
     <input type="hidden" name="sitesearch" value="docs.deployd.com" />
     <input value="<%= data.q || '' %>" placeholder="search docs" id="search-input" name="q" type="text" ng-change="change()" ng-model="input" />

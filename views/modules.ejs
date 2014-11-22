@@ -3,15 +3,37 @@
   <li>Modules</li>
 </ul>
 
-<ul id="modules" class="unstyled">
-<% data.info.children().forEach(function (c) { %>
-  <li>
-    <h4>
-      <a href="<%= c.url() %>">
-        <i class="icon-certificate"></i>
-        <%= c.title() %>
-      </a> - <%= c.meta.description %>
-    </h4>
-  </li>
-<% }); %>
-</ul>
+<div ng-controller="ModulesCtrl">
+
+  <style>
+  /* TODO: move to css */
+  #searchForm {padding: 10px;}
+  #searchFor {width: 100%; padding:5px; font-size:large;}
+  </style>
+
+  <form id="searchForm" action="javascript:void 0">
+    <input name="searchFor" id="searchFor" ng-model="input.searchFor" autofocus="" placeholder="search" ng-change="search()">
+  </form>
+
+  <ul id="modules" class="unstyled">
+    <li ng-repeat="module in modules | orderBy:'time.modified':true">
+      <h4>
+        <a href="https://www.npmjs.org/package/{{module._id}}" target="_blank">
+          <i class="icon-certificate"></i>
+          {{module.name}}
+        </a>
+        - {{module.description}}
+        <div class="pull-right">
+          <span>{{moduleMaintainers(module)}}</span>
+          <img ng-src="https://img.shields.io/npm/v/{{module._id}}.svg?style=flat"/>
+          <span class="badge badge-success">{{module.time.modified | date:'yyyy-MM-dd'}}</span>
+        </div>
+      </h4>
+    </li>
+  </ul>
+
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+<%- script('module-control.data') %>
+<%- script('module-control') %>

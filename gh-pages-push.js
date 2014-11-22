@@ -3,7 +3,6 @@ var Path = require('path');
 
 
 var options = {
-    //repo: 'https://github.com/deployd/docs',
     message: 'Auto-generated deployd docs',
 }
 
