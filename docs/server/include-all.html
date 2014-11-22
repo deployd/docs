@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docs">
+  <head>
+    
+      <title>deployd</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="../../stylesheets/style.css" rel='stylesheet' type='text/css'>
+    <link href="../../stylesheets/prettify.css" rel='stylesheet' type='text/css'>
+    <script src="../../javascripts/libs/angular.js"></script>
+    <script src="../../javascripts/libs/angular-sanitize.js"></script>
+    <script src="../../javascripts/libs/jquery-1.8.2.js"></script>
+    <script src="../../javascripts/libs/bootstrap.js"></script>
+    <script src="../../javascripts/libs/jquery.highlight.js"></script>
+    <script src="../../javascripts/libs/jquery.masonry.js"></script>
+    <script src="../../javascripts/libs/prettify.js"></script>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  
+
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="//deployd.com">
+            <img src="//deployd.com/img/logo-text.png">
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--<li><a href="//cloud.deployd.com">cloud</a></li>-->
+              <li class="active"><a href="//docs.deployd.com">docs</a></li>
+              <li><a href="https://groups.google.com/forum/?fromgroups#!forum/deployd-users">community</a></li>
+              <!--li><a href="//deployd.com/blog.html">blog</a></li-->
+            </ul>
+          </div><!--/.nav-collapse -->
+
+          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+  <form class="navbar-search" method="get" action="http://www.google.com/search">
+    <input type="hidden" name="sitesearch" value="docs.deployd.com" />
+    <input value="" placeholder="search docs" id="search-input" name="q" type="text" ng-change="change()" ng-model="input" />
+  </form>
+  <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
+      {{ term.title || term.reference }}
+    </li>
+  </ul>
+</div>
+
+
+
+
+          <div id="social" class="nav-collapse pull-left">
+            <ul class="nav">
+              <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fdeployd.com%2F&amp;size=m&amp;text=Deployd%20Platform%20(%40deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&amp;url=http%3A%2F%2Fwww.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+      <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script id="twitter-wjs" src="//platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-static-top secondary-nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li class="home"><a href="../../">home</a></li>
+            <li class="guides" ><a href="../../guides">guides</a></li>
+            <li class="api"><a href="../../api">api</a></li>
+            <li class="examples"><a href="../../examples">examples</a></li>
+            <li class="modules"><a href="../../modules">modules</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+
+<ul id="breadcrumb" class="unstyled">
+
+  <li><a href="../../docs">Docs</a><span>/</span></li>
+
+  <li>The Deployd Server</li>
+  
+</ul>
+
+<div id="browser" class="row">
+  <div id="sidebar" class="span3">
+    
+
+<div id="explorer">
+  <ul id="files" class="nav">
+    
+      <li class=""><a href="../../docs/server/as-a-node-module.html"><i class="icon-file"></i> <span>Using Deployd as a Node.js Module</span></a></li>
+    
+      <li class=""><a href="../../docs/server/work-with-express.html"><i class="icon-file"></i> <span>Using Deployd as an Express middleware</span></a></li>
+    
+      <li class=""><a href="../../docs/server/run-script.html"><i class="icon-file"></i> <span>Building a custom run script in Node.js</span></a></li>
+    
+      <li class=""><a href="../../docs/server/your-server.html"><i class="icon-file"></i> <span>Deploying to your own Server</span></a></li>
+    
+    
+  </ul>
+  
+</div>
+
+
+    
+  </div>
+  <div class="span9 sections">
+    
+      
+      
+        
+
+  <div class="section"><a name="s-Building a custom run script in Node.js"></a><h2>Building a custom run script in Node.js <a class="anchor-link" href="#s-Building a custom run script in Node.js">#</a></h2>
+
+<p>When running in non-local environments we recommend using a simple node script to start your deployd server. With each environment using its own script, you can easily separate out environmental variables (such as connection information) and actions (such as clearing out a test database).</p><div class="section"><a name="s-Example - Production-3644"></a><h3>Example - Production <a class="anchor-link" href="#s-Example - Production-3644">#</a></h3>
+
+<pre><code>// production.js
+var deployd = require('deployd');
+
+var server = deployd({
+  port: process.env.PORT || 5000,
+  env: 'production',
+  db: {
+    host: 'my.production.mongo.host',
+    port: 27105,
+    name: 'my-db',
+    credentials: {
+      username: 'username',
+      password: 'password'
+    }
+  }
+});
+
+server.listen();
+
+server.on('listening', function() {
+  console.log("Server is listening");
+});
+
+server.on('error', function(err) {
+  console.error(err);
+  process.nextTick(function() { // Give the server a chance to return an error
+    process.exit();
+  });
+});
+</code></pre></div><div class="section"><a name="s-Example - Staging-3644"></a><h3>Example - Staging <a class="anchor-link" href="#s-Example - Staging-3644">#</a></h3>
+
+<pre><code>// staging.js
+var deployd = require('deployd');
+
+var server = deployd({
+  port: process.env.PORT || 5000,
+  env: 'staging',
+  db: {
+    host: 'my.production.mongo.host',
+    port: 27105,
+    name: 'my-db',
+    credentials: {
+      username: 'username',
+      password: 'password'
+    }
+  }
+});
+
+// remove all data in the 'todos' collection
+var todos = server.createStore('todos');
+
+todos.remove(function() {
+  // all todos removed
+  server.listen();
+});
+
+server.on('error', function(err) {
+  console.error(err);
+  process.nextTick(function() { // Give the server a chance to return an error
+    process.exit();
+  });
+});
+</code></pre></div><div class="section"><a name="s-Running Your App in Production-3644"></a><h3>Running Your App in Production <a class="anchor-link" href="#s-Running Your App in Production-3644">#</a></h3>
+
+<p>To run your app as a daemon, use the <code>forever</code> module. You can install it from npm.</p>
+
+<pre><code>npm install forever -g
+</code></pre>
+
+<p>Then start the appropriate run script based on your environment.</p>
+
+<pre><code>forever start production.js
+</code></pre>
+
+<p>This will daemonize your app and make sure it runs even if it crashes.</p></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Deploying to your own Server"></a><h2>Deploying to your own Server <a class="anchor-link" href="#s-Deploying to your own Server">#</a></h2>
+
+<p>To deploy your app on your server, or on a cloud hosting service such as EC2 or Heroku, the server must support <a href="http://nodejs.org/">Node.js</a>. </p>
+
+<p>Deployd also requires a <a href="http://www.mongodb.org/">MongoDB</a> database, which can be hosted on the same server or externally. </p>
+
+<p>If you have root shell access on the deployment server, you can install Deployd on it using the command <code>npm install -g deployd</code>. 
+Otherwise, you will need to install Deployd as a dependency of your app itself using <code>npm install deployd</code> in the root directory of your app.</p>
+
+<p>You can use the <code>dpd</code> CLI to run your server; this will start up an instance of MongoDB automatically, using the "data" folder. (Requires MongoDB installed on the server)</p><div class="section"><a name="s-Dashboard Access-2728"></a><h3>Dashboard Access <a class="anchor-link" href="#s-Dashboard Access-2728">#</a></h3>
+
+<p>To set up the dashboard on your server, type <code>dpd keygen</code> on your server's command line to create a remote access key. Type <code>dpd showkey</code> to get the key; you should store this somewhere secure.</p>
+
+<p>You can then go to the <code>/dashboard</code> route on the server and type in that key to gain access.</p></div><div class="section"><a name="s-Server Script-2728"></a><h3>Server Script <a class="anchor-link" href="#s-Server Script-2728">#</a></h3>
+
+<p>Since Deployd is itself a node module, you can write your own scripts to run in production instead of using the command line interface. Read the <a href="../../docs/server/run-script.html">Building a Custom Run Script</a> Guide.</p>
+
+<p><em>Note: Some hosts do not support WebSockets, so <code>dpd.on()</code> may not work correctly on certain deployments.</em></p></div></div>  
+
+      
+        
+
+    
+
+      
+        
+
+  <div class="section"><a name="s-Using Deployd as a Node.js Module"></a><h2>Using Deployd as a Node.js Module <a class="anchor-link" href="#s-Using Deployd as a Node.js Module">#</a></h2>
+
+<p>Deployd is a node module and can be used inside other node programs or as the basis of an entire node program.</p><div class="section"><a name="s-Installing-2979"></a><h3>Installing <a class="anchor-link" href="#s-Installing-2979">#</a></h3>
+
+<p>For an app in your current directory:</p>
+
+<pre><code>npm install deployd
+</code></pre>
+
+<p>You can also install globally:</p>
+
+<pre><code>npm install deployd -g
+</code></pre></div><div class="section"><a name="s-Hello World-2979"></a><h3>Hello World <a class="anchor-link" href="#s-Hello World-2979">#</a></h3>
+
+<p>Here is a simple <em>hello world</em> using Deployd as a node module.</p>
+
+<pre><code>// hello.js
+var deployd = require('deployd')
+  , options = {port: 3000};
+
+var dpd = deployd(options);
+
+dpd.listen();
+</code></pre>
+
+<p>Run this like any other node program.</p>
+
+<pre><code>node hello.js
+</code></pre></div><div class="section reference"><a name="s-Server Options-2979"></a><h3>Server Options <!-- ref --> <a class="anchor-link" href="#s-Server Options-2979">#</a></h3>
+
+<ul>
+<li><strong>port</strong> {Number} - the port to listen on</li>
+<li><strong>db</strong> {Object} - the database to connect to
+<ul><li><strong>db.port</strong> {Number} - the port of the database server</li>
+<li><strong>db.host</strong> {String} - the ip or domain of the database server</li>
+<li><strong>db.name</strong> {String} - the name of the database</li>
+<li><strong>db.credentials</strong> {Object} - credentials for db</li>
+<li><strong>db.credentials.username</strong> {String}</li>
+<li><strong>db.credentials.password</strong> {String}</li></ul></li>
+<li><strong>env</strong> {String} - the environment to run in.</li>
+</ul>
+
+<p><em>Note: If options.env is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.</em></p></div><div class="section"><a name="s-Caveats-2979"></a><h3>Caveats <a class="anchor-link" href="#s-Caveats-2979">#</a></h3>
+
+<ul>
+<li>Deployd mounts its server on <code>process.server</code>. This means you can only run one Deployd server in a process.</li>
+<li>Deployd loads resources from the <code>process.cwd</code>. Add this to ensure you are in the right directory: <code>process.chdir(__dirname)</code>.</li>
+<li>In order to access the <code>/dashboard</code> without a key you must run Deployd with the <code>env</code> option set to <code>development</code>. </li>
+</ul></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Using Deployd as an Express middleware"></a><h2>Using Deployd as an Express middleware <a class="anchor-link" href="#s-Using Deployd as an Express middleware">#</a></h2>
+
+<p>Deployd can be used with express/connect. Deployd will attach functions and handler to express server object.</p><div class="section"><a name="s-Installing-3618"></a><h3>Installing <a class="anchor-link" href="#s-Installing-3618">#</a></h3>
+
+<p>For an app in your current directory:</p>
+
+<pre><code>npm install deployd express socket.io@0.9.x
+</code></pre></div><div class="section"><a name="s-Hello World-3618"></a><h3>Hello World <a class="anchor-link" href="#s-Hello World-3618">#</a></h3>
+
+<p>Here is a simple <em>hello world</em> using Deployd as an express middleware.</p>
+
+<pre><code>// hello-server-attach.js
+var PORT = process.env.PORT || 3000;
+var ENV = process.env.NODE_ENV || 'development';
+
+// setup http + express + socket.io
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server, {'log level': 0});
+
+// setup deployd
+require('deployd').attach(server, {
+    socketIo: io,  // if not provided, attach will create one for you.
+    env: ENV,
+    db: {host:'localhost', port:27017, name:'test-app'}
+});
+
+// After attach, express can use server.handleRequest as middleware
+app.use(server.handleRequest);
+
+// start server
+server.listen(PORT);
+</code></pre>
+
+<p>Run this like any other express server.</p>
+
+<pre><code>node hello-server-attach.js
+</code></pre></div><div class="section reference"><a name="s-Server Options-3618"></a><h3>Server Options <!-- ref --> <a class="anchor-link" href="#s-Server Options-3618">#</a></h3>
+
+<ul>
+<li><strong>db</strong> {Object} - the database to connect to
+<ul><li><strong>db.port</strong> {Number} - the port of the database server</li>
+<li><strong>db.host</strong> {String} - the ip or domain of the database server</li>
+<li><strong>db.name</strong> {String} - the name of the database</li>
+<li><strong>db.credentials</strong> {Object} - credentials for db</li>
+<li><strong>db.credentials.username</strong> {String}</li>
+<li><strong>db.credentials.password</strong> {String}</li></ul></li>
+<li><strong>env</strong> {String} - the environment to run in.</li>
+<li><strong>socketIo</strong> {Object} - socket.io instance.</li>
+</ul>
+
+<p><em>Note: If options.env is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.</em></p></div><div class="section"><a name="s-Caveats-3618"></a><h3>Caveats <a class="anchor-link" href="#s-Caveats-3618">#</a></h3>
+
+<ul>
+<li>Deployd mounts its server on <code>process.server</code>. This means you can only run one Deployd server in a process.</li>
+<li>Deployd loads resources from the <code>process.cwd</code>. Add this to ensure you are in the right directory: <code>process.chdir(__dirname)</code>.</li>
+<li>In order to access the <code>/dashboard</code> without a key you must run Deployd with the <code>env</code> option set to <code>development</code>.</li>
+</ul></div></div>  
+
+      
+    
+    <h3 style="text-align: center;">More</h3>
+
+    
+    
+    <div class="row-fluid">
+      <div class="span6 offset3">
+        <div class="well">
+          <h4>Other docs in "Docs"</h4>
+          <ul>
+            
+              <li><a href="../../docs/getting-started">Getting Started</a></li>
+            
+              <li><a href="../../docs/basics">Basics</a></li>
+            
+              <li><a href="../../docs/collections">Collections</a></li>
+            
+              <li><a href="../../docs/users">Users</a></li>
+            
+              <li><a href="../../docs/using-modules">Using Modules</a></li>
+            
+              <li><a href="../../docs/developing-modules">Developing Modules</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+    <div class="docs-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              
+                <li><a href="../../docs/getting-started">Getting Started</a></li>
+              
+                <li><a href="../../docs/basics">Basics</a></li>
+              
+                <li><a href="../../docs/collections">Collections</a></li>
+              
+                <li><a href="../../docs/users">Users</a></li>
+              
+                <li><a href="../../docs/using-modules">Using Modules</a></li>
+              
+                <li><a href="../../docs/server">The Deployd Server</a></li>
+              
+                <li><a href="../../docs/developing-modules">Developing Modules</a></li>
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../../docs/collections/reference">Collections</a></li>
+                
+                  <li><a href="../../docs/collections/reference/event-api.html">Event API</a></li>
+                
+                  <li><a href="../../docs/collections/reference/http.html">Over HTTP</a></li>
+                
+                  <li><a href="../../docs/collections/reference/querying-collections.html">Querying Collections</a></li>
+                
+                  <li><a href="../../docs/collections/reference/updating-objects.html">Updating Objects in Collections</a></li>
+                
+                  <li><a href="../../docs/collections/reference/dpd-js.html">Using dpd.js</a></li>
+                
+              
+                <li class="nav-header"><a href="../../docs/using-modules/reference">Using Modules</a></li>
+                
+                  <li><a href="../../docs/using-modules/reference/dpd-js.html">Dpd.js for Custom Resources</a></li>
+                
+                  <li><a href="../../docs/using-modules/reference/event-api.html">Event API for Custom Resources</a></li>
+                
+              
+                <li class="nav-header"><a href="../../docs/developing-modules/internal-api">Developing Modules</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/collection.html">Collection Resource Type</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/context.html">Context</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/script.html">Event Scripts</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/internal-client.html">Internal Client</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/resource.html">Resource Types</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/server.html">Server</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/session.html">Session</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/session-store.html">Session Store</a></li>
+                
+                  <li><a href="../../docs/developing-modules/internal-api/store.html">Store</a></li>
+                
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../../docs/collections">Collections</a></li>
+                
+                  <li><a href="../../docs">A Simple Todo App</a></li>
+                
+                  <li><a href="../../docs">A Simple Todo App with AngularJS</a></li>
+                
+                  <li><a href="../../docs">A Simple Todo App with Backbone.js</a></li>
+                
+                  <li><a href="../../docs">Chatroom</a></li>
+                
+              
+                <li class="nav-header"><a href="../../docs/users">Users</a></li>
+                
+                  <li><a href="../../docs">Microblogging app</a></li>
+                
+                  <li><a href="../../docs">Simple Login Form</a></li>
+                
+              
+                <li class="nav-header"><a href="../../docs/developing-modules">Developing Modules</a></li>
+                
+                  <li><a href="../../docs">Email Resource</a></li>
+                
+                  <li><a href="../../docs">Event Resource</a></li>
+                
+                  <li><a href="../../docs">S3 Bucket Resource</a></li>
+                
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">available on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span navigation">
+            <dl>
+              <dt><img src="//deployd.com/img/footer-dt.png" alt="deployd"></dt>
+              <dd><a href="http://deployd.com/">Home</a></dd>
+              <dd><a href="http://deployd.com/video.html">Screencast</a></dd>
+              <dd><a href="http://deployd.com/features.html">Features</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Support</a></dd>
+            </dl>
+            <dl>
+              <dt>documentation</dt>
+              <dd><a href="http://docs.deployd.com/guides">Guides</a></dd>
+              <dd><a href="http://docs.deployd.com/api">API</a></dd>
+              <dd><a href="http://docs.deployd.com/examples">Examples</a></dd>
+              <dd><a href="http://docs.deployd.com/modules">Modules</a></dd>
+            </dl>
+            <dl>
+              <dt>community</dt>
+              <dd><a href="http://deployd.com/community.html">Questions</a></dd>
+              <dd><a href="https://twitter.com/deploydapp">Tweets</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Issues</a></dd>
+              <dd><a href="https://github.com/deployd/deployd">Github</a></dd>
+            </dl>
+            <dl>
+              <dt>contact</dt>
+              <dd><a href="mailto:hello@deployd.com">hello@deployd.com</a></dd>
+            </dl>
+          </div>
+          <div class="span logo-container">
+            <div class="logo">
+              <img src="//deployd.com/img/footer-logo.png" alt="deployd">
+            </div>
+          </div>
+          <div class="span email-container">
+            <dl id="mc_embed_signup" class="span4">
+            <dt>Get deployd emails</dt>
+            <dd>
+              <form action="http://deployd.us2.list-manage.com/subscribe/post?u=4f1b944ba8c90738eb8e3fa3c&amp;id=7bb18e6b80" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-vertical" target="_blank" novalidate="">
+              <div class="mc-field-group">
+                <input type="email" placeholder="your@email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../../javascripts/app.js"></script>
+  </body>
+</html>

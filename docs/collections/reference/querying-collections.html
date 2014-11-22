@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docs">
+  <head>
+    
+      <title>deployd</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="../../../stylesheets/style.css" rel='stylesheet' type='text/css'>
+    <link href="../../../stylesheets/prettify.css" rel='stylesheet' type='text/css'>
+    <script src="../../../javascripts/libs/angular.js"></script>
+    <script src="../../../javascripts/libs/angular-sanitize.js"></script>
+    <script src="../../../javascripts/libs/jquery-1.8.2.js"></script>
+    <script src="../../../javascripts/libs/bootstrap.js"></script>
+    <script src="../../../javascripts/libs/jquery.highlight.js"></script>
+    <script src="../../../javascripts/libs/jquery.masonry.js"></script>
+    <script src="../../../javascripts/libs/prettify.js"></script>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  
+
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="//deployd.com">
+            <img src="//deployd.com/img/logo-text.png">
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--<li><a href="//cloud.deployd.com">cloud</a></li>-->
+              <li class="active"><a href="//docs.deployd.com">docs</a></li>
+              <li><a href="https://groups.google.com/forum/?fromgroups#!forum/deployd-users">community</a></li>
+              <!--li><a href="//deployd.com/blog.html">blog</a></li-->
+            </ul>
+          </div><!--/.nav-collapse -->
+
+          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+  <form class="navbar-search" method="get" action="http://www.google.com/search">
+    <input type="hidden" name="sitesearch" value="docs.deployd.com" />
+    <input value="" placeholder="search docs" id="search-input" name="q" type="text" ng-change="change()" ng-model="input" />
+  </form>
+  <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
+      {{ term.title || term.reference }}
+    </li>
+  </ul>
+</div>
+
+
+
+
+          <div id="social" class="nav-collapse pull-left">
+            <ul class="nav">
+              <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fdeployd.com%2F&amp;size=m&amp;text=Deployd%20Platform%20(%40deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&amp;url=http%3A%2F%2Fwww.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+      <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script id="twitter-wjs" src="//platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-static-top secondary-nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li class="home"><a href="../../../">home</a></li>
+            <li class="guides" ><a href="../../../guides">guides</a></li>
+            <li class="api"><a href="../../../api">api</a></li>
+            <li class="examples"><a href="../../../examples">examples</a></li>
+            <li class="modules"><a href="../../../modules">modules</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+
+<ul id="breadcrumb" class="unstyled">
+
+  <li><a href="../../../docs">Docs</a><span>/</span></li>
+
+  <li><a href="../../../docs/collections">Collections</a><span>/</span></li>
+
+  <li>Reference</li>
+  
+  <li>(<a href="../../../docs/collections/reference/include-all.html">View All</a>)</li>
+  
+</ul>
+
+<div id="browser" class="row">
+  <div id="sidebar" class="span3">
+    
+
+<div id="explorer">
+  <ul id="files" class="nav">
+    
+      <li class=""><a href="../../../docs/collections/reference/event-api.html"><i class="icon-file"></i> <span>Event API</span></a></li>
+    
+      <li class=""><a href="../../../docs/collections/reference/http.html"><i class="icon-file"></i> <span>Over HTTP</span></a></li>
+    
+      <li class="active"><a href="../../../docs/collections/reference/querying-collections.html"><i class="icon-file"></i> <span>Querying Collections</span></a></li>
+    
+      <li class=""><a href="../../../docs/collections/reference/updating-objects.html"><i class="icon-file"></i> <span>Updating Objects in Collections</span></a></li>
+    
+      <li class=""><a href="../../../docs/collections/reference/dpd-js.html"><i class="icon-file"></i> <span>Using dpd.js</span></a></li>
+    
+    
+  </ul>
+  
+</div>
+
+
+    
+      <h4>Related APIs</h4>
+      <div id="related-apis">
+        <div id="api">
+  
+      
+        
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="../../../docs/collections/reference/event-api.html">Event API</a></li>
+            
+      <li><a href="../../../docs/collections/reference/event-api.html#s-this-764">this</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-me-764">me</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-isMe()-764">isMe()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-query-764">query</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-cancel()-764">cancel()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-cancelIf(), cancelUnless()-764">cancelIf(), cancelUnless()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-error()-764">error()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-errorIf(), errorUnless()-764">errorIf(), errorUnless()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-hide()-764">hide()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-protect()-764">protect()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-changed()-764">changed()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-previous-764">previous</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-emit()-764">emit()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-internal-764">internal</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-isRoot-764">isRoot</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-console.log()-764">console.log()</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="../../../docs/collections/reference/querying-collections.html">Querying Collections</a></li>
+            
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-Comparison ($gt, $lt, $gte, $lte)-1556">Comparison ($gt, $lt, $gte, $lte)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$ne (Not Equal)-1556">$ne (Not Equal)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$in-1556">$in</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$regex-1556">$regex</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$fields-1416">$fields</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$or-1416">$or</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$sort-1416">$sort</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$limit-1416">$limit</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$skip-1416">$skip</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$limitRecursion-1416">$limitRecursion</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="../../../docs/collections/reference/updating-objects.html">Updating Objects in Collections</a></li>
+            
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$inc-3004">$inc</a></li>
+    
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$push-3004">$push</a></li>
+    
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$pushAll-3004">$pushAll</a></li>
+    
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$pull-3004">$pull</a></li>
+    
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$pullAll-3004">$pullAll</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="../../../docs/collections/reference/dpd-js.html">Using dpd.js</a></li>
+            
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-.get([id], [query], fn)-1286">.get([id], [query], fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-.post([id], object, fn)">.post([id], object, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-.put([id or query], object, fn)">.put([id or query], object, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-.del(id or query, fn)">.del(id or query, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.on(message, fn)-1069">dpd.on(message, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.off(message, [fn])-1069">dpd.off(message, [fn])</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.once(message, fn)-1069">dpd.once(message, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.socketReady(fn)-1069">dpd.socketReady(fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.socket-1069">dpd.socket</a></li>
+    
+            </ul>
+            
+      
+    
+</div>
+
+
+
+
+      </div>
+    
+  </div>
+  <div class="span9 sections">
+    
+      
+
+  <div class="section"><a name="s-Querying Collections"></a><h2>Querying Collections <a class="anchor-link" href="#s-Querying Collections">#</a></h2><div class="section"><a name="s-Simple Queries-2035"></a><h3>Simple Queries <a class="anchor-link" href="#s-Simple Queries-2035">#</a></h3>
+
+<p>Collections can be queried over HTTP using the query string.</p>
+
+<p>This example will return all the <code>posts</code> with an author "Joe":</p>
+
+<pre><code>GET /posts?author=Joe   
+</code></pre></div><div class="section"><a name="s-Advanced Queries-2035"></a><h3>Advanced Queries <a class="anchor-link" href="#s-Advanced Queries-2035">#</a></h3>
+
+<p>When querying a <a href="../../../docs/collections/">Collection</a>, you can use special commands to create a more advanced query. </p>
+
+<p>Deployd supports all of <a href="http://www.mongodb.org/display/DOCS/Advanced+Queries#AdvancedQueries-ConditionalOperators">MongoDB's conditional operators</a>; only the common operators and Deployd's custom commands are documented here.</p>
+
+<p>When using an advanced query in REST, you must pass JSON as the query string, for example:</p>
+
+<pre><code>GET /posts?{"likes": {"$gt": 10}}
+</code></pre>
+
+<p>If you are using dpd.js, this will be handled automatically.</p><div class="section api"><a name="s-Comparison ($gt, $lt, $gte, $lte)-1556"></a><h4>Comparison ($gt, $lt, $gte, $lte) <!-- api --> <a class="anchor-link" href="#s-Comparison ($gt, $lt, $gte, $lte)-1556">#</a></h4>
+
+<p>Compares a Number property to a given value.</p>
+
+<ul>
+<li><code>$gt</code> - Greater than</li>
+<li><code>$lt</code> - Less than</li>
+<li><code>$gte</code> - Greater than or equal to</li>
+<li><p><code>$lte</code> - Less than or equal to</p>
+
+<pre><code>// Finds all posts with more than 10 likes
+{
+    likes: {$gt: 10}
+}
+</code></pre></li>
+</ul></div><div class="section api"><a name="s-$ne (Not Equal)-1556"></a><h4>$ne (Not Equal) <!-- api --> <a class="anchor-link" href="#s-$ne (Not Equal)-1556">#</a></h4>
+
+<p>The <code>$ne</code> command lets you choose a value to exclude. </p>
+
+<pre><code>// Get all posts except those posted by Bob
+{
+    author: {$ne: "Bob"}
+}
+</code></pre></div><div class="section api"><a name="s-$in-1556"></a><h4>$in <!-- api --> <a class="anchor-link" href="#s-$in-1556">#</a></h4>
+
+<p>The <code>$in</code> command allows you to specify an array of possible matches.</p>
+
+<pre><code>// Get articles in the "food", "business", and "technology" categories
+{
+    category: {$in: ["food", "business", "technology"]}
+}
+</code></pre></div><div class="section api"><a name="s-$regex-1556"></a><h4>$regex <!-- api --> <a class="anchor-link" href="#s-$regex-1556">#</a></h4>
+
+<p>The <code>$regex</code> command allows you to specify a <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions">regular expression</a> to match a string property.</p>
+
+<p>You can also use the <code>$options</code> command to specify regular expression flags.</p>
+
+<pre><code>// Get usernames that might be email addresses (x@y.z)
+{
+    "username": {$regex: "[a-z0-9\-]+@[a-z0-9\-]+\.[a-z0-9\-]+", $options: 'i' }
+}
+</code></pre></div><div class="section"><a name="s-Query commands"></a><h3>Query commands <a class="anchor-link" href="#s-Query commands">#</a></h3>
+
+<p>Query commands apply to the entire query, not just a single property.</p><div class="section api"><a name="s-$fields-1416"></a><h4>$fields <!-- api --> <a class="anchor-link" href="#s-$fields-1416">#</a></h4>
+
+<p>The <code>$fields</code> command allows you to include or exclude properties from your results.</p>
+
+<pre><code>    // Exclude the "email" property
+    {
+        $fields: {email: 0}
+    }
+</code></pre>
+
+<!--...-->
+
+<pre><code>    // Only include the "title" property
+    {
+        $fields: {title: 1}
+    }
+</code></pre></div><div class="section api"><a name="s-$or-1416"></a><h4>$or <!-- api --> <a class="anchor-link" href="#s-$or-1416">#</a></h4>
+
+<p>The <code>$or</code> command allows you to specify multiple queries for an object to match in an array.</p>
+
+<pre><code>// Get all public posts and all posts by a specified user (even if those are private)
+{
+    $or: [{
+      isPublic: true
+    }, {
+      creator: "Bob"
+    }]
+}
+</code></pre></div><div class="section api"><a name="s-$sort-1416"></a><h4>$sort <!-- api --> <a class="anchor-link" href="#s-$sort-1416">#</a></h4>
+
+<p>The <code>$sort</code> command allows you to order your results by the value of a property. The value can be 1 for ascending sort (lowest first; A-Z, 0-10) or -1 for descending (highest first; Z-A, 10-0)</p>
+
+<pre><code>// Sort posts by likes, descending
+{
+    $sort: {likes: -1}
+}
+</code></pre></div><div class="section api"><a name="s-$limit-1416"></a><h4>$limit <!-- api --> <a class="anchor-link" href="#s-$limit-1416">#</a></h4>
+
+<p>The <code>$limit</code> command allows you to limit the amount of objects that are returned from a query. This is commonly used for paging, along with <code>$skip</code>.</p>
+
+<pre><code>// Return the top 10 scores
+{
+    $sort: {score: -1},
+    $limit: 10
+}
+</code></pre></div><div class="section api"><a name="s-$skip-1416"></a><h4>$skip <!-- api --> <a class="anchor-link" href="#s-$skip-1416">#</a></h4>
+
+<p>The <code>$skip</code> command allows you to exclude a given number of the first objects returned from a query. This is commonly used for paging, along with <code>$limit</code>. </p>
+
+<pre><code>// Return the third page of posts, with 10 posts per page
+{
+    $skip: 20,
+    $limit: 10
+}
+</code></pre></div><div class="section api"><a name="s-$limitRecursion-1416"></a><h4>$limitRecursion <!-- api --> <a class="anchor-link" href="#s-$limitRecursion-1416">#</a></h4>
+
+<p>The <code>$limitRecursion</code> command allows you to override the default recursive limits in Deployd. This is useful when you want to query a very deeply nested structure of data. Otherwise you can still query nested structures, but Deployd will stop the recursion after 2 levels. See the <a href="../../../docs/collections/relationships-between-collections.html">Collection Relationships guide</a> for more info.</p></div></div></div></div>  
+
+    
+    <h3 style="text-align: center;">More</h3>
+
+    
+    
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="well">
+          <h4>Other docs in "Reference"</h4>
+          <ul>
+            
+              <li><a href="../../../docs/collections/reference/event-api.html">Event API</a></li>
+            
+              <li><a href="../../../docs/collections/reference/http.html">Over HTTP</a></li>
+            
+              <li><a href="../../../docs/collections/reference/updating-objects.html">Updating Objects in Collections</a></li>
+            
+              <li><a href="../../../docs/collections/reference/dpd-js.html">Using dpd.js</a></li>
+            
+          </ul>
+        </div>
+      </div>
+       
+        <div class="span6">
+          <div class="well">
+            <h4>Related Examples</h4>
+            <ul>
+              
+                <li><a href="../../../docs/collections/examples/a-simple-todo-app.html">A Simple Todo App</a></li>
+              
+                <li><a href="../../../docs/collections/examples/a-simple-todo-app-with-angular.html">A Simple Todo App with AngularJS</a></li>
+              
+                <li><a href="../../../docs/collections/examples/a-simple-todo-app-with-backbone.html">A Simple Todo App with Backbone.js</a></li>
+              
+                <li><a href="../../../docs/collections/examples/chatroom.html">Chatroom</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+    <div class="docs-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              
+                <li><a href="../../../docs/getting-started">Getting Started</a></li>
+              
+                <li><a href="../../../docs/basics">Basics</a></li>
+              
+                <li><a href="../../../docs/collections">Collections</a></li>
+              
+                <li><a href="../../../docs/users">Users</a></li>
+              
+                <li><a href="../../../docs/using-modules">Using Modules</a></li>
+              
+                <li><a href="../../../docs/server">The Deployd Server</a></li>
+              
+                <li><a href="../../../docs/developing-modules">Developing Modules</a></li>
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../../../docs/collections/reference">Collections</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/event-api.html">Event API</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/http.html">Over HTTP</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/querying-collections.html">Querying Collections</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/updating-objects.html">Updating Objects in Collections</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/dpd-js.html">Using dpd.js</a></li>
+                
+              
+                <li class="nav-header"><a href="../../../docs/using-modules/reference">Using Modules</a></li>
+                
+                  <li><a href="../../../docs/using-modules/reference/dpd-js.html">Dpd.js for Custom Resources</a></li>
+                
+                  <li><a href="../../../docs/using-modules/reference/event-api.html">Event API for Custom Resources</a></li>
+                
+              
+                <li class="nav-header"><a href="../../../docs/developing-modules/internal-api">Developing Modules</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/collection.html">Collection Resource Type</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/context.html">Context</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/script.html">Event Scripts</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/internal-client.html">Internal Client</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/resource.html">Resource Types</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/server.html">Server</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/session.html">Session</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/session-store.html">Session Store</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/store.html">Store</a></li>
+                
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../../../docs/collections">Collections</a></li>
+                
+                  <li><a href="../../../docs">A Simple Todo App</a></li>
+                
+                  <li><a href="../../../docs">A Simple Todo App with AngularJS</a></li>
+                
+                  <li><a href="../../../docs">A Simple Todo App with Backbone.js</a></li>
+                
+                  <li><a href="../../../docs">Chatroom</a></li>
+                
+              
+                <li class="nav-header"><a href="../../../docs/users">Users</a></li>
+                
+                  <li><a href="../../../docs">Microblogging app</a></li>
+                
+                  <li><a href="../../../docs">Simple Login Form</a></li>
+                
+              
+                <li class="nav-header"><a href="../../../docs/developing-modules">Developing Modules</a></li>
+                
+                  <li><a href="../../../docs">Email Resource</a></li>
+                
+                  <li><a href="../../../docs">Event Resource</a></li>
+                
+                  <li><a href="../../../docs">S3 Bucket Resource</a></li>
+                
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">available on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span navigation">
+            <dl>
+              <dt><img src="//deployd.com/img/footer-dt.png" alt="deployd"></dt>
+              <dd><a href="http://deployd.com/">Home</a></dd>
+              <dd><a href="http://deployd.com/video.html">Screencast</a></dd>
+              <dd><a href="http://deployd.com/features.html">Features</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Support</a></dd>
+            </dl>
+            <dl>
+              <dt>documentation</dt>
+              <dd><a href="http://docs.deployd.com/guides">Guides</a></dd>
+              <dd><a href="http://docs.deployd.com/api">API</a></dd>
+              <dd><a href="http://docs.deployd.com/examples">Examples</a></dd>
+              <dd><a href="http://docs.deployd.com/modules">Modules</a></dd>
+            </dl>
+            <dl>
+              <dt>community</dt>
+              <dd><a href="http://deployd.com/community.html">Questions</a></dd>
+              <dd><a href="https://twitter.com/deploydapp">Tweets</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Issues</a></dd>
+              <dd><a href="https://github.com/deployd/deployd">Github</a></dd>
+            </dl>
+            <dl>
+              <dt>contact</dt>
+              <dd><a href="mailto:hello@deployd.com">hello@deployd.com</a></dd>
+            </dl>
+          </div>
+          <div class="span logo-container">
+            <div class="logo">
+              <img src="//deployd.com/img/footer-logo.png" alt="deployd">
+            </div>
+          </div>
+          <div class="span email-container">
+            <dl id="mc_embed_signup" class="span4">
+            <dt>Get deployd emails</dt>
+            <dd>
+              <form action="http://deployd.us2.list-manage.com/subscribe/post?u=4f1b944ba8c90738eb8e3fa3c&amp;id=7bb18e6b80" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-vertical" target="_blank" novalidate="">
+              <div class="mc-field-group">
+                <input type="email" placeholder="your@email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../../../javascripts/app.js"></script>
+  </body>
+</html>

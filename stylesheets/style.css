@@ -5096,7 +5096,7 @@ a.badge:hover {
 }
 .secondary-nav .navbar-inner .nav li:first-child {
   margin-left: 99px;
-  /*background:url('http://cloud.deployd.com/img/nav-up-arrow.png') no-repeat 5px top;*/
+  /*background:url('//cloud.deployd.com/img/nav-up-arrow.png') no-repeat 5px top;*/
   padding-top: 6px;
   margin-top: -6px;
 }

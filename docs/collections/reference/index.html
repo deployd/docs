@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docs">
+  <head>
+    
+      <title>deployd</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="../../../stylesheets/style.css" rel='stylesheet' type='text/css'>
+    <link href="../../../stylesheets/prettify.css" rel='stylesheet' type='text/css'>
+    <script src="../../../javascripts/libs/angular.js"></script>
+    <script src="../../../javascripts/libs/angular-sanitize.js"></script>
+    <script src="../../../javascripts/libs/jquery-1.8.2.js"></script>
+    <script src="../../../javascripts/libs/bootstrap.js"></script>
+    <script src="../../../javascripts/libs/jquery.highlight.js"></script>
+    <script src="../../../javascripts/libs/jquery.masonry.js"></script>
+    <script src="../../../javascripts/libs/prettify.js"></script>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27539606-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  
+
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="//deployd.com">
+            <img src="//deployd.com/img/logo-text.png">
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--<li><a href="//cloud.deployd.com">cloud</a></li>-->
+              <li class="active"><a href="//docs.deployd.com">docs</a></li>
+              <li><a href="https://groups.google.com/forum/?fromgroups#!forum/deployd-users">community</a></li>
+              <!--li><a href="//deployd.com/blog.html">blog</a></li-->
+            </ul>
+          </div><!--/.nav-collapse -->
+
+          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+  <form class="navbar-search" method="get" action="http://www.google.com/search">
+    <input type="hidden" name="sitesearch" value="docs.deployd.com" />
+    <input value="" placeholder="search docs" id="search-input" name="q" type="text" ng-change="change()" ng-model="input" />
+  </form>
+  <ul id="search-terms" class="typeahead unstyled" ng-show="terms.length" ng-cloak>
+    <li ng-repeat="term in terms" class="{{ term.active && 'active' }}" ng-click="choose($index)">
+      {{ term.title || term.reference }}
+    </li>
+  </ul>
+</div>
+
+
+
+
+          <div id="social" class="nav-collapse pull-left">
+            <ul class="nav">
+              <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1354270846.html#_=1354747685285&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fdeployd.com%2F&amp;size=m&amp;text=Deployd%20Platform%20(%40deploydapp)%20-%20The%20simplest%20way%20to%20build%20APIs.&amp;url=http%3A%2F%2Fwww.deployd.com" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+      <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script id="twitter-wjs" src="//platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-static-top secondary-nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li class="home"><a href="../../../">home</a></li>
+            <li class="guides" ><a href="../../../guides">guides</a></li>
+            <li class="api"><a href="../../../api">api</a></li>
+            <li class="examples"><a href="../../../examples">examples</a></li>
+            <li class="modules"><a href="../../../modules">modules</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+
+<ul id="breadcrumb" class="unstyled">
+
+  <li><a href="../../../docs">Docs</a><span>/</span></li>
+
+  <li><a href="../../../docs/collections">Collections</a><span>/</span></li>
+
+  <li>Reference</li>
+  
+  <li>(<a href="../../../docs/collections/reference/include-all.html">View All</a>)</li>
+  
+</ul>
+
+<div id="browser" class="row">
+  <div id="sidebar" class="span3">
+    
+
+<div id="explorer">
+  <ul id="files" class="nav">
+    
+      <li class="active"><a href="../../../docs/collections/reference/event-api.html"><i class="icon-file"></i> <span>Event API</span></a></li>
+    
+      <li class=""><a href="../../../docs/collections/reference/http.html"><i class="icon-file"></i> <span>Over HTTP</span></a></li>
+    
+      <li class=""><a href="../../../docs/collections/reference/querying-collections.html"><i class="icon-file"></i> <span>Querying Collections</span></a></li>
+    
+      <li class=""><a href="../../../docs/collections/reference/updating-objects.html"><i class="icon-file"></i> <span>Updating Objects in Collections</span></a></li>
+    
+      <li class=""><a href="../../../docs/collections/reference/dpd-js.html"><i class="icon-file"></i> <span>Using dpd.js</span></a></li>
+    
+    
+  </ul>
+  
+</div>
+
+
+    
+      <h4>Related APIs</h4>
+      <div id="related-apis">
+        <div id="api">
+  
+      
+        
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="../../../docs/collections/reference/event-api.html">Event API</a></li>
+            
+      <li><a href="../../../docs/collections/reference/event-api.html#s-this-764">this</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-me-764">me</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-isMe()-764">isMe()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-query-764">query</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-cancel()-764">cancel()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-cancelIf(), cancelUnless()-764">cancelIf(), cancelUnless()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-error()-764">error()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-errorIf(), errorUnless()-764">errorIf(), errorUnless()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-hide()-764">hide()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-protect()-764">protect()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-changed()-764">changed()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-previous-764">previous</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-emit()-764">emit()</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-internal-764">internal</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-isRoot-764">isRoot</a></li>
+    
+      <li><a href="../../../docs/collections/reference/event-api.html#s-console.log()-764">console.log()</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="../../../docs/collections/reference/querying-collections.html">Querying Collections</a></li>
+            
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-Comparison ($gt, $lt, $gte, $lte)-1556">Comparison ($gt, $lt, $gte, $lte)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$ne (Not Equal)-1556">$ne (Not Equal)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$in-1556">$in</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$regex-1556">$regex</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$fields-1416">$fields</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$or-1416">$or</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$sort-1416">$sort</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$limit-1416">$limit</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$skip-1416">$skip</a></li>
+    
+      <li><a href="../../../docs/collections/reference/querying-collections.html#s-$limitRecursion-1416">$limitRecursion</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="../../../docs/collections/reference/updating-objects.html">Updating Objects in Collections</a></li>
+            
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$inc-3004">$inc</a></li>
+    
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$push-3004">$push</a></li>
+    
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$pushAll-3004">$pushAll</a></li>
+    
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$pull-3004">$pull</a></li>
+    
+      <li><a href="../../../docs/collections/reference/updating-objects.html#s-$pullAll-3004">$pullAll</a></li>
+    
+            </ul>
+            
+            <ul class="nav nav-list collections">
+              <li class="nav-header"><a href="../../../docs/collections/reference/dpd-js.html">Using dpd.js</a></li>
+            
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-.get([id], [query], fn)-1286">.get([id], [query], fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-.post([id], object, fn)">.post([id], object, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-.put([id or query], object, fn)">.put([id or query], object, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-.del(id or query, fn)">.del(id or query, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.on(message, fn)-1069">dpd.on(message, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.off(message, [fn])-1069">dpd.off(message, [fn])</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.once(message, fn)-1069">dpd.once(message, fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.socketReady(fn)-1069">dpd.socketReady(fn)</a></li>
+    
+      <li><a href="../../../docs/collections/reference/dpd-js.html#s-dpd.socket-1069">dpd.socket</a></li>
+    
+            </ul>
+            
+      
+    
+</div>
+
+
+
+
+      </div>
+    
+  </div>
+  <div class="span9 sections">
+    
+      
+
+  <div class="section"><a name="s-Event API"></a><h2>Event API <a class="anchor-link" href="#s-Event API">#</a></h2><div class="section api"><a name="s-this-764"></a><h3>this <!--api--> <a class="anchor-link" href="#s-this-764">#</a></h3>
+
+<p>The current object is represented as <code>this</code>. You can always read its properties. Modifying its properties in an <code>On Get</code> request will change the result that the client receives, while modifying its properties in an <code>On Post</code>, <code>On Put</code>, or <code>On Validate</code> will change the value in the database.</p>
+
+<pre><code>// Example: On Validate
+// If a property is too long, truncate it
+if (this.message.length &gt; 140) {
+  this.message = this.message.substring(0, 137) + '...';
+}
+</code></pre>
+
+<p><em>Note</em>: In some cases, the meaning of <code>this</code> will change to something less useful inside of a function. If you are using functions such as <code>Array.forEach()</code>, you may need to bind another variable to <code>this</code>:</p>
+
+<pre><code>// Won't work - sum remains at 0
+this.sum = 0;
+this.targets.forEach(function(t) {
+  this.sum += t.points;
+});
+</code></pre>
+
+<!--seperate-->
+
+<pre><code>//Works as expected
+var self = this;
+
+this.sum = 0;
+this.targets.forEach(function(t) {
+  self.sum += t.points;
+});
+</code></pre></div><div class="section api"><a name="s-me-764"></a><h3>me <!-- api --> <a class="anchor-link" href="#s-me-764">#</a></h3>
+
+<p>The currently logged in User from a User Collection. <code>undefined</code> if no user is logged in.</p>
+
+<pre><code>// Example: On Post
+// Save the creator's information
+if (me) {
+    this.creatorId = me.id;
+    this.creatorName = me.name;
+}
+</code></pre></div><div class="section api"><a name="s-isMe()-764"></a><h3>isMe() <!-- api -->  <a class="anchor-link" href="#s-isMe()-764">#</a></h3>
+
+<pre><code>isMe(id)
+</code></pre>
+
+<p>Checks whether the current user matches the provided <code>id</code>.</p>
+
+<pre><code>// Example: On Get /users
+// Hide properties unless this is the current user
+if (!isMe(this.id)) {
+    hide('privateVariable');
+}
+</code></pre>
+
+<!-- seperate -->
+
+<pre><code>// Example: On Put 
+// Make sure that only the creator can edit a post
+cancelUnless(isMe(this.id), "You are not authorized to edit that post", 401);
+</code></pre></div><div class="section api"><a name="s-query-764"></a><h3>query <!-- api --> <a class="anchor-link" href="#s-query-764">#</a></h3>
+
+<p>The query string object. On a specific query (such as <code>/posts/a59551a90be9abd8</code>), this includes an <code>id</code> property.</p>
+
+<pre><code>// Example: On Get
+// Don't show the body of a post in a general query
+if (!query.id) {
+  hide(this.body);
+}
+</code></pre></div><div class="section api"><a name="s-cancel()-764"></a><h3>cancel() <!-- api --> <a class="anchor-link" href="#s-cancel()-764">#</a></h3>
+
+<pre><code>cancel(message, [statusCode])
+</code></pre>
+
+<p>Stops the current request with the provided error message and HTTP status code. Status code defaults to <code>400</code>. Commonly used for security and authorization. </p>
+
+<p>It is strongly recommended that you <code>cancel()</code> any events that are not accessible to your front-end, because your API is open to anyone.</p>
+
+<pre><code>// Example: On Post
+// Don't allow non-admins to create items
+if (!me.admin) {
+  cancel("You are not authorized to do that", 401);
+}
+</code></pre>
+
+<p><em>Note: In a GET event where multiple values are queried (such as on <code>/posts</code>), the <code>cancel()</code> function will remove the current item from the results without an error message.</em></p></div><div class="section api"><a name="s-cancelIf(), cancelUnless()-764"></a><h3>cancelIf(), cancelUnless() <!-- api --> <a class="anchor-link" href="#s-cancelIf(), cancelUnless()-764">#</a></h3>
+
+<pre><code>cancelIf(condition, message, [statusCode])
+cancelUnless(condition, message, [statusCode])
+</code></pre>
+
+<p>Calls <code>cancel(message, statusCode)</code> if the provided condition is truthy (for <code>cancelIf()</code>) or falsy (for <code>cancelUnless()</code>).</p>
+
+<pre><code>Example: On Post
+// Prevent banned users from posting
+cancelUnless(me, "You are not logged in", 401);
+cancelIf(me.isBanned, "You are banned", 401);
+</code></pre></div><div class="section api"><a name="s-error()-764"></a><h3>error() <!-- api --> <a class="anchor-link" href="#s-error()-764">#</a></h3>
+
+<pre><code>error(key, message)
+</code></pre>
+
+<p>Adds an error message to an <code>errors</code> object in the response. Cancels the request, but continues running the event so it can collect multiple errors to display to the user. Commonly used for validation.</p>
+
+<pre><code>// Example: On Validate
+// Don't allow certain words
+// Returns response {"errors": {"name": "Contains forbidden words"}}
+if (!this.name.match(/(foo|bar)/)) {
+  error('name', "Contains forbidden words");
+}
+</code></pre></div><div class="section api"><a name="s-errorIf(), errorUnless()-764"></a><h3>errorIf(), errorUnless() <!-- api --> <a class="anchor-link" href="#s-errorIf(), errorUnless()-764">#</a></h3>
+
+<pre><code>errorIf(condition, key, message)
+errorUnless(condition, key, message)
+</code></pre>
+
+<p>Calls <code>error(key, message)</code> if the provided condition is truthy (for <code>errorIf()</code>) or falsy (for <code>errorUnless()</code>).</p>
+
+<pre><code>// Example: On Validate
+// Require message to be a certain length
+errorUnless(this.message &amp;&amp; this.message.length &gt; 2, 'message', "Must be at least 2 characters");
+</code></pre></div><div class="section api"><a name="s-hide()-764"></a><h3>hide() <!-- api --> <a class="anchor-link" href="#s-hide()-764">#</a></h3>
+
+<pre><code>hide(property)
+</code></pre>
+
+<p>Hides a property from the response.</p>
+
+<pre><code>// Example: On Get
+// Don't show private information
+if (!me || me.id !== this.creatorId) {
+  hide('secret');
+}
+</code></pre></div><div class="section api"><a name="s-protect()-764"></a><h3>protect() <!-- api --> <a class="anchor-link" href="#s-protect()-764">#</a></h3>
+
+<pre><code>protect(property)
+</code></pre>
+
+<p>Prevents a property from being updated. It is strongly recommended you <code>protect()</code> any properties that should not be modified after an object is created. </p>
+
+<pre><code>// Example: On Put
+// Protect a property
+protect('createdDate');
+</code></pre>
+
+<!-- seperate -->
+
+<pre><code>// Example: On Put
+// Only the creator can change the title
+if (!(me &amp;&amp; me.id === this.creatorId)) {
+  protect('title');
+}
+</code></pre></div><div class="section api"><a name="s-changed()-764"></a><h3>changed() <!-- api --> <a class="anchor-link" href="#s-changed()-764">#</a></h3>
+
+<pre><code>changed(property)
+</code></pre>
+
+<p>Returns whether a property has been updated.</p>
+
+<pre><code>// Example: On Put
+// Validate the title when it changes
+if(changed('title') &amp;&amp; this.title.length &lt; 5) {
+  error('title', 'must be over 5 characters');
+}
+</code></pre></div><div class="section api"><a name="s-previous-764"></a><h3>previous <!-- api --> <a class="anchor-link" href="#s-previous-764">#</a></h3>
+
+<p>An <code>Object</code> containing the previous values of the item to be updated.</p>
+
+<pre><code>// Example: On Put
+if(this.votes &lt; previous.votes) {
+  emit('votes have decreased');
+}
+</code></pre></div><div class="section api"><a name="s-emit()-764"></a><h3>emit() <!-- api --> <a class="anchor-link" href="#s-emit()-764">#</a></h3>
+
+<pre><code>emit([userCollection, query], message, [data])
+</code></pre>
+
+<p>Emits a realtime message to the client. </p>
+
+<pre><code>// Example: On Post
+// Alert clients that a new post has been created
+emit('postCreated', this);
+</code></pre>
+
+<p>In the front end:</p>
+
+<pre><code>// Listen for new posts
+dpd.on('postCreated', function(post) {
+    //do something...
+});
+</code></pre>
+
+<p>You can use <code>userCollection</code> and <code>query</code> parameters to limit the message broadcast to specific users.</p>
+
+<pre><code>// Example: On Put
+// Alert the owner that their post has been modified
+if (me.id !== this.creatorId) {
+  emit(dpd.users, {id: this.creatorId}, 'postModified', this); 
+} 
+</code></pre>
+
+<p>See <a href="../../../docs/collections/notifying-clients.html">Notifying Clients of Changes with Sockets</a> for an overview on realtime functionality.</p></div><div class="section reference"><a name="s-dpd-764"></a><h3>dpd <!-- ref --> <a class="anchor-link" href="#s-dpd-764">#</a></h3>
+
+<p>The entire <a href="../../../docs/collections/reference/dpd-js.html">dpd.js</a> library, except for the realtime functions, is available in events. It will also properly bind <code>this</code> in callbacks.</p>
+
+<pre><code>// Example: On Get
+// If specific query, get comments
+dpd.comments.get({postId: this.id}, function(results) {
+  this.comments = results;
+});
+</code></pre>
+
+<!--seperate-->
+
+<pre><code>// Example: On Delete
+// Log item elsewhere
+dpd.archived.post(this);
+</code></pre>
+
+<p>Dpd.js will prevent recursive requests if you set the <a href="../../../docs/collections/reference/querying-collections.html#s-$limitRecursion">$limitRecursion</a> property. This works by returning <code>null</code> from a <code>dpd</code> function call that has already been called several times further up in the stack.</p>
+
+<pre><code>// Example: On Get /recursive
+// Call self
+dpd.recursive.get({$limitRecursion: 1}, function(results) {
+    if (results) this.recursive = results;
+});
+</code></pre>
+
+<!--seperate-->
+
+<pre><code>// GET /recursive
+{
+    "id": "a59551a90be9abd8",
+    "recursive": [
+        {
+            "id": "a59551a90be9abd8"    
+        }
+    ]
+}
+</code></pre></div><div class="section api"><a name="s-internal-764"></a><h3>internal <!-- api --> <a class="anchor-link" href="#s-internal-764">#</a></h3>
+
+<p>Equal to true if this request has been sent by another script.</p>
+
+<pre><code>// Example: On GET /posts
+// Posts with a parent are invisible, but are counted by their parent
+if (this.parentId &amp;&amp; !internal) cancel();
+
+dpd.posts.get({parentId: this.id}, function(posts) {
+    this.childPosts = posts.length;
+});
+</code></pre></div><div class="section api"><a name="s-isRoot-764"></a><h3>isRoot <!-- api --> <a class="anchor-link" href="#s-isRoot-764">#</a></h3>
+
+<p>Equal to true if this request has been authenticated as <a href="../../../docs/collections/reference/http.html#s-Root-Requests">root</a> (has the <code>dpd-ssh-key</code> header with the appropriate key; such as from the dashboard)</p>
+
+<pre><code>// Example: On PUT /users
+// Protect reputation property - should only be calculated by a custom script.
+
+if (!isRoot) protect('reputation');
+</code></pre></div><div class="section api"><a name="s-console.log()-764"></a><h3>console.log() <!-- api --> <a class="anchor-link" href="#s-console.log()-764">#</a></h3>
+
+<pre><code>console.log([arguments]...)
+</code></pre>
+
+<p>Logs the values provided to the command line. Useful for debugging.</p></div></div>  
+
+    
+    <h3 style="text-align: center;">More</h3>
+
+    
+    
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="well">
+          <h4>Other docs in "Reference"</h4>
+          <ul>
+            
+              <li><a href="../../../docs/collections/reference/http.html">Over HTTP</a></li>
+            
+              <li><a href="../../../docs/collections/reference/querying-collections.html">Querying Collections</a></li>
+            
+              <li><a href="../../../docs/collections/reference/updating-objects.html">Updating Objects in Collections</a></li>
+            
+              <li><a href="../../../docs/collections/reference/dpd-js.html">Using dpd.js</a></li>
+            
+          </ul>
+        </div>
+      </div>
+       
+        <div class="span6">
+          <div class="well">
+            <h4>Related Examples</h4>
+            <ul>
+              
+                <li><a href="../../../docs/collections/examples/a-simple-todo-app.html">A Simple Todo App</a></li>
+              
+                <li><a href="../../../docs/collections/examples/a-simple-todo-app-with-angular.html">A Simple Todo App with AngularJS</a></li>
+              
+                <li><a href="../../../docs/collections/examples/a-simple-todo-app-with-backbone.html">A Simple Todo App with Backbone.js</a></li>
+              
+                <li><a href="../../../docs/collections/examples/chatroom.html">Chatroom</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+    <div class="docs-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <h3>Guides</h3>
+            <ul class="nav nav-list">
+              
+                <li><a href="../../../docs/getting-started">Getting Started</a></li>
+              
+                <li><a href="../../../docs/basics">Basics</a></li>
+              
+                <li><a href="../../../docs/collections">Collections</a></li>
+              
+                <li><a href="../../../docs/users">Users</a></li>
+              
+                <li><a href="../../../docs/using-modules">Using Modules</a></li>
+              
+                <li><a href="../../../docs/server">The Deployd Server</a></li>
+              
+                <li><a href="../../../docs/developing-modules">Developing Modules</a></li>
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>APIs</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../../../docs/collections/reference">Collections</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/event-api.html">Event API</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/http.html">Over HTTP</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/querying-collections.html">Querying Collections</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/updating-objects.html">Updating Objects in Collections</a></li>
+                
+                  <li><a href="../../../docs/collections/reference/dpd-js.html">Using dpd.js</a></li>
+                
+              
+                <li class="nav-header"><a href="../../../docs/using-modules/reference">Using Modules</a></li>
+                
+                  <li><a href="../../../docs/using-modules/reference/dpd-js.html">Dpd.js for Custom Resources</a></li>
+                
+                  <li><a href="../../../docs/using-modules/reference/event-api.html">Event API for Custom Resources</a></li>
+                
+              
+                <li class="nav-header"><a href="../../../docs/developing-modules/internal-api">Developing Modules</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/collection.html">Collection Resource Type</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/context.html">Context</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/script.html">Event Scripts</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/internal-client.html">Internal Client</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/resource.html">Resource Types</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/server.html">Server</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/session.html">Session</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/session-store.html">Session Store</a></li>
+                
+                  <li><a href="../../../docs/developing-modules/internal-api/store.html">Store</a></li>
+                
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <h3>Examples</h3>
+            <ul class="nav nav-list">
+              
+                <li class="nav-header"><a href="../../../docs/collections">Collections</a></li>
+                
+                  <li><a href="../../../docs">A Simple Todo App</a></li>
+                
+                  <li><a href="../../../docs">A Simple Todo App with AngularJS</a></li>
+                
+                  <li><a href="../../../docs">A Simple Todo App with Backbone.js</a></li>
+                
+                  <li><a href="../../../docs">Chatroom</a></li>
+                
+              
+                <li class="nav-header"><a href="../../../docs/users">Users</a></li>
+                
+                  <li><a href="../../../docs">Microblogging app</a></li>
+                
+                  <li><a href="../../../docs">Simple Login Form</a></li>
+                
+              
+                <li class="nav-header"><a href="../../../docs/developing-modules">Developing Modules</a></li>
+                
+                  <li><a href="../../../docs">Email Resource</a></li>
+                
+                  <li><a href="../../../docs">Event Resource</a></li>
+                
+                  <li><a href="../../../docs">S3 Bucket Resource</a></li>
+                
+              
+            </ul>
+          </div>
+          <div class="span3">
+            <div id="feedback">
+              <h3>Feedback</h3>
+              <p>Let us know if you have any ideas to improve our docs. Open an <a href="https://github.com/deployd/docs/issues">issue on github</a>, <a href="mailto: hello@deployd.com">send us an email</a>, or <a href="https://twitter.com/deploydapp">tweet us</a>.</p>
+            </div>
+            <div id="download">
+              <h3>Edit or Download these Docs</h3>
+              <p>This entire site, including documentation written in markdown is <a href="https://github.com/deployd/docs">available on github</a>. Pull requests are appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span navigation">
+            <dl>
+              <dt><img src="//deployd.com/img/footer-dt.png" alt="deployd"></dt>
+              <dd><a href="http://deployd.com/">Home</a></dd>
+              <dd><a href="http://deployd.com/video.html">Screencast</a></dd>
+              <dd><a href="http://deployd.com/features.html">Features</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Support</a></dd>
+            </dl>
+            <dl>
+              <dt>documentation</dt>
+              <dd><a href="http://docs.deployd.com/guides">Guides</a></dd>
+              <dd><a href="http://docs.deployd.com/api">API</a></dd>
+              <dd><a href="http://docs.deployd.com/examples">Examples</a></dd>
+              <dd><a href="http://docs.deployd.com/modules">Modules</a></dd>
+            </dl>
+            <dl>
+              <dt>community</dt>
+              <dd><a href="http://deployd.com/community.html">Questions</a></dd>
+              <dd><a href="https://twitter.com/deploydapp">Tweets</a></dd>
+              <dd><a href="https://github.com/deployd/deployd/issues">Issues</a></dd>
+              <dd><a href="https://github.com/deployd/deployd">Github</a></dd>
+            </dl>
+            <dl>
+              <dt>contact</dt>
+              <dd><a href="mailto:hello@deployd.com">hello@deployd.com</a></dd>
+            </dl>
+          </div>
+          <div class="span logo-container">
+            <div class="logo">
+              <img src="//deployd.com/img/footer-logo.png" alt="deployd">
+            </div>
+          </div>
+          <div class="span email-container">
+            <dl id="mc_embed_signup" class="span4">
+            <dt>Get deployd emails</dt>
+            <dd>
+              <form action="http://deployd.us2.list-manage.com/subscribe/post?u=4f1b944ba8c90738eb8e3fa3c&amp;id=7bb18e6b80" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-vertical" target="_blank" novalidate="">
+              <div class="mc-field-group">
+                <input type="email" placeholder="your@email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../../../javascripts/app.js"></script>
+  </body>
+</html>
