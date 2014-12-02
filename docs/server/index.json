@@ -3,6 +3,7 @@
     "as-a-node-module.md",
     "work-with-express.md",
     "run-script.md",
-    "your-server.md"
+    "your-server.md",
+    "use-grunt-or-gulp.md"
   ]
 }
