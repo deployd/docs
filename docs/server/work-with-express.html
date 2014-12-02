@@ -131,9 +131,12 @@
 
 <p>Deployd can be used with express/connect. Deployd will attach functions and handler to express server object.</p><div class="section"><a name="s-Installing-3618"></a><h3>Installing <a class="anchor-link" href="#s-Installing-3618">#</a></h3>
 
-<p>For an app in your current directory:</p>
+<p>In your app directory:</p>
 
-<pre><code>npm install deployd express socket.io@0.9.x
+<pre><code># It is a cutting edge function, you may need to npm install from github instead of npm repository
+npm install --save deployd/deployd#v0.8.1-rc.1
+# Then, install express and socket.io (please use 0.9.x at the moment)
+npm install express socket.io@0.9.x
 </code></pre></div><div class="section"><a name="s-Hello World-3618"></a><h3>Hello World <a class="anchor-link" href="#s-Hello World-3618">#</a></h3>
 
 <p>Here is a simple <em>hello world</em> using Deployd as an express middleware.</p>
