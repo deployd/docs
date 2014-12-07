@@ -47,7 +47,7 @@
             </ul>
           </div><!--/.nav-collapse -->
 
-          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+          <div id="search" removed-ng-controller="SearchCtrl" class="pull-right">
   <form class="navbar-search" method="get" action="http://www.google.com/search">
     <input type="hidden" name="sitesearch" value="docs.deployd.com" />
     <input value="" placeholder="search docs" id="search-input" name="q" type="text" ng-change="change()" ng-model="input" />
@@ -81,7 +81,6 @@
             <li class="api"><a href="../../api">api</a></li>
             <li class="examples"><a href="../../examples">examples</a></li>
             <li class="modules"><a href="../../modules">modules</a></li>
-            <li class="modules"><a href="https://www.npmjs.org/search?q=deployd%20dpd">npm search</a></li>
           </ul>
         </div>
       </div>
@@ -294,12 +293,9 @@ dpd.listen();
 
 <p>Deployd can be used with express/connect. Deployd will attach functions and handler to express server object.</p><div class="section"><a name="s-Installing-3618"></a><h3>Installing <a class="anchor-link" href="#s-Installing-3618">#</a></h3>
 
-<p>In your app directory:</p>
+<p>For an app in your current directory:</p>
 
-<pre><code># It is a cutting edge function, you may need to npm install from github instead of npm repository
-npm install --save deployd/deployd#v0.8.0-rc.1
-# Then, install express and socket.io (please use 0.9.x at the moment)
-npm install express socket.io@0.9.x
+<pre><code>npm install deployd express socket.io@0.9.x
 </code></pre></div><div class="section"><a name="s-Hello World-3618"></a><h3>Hello World <a class="anchor-link" href="#s-Hello World-3618">#</a></h3>
 
 <p>Here is a simple <em>hello world</em> using Deployd as an express middleware.</p>
