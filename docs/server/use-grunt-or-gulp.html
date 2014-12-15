@@ -108,13 +108,13 @@
     
       <li class=""><a href="../../docs/server/as-a-node-module.html"><i class="icon-file"></i> <span>Using Deployd as a Node.js Module</span></a></li>
     
-      <li class="active"><a href="../../docs/server/work-with-express.html"><i class="icon-file"></i> <span>Using Deployd as an Express middleware</span></a></li>
+      <li class=""><a href="../../docs/server/work-with-express.html"><i class="icon-file"></i> <span>Using Deployd as an Express middleware</span></a></li>
     
       <li class=""><a href="../../docs/server/run-script.html"><i class="icon-file"></i> <span>Building a custom run script in Node.js</span></a></li>
     
       <li class=""><a href="../../docs/server/your-server.html"><i class="icon-file"></i> <span>Deploying to your own Server</span></a></li>
     
-      <li class=""><a href="../../docs/server/use-grunt-or-gulp.html"><i class="icon-file"></i> <span>Using grunt or gulp with Deployd</span></a></li>
+      <li class="active"><a href="../../docs/server/use-grunt-or-gulp.html"><i class="icon-file"></i> <span>Using grunt or gulp with Deployd</span></a></li>
     
     
   </ul>
@@ -128,65 +128,22 @@
     
       
 
-  <div class="section"><a name="s-Using Deployd as an Express middleware"></a><h2>Using Deployd as an Express middleware <a class="anchor-link" href="#s-Using Deployd as an Express middleware">#</a></h2>
+  <div class="section"><a name="s-Using grunt or gulp with Deployd"></a><h2>Using grunt or gulp with Deployd <a class="anchor-link" href="#s-Using grunt or gulp with Deployd">#</a></h2>
 
-<p>Deployd can be used with express/connect. Deployd will attach functions and handler to express server object.</p><div class="section"><a name="s-Installing-3618"></a><h3>Installing <a class="anchor-link" href="#s-Installing-3618">#</a></h3>
+<p>To use Grunt or Gulp with Deployd, you should add a package.json at the root of your project.</p>
 
-<p>For an app in your current directory:</p>
+<p>Inside <code>devDependencies</code>, you can add your grunt/gulp plugins and inside dependencies, add the dpd modules you need.
+Example:  </p>
 
-<pre><code>npm install deployd express socket.io@0.9.x
-</code></pre></div><div class="section"><a name="s-Hello World-3618"></a><h3>Hello World <a class="anchor-link" href="#s-Hello World-3618">#</a></h3>
-
-<p>Here is a simple <em>hello world</em> using Deployd as an express middleware.</p>
-
-<pre><code>// hello-server-attach.js
-var PORT = process.env.PORT || 3000;
-var ENV = process.env.NODE_ENV || 'development';
-
-// setup http + express + socket.io
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server, {'log level': 0});
-
-// setup deployd
-require('deployd').attach(server, {
-    socketIo: io,  // if not provided, attach will create one for you.
-    env: ENV,
-    db: {host:'localhost', port:27017, name:'test-app'}
-});
-
-// After attach, express can use server.handleRequest as middleware
-app.use(server.handleRequest);
-
-// start server
-server.listen(PORT);
-</code></pre>
-
-<p>Run this like any other express server.</p>
-
-<pre><code>node hello-server-attach.js
-</code></pre></div><div class="section reference"><a name="s-Server Options-3618"></a><h3>Server Options <!-- ref --> <a class="anchor-link" href="#s-Server Options-3618">#</a></h3>
-
-<ul>
-<li><strong>db</strong> {Object} - the database to connect to
-<ul><li><strong>db.port</strong> {Number} - the port of the database server</li>
-<li><strong>db.host</strong> {String} - the ip or domain of the database server</li>
-<li><strong>db.name</strong> {String} - the name of the database</li>
-<li><strong>db.credentials</strong> {Object} - credentials for db</li>
-<li><strong>db.credentials.username</strong> {String}</li>
-<li><strong>db.credentials.password</strong> {String}</li></ul></li>
-<li><strong>env</strong> {String} - the environment to run in.</li>
-<li><strong>socketIo</strong> {Object} - socket.io instance.</li>
-</ul>
-
-<p><em>Note: If options.env is "development", the dashboard will not require authentication and configuration will not be cached. Make sure to change this to "production" or something similar when deploying.</em></p></div><div class="section"><a name="s-Caveats-3618"></a><h3>Caveats <a class="anchor-link" href="#s-Caveats-3618">#</a></h3>
-
-<ul>
-<li>Deployd mounts its server on <code>process.server</code>. This means you can only run one Deployd server in a process.</li>
-<li>Deployd loads resources from the <code>process.cwd</code>. Add this to ensure you are in the right directory: <code>process.chdir(__dirname)</code>.</li>
-<li>In order to access the <code>/dashboard</code> without a key you must run Deployd with the <code>env</code> option set to <code>development</code>.</li>
-</ul></div></div>  
+<pre><code>"dependencies": {
+  "deployd": "^0.7.0",
+  "dpd-fileupload": "^0.0.10"
+},
+"devDependencies": {
+  "gulp": "^3.6.2",
+  "gulp-jshint": "^1.6.1"
+}
+</code></pre></div>  
 
     
     <h3 style="text-align: center;">More</h3>
@@ -201,11 +158,11 @@ server.listen(PORT);
             
               <li><a href="../../docs/server/as-a-node-module.html">Using Deployd as a Node.js Module</a></li>
             
+              <li><a href="../../docs/server/work-with-express.html">Using Deployd as an Express middleware</a></li>
+            
               <li><a href="../../docs/server/run-script.html">Building a custom run script in Node.js</a></li>
             
               <li><a href="../../docs/server/your-server.html">Deploying to your own Server</a></li>
-            
-              <li><a href="../../docs/server/use-grunt-or-gulp.html">Using grunt or gulp with Deployd</a></li>
             
           </ul>
         </div>

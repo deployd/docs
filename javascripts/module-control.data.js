@@ -1,4 +1,29 @@
 window.Modules = {
+  "dpd-event-extension": {
+    "_id": "dpd-event-extension",
+    "_rev": "6-8a1b3c9a493db3d3726af8c6213cd4ef",
+    "name": "dpd-event-extension",
+    "description": "Applies patch to dpd-event module to expose require function and context data",
+    "dist-tags": {
+      "latest": "0.0.3"
+    },
+    "readme": "dpd-event-extension\n===================\n\nThis module patches the Deployd dpd-event module to allow those\nwriting endpoint logic to access the require function, the process\nobject, and Deployd context data.\n\nThe require function can be used as it normally is in Node.\n\nThe process object can be used to import modules that aren't\nin the node_modules directory. For example:\n\n    var path = require('path'),\n        helpers = require(\n          path.join(process().cwd(), 'resources/aips/lib/helpers.js')\n        );\n\nThe context data, returned by calling the `context` function, can\nbe used to inspect Deployd state data.\n\nThe code is a modified version of a Gist by GitHub user Fedia:\n\nhttps://gist.github.com/Fedia/4089364\n",
+    "maintainers": [
+      {
+        "name": "mcantelon",
+        "email": "mcantelon@gmail.com"
+      }
+    ],
+    "time": {
+      "modified": "2014-02-07T22:11:05.360Z",
+      "created": "2014-02-07T03:41:17.341Z",
+      "0.0.1": "2014-02-07T03:41:17.341Z",
+      "0.0.2": "2014-02-07T03:49:50.998Z",
+      "0.0.3": "2014-02-07T22:11:05.360Z"
+    },
+    "readmeFilename": "README.md",
+    "_attachments": {}
+  },
   "dpd-email": {
     "_id": "dpd-email",
     "_rev": "5-2f66712cdd7a6e7cbbdf432b7d32ef43",
@@ -22,80 +47,15 @@ window.Modules = {
     },
     "_attachments": {}
   },
-  "dpd-importer": {
-    "_id": "dpd-importer",
-    "_rev": "5-225a29dd3b0bbd01707bf53d567edcbe",
-    "name": "dpd-importer",
-    "description": "import mongo collections into your deployd app",
+  "dpd-fb-proxy": {
+    "_id": "dpd-fb-proxy",
+    "_rev": "3-504e1f1df1d632437265cd72aaac573c",
+    "name": "dpd-fb-proxy",
+    "description": "Facebook proxy for deployd",
     "dist-tags": {
-      "latest": "0.0.2"
+      "latest": "0.1.0"
     },
-    "readme": "## dpd-importer\n\nCreate deployd collections from existing mongo collections.\n\n### usage\n\nCreate a project. Then install the dpd-importer module.\n\n    dpd create my-app\n    cd my-app\n    mkdir node_modules\n    npm install dpd-importer\n    dpd -d\n    \nClick the green new resource and choose **Importer**.\n\nGive it the default name \"/importer\". Open it by clicking \"IMPOTER\" in the left menu.\n\nEnter the information of your old MongoDB server. Clicking on **Start Import** will start creating deployd collections from data in the provided db by streaming data directly from the old db into your new deployd db.\n\n",
-    "maintainers": [
-      {
-        "name": "ritch",
-        "email": "skawful@gmail.com"
-      }
-    ],
-    "time": {
-      "modified": "2013-01-29T15:40:45.026Z",
-      "created": "2012-11-17T06:14:15.779Z",
-      "0.0.1": "2012-11-17T06:14:16.585Z",
-      "0.0.2": "2013-01-29T15:40:45.026Z"
-    },
-    "author": {
-      "name": "Ritchie Martori"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git://github.com/deployd/dpd-importer.git"
-    },
-    "_attachments": {}
-  },
-  "generator-deployd": {
-    "_id": "generator-deployd",
-    "_rev": "11-30cb99bf077b1323fdd6d4397685b17c",
-    "name": "generator-deployd",
-    "description": "A yeoman generator for Deployd",
-    "dist-tags": {
-      "latest": "0.0.5"
-    },
-    "readme": "# generator-deployd [![Build Status](https://secure.travis-ci.org/NicolasRitouet/generator-deployd.png?branch=master)](https://travis-ci.org/NicolasRitouet/generator-deployd)\n\nA generator for [Yeoman](http://yeoman.io).\n\n## Notes about generator-deployd\nEarly alpha phase, use at your own risk!\n\nCurrently, it doesn't do more than \"dpd create\", but I plan to have more options with this generator (angularjs, bootstrap, Grunt tasks, etc...).\n\nYet, this only works if you [install the Deployd binaries from the deployd website](http://deployd.com/download.html), but I assure you, it's worth it!\n\n## Usage\n### Generate the app\n```\n$ npm install -g yo generator-deployd\n$ mkdir name_of_your_app && cd $_\n$ yo deployd\n```\n\n### Start the app\n```\ndpd -d\n```\n\n## Todo\n- integrate Grunt to launch the server using [grunt-deployd](https://github.com/taras/grunt-deployd)\n- integrate angularjs\n- integrate bootstrap 3\n- create grunt tasks for live reloading, jshint, build, etc...",
-    "maintainers": [
-      {
-        "name": "nicolasrtt",
-        "email": "nicolas@ritouet.com"
-      }
-    ],
-    "time": {
-      "modified": "2014-01-17T13:04:13.005Z",
-      "created": "2014-01-08T21:32:57.334Z",
-      "0.0.1": "2014-01-08T21:32:58.370Z",
-      "0.0.2": "2014-01-09T05:55:14.774Z",
-      "0.0.3": "2014-01-09T07:59:51.018Z",
-      "0.0.4": "2014-01-12T21:03:13.470Z",
-      "0.0.5": "2014-01-17T13:04:13.005Z"
-    },
-    "author": {
-      "name": "Nicolas Ritouet",
-      "email": "nicolas@ritouet.com",
-      "url": "https://github.com/NicolasRitouet"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git://github.com/NicolasRitouet/generator-deployd.git"
-    },
-    "_attachments": {}
-  },
-  "dpd-twitter-proxy": {
-    "_id": "dpd-twitter-proxy",
-    "_rev": "5-bb555684344b9b7fd66fa0a676fef2f9",
-    "name": "dpd-twitter-proxy",
-    "description": "Twitter proxy for deployd",
-    "dist-tags": {
-      "latest": "0.1.1"
-    },
-    "readme": "# Deployd Twitter Proxy Resource\r\n\r\nThis custom resource type allows you to connect to Twitter with a local\r\nproxy that takes care of the OAuth authentication.\r\n\r\n## Installation\r\n\r\n`$ npm install dpd-twitter-proxy`\r\n\r\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\r\n\r\n## Configuration\r\n\r\nBefore using the Twitter proxy resource, you must go to its Dashboard page and configure it.\r\n\r\n### Required settings:\r\n\r\n**consumerKey**  \r\nYour Twitter Consumer Key\r\n\r\n**consumerSecret**  \r\nYour Twitter Consumer Secret\r\n",
+    "readme": "# Deployd Facebook Proxy Resource\r\n\r\nThis custom resource type allows you to connect to Facebook with a local\r\nproxy that takes care of the OAuth authentication.\r\n\r\n## Installation\r\n\r\n`$ npm install dpd-fb-proxy`\r\n\r\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\r\n\r\n## Configuration\r\n\r\nBefore using the FB proxy resource, you must go to its Dashboard page and configure it.\r\n\r\n### Required settings:\r\n\r\n**applicationId**  \r\nYour Facebook App ID\r\n\r\n**applicationSecret**  \r\nYour Facebook App Secret\r\n",
     "maintainers": [
       {
         "name": "diadistis",
@@ -103,10 +63,9 @@ window.Modules = {
       }
     ],
     "time": {
-      "modified": "2014-10-02T12:06:41.685Z",
-      "created": "2013-11-21T18:16:16.817Z",
-      "0.1.0": "2013-11-21T18:16:21.776Z",
-      "0.1.1": "2014-10-02T12:06:41.685Z"
+      "modified": "2013-11-21T18:04:33.720Z",
+      "created": "2013-11-21T18:04:28.668Z",
+      "0.1.0": "2013-11-21T18:04:33.720Z"
     },
     "author": {
       "name": "Diadistis",
@@ -114,53 +73,48 @@ window.Modules = {
     },
     "repository": {
       "type": "git",
-      "url": "git://github.com/diadistis/dpd-twitter-proxy.git"
+      "url": "git://github.com/diadistis/dpd-fb-proxy.git"
     },
-    "homepage": "https://github.com/diadistis/dpd-twitter-proxy",
-    "keywords": [
-      "deployd",
-      "resource",
-      "twitter",
-      "proxy"
-    ],
-    "contributors": {
-      "name": "Laodimos",
-      "email": "laodimos@gmail.com"
-    },
-    "bugs": {
-      "url": "http://github.com/diadistis/dpd-twitter-proxy/issues"
-    },
-    "readmeFilename": "README.md",
     "_attachments": {}
   },
-  "dpd-image-wrangler": {
-    "_id": "dpd-image-wrangler",
-    "_rev": "19-fd9f4ed429312177ef6d7793250beea5",
-    "name": "dpd-image-wrangler",
-    "description": "Deployd module that takes an image upload via POST and makes multiple resized versions of it, then places them on an AWS s3 bucket",
+  "dpd-imgix": {
+    "_id": "dpd-imgix",
+    "_rev": "4-3e630c5b49d29bc729f67a94a51855cb",
+    "name": "dpd-imgix",
+    "description": "dpd-imgix =========",
     "dist-tags": {
-      "latest": "0.2.3"
+      "latest": "0.0.2"
     },
-    "readme": "# dpd-image-wrangler v0.2.3\n\nDeployd module that takes an image upload via POST and makes multiple resized versions of it, then places them on an AWS s3 bucket\n\nAllows you to customize how many and what sized versions of the uploaded image are made in the config panel of the deployd resource you setup.\n\n## Install\n\n\tnpm install dpd-image-wrangler\n\n## Configuration\n\nAdd a resource in the deployd dashboard selecting dpd-imageWrangler and name your resource. In the config for your new resource, you'll need to supply:\n\n-\tAWS Access Key\n- \tAWS Secret\n-\tAWS region\n-\tAWS S3 bucket name\n-\tResize tasks to be done when an image is uploaded (see below)\n\n*additional optional configurations:*\n\n-\tPublic read access. When files are placed on your S3 bucket, automatically flag them for public read.\n-\tbasePath.  optionally include a base url (like your Cloud Front url) to be inlcuded with the image urls in the repsonse JSON object.\n-\tInternal only.  Only allow the resource to be accessed from internal deployd requests, and not from general public requests.\n-\tImage Quality.  (Default: 95) image quality setting, range 0-100\n-\tCrop.  After scaling image to meet bounding width/height, should it center crop off the excess opposing width/height to ensure dimensions exactly match those defined for the resize task.\n\n## Setting up resize tasks\n\nYou can configure multiple resize tasks to be executed on the same resource.  The tasks configuration option expects a string representing a JSON array of objects where each object contains a desired width, height, and suffix string to be appended to the resulting filename.\n\n*example:*\n\n\t[\n\t\t{\"width\":1200, \"height\":800, \"suffix\":\"xhdpi\"},\n\t\t{\"width\":600, \"height\":400, \"suffix\":\"mdpi\"}\n\t]\n\nUnfortuantely in the current build of Deployd (0.6.X) - I haven't figured out a way to actually get the object editor seen in the data editor to pop up for a config setting.  So the resize items must get input as a colapsed JSON string like this:\n\n\t[{\"width\":600, \"height\":600, \"suffix\":\"xhdpi\"},{\"width\":300, \"height\":300, \"suffix\":\"mdpi\"}]\n\nNot as user friendly as we would like but hopefully we can get that fixed in a future update of deployd. \n\n## Making a request\n\nOnly *POST* methods are currently accepted.  Expects a multipart form style submission (relys on formidable to handle the incoming form submissions) for the file upload.  Simply make the POST request to your defined /[resource] and the resize tasks will execute on your uploaded file.\n\nMaking the POST to **/[resource]/additional-name** will place the resulting resized images into folders on your S3 bucket of whatever addition name you specify in the path you posted to.\n\n## Output\n\nIf you upload a file named *ImperialStout.jpg* to **/[resource]/beers** with the example tasks configured as above, you would end up with the following on your S3 bucket\n\n-\t/beers/ImperialStout-original.jpg\n-\t/beers/ImperialStout-mdpi.jpg\n-\t/beers/ImperialStout-xhdpi.jpg\n\nIn response to your request, a JSON object will be sent containing the resized image results as key/value pairs\n\n\t{\n\t\t\"mdpi\": \"/beers/ImperialStout-mdpi.jpg\",\n\t\t\"xhdpi\": \"/beers/ImperialStout-xhdpi.jpg\"\n\t}\n\nIf you specify your S3 bucket url or cloud front url in the config option for basePath the response would be\n\n\t{\n\t\t\"mdpi\": \"http://d111111abcdef8.cloudfront.net/beers/ImperialStout-mdpi.jpg\",\n\t\t\"xhdpi\": \"http://d111111abcdef8.cloudfront.net/beers/ImperialStout-xhdpi.jpg\"\n\t}\n\n## About the resize routine\n\nImages will be resized by attmepting a \"center cropped aspect fill\".  Meaning that the input image will be resized such that it fills the desired rectangle without distorting the image. Typically this means that one of either width or height will extend beyond the desired width/height.  The image is centered and the extra is clipped off.  \n\nThe resize is performed by the [\"gm\" node module](https://github.com/aheckmann/gm)\n\n## TODO's\n\n-\thandle multiple files uploaded within a single POST request\n\n\n",
+    "readme": "dpd-imgix\n=========\n\nimgix module for deployd\n",
     "maintainers": [
       {
-        "name": "scottbates22",
-        "email": "scott.bates@22greystreet.com"
+        "name": "joliveira87",
+        "email": "jpoliveira@sportsstarsmedia.com"
       }
     ],
     "time": {
-      "modified": "2014-04-18T19:34:13.868Z",
-      "created": "2014-02-21T07:06:58.563Z",
-      "0.1.0": "2014-02-21T07:07:00.196Z",
-      "0.2.0": "2014-02-27T18:38:31.332Z",
-      "0.2.1": "2014-02-28T20:49:09.679Z",
-      "0.2.3": "2014-04-18T19:34:13.868Z"
+      "modified": "2014-10-27T13:59:44.663Z",
+      "created": "2014-10-27T10:24:42.306Z",
+      "0.0.1": "2014-10-27T10:24:42.306Z",
+      "0.0.2": "2014-10-27T13:59:44.663Z"
     },
+    "homepage": "https://github.com/joliveira87/dpd-imgix",
+    "keywords": [
+      "deploud;",
+      "imgix;"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/joliveira87/dpd-imgix.git"
+    },
+    "author": {
+      "name": "João Oliveira"
+    },
+    "bugs": {
+      "url": "https://github.com/joliveira87/dpd-imgix/issues"
+    },
+    "license": "ISC",
     "readmeFilename": "README.md",
-    "homepage": "https://github.com/UncorkedStudios/dpd-imageWrangler",
-    "users": {
-      "fotoflo": true
-    },
     "_attachments": {}
   },
   "dpd-fake-collection": {
@@ -189,29 +143,6 @@ window.Modules = {
     "repository": {
       "type": "git",
       "url": "git://github.com:yannisgu/dpd-fake-collection.git"
-    },
-    "_attachments": {}
-  },
-  "dpd-search": {
-    "_id": "dpd-search",
-    "_rev": "2-7878db64510db5bb5748a0ec32b27b17",
-    "name": "dpd-search",
-    "description": "provides functionality to search a deployd collection",
-    "dist-tags": {
-      "latest": "0.0.2"
-    },
-    "readme": "ERROR: No README data found!",
-    "maintainers": [
-      {
-        "name": "yannisgu",
-        "email": "me@yannisguedel.ch"
-      }
-    ],
-    "time": {
-      "modified": "2014-01-12T17:51:38.208Z",
-      "created": "2014-01-12T16:39:59.846Z",
-      "0.0.1": "2014-01-12T16:39:59.846Z",
-      "0.0.2": "2014-01-12T17:51:38.208Z"
     },
     "_attachments": {}
   },
@@ -260,138 +191,80 @@ window.Modules = {
     "readmeFilename": "README.md",
     "_attachments": {}
   },
-  "dpd-event-extension": {
-    "_id": "dpd-event-extension",
-    "_rev": "6-8a1b3c9a493db3d3726af8c6213cd4ef",
-    "name": "dpd-event-extension",
-    "description": "Applies patch to dpd-event module to expose require function and context data",
-    "dist-tags": {
-      "latest": "0.0.3"
-    },
-    "readme": "dpd-event-extension\n===================\n\nThis module patches the Deployd dpd-event module to allow those\nwriting endpoint logic to access the require function, the process\nobject, and Deployd context data.\n\nThe require function can be used as it normally is in Node.\n\nThe process object can be used to import modules that aren't\nin the node_modules directory. For example:\n\n    var path = require('path'),\n        helpers = require(\n          path.join(process().cwd(), 'resources/aips/lib/helpers.js')\n        );\n\nThe context data, returned by calling the `context` function, can\nbe used to inspect Deployd state data.\n\nThe code is a modified version of a Gist by GitHub user Fedia:\n\nhttps://gist.github.com/Fedia/4089364\n",
+  "deployd-token": {
+    "_id": "deployd-token",
+    "_rev": "2-0e47977abbc27444ae3fc4705c1418f4",
+    "name": "deployd-token",
+    "description": "modify from deployd@0.6.11,origin author is Ritchie Martori.Deployd is  the simplest way to build realtime APIs for web and mobile apps",
+    "dist-tags": {},
+    "readme": "# deployd-token-auth V0.0.1\n## Warning \nIt's just for tesing, i did not test in production env.\n(Reference: http://blog.auth0.com/2014/01/07/angularjs-authentication-with-cookies-vs-token/)\n\n# deployd v0.6.11\n\n[![Build Status](https://secure.travis-ci.org/deployd/deployd.png)](http://travis-ci.org/deployd/deployd)\n\n## overview\n\nDeployd is the simplest way to build realtime APIs for web and mobile apps. Ready-made, configurable Resources add common functionality to a Deployd backend, which can be further customized with JavaScript Events.\n\n[Read more about deployd](http://deployd.com)\n\n## install osx\n\n[Download](http://deployd.com/download.html) the installer.\n\n## install win\n\n[Download](http://deployd.com/download.html) the installer.\n\n## quick start\n\n\t$ dpd create hello\n\t$ cd hello\n\t$ dpd -d\n\t\n## helpful resources\n\n - [Docs](http://docs.deployd.com/)\n - [Getting Started Guide](http://docs.deployd.com/docs/getting-started/what-is-deployd.md)\n - [Hello World Tutorial](http://docs.deployd.com/docs/getting-started/your-first-api.md)\n - [API Docs](http://docs.deployd.com/api)\n - [Community Discussion Page](http://deployd.com/community.html)\n - [Example Apps](http://docs.deployd.com/examples/)\n\n## install from npm\n\n\tnpm install deployd -g\n\n## install from source\n\n\tgit clone https://github.com/deployd/deployd.git\n\tnpm install\n\tnpm link\n\n## unit tests\n\n\tcd deployd\n\tmongod &\n\tnpm test\n\n## integration tests\n\t\n\tcd test-app\n\t../bin/dpd -o\n\n## license\n\n    Licensed under the Apache License, Version 2.0 (the \"License\");\n    you may not use this file except in compliance with the License.\n    You may obtain a copy of the License at\n\n        http://www.apache.org/licenses/LICENSE-2.0\n\n    Unless required by applicable law or agreed to in writing, software\n    distributed under the License is distributed on an \"AS IS\" BASIS,\n    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n    See the License for the specific language governing permissions and\n    limitations under the License.\n\n    Copyright 2012 deployd llc\n",
     "maintainers": [
       {
-        "name": "mcantelon",
-        "email": "mcantelon@gmail.com"
+        "name": "creatorkuang",
+        "email": "creatorkuang@gmail.com"
       }
     ],
     "time": {
-      "modified": "2014-02-07T22:11:05.360Z",
-      "created": "2014-02-07T03:41:17.341Z",
-      "0.0.1": "2014-02-07T03:41:17.341Z",
-      "0.0.2": "2014-02-07T03:49:50.998Z",
-      "0.0.3": "2014-02-07T22:11:05.360Z"
+      "modified": "2014-04-06T04:30:49.630Z",
+      "created": "2014-04-06T04:16:42.865Z"
     },
-    "readmeFilename": "README.md",
+    "readmeFilename": "",
     "_attachments": {}
   },
-  "dpd-proxy": {
-    "_id": "dpd-proxy",
-    "_rev": "17-2612a8b2052e920d97732c54d72bb103",
-    "name": "dpd-proxy",
-    "description": "A simple proxy resource for deployd",
+  "dpd-passport": {
+    "_id": "dpd-passport",
+    "_rev": "2-f90baad0548e73aa4002349950217867",
+    "name": "dpd-passport",
+    "description": "Passport for deployd",
     "dist-tags": {
-      "latest": "0.1.6"
+      "latest": "0.1.1"
     },
-    "readme": "# Deployd Proxy Resource\r\n\r\nThis custom resource type allows you to forward requests to another server.\r\n\r\n## Installation\r\n\r\n`$ npm install dpd-proxy`\r\n\r\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\r\n\r\n## Configuration\r\n\r\nBefore using the proxy resource, you must go to its Dashboard page and configure it.\r\n\r\n### Required settings:\r\n\r\n**host**  \r\nThe hostname of your SMTP provider.\r\n\r\n### Optional settings:\r\n\r\n**username**  \r\nHTTP Basic Auth username.\r\n\r\n**password**  \r\nHTTP Basic Auth password.\r\n",
+    "readme": "## Auth-Passport Resource\n\nThis custom resource type allows you to authorize your users using the powerful [Passport](http://passportjs.org).\nCurrently, the following methods are supported for authentification:\n\n* **local** (i.e. username + password)\n* **Twitter** (using Api v1.1)\n* **Facebook** (using OAuth)\n* **GitHub**\n\nOthers can be implemented easily if Passport supports them.\n\n### Requirements\n\n* deployd (you'd have guessed that, probably :-))\n* User-Collection named `users` with at least these custom fields:\n```json\n    {\n        \"socialAccount\": {\n            \"name\": \"socialAccount\",\n            \"type\": \"string\",\n            \"typeLabel\": \"string\",\n            \"required\": false,\n            \"id\": \"socialAccount\",\n            \"order\": 0\n        },\n        \"socialAccountId\": {\n            \"name\": \"socialAccountId\",\n            \"type\": \"string\",\n            \"typeLabel\": \"string\",\n            \"required\": false,\n            \"id\": \"socialAccountId\",\n            \"order\": 1\n        },\n        \"profile\": {\n            \"name\": \"profile\",\n            \"type\": \"object\",\n            \"typeLabel\": \"object\",\n            \"required\": false,\n            \"id\": \"profile\",\n            \"order\": 2\n        },\n        \"name\": {\n            \"name\": \"name\",\n            \"type\": \"string\",\n            \"typeLabel\": \"string\",\n            \"required\": false,\n            \"id\": \"name\",\n            \"order\": 3\n        }\n    }\n```\n\n### Installation\n\nIn your app's root directory, type `npm install dpd-passport` into the command line or [download the source](https://bitbucket.org/simpletechs/dpd-passport). This should create a `dpd-passport` directory in your app's `node_modules` directory.\n\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\n\n### Setup\n\nOpen your Dashboard and add the new Passport-Auth Resource. Then configure which modules you want to allow for your users and supply the required information for each module.\n\nNote: You may supply the baseURL (your website's root) via the environment variable `DPD_PASSPORT_BASEURL`. This is especially useful when you have a single codebase for testing + production environments.\n\n### Usage\n\nPoint your users to `/auth/{login,twitter,facebook,github}` to have them login (or signup) via the specified module.\nAfter that, Auth-Passport completely takes over and redirects the users according to the OAuth(2) flow.\n\n### Usage in Mobile Apps\n\nAuth-Passport was built with usage in mobile Apps in mind. From inside your mobile app, open a browser and point the user to your website's `/auth/{login,twitter,facebook,github}` endpoint. From there, Auth-Passport will take over and guide (i.e. redirect) your user through the different steps needed for each provider, until the user has authorized your app and logged in successfully.\n\nNow you can get hold of your user and his session, by specifying a `redirectURL` in the original request. After the login is done (no matter if it was successful or not), your user will be redirected to the specified URL.\nSupply some app-specific URL (see your platform's SDK on how that looks) and catch the response in your app.\nAuth-Passport will supply the following information:\n\n* **sid** (String) Session ID in deployd, send this in every subsequent request\n* **uid** (String) User ID of the user that just logged in\n* **success** (Bool) `true`, if login was successfull\n* **error** (String) contains the error message in case of an error\n\n### Development\n\nTo get started with development, please fork this repository and make your desired changes. Please note that we do all our dev work on bitbucket, so while you may submit pull requests on github, we will only push releases to github once they are finished.\n\n### Credits\n\nWe'd like to thank Passport for building this amazing auth-framework!\n\nAuth-Passport is the work of [simpleTechs.net](https://www.simpletechs.net)\n\n### Contributors\n\nThe following people contributed some of there valuable spare time to make this module even better. Please add yourself to the list, in case we forgot you.\n\n* [Tristan](https://github.com/tmcnab)",
     "maintainers": [
       {
-        "name": "diadistis",
-        "email": "bsotirid@gmail.com"
+        "name": "drastick",
+        "email": "mike@drastick.com"
       }
     ],
     "time": {
-      "modified": "2013-12-26T18:42:04.036Z",
-      "created": "2013-10-28T08:26:07.030Z",
-      "0.0.1": "2013-10-28T08:26:12.095Z",
-      "0.1.0": "2013-10-28T08:54:47.995Z",
-      "0.1.1": "2013-10-28T09:45:01.986Z",
-      "0.1.2": "2013-11-12T14:40:43.984Z",
-      "0.1.3": "2013-11-19T21:42:09.215Z",
-      "0.1.4": "2013-11-20T12:29:36.745Z",
-      "0.1.5": "2013-12-22T13:35:00.567Z",
-      "0.1.6": "2013-12-26T18:42:04.036Z"
+      "modified": "2014-04-09T13:08:28.998Z",
+      "created": "2014-04-09T13:08:28.998Z",
+      "0.1.1": "2014-04-09T13:08:28.998Z"
     },
     "author": {
-      "name": "Diadistis",
-      "email": "bsotirid@gmail.com"
+      "name": "simpletechs.net"
     },
-    "repository": {
-      "type": "git",
-      "url": "git://github.com/diadistis/dpd-proxy.git"
-    },
+    "license": "FreeBSD",
+    "readmeFilename": "Readme.md",
     "_attachments": {}
   },
-  "dpd-imgix": {
-    "_id": "dpd-imgix",
-    "_rev": "4-3e630c5b49d29bc729f67a94a51855cb",
-    "name": "dpd-imgix",
-    "description": "dpd-imgix =========",
+  "dpd-importer": {
+    "_id": "dpd-importer",
+    "_rev": "5-225a29dd3b0bbd01707bf53d567edcbe",
+    "name": "dpd-importer",
+    "description": "import mongo collections into your deployd app",
     "dist-tags": {
       "latest": "0.0.2"
     },
-    "readme": "dpd-imgix\n=========\n\nimgix module for deployd\n",
+    "readme": "## dpd-importer\n\nCreate deployd collections from existing mongo collections.\n\n### usage\n\nCreate a project. Then install the dpd-importer module.\n\n    dpd create my-app\n    cd my-app\n    mkdir node_modules\n    npm install dpd-importer\n    dpd -d\n    \nClick the green new resource and choose **Importer**.\n\nGive it the default name \"/importer\". Open it by clicking \"IMPOTER\" in the left menu.\n\nEnter the information of your old MongoDB server. Clicking on **Start Import** will start creating deployd collections from data in the provided db by streaming data directly from the old db into your new deployd db.\n\n",
     "maintainers": [
       {
-        "name": "joliveira87",
-        "email": "jpoliveira@sportsstarsmedia.com"
+        "name": "ritch",
+        "email": "skawful@gmail.com"
       }
     ],
     "time": {
-      "modified": "2014-10-27T13:59:44.663Z",
-      "created": "2014-10-27T10:24:42.306Z",
-      "0.0.1": "2014-10-27T10:24:42.306Z",
-      "0.0.2": "2014-10-27T13:59:44.663Z"
+      "modified": "2013-01-29T15:40:45.026Z",
+      "created": "2012-11-17T06:14:15.779Z",
+      "0.0.1": "2012-11-17T06:14:16.585Z",
+      "0.0.2": "2013-01-29T15:40:45.026Z"
     },
-    "homepage": "https://github.com/joliveira87/dpd-imgix",
-    "keywords": [
-      "deploud;",
-      "imgix;"
-    ],
+    "author": {
+      "name": "Ritchie Martori"
+    },
     "repository": {
       "type": "git",
-      "url": "https://github.com/joliveira87/dpd-imgix.git"
-    },
-    "author": {
-      "name": "João Oliveira"
-    },
-    "bugs": {
-      "url": "https://github.com/joliveira87/dpd-imgix/issues"
-    },
-    "license": "ISC",
-    "readmeFilename": "README.md",
-    "_attachments": {}
-  },
-  "dpd-curl-proxy": {
-    "_id": "dpd-curl-proxy",
-    "_rev": "4-5119c4733686ed4838b379bae5096962",
-    "name": "dpd-curl-proxy",
-    "description": "A cURL based proxy resource for deployd",
-    "dist-tags": {
-      "latest": "0.1.0"
-    },
-    "readme": "# dpd-curl-proxy v0.1.0\n\nCustom Deployd resource module to solve cross-domain problems by proxying requests through this resource endpoint.  Uses cURL rather than node's http module to fetch the requested url content and return it.\n\n\n\n\n",
-    "maintainers": [
-      {
-        "name": "scottbates22",
-        "email": "scott.bates@22greystreet.com"
-      }
-    ],
-    "time": {
-      "modified": "2014-04-02T23:01:32.446Z",
-      "created": "2014-04-02T23:01:28.913Z",
-      "0.1.0": "2014-04-02T23:01:32.446Z"
-    },
-    "readmeFilename": "README.md",
-    "homepage": "https://github.com/UncorkedStudios/dpd-curl-proxy",
-    "keywords": [
-      "deployd",
-      "resource",
-      "proxy"
-    ],
-    "author": {
-      "name": "Scott Bates",
-      "email": "scott@uncorkedstudios.com"
+      "url": "git://github.com/deployd/dpd-importer.git"
     },
     "_attachments": {}
   },
@@ -428,129 +301,102 @@ window.Modules = {
     "readmeFilename": "README.md",
     "_attachments": {}
   },
-  "dpd-ses": {
-    "_id": "dpd-ses",
-    "_rev": "8-8df9b314d4b7275d3be0e8885dd7f349",
-    "name": "dpd-ses",
-    "description": "[Deployd](http://www.deployd.com) resource module for sending emails via Amazon AWS SES",
-    "dist-tags": {
-      "latest": "0.1.1"
-    },
-    "readme": "# dpd-ses v0.1.1\n\n[Deployd](http://www.deployd.com) resource module for sending emails via Amazon AWS SES\n\n## Install\n\n\tnpm install dpd-ses\n\n## Configuration\n\nAdd a resource in the deployd dashboard selecting SES and name your resource. In the config for your new resource, you'll need to supply:\n\n-\tAWS Access Key\n- \tAWS Secret\n-\tAWS region (SES is typically operating out of us-east-1 only)\n\n*additional optional configurations:*\n\n-\tDefault 'from' address.   If one is not provided you will need to provide a 'from' address in every request to the resource.\n-\tInternal only.  Only allow the resource to be accessed from internal deployd requests, and not from general public requests.\n\n*example*\n\n\tvar email = {\n        to:'someone@mail.com',\n        subject:'Check out Depolyd',\n        message:'Deployd is a really sweet node.js based platform for building API services'\n    };\n    dpd.emailShare.post(email, function(result){\n        console.log('returned from email request: '+JSON.stringify(result));\n    });\n\n## TODO's\n\n- \tAdd HTML message body support",
-    "maintainers": [
-      {
-        "name": "scottbates22",
-        "email": "scott.bates@22greystreet.com"
-      }
-    ],
-    "time": {
-      "modified": "2014-03-03T23:18:42.391Z",
-      "created": "2014-02-21T07:02:28.089Z",
-      "0.1.0": "2014-02-21T07:02:29.524Z",
-      "0.1.1": "2014-03-03T23:18:42.391Z"
-    },
-    "readmeFilename": "README.md",
-    "_attachments": {}
-  },
-  "dpd-passport": {
-    "_id": "dpd-passport",
-    "_rev": "2-f90baad0548e73aa4002349950217867",
-    "name": "dpd-passport",
-    "description": "Passport for deployd",
-    "dist-tags": {
-      "latest": "0.1.1"
-    },
-    "readme": "## Auth-Passport Resource\n\nThis custom resource type allows you to authorize your users using the powerful [Passport](http://passportjs.org).\nCurrently, the following methods are supported for authentification:\n\n* **local** (i.e. username + password)\n* **Twitter** (using Api v1.1)\n* **Facebook** (using OAuth)\n* **GitHub**\n\nOthers can be implemented easily if Passport supports them.\n\n### Requirements\n\n* deployd (you'd have guessed that, probably :-))\n* User-Collection named `users` with at least these custom fields:\n```json\n    {\n        \"socialAccount\": {\n            \"name\": \"socialAccount\",\n            \"type\": \"string\",\n            \"typeLabel\": \"string\",\n            \"required\": false,\n            \"id\": \"socialAccount\",\n            \"order\": 0\n        },\n        \"socialAccountId\": {\n            \"name\": \"socialAccountId\",\n            \"type\": \"string\",\n            \"typeLabel\": \"string\",\n            \"required\": false,\n            \"id\": \"socialAccountId\",\n            \"order\": 1\n        },\n        \"profile\": {\n            \"name\": \"profile\",\n            \"type\": \"object\",\n            \"typeLabel\": \"object\",\n            \"required\": false,\n            \"id\": \"profile\",\n            \"order\": 2\n        },\n        \"name\": {\n            \"name\": \"name\",\n            \"type\": \"string\",\n            \"typeLabel\": \"string\",\n            \"required\": false,\n            \"id\": \"name\",\n            \"order\": 3\n        }\n    }\n```\n\n### Installation\n\nIn your app's root directory, type `npm install dpd-passport` into the command line or [download the source](https://bitbucket.org/simpletechs/dpd-passport). This should create a `dpd-passport` directory in your app's `node_modules` directory.\n\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\n\n### Setup\n\nOpen your Dashboard and add the new Passport-Auth Resource. Then configure which modules you want to allow for your users and supply the required information for each module.\n\nNote: You may supply the baseURL (your website's root) via the environment variable `DPD_PASSPORT_BASEURL`. This is especially useful when you have a single codebase for testing + production environments.\n\n### Usage\n\nPoint your users to `/auth/{login,twitter,facebook,github}` to have them login (or signup) via the specified module.\nAfter that, Auth-Passport completely takes over and redirects the users according to the OAuth(2) flow.\n\n### Usage in Mobile Apps\n\nAuth-Passport was built with usage in mobile Apps in mind. From inside your mobile app, open a browser and point the user to your website's `/auth/{login,twitter,facebook,github}` endpoint. From there, Auth-Passport will take over and guide (i.e. redirect) your user through the different steps needed for each provider, until the user has authorized your app and logged in successfully.\n\nNow you can get hold of your user and his session, by specifying a `redirectURL` in the original request. After the login is done (no matter if it was successful or not), your user will be redirected to the specified URL.\nSupply some app-specific URL (see your platform's SDK on how that looks) and catch the response in your app.\nAuth-Passport will supply the following information:\n\n* **sid** (String) Session ID in deployd, send this in every subsequent request\n* **uid** (String) User ID of the user that just logged in\n* **success** (Bool) `true`, if login was successfull\n* **error** (String) contains the error message in case of an error\n\n### Development\n\nTo get started with development, please fork this repository and make your desired changes. Please note that we do all our dev work on bitbucket, so while you may submit pull requests on github, we will only push releases to github once they are finished.\n\n### Credits\n\nWe'd like to thank Passport for building this amazing auth-framework!\n\nAuth-Passport is the work of [simpleTechs.net](https://www.simpletechs.net)\n\n### Contributors\n\nThe following people contributed some of there valuable spare time to make this module even better. Please add yourself to the list, in case we forgot you.\n\n* [Tristan](https://github.com/tmcnab)",
-    "maintainers": [
-      {
-        "name": "drastick",
-        "email": "mike@drastick.com"
-      }
-    ],
-    "time": {
-      "modified": "2014-04-09T13:08:28.998Z",
-      "created": "2014-04-09T13:08:28.998Z",
-      "0.1.1": "2014-04-09T13:08:28.998Z"
-    },
-    "author": {
-      "name": "simpletechs.net"
-    },
-    "license": "FreeBSD",
-    "readmeFilename": "Readme.md",
-    "_attachments": {}
-  },
-  "dpd-s3": {
-    "_id": "dpd-s3",
-    "_rev": "7-27c454b2c31b1b65b7765ee7f6d3ba5e",
-    "name": "dpd-s3",
-    "description": "Deployd module for a resource to GET/POST to and from an AWS s3 bucket",
-    "dist-tags": {
-      "latest": "0.2.0"
-    },
-    "readme": "# dpd-s3 v0.2.0\n\nDeployd module for a resource to GET/POST to and from an AWS s3 bucket\n\nThis is based on Ritchie Martori's origin version ( https://github.com/deployd/dpd-s3 ) which was un-published from npm as it didn't work.  Ritchie accepted the pull request with my changes to make it work again, but hasn't ever re-published it.  So I am publishing it as I frequently use it.\n\nSince then I have continued to make changes to suite my specific needs.  \n\n## Install\n\n\tnpm install dpd-s3\n\n## Configuration\n\nAdd a resource in the deployd dashboard selecting dpd-imageWrangler and name your resource. In the config for your new resource, you'll need to supply:\n\n-\tAWS Access Key\n- \tAWS Secret\n-\tAWS region\n-\tAWS S3 bucket name\n\n*additional optional configurations:*\n\n-\tbasePath.  optionally include a base url (like your Cloud Front url) to be inlcuded with the image urls in the repsonse JSON object.\n-\tPublic read access. When files are placed on your S3 bucket, automatically flag them for public read.\n",
-    "maintainers": [
-      {
-        "name": "scottbates22",
-        "email": "scott.bates@22greystreet.com"
-      }
-    ],
-    "time": {
-      "modified": "2014-05-12T16:09:13.060Z",
-      "created": "2014-02-21T07:16:29.321Z",
-      "0.1.0": "2014-02-21T07:16:30.779Z",
-      "0.2.0": "2014-05-12T16:09:13.060Z"
-    },
-    "readmeFilename": "README.md",
-    "_attachments": {}
-  },
-  "dpd-fb-proxy": {
-    "_id": "dpd-fb-proxy",
-    "_rev": "3-504e1f1df1d632437265cd72aaac573c",
-    "name": "dpd-fb-proxy",
-    "description": "Facebook proxy for deployd",
+  "dpd-curl-proxy": {
+    "_id": "dpd-curl-proxy",
+    "_rev": "4-5119c4733686ed4838b379bae5096962",
+    "name": "dpd-curl-proxy",
+    "description": "A cURL based proxy resource for deployd",
     "dist-tags": {
       "latest": "0.1.0"
     },
-    "readme": "# Deployd Facebook Proxy Resource\r\n\r\nThis custom resource type allows you to connect to Facebook with a local\r\nproxy that takes care of the OAuth authentication.\r\n\r\n## Installation\r\n\r\n`$ npm install dpd-fb-proxy`\r\n\r\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\r\n\r\n## Configuration\r\n\r\nBefore using the FB proxy resource, you must go to its Dashboard page and configure it.\r\n\r\n### Required settings:\r\n\r\n**applicationId**  \r\nYour Facebook App ID\r\n\r\n**applicationSecret**  \r\nYour Facebook App Secret\r\n",
+    "readme": "# dpd-curl-proxy v0.1.0\n\nCustom Deployd resource module to solve cross-domain problems by proxying requests through this resource endpoint.  Uses cURL rather than node's http module to fetch the requested url content and return it.\n\n\n\n\n",
     "maintainers": [
       {
-        "name": "diadistis",
-        "email": "bsotirid@gmail.com"
+        "name": "scottbates22",
+        "email": "scott.bates@22greystreet.com"
       }
     ],
     "time": {
-      "modified": "2013-11-21T18:04:33.720Z",
-      "created": "2013-11-21T18:04:28.668Z",
-      "0.1.0": "2013-11-21T18:04:33.720Z"
+      "modified": "2014-04-02T23:01:32.446Z",
+      "created": "2014-04-02T23:01:28.913Z",
+      "0.1.0": "2014-04-02T23:01:32.446Z"
     },
+    "readmeFilename": "README.md",
+    "homepage": "https://github.com/UncorkedStudios/dpd-curl-proxy",
+    "keywords": [
+      "deployd",
+      "resource",
+      "proxy"
+    ],
     "author": {
-      "name": "Diadistis",
-      "email": "bsotirid@gmail.com"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git://github.com/diadistis/dpd-fb-proxy.git"
+      "name": "Scott Bates",
+      "email": "scott@uncorkedstudios.com"
     },
     "_attachments": {}
   },
-  "deployd-token": {
-    "_id": "deployd-token",
-    "_rev": "2-0e47977abbc27444ae3fc4705c1418f4",
-    "name": "deployd-token",
-    "description": "modify from deployd@0.6.11,origin author is Ritchie Martori.Deployd is  the simplest way to build realtime APIs for web and mobile apps",
-    "dist-tags": {},
-    "readme": "# deployd-token-auth V0.0.1\n## Warning \nIt's just for tesing, i did not test in production env.\n(Reference: http://blog.auth0.com/2014/01/07/angularjs-authentication-with-cookies-vs-token/)\n\n# deployd v0.6.11\n\n[![Build Status](https://secure.travis-ci.org/deployd/deployd.png)](http://travis-ci.org/deployd/deployd)\n\n## overview\n\nDeployd is the simplest way to build realtime APIs for web and mobile apps. Ready-made, configurable Resources add common functionality to a Deployd backend, which can be further customized with JavaScript Events.\n\n[Read more about deployd](http://deployd.com)\n\n## install osx\n\n[Download](http://deployd.com/download.html) the installer.\n\n## install win\n\n[Download](http://deployd.com/download.html) the installer.\n\n## quick start\n\n\t$ dpd create hello\n\t$ cd hello\n\t$ dpd -d\n\t\n## helpful resources\n\n - [Docs](http://docs.deployd.com/)\n - [Getting Started Guide](http://docs.deployd.com/docs/getting-started/what-is-deployd.md)\n - [Hello World Tutorial](http://docs.deployd.com/docs/getting-started/your-first-api.md)\n - [API Docs](http://docs.deployd.com/api)\n - [Community Discussion Page](http://deployd.com/community.html)\n - [Example Apps](http://docs.deployd.com/examples/)\n\n## install from npm\n\n\tnpm install deployd -g\n\n## install from source\n\n\tgit clone https://github.com/deployd/deployd.git\n\tnpm install\n\tnpm link\n\n## unit tests\n\n\tcd deployd\n\tmongod &\n\tnpm test\n\n## integration tests\n\t\n\tcd test-app\n\t../bin/dpd -o\n\n## license\n\n    Licensed under the Apache License, Version 2.0 (the \"License\");\n    you may not use this file except in compliance with the License.\n    You may obtain a copy of the License at\n\n        http://www.apache.org/licenses/LICENSE-2.0\n\n    Unless required by applicable law or agreed to in writing, software\n    distributed under the License is distributed on an \"AS IS\" BASIS,\n    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n    See the License for the specific language governing permissions and\n    limitations under the License.\n\n    Copyright 2012 deployd llc\n",
+  "dpd-image-wrangler": {
+    "_id": "dpd-image-wrangler",
+    "_rev": "19-fd9f4ed429312177ef6d7793250beea5",
+    "name": "dpd-image-wrangler",
+    "description": "Deployd module that takes an image upload via POST and makes multiple resized versions of it, then places them on an AWS s3 bucket",
+    "dist-tags": {
+      "latest": "0.2.3"
+    },
+    "readme": "# dpd-image-wrangler v0.2.3\n\nDeployd module that takes an image upload via POST and makes multiple resized versions of it, then places them on an AWS s3 bucket\n\nAllows you to customize how many and what sized versions of the uploaded image are made in the config panel of the deployd resource you setup.\n\n## Install\n\n\tnpm install dpd-image-wrangler\n\n## Configuration\n\nAdd a resource in the deployd dashboard selecting dpd-imageWrangler and name your resource. In the config for your new resource, you'll need to supply:\n\n-\tAWS Access Key\n- \tAWS Secret\n-\tAWS region\n-\tAWS S3 bucket name\n-\tResize tasks to be done when an image is uploaded (see below)\n\n*additional optional configurations:*\n\n-\tPublic read access. When files are placed on your S3 bucket, automatically flag them for public read.\n-\tbasePath.  optionally include a base url (like your Cloud Front url) to be inlcuded with the image urls in the repsonse JSON object.\n-\tInternal only.  Only allow the resource to be accessed from internal deployd requests, and not from general public requests.\n-\tImage Quality.  (Default: 95) image quality setting, range 0-100\n-\tCrop.  After scaling image to meet bounding width/height, should it center crop off the excess opposing width/height to ensure dimensions exactly match those defined for the resize task.\n\n## Setting up resize tasks\n\nYou can configure multiple resize tasks to be executed on the same resource.  The tasks configuration option expects a string representing a JSON array of objects where each object contains a desired width, height, and suffix string to be appended to the resulting filename.\n\n*example:*\n\n\t[\n\t\t{\"width\":1200, \"height\":800, \"suffix\":\"xhdpi\"},\n\t\t{\"width\":600, \"height\":400, \"suffix\":\"mdpi\"}\n\t]\n\nUnfortuantely in the current build of Deployd (0.6.X) - I haven't figured out a way to actually get the object editor seen in the data editor to pop up for a config setting.  So the resize items must get input as a colapsed JSON string like this:\n\n\t[{\"width\":600, \"height\":600, \"suffix\":\"xhdpi\"},{\"width\":300, \"height\":300, \"suffix\":\"mdpi\"}]\n\nNot as user friendly as we would like but hopefully we can get that fixed in a future update of deployd. \n\n## Making a request\n\nOnly *POST* methods are currently accepted.  Expects a multipart form style submission (relys on formidable to handle the incoming form submissions) for the file upload.  Simply make the POST request to your defined /[resource] and the resize tasks will execute on your uploaded file.\n\nMaking the POST to **/[resource]/additional-name** will place the resulting resized images into folders on your S3 bucket of whatever addition name you specify in the path you posted to.\n\n## Output\n\nIf you upload a file named *ImperialStout.jpg* to **/[resource]/beers** with the example tasks configured as above, you would end up with the following on your S3 bucket\n\n-\t/beers/ImperialStout-original.jpg\n-\t/beers/ImperialStout-mdpi.jpg\n-\t/beers/ImperialStout-xhdpi.jpg\n\nIn response to your request, a JSON object will be sent containing the resized image results as key/value pairs\n\n\t{\n\t\t\"mdpi\": \"/beers/ImperialStout-mdpi.jpg\",\n\t\t\"xhdpi\": \"/beers/ImperialStout-xhdpi.jpg\"\n\t}\n\nIf you specify your S3 bucket url or cloud front url in the config option for basePath the response would be\n\n\t{\n\t\t\"mdpi\": \"http://d111111abcdef8.cloudfront.net/beers/ImperialStout-mdpi.jpg\",\n\t\t\"xhdpi\": \"http://d111111abcdef8.cloudfront.net/beers/ImperialStout-xhdpi.jpg\"\n\t}\n\n## About the resize routine\n\nImages will be resized by attmepting a \"center cropped aspect fill\".  Meaning that the input image will be resized such that it fills the desired rectangle without distorting the image. Typically this means that one of either width or height will extend beyond the desired width/height.  The image is centered and the extra is clipped off.  \n\nThe resize is performed by the [\"gm\" node module](https://github.com/aheckmann/gm)\n\n## TODO's\n\n-\thandle multiple files uploaded within a single POST request\n\n\n",
     "maintainers": [
       {
-        "name": "creatorkuang",
-        "email": "creatorkuang@gmail.com"
+        "name": "scottbates22",
+        "email": "scott.bates@22greystreet.com"
       }
     ],
     "time": {
-      "modified": "2014-04-06T04:30:49.630Z",
-      "created": "2014-04-06T04:16:42.865Z"
+      "modified": "2014-04-18T19:34:13.868Z",
+      "created": "2014-02-21T07:06:58.563Z",
+      "0.1.0": "2014-02-21T07:07:00.196Z",
+      "0.2.0": "2014-02-27T18:38:31.332Z",
+      "0.2.1": "2014-02-28T20:49:09.679Z",
+      "0.2.3": "2014-04-18T19:34:13.868Z"
     },
-    "readmeFilename": "",
+    "readmeFilename": "README.md",
+    "homepage": "https://github.com/UncorkedStudios/dpd-imageWrangler",
+    "users": {
+      "fotoflo": true
+    },
+    "_attachments": {}
+  },
+  "generator-deployd": {
+    "_id": "generator-deployd",
+    "_rev": "11-30cb99bf077b1323fdd6d4397685b17c",
+    "name": "generator-deployd",
+    "description": "A yeoman generator for Deployd",
+    "dist-tags": {
+      "latest": "0.0.5"
+    },
+    "readme": "# generator-deployd [![Build Status](https://secure.travis-ci.org/NicolasRitouet/generator-deployd.png?branch=master)](https://travis-ci.org/NicolasRitouet/generator-deployd)\n\nA generator for [Yeoman](http://yeoman.io).\n\n## Notes about generator-deployd\nEarly alpha phase, use at your own risk!\n\nCurrently, it doesn't do more than \"dpd create\", but I plan to have more options with this generator (angularjs, bootstrap, Grunt tasks, etc...).\n\nYet, this only works if you [install the Deployd binaries from the deployd website](http://deployd.com/download.html), but I assure you, it's worth it!\n\n## Usage\n### Generate the app\n```\n$ npm install -g yo generator-deployd\n$ mkdir name_of_your_app && cd $_\n$ yo deployd\n```\n\n### Start the app\n```\ndpd -d\n```\n\n## Todo\n- integrate Grunt to launch the server using [grunt-deployd](https://github.com/taras/grunt-deployd)\n- integrate angularjs\n- integrate bootstrap 3\n- create grunt tasks for live reloading, jshint, build, etc...",
+    "maintainers": [
+      {
+        "name": "nicolasrtt",
+        "email": "nicolas@ritouet.com"
+      }
+    ],
+    "time": {
+      "modified": "2014-01-17T13:04:13.005Z",
+      "created": "2014-01-08T21:32:57.334Z",
+      "0.0.1": "2014-01-08T21:32:58.370Z",
+      "0.0.2": "2014-01-09T05:55:14.774Z",
+      "0.0.3": "2014-01-09T07:59:51.018Z",
+      "0.0.4": "2014-01-12T21:03:13.470Z",
+      "0.0.5": "2014-01-17T13:04:13.005Z"
+    },
+    "author": {
+      "name": "Nicolas Ritouet",
+      "email": "nicolas@ritouet.com",
+      "url": "https://github.com/NicolasRitouet"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/NicolasRitouet/generator-deployd.git"
+    },
     "_attachments": {}
   },
   "dpd-forecastio": {
@@ -629,6 +475,329 @@ window.Modules = {
     "users": {},
     "_attachments": {}
   },
+  "dpd-s3": {
+    "_id": "dpd-s3",
+    "_rev": "7-27c454b2c31b1b65b7765ee7f6d3ba5e",
+    "name": "dpd-s3",
+    "description": "Deployd module for a resource to GET/POST to and from an AWS s3 bucket",
+    "dist-tags": {
+      "latest": "0.2.0"
+    },
+    "readme": "# dpd-s3 v0.2.0\n\nDeployd module for a resource to GET/POST to and from an AWS s3 bucket\n\nThis is based on Ritchie Martori's origin version ( https://github.com/deployd/dpd-s3 ) which was un-published from npm as it didn't work.  Ritchie accepted the pull request with my changes to make it work again, but hasn't ever re-published it.  So I am publishing it as I frequently use it.\n\nSince then I have continued to make changes to suite my specific needs.  \n\n## Install\n\n\tnpm install dpd-s3\n\n## Configuration\n\nAdd a resource in the deployd dashboard selecting dpd-imageWrangler and name your resource. In the config for your new resource, you'll need to supply:\n\n-\tAWS Access Key\n- \tAWS Secret\n-\tAWS region\n-\tAWS S3 bucket name\n\n*additional optional configurations:*\n\n-\tbasePath.  optionally include a base url (like your Cloud Front url) to be inlcuded with the image urls in the repsonse JSON object.\n-\tPublic read access. When files are placed on your S3 bucket, automatically flag them for public read.\n",
+    "maintainers": [
+      {
+        "name": "scottbates22",
+        "email": "scott.bates@22greystreet.com"
+      }
+    ],
+    "time": {
+      "modified": "2014-05-12T16:09:13.060Z",
+      "created": "2014-02-21T07:16:29.321Z",
+      "0.1.0": "2014-02-21T07:16:30.779Z",
+      "0.2.0": "2014-05-12T16:09:13.060Z"
+    },
+    "readmeFilename": "README.md",
+    "_attachments": {}
+  },
+  "dpd-paypal-ap": {
+    "_id": "dpd-paypal-ap",
+    "_rev": "19-829c5085f0e7c827fd67e16bb4cea0df",
+    "name": "dpd-paypal-ap",
+    "description": "This custom resource type allows you to make adaptive payments through PayPal.",
+    "dist-tags": {
+      "latest": "0.0.9"
+    },
+    "readme": "dpd-paypal-ap\r\n==========================\r\n\r\nDeployd module for using a Node.js sdk for Paypal Adaptive Payments and Paypal Adaptive Accounts API, without dependencies",
+    "maintainers": [
+      {
+        "name": "robrusher",
+        "email": "rob@robrusher.com"
+      }
+    ],
+    "time": {
+      "modified": "2013-11-09T22:39:37.988Z",
+      "created": "2013-08-14T04:09:52.472Z",
+      "0.0.1": "2013-08-14T04:09:54.669Z",
+      "0.0.2": "2013-08-14T06:17:56.639Z",
+      "0.0.3": "2013-08-18T17:26:01.641Z",
+      "0.0.4": "2013-09-04T18:08:41.486Z",
+      "0.0.5": "2013-09-04T18:23:32.325Z",
+      "0.0.6": "2013-09-04T18:46:22.521Z",
+      "0.0.7": "2013-09-04T19:04:24.901Z",
+      "0.0.8": "2013-09-04T19:14:45.034Z",
+      "0.0.9": "2013-11-09T22:39:37.988Z"
+    },
+    "author": {
+      "name": "Rob Rusher"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/robrusher/dpd-paypal-ap.git"
+    },
+    "_attachments": {}
+  },
+  "dpd-yeoman": {
+    "_id": "dpd-yeoman",
+    "_rev": "3-5de28a8d7e00fd4ef3c274fc04abb3e3",
+    "name": "dpd-yeoman",
+    "description": "A Yeoman generator to stub & scaffold deployd APIs.",
+    "dist-tags": {
+      "latest": "0.0.1"
+    },
+    "readme": "# dpd-yeoman\n\n[Deployd](http://deployd.com) API generator for yeoman.\n\n## Status\n\nActive Development\n\n## Dependencies\n\n * [MongoDB](http://mongodb.org)\n * [Node](http://nodejs.org)\n * [Yeoman](http://yeoman.io) (npm install -g yeoman)\n\n## Quick Start\n\n\tnpm install -g dpd-yeoman\n\tmkdir myapp\n\tcd myapp\n\tyeoman init angular\n\tyeoman init deployd\n\tyeoman init deployd:collection title:string description:string\n\tmongod\n\tnode server\n\tOpen localhost:3501 in your browser to see the app\n\tOpen localhost:3501/dashboard to see the deployd dashboard.\n",
+    "maintainers": [
+      {
+        "name": "jeffbcross",
+        "email": "middlefloor@gmail.com"
+      }
+    ],
+    "time": {
+      "modified": "2013-02-11T07:00:54.473Z",
+      "created": "2013-02-11T07:00:53.572Z",
+      "0.0.1": "2013-02-11T07:00:54.473Z"
+    },
+    "author": {
+      "name": "Jeff Cross"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/jeffbcross/dpd-yeoman"
+    },
+    "_attachments": {}
+  },
+  "dpd-twitter-proxy": {
+    "_id": "dpd-twitter-proxy",
+    "_rev": "5-bb555684344b9b7fd66fa0a676fef2f9",
+    "name": "dpd-twitter-proxy",
+    "description": "Twitter proxy for deployd",
+    "dist-tags": {
+      "latest": "0.1.1"
+    },
+    "readme": "# Deployd Twitter Proxy Resource\r\n\r\nThis custom resource type allows you to connect to Twitter with a local\r\nproxy that takes care of the OAuth authentication.\r\n\r\n## Installation\r\n\r\n`$ npm install dpd-twitter-proxy`\r\n\r\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\r\n\r\n## Configuration\r\n\r\nBefore using the Twitter proxy resource, you must go to its Dashboard page and configure it.\r\n\r\n### Required settings:\r\n\r\n**consumerKey**  \r\nYour Twitter Consumer Key\r\n\r\n**consumerSecret**  \r\nYour Twitter Consumer Secret\r\n",
+    "maintainers": [
+      {
+        "name": "diadistis",
+        "email": "bsotirid@gmail.com"
+      }
+    ],
+    "time": {
+      "modified": "2014-10-02T12:06:41.685Z",
+      "created": "2013-11-21T18:16:16.817Z",
+      "0.1.0": "2013-11-21T18:16:21.776Z",
+      "0.1.1": "2014-10-02T12:06:41.685Z"
+    },
+    "author": {
+      "name": "Diadistis",
+      "email": "bsotirid@gmail.com"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/diadistis/dpd-twitter-proxy.git"
+    },
+    "homepage": "https://github.com/diadistis/dpd-twitter-proxy",
+    "keywords": [
+      "deployd",
+      "resource",
+      "twitter",
+      "proxy"
+    ],
+    "contributors": {
+      "name": "Laodimos",
+      "email": "laodimos@gmail.com"
+    },
+    "bugs": {
+      "url": "http://github.com/diadistis/dpd-twitter-proxy/issues"
+    },
+    "readmeFilename": "README.md",
+    "_attachments": {}
+  },
+  "dpd-search": {
+    "_id": "dpd-search",
+    "_rev": "2-7878db64510db5bb5748a0ec32b27b17",
+    "name": "dpd-search",
+    "description": "provides functionality to search a deployd collection",
+    "dist-tags": {
+      "latest": "0.0.2"
+    },
+    "readme": "ERROR: No README data found!",
+    "maintainers": [
+      {
+        "name": "yannisgu",
+        "email": "me@yannisguedel.ch"
+      }
+    ],
+    "time": {
+      "modified": "2014-01-12T17:51:38.208Z",
+      "created": "2014-01-12T16:39:59.846Z",
+      "0.0.1": "2014-01-12T16:39:59.846Z",
+      "0.0.2": "2014-01-12T17:51:38.208Z"
+    },
+    "_attachments": {}
+  },
+  "dpd-ses": {
+    "_id": "dpd-ses",
+    "_rev": "8-8df9b314d4b7275d3be0e8885dd7f349",
+    "name": "dpd-ses",
+    "description": "[Deployd](http://www.deployd.com) resource module for sending emails via Amazon AWS SES",
+    "dist-tags": {
+      "latest": "0.1.1"
+    },
+    "readme": "# dpd-ses v0.1.1\n\n[Deployd](http://www.deployd.com) resource module for sending emails via Amazon AWS SES\n\n## Install\n\n\tnpm install dpd-ses\n\n## Configuration\n\nAdd a resource in the deployd dashboard selecting SES and name your resource. In the config for your new resource, you'll need to supply:\n\n-\tAWS Access Key\n- \tAWS Secret\n-\tAWS region (SES is typically operating out of us-east-1 only)\n\n*additional optional configurations:*\n\n-\tDefault 'from' address.   If one is not provided you will need to provide a 'from' address in every request to the resource.\n-\tInternal only.  Only allow the resource to be accessed from internal deployd requests, and not from general public requests.\n\n*example*\n\n\tvar email = {\n        to:'someone@mail.com',\n        subject:'Check out Depolyd',\n        message:'Deployd is a really sweet node.js based platform for building API services'\n    };\n    dpd.emailShare.post(email, function(result){\n        console.log('returned from email request: '+JSON.stringify(result));\n    });\n\n## TODO's\n\n- \tAdd HTML message body support",
+    "maintainers": [
+      {
+        "name": "scottbates22",
+        "email": "scott.bates@22greystreet.com"
+      }
+    ],
+    "time": {
+      "modified": "2014-03-03T23:18:42.391Z",
+      "created": "2014-02-21T07:02:28.089Z",
+      "0.1.0": "2014-02-21T07:02:29.524Z",
+      "0.1.1": "2014-03-03T23:18:42.391Z"
+    },
+    "readmeFilename": "README.md",
+    "_attachments": {}
+  },
+  "dpd-proxy": {
+    "_id": "dpd-proxy",
+    "_rev": "17-2612a8b2052e920d97732c54d72bb103",
+    "name": "dpd-proxy",
+    "description": "A simple proxy resource for deployd",
+    "dist-tags": {
+      "latest": "0.1.6"
+    },
+    "readme": "# Deployd Proxy Resource\r\n\r\nThis custom resource type allows you to forward requests to another server.\r\n\r\n## Installation\r\n\r\n`$ npm install dpd-proxy`\r\n\r\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\r\n\r\n## Configuration\r\n\r\nBefore using the proxy resource, you must go to its Dashboard page and configure it.\r\n\r\n### Required settings:\r\n\r\n**host**  \r\nThe hostname of your SMTP provider.\r\n\r\n### Optional settings:\r\n\r\n**username**  \r\nHTTP Basic Auth username.\r\n\r\n**password**  \r\nHTTP Basic Auth password.\r\n",
+    "maintainers": [
+      {
+        "name": "diadistis",
+        "email": "bsotirid@gmail.com"
+      }
+    ],
+    "time": {
+      "modified": "2013-12-26T18:42:04.036Z",
+      "created": "2013-10-28T08:26:07.030Z",
+      "0.0.1": "2013-10-28T08:26:12.095Z",
+      "0.1.0": "2013-10-28T08:54:47.995Z",
+      "0.1.1": "2013-10-28T09:45:01.986Z",
+      "0.1.2": "2013-11-12T14:40:43.984Z",
+      "0.1.3": "2013-11-19T21:42:09.215Z",
+      "0.1.4": "2013-11-20T12:29:36.745Z",
+      "0.1.5": "2013-12-22T13:35:00.567Z",
+      "0.1.6": "2013-12-26T18:42:04.036Z"
+    },
+    "author": {
+      "name": "Diadistis",
+      "email": "bsotirid@gmail.com"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/diadistis/dpd-proxy.git"
+    },
+    "_attachments": {}
+  },
+  "dpd-notify": {
+    "_id": "dpd-notify",
+    "_rev": "7-cfa75c37e24d87aa961ee5879f84e2ba",
+    "name": "dpd-notify",
+    "description": "send android push notification in deployd",
+    "dist-tags": {
+      "latest": "1.0.2"
+    },
+    "readme": "# dpd-notify\n\n## Description\n\nSend android push notification in deployd\n\n\n## Getting started\nThis module requires deployd ~0.7.0.\n\nIf you haven't used Deployd before, make sure to read the [documentation](http://docs.deployd.com/).\n\n### Installation without package.json\n````\nnpm install dpd-notify\n````\n\n### Installation with package.json\nIf you have a package.json, you'll have to add this module in it.\n````\nnpm install dpd-notify --save\n````\nOnce it is installed, Deployd will automatically load it.  \nFor more information about Modules, take a look at [the module page on the deployd documentation](http://docs.deployd.com/docs/using-modules/).\n\n## The dpd-notify module\n### Overview\n\nIt is a simple [node-gcm](https://www.npmjs.org/package/node-gcm) wrapper for deployd\n\n### Options/Settings\n\nRequire:\n- gcmSender\n\nPlease fill them in using the deployd dashboard config page of this module.\n\n\n### Usage example\n\n// send push notification to android phone\ndpd.notify.post( { gcmIds:['GCM_ID'], title:'Title', message:'Message' } );\n\n\n## Contributing\n\nJust send me a Pull Request in Github.\n\n\n## Release history\n\n- 1.0.0: first version\n\n\n## Contributors\n\n[Eric Fong](https://github.com/ericfong)\n",
+    "maintainers": [
+      {
+        "name": "ericfong",
+        "email": "ericff@gmail.com"
+      }
+    ],
+    "time": {
+      "modified": "2014-12-11T16:17:20.386Z",
+      "created": "2014-11-26T05:06:56.995Z",
+      "1.0.0": "2014-11-26T05:06:56.995Z",
+      "1.0.1": "2014-11-26T05:12:14.371Z",
+      "1.0.2": "2014-12-11T16:17:20.386Z"
+    },
+    "homepage": "https://github.com/ericfong/dpd-notify",
+    "keywords": [
+      "dpdmodule",
+      "dpd",
+      "deployd",
+      "notify",
+      "gcm",
+      "android",
+      "push",
+      "notification"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ericfong/dpd-twilio"
+    },
+    "author": {
+      "name": "Eric Fong",
+      "email": "ericff@gmail.com",
+      "url": "http://waatag.com/"
+    },
+    "bugs": {
+      "url": "https://github.com/ericfong/dpd-notify/issues"
+    },
+    "readmeFilename": "README.md",
+    "users": {
+      "ericfong": true
+    },
+    "_attachments": {}
+  },
+  "dpd-twilio": {
+    "_id": "dpd-twilio",
+    "_rev": "13-f7f9b1480c98276a93b58e35adcc63af",
+    "name": "dpd-twilio",
+    "description": "can send SMS via Twilio in deployd",
+    "dist-tags": {
+      "latest": "0.1.5"
+    },
+    "readme": "# dpd-twilio\n\n## Description\n\nSend SMS via Twilio. You should create your account in Twilio first.\n\n## Getting started\nThis module requires deployd ~0.7.0.\n\nIf you haven't used Deployd before, make sure to read the [documentation](http://docs.deployd.com/).\n\n### Installation without package.json\n````\nnpm install dpd-twilio\n````\n\n### Installation with package.json\nIf you have a package.json, you'll have to add this module in it.\n````\nnpm install dpd-twilio --save\n````\nOnce it is installed, Deployd will automatically load it.  \nFor more information about Modules, take a look at [the module page on the deployd documentation](http://docs.deployd.com/docs/using-modules/).\n\n## The dpd-twilio module\n### Overview\n\nIt is a simple [twilio](https://www.npmjs.org/package/twilio) wrapper for deployd\n\n### Options/Settings\n\nRequire:\n - twilioAccountSid\n - twilioAuthToken\n - defaultFromTel\n\nPlease fill them in using the deployd dashboard config page of this module.\n\n\n### Usage example\n\n    // send a SMS to +123456789\n    dpd.twilio.post({to:'+123456789', body:'Hello World!'});\n\n## Contributing\n\nJust send me a Pull Request in Github.\n\n## Release history\n\n - 0.1.0: first version\n\n## Contributors\n\n[Eric Fong](https://github.com/ericfong)\n",
+    "maintainers": [
+      {
+        "name": "ericfong",
+        "email": "ericff@gmail.com"
+      }
+    ],
+    "time": {
+      "modified": "2014-12-11T16:06:14.926Z",
+      "created": "2014-11-29T00:57:36.611Z",
+      "0.1.0": "2014-11-29T00:57:36.611Z",
+      "0.1.1": "2014-11-29T16:18:45.523Z",
+      "0.1.2": "2014-12-10T03:13:48.241Z",
+      "0.1.3": "2014-12-10T03:15:01.530Z",
+      "0.1.4": "2014-12-10T03:20:37.168Z",
+      "0.1.5": "2014-12-11T16:06:14.926Z"
+    },
+    "author": {
+      "name": "Eric Fong",
+      "email": "ericff@gmail.com",
+      "url": "http://waatag.com/"
+    },
+    "license": "ISC",
+    "readmeFilename": "README.md",
+    "users": {
+      "ericfong": true
+    },
+    "keywords": [
+      "dpd",
+      "deployd",
+      "dpdmodule",
+      "twilio",
+      "sms"
+    ],
+    "homepage": "https://github.com/ericfong/dpd-twilio",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ericfong/dpd-twilio"
+    },
+    "bugs": {
+      "url": "https://github.com/ericfong/dpd-twilio/issues"
+    },
+    "_attachments": {}
+  },
   "dpd-sync": {
     "_id": "dpd-sync",
     "_rev": "4-888e0da108fa19281ae532661518df46",
@@ -672,88 +841,33 @@ window.Modules = {
     "license": "MIT",
     "_attachments": {}
   },
-  "dpd-paypal-ap": {
-    "_id": "dpd-paypal-ap",
-    "_rev": "19-829c5085f0e7c827fd67e16bb4cea0df",
-    "name": "dpd-paypal-ap",
-    "description": "This custom resource type allows you to make adaptive payments through PayPal.",
+  "dpd-pdf": {
+    "_id": "dpd-pdf",
+    "_rev": "3-c5f35419746d733d1f5200f1c958c541",
+    "name": "dpd-pdf",
+    "description": "PDF rendering resource for Deployd.",
     "dist-tags": {
-      "latest": "0.0.9"
+      "latest": "0.1.0"
     },
-    "readme": "dpd-paypal-ap\r\n==========================\r\n\r\nDeployd module for using a Node.js sdk for Paypal Adaptive Payments and Paypal Adaptive Accounts API, without dependencies",
+    "readme": "# Deployd PDF Rendering Resource\r\n\r\nThis custom resource type allows you to render html to PDF. It requires an\r\nexternal command line utility like [wkhtml](https://code.google.com/p/wkhtmltopdf/).\r\n\r\n## Installation\r\n\r\n`$ npm install dpd-pdf`\r\n\r\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\r\n\r\n## Configuration\r\n\r\nBefore using the pdf resource, you must go to its Dashboard page and configure it.\r\n\r\n### Required settings:\r\n\r\n**path**  \r\nFull path to PDF renderer executable.\r\n\r\n### Optional settings:\r\n\r\n**options**  \r\nPDF renderer command line options.\r\n",
     "maintainers": [
       {
-        "name": "robrusher",
-        "email": "rob@robrusher.com"
+        "name": "diadistis",
+        "email": "bsotirid@gmail.com"
       }
     ],
     "time": {
-      "modified": "2013-11-09T22:39:37.988Z",
-      "created": "2013-08-14T04:09:52.472Z",
-      "0.0.1": "2013-08-14T04:09:54.669Z",
-      "0.0.2": "2013-08-14T06:17:56.639Z",
-      "0.0.3": "2013-08-18T17:26:01.641Z",
-      "0.0.4": "2013-09-04T18:08:41.486Z",
-      "0.0.5": "2013-09-04T18:23:32.325Z",
-      "0.0.6": "2013-09-04T18:46:22.521Z",
-      "0.0.7": "2013-09-04T19:04:24.901Z",
-      "0.0.8": "2013-09-04T19:14:45.034Z",
-      "0.0.9": "2013-11-09T22:39:37.988Z"
+      "modified": "2013-11-14T17:00:51.095Z",
+      "created": "2013-11-14T17:00:46.261Z",
+      "0.1.0": "2013-11-14T17:00:51.095Z"
     },
     "author": {
-      "name": "Rob Rusher"
+      "name": "Diadistis",
+      "email": "bsotirid@gmail.com"
     },
     "repository": {
       "type": "git",
-      "url": "https://github.com/robrusher/dpd-paypal-ap.git"
-    },
-    "_attachments": {}
-  },
-  "dpd-notify": {
-    "_id": "dpd-notify",
-    "_rev": "5-e75904ee91cb280afccdc3171a24989e",
-    "name": "dpd-notify",
-    "description": "dpd android push notification",
-    "dist-tags": {
-      "latest": "1.0.1"
-    },
-    "readme": "dpd-notify\n==========\n\nFill in `gcmSender` in dashboard and you can do push notification to your app.\n\n\nInstallation\n------------\n\n`$ npm install dpd-notify`\n",
-    "maintainers": [
-      {
-        "name": "ericfong",
-        "email": "ericff@gmail.com"
-      }
-    ],
-    "time": {
-      "modified": "2014-11-26T05:12:14.371Z",
-      "created": "2014-11-26T05:06:56.995Z",
-      "1.0.0": "2014-11-26T05:06:56.995Z",
-      "1.0.1": "2014-11-26T05:12:14.371Z"
-    },
-    "homepage": "https://github.com/ericfong/dpd-notify",
-    "keywords": [
-      "dpd",
-      "notify",
-      "gcm",
-      "android",
-      "push",
-      "notification"
-    ],
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/ericfong/dpd-notify.git"
-    },
-    "author": {
-      "name": "Eric Fong",
-      "email": "ericff@gmail.com"
-    },
-    "bugs": {
-      "url": "https://github.com/ericfong/dpd-notify/issues"
-    },
-    "license": "ISC",
-    "readmeFilename": "README.md",
-    "users": {
-      "ericfong": true
+      "url": "git://github.com/diadistis/dpd-pdf.git"
     },
     "_attachments": {}
   },
@@ -796,6 +910,50 @@ window.Modules = {
       "dpd",
       "json"
     ],
+    "_attachments": {}
+  },
+  "dpd-js-sdk": {
+    "_id": "dpd-js-sdk",
+    "_rev": "14-6e2f306167bd3140fe299e59a845323b",
+    "name": "dpd-js-sdk",
+    "description": "Use the deployd javascript sdk as a node module",
+    "dist-tags": {
+      "latest": "0.0.7"
+    },
+    "readme": "dpd-js-sdk\n==========\n\nUse the deployd javascript sdk (dpd.js) anywhere you can run npm modules. It's not just for the browser anymore! Use convenient dpd.js syntax to query deployd APIs using nodejs.\n\n## Install via npm\n\n```Shell\n$ npm install dpd-js-sdk\n```\n\n## Setup rootURL & baseURL (optional)\n\n```JavaScript\nvar dpd = require('dpd-js-sdk')('http://www.yourDeploydDomain.com', '/api' );\n```\n\n## Usage\n\n```JavaScript\nvar dpd = require('dpd-js-sdk')();\ndpd.todos = dpd(\"/todos\"); // you have to manually add your resources like so\n\ndpd.todos.get(function(function(results, error) {\n  //do something\n});\n```\n\nAdditional documentation for the dpd.js sdk can be found here:\nhttp://docs.deployd.com/docs/collections/reference/dpd-js.md#s-Dpd.js\n\n## How the sausage gets made:\n\nMost of this code comes straight out of https://github.com/deployd/deployd/blob/master/clib/dpd.js\n\nI have added a dependency on bluebird (for promises) and request (for sanity). Ajax requests made in the original clib/dpd.js are just replaced using promisified request.\n\nI have also removed socket.io client stuff in here for now, since I think it would take some work to get it working...and because this is enough to suit my current need. (I am using this module as part of some express middleware to get data from remote deployd API).\n\nAs such, the  Realtime API features (documented here: http://docs.deployd.com/docs/collections/reference/dpd-js.md#s-Realtime%20API) do not work.\n\n## Disclaimer\n\nThis module is untested, unauthorized, unlicenced, and unsupported. Use at your own discretion.\n",
+    "maintainers": [
+      {
+        "name": "kimballfrank",
+        "email": "kimballfrank@users.noreply.github.com"
+      }
+    ],
+    "time": {
+      "modified": "2014-09-04T19:50:50.868Z",
+      "created": "2014-07-11T21:53:18.349Z",
+      "0.0.1": "2014-07-11T21:53:18.349Z",
+      "0.0.2": "2014-07-12T00:11:54.695Z",
+      "0.0.3": "2014-08-20T21:40:08.730Z",
+      "0.0.4": "2014-08-22T20:42:37.332Z",
+      "0.0.5": "2014-09-04T17:46:58.540Z",
+      "0.0.6": "2014-09-04T19:40:12.290Z",
+      "0.0.7": "2014-09-04T19:50:50.868Z"
+    },
+    "homepage": "https://github.com/kimballfrank/dpd-js-sdk",
+    "keywords": [
+      "deployd",
+      "dpd"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/kimballfrank/dpd-js-sdk.git"
+    },
+    "author": {
+      "name": "kimballfrank"
+    },
+    "bugs": {
+      "url": "https://github.com/kimballfrank/dpd-js-sdk/issues"
+    },
+    "readmeFilename": "README.md",
     "_attachments": {}
   },
   "dpd-wechat": {
@@ -847,77 +1005,44 @@ window.Modules = {
     "readmeFilename": "README.md",
     "_attachments": {}
   },
-  "dpd-js-sdk": {
-    "_id": "dpd-js-sdk",
-    "_rev": "14-6e2f306167bd3140fe299e59a845323b",
-    "name": "dpd-js-sdk",
-    "description": "Use the deployd javascript sdk as a node module",
-    "dist-tags": {
-      "latest": "0.0.7"
-    },
-    "readme": "dpd-js-sdk\n==========\n\nUse the deployd javascript sdk (dpd.js) anywhere you can run npm modules. It's not just for the browser anymore! Use convenient dpd.js syntax to query deployd APIs using nodejs.\n\n## Install via npm\n\n```Shell\n$ npm install dpd-js-sdk\n```\n\n## Setup rootURL & baseURL (optional)\n\n```JavaScript\nvar dpd = require('dpd-js-sdk')('http://www.yourDeploydDomain.com', '/api' );\n```\n\n## Usage\n\n```JavaScript\nvar dpd = require('dpd-js-sdk')();\ndpd.todos = dpd(\"/todos\"); // you have to manually add your resources like so\n\ndpd.todos.get(function(function(results, error) {\n  //do something\n});\n```\n\nAdditional documentation for the dpd.js sdk can be found here:\nhttp://docs.deployd.com/docs/collections/reference/dpd-js.md#s-Dpd.js\n\n## How the sausage gets made:\n\nMost of this code comes straight out of https://github.com/deployd/deployd/blob/master/clib/dpd.js\n\nI have added a dependency on bluebird (for promises) and request (for sanity). Ajax requests made in the original clib/dpd.js are just replaced using promisified request.\n\nI have also removed socket.io client stuff in here for now, since I think it would take some work to get it working...and because this is enough to suit my current need. (I am using this module as part of some express middleware to get data from remote deployd API).\n\nAs such, the  Realtime API features (documented here: http://docs.deployd.com/docs/collections/reference/dpd-js.md#s-Realtime%20API) do not work.\n\n## Disclaimer\n\nThis module is untested, unauthorized, unlicenced, and unsupported. Use at your own discretion.\n",
-    "maintainers": [
-      {
-        "name": "kimballfrank",
-        "email": "kimballfrank@users.noreply.github.com"
-      }
-    ],
-    "time": {
-      "modified": "2014-09-04T19:50:50.868Z",
-      "created": "2014-07-11T21:53:18.349Z",
-      "0.0.1": "2014-07-11T21:53:18.349Z",
-      "0.0.2": "2014-07-12T00:11:54.695Z",
-      "0.0.3": "2014-08-20T21:40:08.730Z",
-      "0.0.4": "2014-08-22T20:42:37.332Z",
-      "0.0.5": "2014-09-04T17:46:58.540Z",
-      "0.0.6": "2014-09-04T19:40:12.290Z",
-      "0.0.7": "2014-09-04T19:50:50.868Z"
-    },
-    "homepage": "https://github.com/kimballfrank/dpd-js-sdk",
-    "keywords": [
-      "deployd",
-      "dpd"
-    ],
-    "repository": {
-      "type": "git",
-      "url": "git://github.com/kimballfrank/dpd-js-sdk.git"
-    },
-    "author": {
-      "name": "kimballfrank"
-    },
-    "bugs": {
-      "url": "https://github.com/kimballfrank/dpd-js-sdk/issues"
-    },
-    "readmeFilename": "README.md",
-    "_attachments": {}
-  },
-  "dpd-yeoman": {
-    "_id": "dpd-yeoman",
-    "_rev": "3-5de28a8d7e00fd4ef3c274fc04abb3e3",
-    "name": "dpd-yeoman",
-    "description": "A Yeoman generator to stub & scaffold deployd APIs.",
+  "dpd-webfaction-api": {
+    "_id": "dpd-webfaction-api",
+    "_rev": "2-e91ec5ce56433a25343e8a2d59a651e9",
+    "name": "dpd-webfaction-api",
+    "description": "Deployd Resource to interact with Webfaction API",
     "dist-tags": {
       "latest": "0.0.1"
     },
-    "readme": "# dpd-yeoman\n\n[Deployd](http://deployd.com) API generator for yeoman.\n\n## Status\n\nActive Development\n\n## Dependencies\n\n * [MongoDB](http://mongodb.org)\n * [Node](http://nodejs.org)\n * [Yeoman](http://yeoman.io) (npm install -g yeoman)\n\n## Quick Start\n\n\tnpm install -g dpd-yeoman\n\tmkdir myapp\n\tcd myapp\n\tyeoman init angular\n\tyeoman init deployd\n\tyeoman init deployd:collection title:string description:string\n\tmongod\n\tnode server\n\tOpen localhost:3501 in your browser to see the app\n\tOpen localhost:3501/dashboard to see the deployd dashboard.\n",
+    "readme": "dpd-webfaction-api\n==================\n\nDeployd Resource to interact with Webfaction API\n",
     "maintainers": [
       {
-        "name": "jeffbcross",
-        "email": "middlefloor@gmail.com"
+        "name": "federicot",
+        "email": "federicot@gmail.com"
       }
     ],
     "time": {
-      "modified": "2013-02-11T07:00:54.473Z",
-      "created": "2013-02-11T07:00:53.572Z",
-      "0.0.1": "2013-02-11T07:00:54.473Z"
+      "modified": "2014-08-29T22:48:18.531Z",
+      "created": "2014-08-29T22:48:18.531Z",
+      "0.0.1": "2014-08-29T22:48:18.531Z"
     },
-    "author": {
-      "name": "Jeff Cross"
-    },
+    "homepage": "https://github.com/federicot/dpd-webfaction-api",
+    "keywords": [
+      "deployd",
+      "webfaction"
+    ],
     "repository": {
       "type": "git",
-      "url": "https://github.com/jeffbcross/dpd-yeoman"
+      "url": "https://github.com/federicot/dpd-webfaction-api.git"
     },
+    "author": {
+      "name": "Federico Tarantini",
+      "email": "federicot@gmail.com"
+    },
+    "bugs": {
+      "url": "https://github.com/federicot/dpd-webfaction-api/issues"
+    },
+    "license": "MIT",
+    "readmeFilename": "README.md",
     "_attachments": {}
   },
   "grunt-dpdjs": {
@@ -961,46 +1086,6 @@ window.Modules = {
     "readmeFilename": "README.md",
     "_attachments": {}
   },
-  "dpd-webfaction-api": {
-    "_id": "dpd-webfaction-api",
-    "_rev": "2-e91ec5ce56433a25343e8a2d59a651e9",
-    "name": "dpd-webfaction-api",
-    "description": "Deployd Resource to interact with Webfaction API",
-    "dist-tags": {
-      "latest": "0.0.1"
-    },
-    "readme": "dpd-webfaction-api\n==================\n\nDeployd Resource to interact with Webfaction API\n",
-    "maintainers": [
-      {
-        "name": "federicot",
-        "email": "federicot@gmail.com"
-      }
-    ],
-    "time": {
-      "modified": "2014-08-29T22:48:18.531Z",
-      "created": "2014-08-29T22:48:18.531Z",
-      "0.0.1": "2014-08-29T22:48:18.531Z"
-    },
-    "homepage": "https://github.com/federicot/dpd-webfaction-api",
-    "keywords": [
-      "deployd",
-      "webfaction"
-    ],
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/federicot/dpd-webfaction-api.git"
-    },
-    "author": {
-      "name": "Federico Tarantini",
-      "email": "federicot@gmail.com"
-    },
-    "bugs": {
-      "url": "https://github.com/federicot/dpd-webfaction-api/issues"
-    },
-    "license": "MIT",
-    "readmeFilename": "README.md",
-    "_attachments": {}
-  },
   "grunt-deployd": {
     "_id": "grunt-deployd",
     "_rev": "7-751507b3c5b3524d5c615db1ca206e14",
@@ -1030,36 +1115,6 @@ window.Modules = {
     "repository": {
       "type": "git",
       "url": "git://github.com/taras/grunt-deployd.git"
-    },
-    "_attachments": {}
-  },
-  "dpd-pdf": {
-    "_id": "dpd-pdf",
-    "_rev": "3-c5f35419746d733d1f5200f1c958c541",
-    "name": "dpd-pdf",
-    "description": "PDF rendering resource for Deployd.",
-    "dist-tags": {
-      "latest": "0.1.0"
-    },
-    "readme": "# Deployd PDF Rendering Resource\r\n\r\nThis custom resource type allows you to render html to PDF. It requires an\r\nexternal command line utility like [wkhtml](https://code.google.com/p/wkhtmltopdf/).\r\n\r\n## Installation\r\n\r\n`$ npm install dpd-pdf`\r\n\r\nSee [Installing Modules](http://docs.deployd.com/docs/using-modules/installing-modules.md) for details.\r\n\r\n## Configuration\r\n\r\nBefore using the pdf resource, you must go to its Dashboard page and configure it.\r\n\r\n### Required settings:\r\n\r\n**path**  \r\nFull path to PDF renderer executable.\r\n\r\n### Optional settings:\r\n\r\n**options**  \r\nPDF renderer command line options.\r\n",
-    "maintainers": [
-      {
-        "name": "diadistis",
-        "email": "bsotirid@gmail.com"
-      }
-    ],
-    "time": {
-      "modified": "2013-11-14T17:00:51.095Z",
-      "created": "2013-11-14T17:00:46.261Z",
-      "0.1.0": "2013-11-14T17:00:51.095Z"
-    },
-    "author": {
-      "name": "Diadistis",
-      "email": "bsotirid@gmail.com"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git://github.com/diadistis/dpd-pdf.git"
     },
     "_attachments": {}
   }

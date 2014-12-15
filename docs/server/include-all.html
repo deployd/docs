@@ -112,6 +112,8 @@
     
       <li class=""><a href="../../docs/server/your-server.html"><i class="icon-file"></i> <span>Deploying to your own Server</span></a></li>
     
+      <li class=""><a href="../../docs/server/use-grunt-or-gulp.html"><i class="icon-file"></i> <span>Using grunt or gulp with Deployd</span></a></li>
+    
     
   </ul>
   
@@ -348,6 +350,26 @@ server.listen(PORT);
 <li>Deployd loads resources from the <code>process.cwd</code>. Add this to ensure you are in the right directory: <code>process.chdir(__dirname)</code>.</li>
 <li>In order to access the <code>/dashboard</code> without a key you must run Deployd with the <code>env</code> option set to <code>development</code>.</li>
 </ul></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Using grunt or gulp with Deployd"></a><h2>Using grunt or gulp with Deployd <a class="anchor-link" href="#s-Using grunt or gulp with Deployd">#</a></h2>
+
+<p>To use Grunt or Gulp with Deployd, you should add a package.json at the root of your project.</p>
+
+<p>Inside <code>devDependencies</code>, you can add your grunt/gulp plugins and inside dependencies, add the dpd modules you need.
+Example:  </p>
+
+<pre><code>"dependencies": {
+  "deployd": "^0.7.0",
+  "dpd-fileupload": "^0.0.10"
+},
+"devDependencies": {
+  "gulp": "^3.6.2",
+  "gulp-jshint": "^1.6.1"
+}
+</code></pre></div>  
 
       
     
