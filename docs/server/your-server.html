@@ -47,7 +47,7 @@
             </ul>
           </div><!--/.nav-collapse -->
 
-          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+          <div id="search" removed-ng-controller="SearchCtrl" class="pull-right">
   <form class="navbar-search" method="get" action="http://www.google.com/search">
     <input type="hidden" name="sitesearch" value="docs.deployd.com" />
     <input value="" placeholder="search docs" id="search-input" name="q" type="text" ng-change="change()" ng-model="input" />
@@ -81,7 +81,6 @@
             <li class="api"><a href="../../api">api</a></li>
             <li class="examples"><a href="../../examples">examples</a></li>
             <li class="modules"><a href="../../modules">modules</a></li>
-            <li class="modules"><a href="https://www.npmjs.org/search?q=deployd%20dpd">npm search</a></li>
           </ul>
         </div>
       </div>
@@ -114,6 +113,8 @@
       <li class=""><a href="../../docs/server/run-script.html"><i class="icon-file"></i> <span>Building a custom run script in Node.js</span></a></li>
     
       <li class="active"><a href="../../docs/server/your-server.html"><i class="icon-file"></i> <span>Deploying to your own Server</span></a></li>
+    
+      <li class=""><a href="../../docs/server/use-grunt-or-gulp.html"><i class="icon-file"></i> <span>Using grunt or gulp with Deployd</span></a></li>
     
     
   </ul>
@@ -162,6 +163,8 @@ Otherwise, you will need to install Deployd as a dependency of your app itself u
               <li><a href="../../docs/server/work-with-express.html">Using Deployd as an Express middleware</a></li>
             
               <li><a href="../../docs/server/run-script.html">Building a custom run script in Node.js</a></li>
+            
+              <li><a href="../../docs/server/use-grunt-or-gulp.html">Using grunt or gulp with Deployd</a></li>
             
           </ul>
         </div>

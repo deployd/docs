@@ -47,7 +47,7 @@
             </ul>
           </div><!--/.nav-collapse -->
 
-          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+          <div id="search" removed-ng-controller="SearchCtrl" class="pull-right">
   <form class="navbar-search" method="get" action="http://www.google.com/search">
     <input type="hidden" name="sitesearch" value="docs.deployd.com" />
     <input value="" placeholder="search docs" id="search-input" name="q" type="text" ng-change="change()" ng-model="input" />
@@ -81,7 +81,6 @@
             <li class="api"><a href="../api">api</a></li>
             <li class="examples"><a href="../examples">examples</a></li>
             <li class="modules"><a href="../modules">modules</a></li>
-            <li class="modules"><a href="https://www.npmjs.org/search?q=deployd%20dpd">npm search</a></li>
           </ul>
         </div>
       </div>
@@ -93,45 +92,41 @@
   <li>Modules</li>
 </ul>
 
-<ul id="modules" class="unstyled">
+<div ng-controller="ModulesCtrl">
 
-  <li>
-    <h4>
-      <a href="../docs/using-modules/official/email.html">
-        <i class="icon-certificate"></i>
-        Email
-      </a> - Send emails from clients or during events.
-    </h4>
-  </li>
+  <style>
+  /* TODO: move to css */
+  #searchForm {padding: 10px;}
+  #searchFor {width: 100%; padding:5px; font-size:large;}
+  </style>
 
-  <li>
-    <h4>
-      <a href="../docs/using-modules/official/event.html">
-        <i class="icon-certificate"></i>
-        Event Resource
-      </a> - Create custom events at a specified URL.
-    </h4>
-  </li>
+  <form id="searchForm" action="javascript:void 0">
+    <input name="searchFor" id="searchFor" ng-model="input.searchFor" autofocus="" placeholder="search" ng-change="search()">
+  </form>
 
-  <li>
-    <h4>
-      <a href="../docs/using-modules/official/importer.html">
-        <i class="icon-certificate"></i>
-        Importer
-      </a> - Import collections from existing MongoDBs.
-    </h4>
-  </li>
+  <ul id="modules" class="unstyled">
+    <li ng-repeat="module in modules | orderBy:'time.modified':true">
+      <h4>
+        <a href="https://www.npmjs.org/package/{{module._id}}" target="_blank">
+          <i class="icon-certificate"></i>
+          {{module.name}}
+        </a>
+        - {{module.description}}
+        <div class="pull-right">
+          <span>{{moduleMaintainers(module)}}</span>
+          <img ng-src="https://img.shields.io/npm/v/{{module._id}}.svg?style=flat"/>
+          <span class="badge badge-success">{{module.time.modified | date:'yyyy-MM-dd'}}</span>
+        </div>
+      </h4>
+    </li>
+  </ul>
 
-  <li>
-    <h4>
-      <a href="../docs/using-modules/official/s3.html">
-        <i class="icon-certificate"></i>
-        S3 Bucket
-      </a> - Store and retrieve files from an S3 Bucket.
-    </h4>
-  </li>
+</div>
 
-</ul>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+<script src="../javascripts/module-control.data.js"></script>
+<script src="../javascripts/module-control.js"></script>
+
     </div>
     
     <div class="docs-nav">

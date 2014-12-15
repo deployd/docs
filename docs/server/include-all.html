@@ -47,7 +47,7 @@
             </ul>
           </div><!--/.nav-collapse -->
 
-          <div id="search" ng-controller="SearchCtrl" class="pull-right">
+          <div id="search" removed-ng-controller="SearchCtrl" class="pull-right">
   <form class="navbar-search" method="get" action="http://www.google.com/search">
     <input type="hidden" name="sitesearch" value="docs.deployd.com" />
     <input value="" placeholder="search docs" id="search-input" name="q" type="text" ng-change="change()" ng-model="input" />
@@ -81,7 +81,6 @@
             <li class="api"><a href="../../api">api</a></li>
             <li class="examples"><a href="../../examples">examples</a></li>
             <li class="modules"><a href="../../modules">modules</a></li>
-            <li class="modules"><a href="https://www.npmjs.org/search?q=deployd%20dpd">npm search</a></li>
           </ul>
         </div>
       </div>
@@ -112,6 +111,8 @@
       <li class=""><a href="../../docs/server/run-script.html"><i class="icon-file"></i> <span>Building a custom run script in Node.js</span></a></li>
     
       <li class=""><a href="../../docs/server/your-server.html"><i class="icon-file"></i> <span>Deploying to your own Server</span></a></li>
+    
+      <li class=""><a href="../../docs/server/use-grunt-or-gulp.html"><i class="icon-file"></i> <span>Using grunt or gulp with Deployd</span></a></li>
     
     
   </ul>
@@ -349,6 +350,26 @@ server.listen(PORT);
 <li>Deployd loads resources from the <code>process.cwd</code>. Add this to ensure you are in the right directory: <code>process.chdir(__dirname)</code>.</li>
 <li>In order to access the <code>/dashboard</code> without a key you must run Deployd with the <code>env</code> option set to <code>development</code>.</li>
 </ul></div></div>  
+
+      
+        
+
+  <div class="section"><a name="s-Using grunt or gulp with Deployd"></a><h2>Using grunt or gulp with Deployd <a class="anchor-link" href="#s-Using grunt or gulp with Deployd">#</a></h2>
+
+<p>To use Grunt or Gulp with Deployd, you should add a package.json at the root of your project.</p>
+
+<p>Inside <code>devDependencies</code>, you can add your grunt/gulp plugins and inside dependencies, add the dpd modules you need.
+Example:  </p>
+
+<pre><code>"dependencies": {
+  "deployd": "^0.7.0",
+  "dpd-fileupload": "^0.0.10"
+},
+"devDependencies": {
+  "gulp": "^3.6.2",
+  "gulp-jshint": "^1.6.1"
+}
+</code></pre></div>  
 
       
     
