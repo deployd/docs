@@ -17,7 +17,8 @@ To find deployd modules available on npm [search for `dpd`](https://encrypted.go
 
 If you used the Deployd installer, you will need to download [node.js](http://nodejs.org/download/) in order to use npm.
 
-### From Source
-    
-You can also install a module from source by putting it in your project's `node_modules` folder. Even a single file is valid (eg: `/node_modules/foo.js`).
+If you need to use a task manager like Grunt or Gulp for your development environement, you'll have to add a package.json as explained [in this page](/docs/server/use-grunt-or-gulp.md).
 
+### From Source
+
+You can also install a module from source by putting it in your project's `node_modules` folder. Even a single file is valid (eg: `/node_modules/foo.js`).
