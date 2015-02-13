@@ -13,7 +13,7 @@ Custom Resources may load **event scripts** to allow you to inject business logi
       /resources
         /todos
           validate.js
-        
+
 The collection resource would load the contents of `validate.js` as the `validate` event.
 
 ### Default Event Script Domain
@@ -22,11 +22,22 @@ Event scripts do not share a global scope with other modules in your app. Instea
 
 The following functions and objects are available to all event scripts.
 
+#### ctx <!-- ctx -->
+
+The context of the request. This object contains everything from the request (request, response, body, headers, etc...):
+
+    // Example:
+    if (ctx && ctx.req && ctx.req.headers && ctx.req.headers.host !== '192.168.178.34:2403') {
+      cancel("You are not authorized to do that", 401);
+    }
+
+The entire object is [available as a gist here](https://gist.github.com/NicolasRitouet/2fc5dd20f3af7dc7e192).
+
 #### me <!-- api -->
 
 The current user if one exists on the current `Context`.
 
-#### isMe() <!-- api --> 
+#### isMe() <!-- api -->
 
     isMe(id)
 
@@ -67,7 +78,6 @@ The current HTTP query. (eg ?foo=bar - query would be {foo: 'bar'}).
 
 Emits a realtime message to the client. You can use `userCollection` and `query` parameters to limit the message broadcast to specific users.
 
-#### console <!-- api --> 
+#### console <!-- api -->
 
 Support for console.log() and other console methods.
-
