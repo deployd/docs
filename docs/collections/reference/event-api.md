@@ -22,7 +22,7 @@ The current object is represented as `this`. You can always read its properties.
     this.targets.forEach(function(t) {
       this.sum += t.points;
     });
-    
+
 <!--seperate-->
 
     //Works as expected
@@ -32,6 +32,18 @@ The current object is represented as `this`. You can always read its properties.
     this.targets.forEach(function(t) {
       self.sum += t.points;
     });
+
+
+### ctx <!-- ctx -->
+
+The context of the request. This object contains everything from the request (request, response, body, headers, etc...):
+
+    // Example:
+    if (ctx && ctx.req && ctx.req.headers && ctx.req.headers.host !== '192.168.178.34:2403') {
+      cancel("You are not authorized to do that", 401);
+    }
+
+The entire object is [available as a gist here](https://gist.github.com/NicolasRitouet/2fc5dd20f3af7dc7e192).
 
 ### me <!-- api -->
 
@@ -44,7 +56,7 @@ The currently logged in User from a User Collection. `undefined` if no user is l
         this.creatorName = me.name;
     }
 
-### isMe() <!-- api --> 
+### isMe() <!-- api -->
 
     isMe(id)
 
@@ -58,7 +70,7 @@ Checks whether the current user matches the provided `id`.
 
 <!-- seperate -->
 
-    // Example: On Put 
+    // Example: On Put
     // Make sure that only the creator can edit a post
     cancelUnless(isMe(this.id), "You are not authorized to edit that post", 401);
 
@@ -76,7 +88,7 @@ The query string object. On a specific query (such as `/posts/a59551a90be9abd8`)
 
     cancel(message, [statusCode])
 
-Stops the current request with the provided error message and HTTP status code. Status code defaults to `400`. Commonly used for security and authorization. 
+Stops the current request with the provided error message and HTTP status code. Status code defaults to `400`. Commonly used for security and authorization.
 
 It is strongly recommended that you `cancel()` any events that are not accessible to your front-end, because your API is open to anyone.
 
@@ -140,7 +152,7 @@ Hides a property from the response.
 
     protect(property)
 
-Prevents a property from being updated. It is strongly recommended you `protect()` any properties that should not be modified after an object is created. 
+Prevents a property from being updated. It is strongly recommended you `protect()` any properties that should not be modified after an object is created.
 
     // Example: On Put
     // Protect a property
@@ -153,7 +165,7 @@ Prevents a property from being updated. It is strongly recommended you `protect(
     if (!(me && me.id === this.creatorId)) {
       protect('title');
     }
-    
+
 
 ### changed() <!-- api -->
 
@@ -166,7 +178,7 @@ Returns whether a property has been updated.
     if(changed('title') && this.title.length < 5) {
       error('title', 'must be over 5 characters');
     }
-    
+
 ### previous <!-- api -->
 
 An `Object` containing the previous values of the item to be updated.
@@ -180,7 +192,7 @@ An `Object` containing the previous values of the item to be updated.
 
     emit([userCollection, query], message, [data])
 
-Emits a realtime message to the client. 
+Emits a realtime message to the client.
 
     // Example: On Post
     // Alert clients that a new post has been created
@@ -198,8 +210,8 @@ You can use `userCollection` and `query` parameters to limit the message broadca
     // Example: On Put
     // Alert the owner that their post has been modified
     if (me.id !== this.creatorId) {
-      emit(dpd.users, {id: this.creatorId}, 'postModified', this); 
-    } 
+      emit(dpd.users, {id: this.creatorId}, 'postModified', this);
+    }
 
 See [Notifying Clients of Changes with Sockets](/docs/collections/notifying-clients.md) for an overview on realtime functionality.
 
@@ -234,7 +246,7 @@ Dpd.js will prevent recursive requests if you set the [$limitRecursion](/docs/co
         "id": "a59551a90be9abd8",
         "recursive": [
             {
-                "id": "a59551a90be9abd8"    
+                "id": "a59551a90be9abd8"
             }
         ]
     }
