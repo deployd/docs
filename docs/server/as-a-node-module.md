@@ -28,15 +28,16 @@ Here is a simple *hello world* using Deployd as a node module.
     var dpd = deployd(options);
 
     dpd.listen();
-    
+
 Run this like any other node program.
-  
+
     node hello.js
-    
+
 ### Server Options <!-- ref -->
 
 - **port** {Number} - the port to listen on
 - **db** {Object} - the database to connect to
+ - **db.connectionString** {String} - The URI of the mongoDB using [standard Connection String](http://docs.mongodb.org/manual/reference/connection-string/). If `db.connectionString` is set, the other db options are ignored.
  - **db.port** {Number} - the port of the database server
  - **db.host** {String} - the ip or domain of the database server
  - **db.name** {String} - the name of the database
@@ -51,4 +52,4 @@ Run this like any other node program.
 
 - Deployd mounts its server on `process.server`. This means you can only run one Deployd server in a process.
 - Deployd loads resources from the `process.cwd`. Add this to ensure you are in the right directory: `process.chdir(__dirname)`.
-- In order to access the `/dashboard` without a key you must run Deployd with the `env` option set to `development`. 
+- In order to access the `/dashboard` without a key you must run Deployd with the `env` option set to `development`.

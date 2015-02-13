@@ -21,6 +21,7 @@ Servers are created when calling the Deployd exported function.
 
   - `port` {Number} - the port to listen on
   - `db` {Object} - the database to connect to
+    - `db.connectionString` {String} - The URI of the mongoDB using [standard Connection String](http://docs.mongodb.org/manual/reference/connection-string/). If `db.connectionString` is set, the other db options are ignored.
     - `port` {Number} - the port of the database server
     - `host` {String} - the ip or domain of the database server
     - `name` {String} - the name of the database
