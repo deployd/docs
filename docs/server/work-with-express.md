@@ -48,6 +48,7 @@ Run this like any other express server.
 ### Server Options <!-- ref -->
 
 - **db** {Object} - the database to connect to
+ - **db.connectionString** {String} - The URI of the mongoDB using [standard Connection String](http://docs.mongodb.org/manual/reference/connection-string/). If `db.connectionString` is set, the other db options are ignored.
  - **db.port** {Number} - the port of the database server
  - **db.host** {String} - the ip or domain of the database server
  - **db.name** {String} - the name of the database
