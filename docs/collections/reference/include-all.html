@@ -274,7 +274,17 @@ this.sum = 0;
 this.targets.forEach(function(t) {
   self.sum += t.points;
 });
-</code></pre></div><div class="section api"><a name="s-me-764"></a><h3>me <!-- api --> <a class="anchor-link" href="#s-me-764">#</a></h3>
+</code></pre></div><div class="section"><a name="s-ctx <!-- ctx -->-764"></a><h3>ctx <!-- ctx --> <a class="anchor-link" href="#s-ctx <!-- ctx -->-764">#</a></h3>
+
+<p>The context of the request. This object contains everything from the request (request, response, body, headers, etc...):</p>
+
+<pre><code>// Example:
+if (ctx &amp;&amp; ctx.req &amp;&amp; ctx.req.headers &amp;&amp; ctx.req.headers.host !== '192.168.178.34:2403') {
+  cancel("You are not authorized to do that", 401);
+}
+</code></pre>
+
+<p>The entire object is <a href="https://gist.github.com/NicolasRitouet/2fc5dd20f3af7dc7e192">available as a gist here</a>.</p></div><div class="section api"><a name="s-me-764"></a><h3>me <!-- api --> <a class="anchor-link" href="#s-me-764">#</a></h3>
 
 <p>The currently logged in User from a User Collection. <code>undefined</code> if no user is logged in.</p>
 
@@ -284,7 +294,7 @@ if (me) {
     this.creatorId = me.id;
     this.creatorName = me.name;
 }
-</code></pre></div><div class="section api"><a name="s-isMe()-764"></a><h3>isMe() <!-- api -->  <a class="anchor-link" href="#s-isMe()-764">#</a></h3>
+</code></pre></div><div class="section api"><a name="s-isMe()-764"></a><h3>isMe() <!-- api --> <a class="anchor-link" href="#s-isMe()-764">#</a></h3>
 
 <pre><code>isMe(id)
 </code></pre>
@@ -300,7 +310,7 @@ if (!isMe(this.id)) {
 
 <!-- seperate -->
 
-<pre><code>// Example: On Put 
+<pre><code>// Example: On Put
 // Make sure that only the creator can edit a post
 cancelUnless(isMe(this.id), "You are not authorized to edit that post", 401);
 </code></pre></div><div class="section api"><a name="s-query-764"></a><h3>query <!-- api --> <a class="anchor-link" href="#s-query-764">#</a></h3>
@@ -317,7 +327,7 @@ if (!query.id) {
 <pre><code>cancel(message, [statusCode])
 </code></pre>
 
-<p>Stops the current request with the provided error message and HTTP status code. Status code defaults to <code>400</code>. Commonly used for security and authorization. </p>
+<p>Stops the current request with the provided error message and HTTP status code. Status code defaults to <code>400</code>. Commonly used for security and authorization.</p>
 
 <p>It is strongly recommended that you <code>cancel()</code> any events that are not accessible to your front-end, because your API is open to anyone.</p>
 
@@ -381,7 +391,7 @@ if (!me || me.id !== this.creatorId) {
 <pre><code>protect(property)
 </code></pre>
 
-<p>Prevents a property from being updated. It is strongly recommended you <code>protect()</code> any properties that should not be modified after an object is created. </p>
+<p>Prevents a property from being updated. It is strongly recommended you <code>protect()</code> any properties that should not be modified after an object is created.</p>
 
 <pre><code>// Example: On Put
 // Protect a property
@@ -420,7 +430,7 @@ if(this.votes &lt; previous.votes) {
 <pre><code>emit([userCollection, query], message, [data])
 </code></pre>
 
-<p>Emits a realtime message to the client. </p>
+<p>Emits a realtime message to the client.</p>
 
 <pre><code>// Example: On Post
 // Alert clients that a new post has been created
@@ -440,8 +450,8 @@ dpd.on('postCreated', function(post) {
 <pre><code>// Example: On Put
 // Alert the owner that their post has been modified
 if (me.id !== this.creatorId) {
-  emit(dpd.users, {id: this.creatorId}, 'postModified', this); 
-} 
+  emit(dpd.users, {id: this.creatorId}, 'postModified', this);
+}
 </code></pre>
 
 <p>See <a href="../../../docs/collections/notifying-clients.html">Notifying Clients of Changes with Sockets</a> for an overview on realtime functionality.</p></div><div class="section reference"><a name="s-dpd-764"></a><h3>dpd <!-- ref --> <a class="anchor-link" href="#s-dpd-764">#</a></h3>
@@ -478,7 +488,7 @@ dpd.recursive.get({$limitRecursion: 1}, function(results) {
     "id": "a59551a90be9abd8",
     "recursive": [
         {
-            "id": "a59551a90be9abd8"    
+            "id": "a59551a90be9abd8"
         }
     ]
 }

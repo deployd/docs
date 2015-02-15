@@ -271,7 +271,8 @@ dpd.listen();
 <ul>
 <li><strong>port</strong> {Number} - the port to listen on</li>
 <li><strong>db</strong> {Object} - the database to connect to
-<ul><li><strong>db.port</strong> {Number} - the port of the database server</li>
+<ul><li><strong>db.connectionString</strong> {String} - The URI of the mongoDB using <a href="http://docs.mongodb.org/manual/reference/connection-string/">standard Connection String</a>. If <code>db.connectionString</code> is set, the other db options are ignored.</li>
+<li><strong>db.port</strong> {Number} - the port of the database server</li>
 <li><strong>db.host</strong> {String} - the ip or domain of the database server</li>
 <li><strong>db.name</strong> {String} - the name of the database</li>
 <li><strong>db.credentials</strong> {Object} - credentials for db</li>
@@ -285,7 +286,7 @@ dpd.listen();
 <ul>
 <li>Deployd mounts its server on <code>process.server</code>. This means you can only run one Deployd server in a process.</li>
 <li>Deployd loads resources from the <code>process.cwd</code>. Add this to ensure you are in the right directory: <code>process.chdir(__dirname)</code>.</li>
-<li>In order to access the <code>/dashboard</code> without a key you must run Deployd with the <code>env</code> option set to <code>development</code>. </li>
+<li>In order to access the <code>/dashboard</code> without a key you must run Deployd with the <code>env</code> option set to <code>development</code>.</li>
 </ul></div></div>  
 
       
@@ -333,7 +334,8 @@ server.listen(PORT);
 
 <ul>
 <li><strong>db</strong> {Object} - the database to connect to
-<ul><li><strong>db.port</strong> {Number} - the port of the database server</li>
+<ul><li><strong>db.connectionString</strong> {String} - The URI of the mongoDB using <a href="http://docs.mongodb.org/manual/reference/connection-string/">standard Connection String</a>. If <code>db.connectionString</code> is set, the other db options are ignored.</li>
+<li><strong>db.port</strong> {Number} - the port of the database server</li>
 <li><strong>db.host</strong> {String} - the ip or domain of the database server</li>
 <li><strong>db.name</strong> {String} - the name of the database</li>
 <li><strong>db.credentials</strong> {Object} - credentials for db</li>
@@ -356,10 +358,12 @@ server.listen(PORT);
 
   <div class="section"><a name="s-Using grunt or gulp with Deployd"></a><h2>Using grunt or gulp with Deployd <a class="anchor-link" href="#s-Using grunt or gulp with Deployd">#</a></h2>
 
-<p>To use Grunt or Gulp with Deployd, you should add a package.json at the root of your project.</p>
+<p>By default, Deployd will load all npm modules found in <code>node_modules</code>. This can be problematic if you want to use Grunt, gulp or other development tools: Deployd will try to load them since they are inside the <code>node_modules</code>folder and will fail. <br />
+To avoid that, you can add a package.json and let Deployd know which dependencies to load.</p>
 
-<p>Inside <code>devDependencies</code>, you can add your grunt/gulp plugins and inside dependencies, add the dpd modules you need.
-Example:  </p>
+<p>Inside <code>devDependencies</code>, you can add your grunt/gulp plugins and inside <code>dependencies</code>, add the dpd modules you need.</p>
+
+<p>Example:  </p>
 
 <pre><code>"dependencies": {
   "deployd": "^0.7.0",
