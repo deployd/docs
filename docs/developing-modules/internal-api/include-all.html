@@ -945,6 +945,7 @@ dpd('__resources').post(Context.resourceId + '/content.md', {value: "# Hello Wor
 
 <ul><li><code>port</code> {Number} - the port to listen on</li>
 <li><code>db</code> {Object} - the database to connect to</li>
+<li><code>db.connectionString</code> {String} - The URI of the mongoDB using <a href="http://docs.mongodb.org/manual/reference/connection-string/">standard Connection String</a>. If <code>db.connectionString</code> is set, the other db options are ignored.</li>
 <li><code>port</code> {Number} - the port of the database server</li>
 <li><code>host</code> {String} - the ip or domain of the database server</li>
 <li><code>name</code> {String} - the name of the database</li>

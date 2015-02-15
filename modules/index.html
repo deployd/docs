@@ -107,14 +107,14 @@
   <ul id="modules" class="unstyled">
     <li ng-repeat="module in modules | orderBy:'time.modified':true">
       <h4>
-        <a href="https://www.npmjs.org/package/{{module._id}}" target="_blank">
+        <a href="https://www.npmjs.org/package/{{module.key}}" target="_blank">
           <i class="icon-certificate"></i>
           {{module.name}}
         </a>
         - {{module.description}}
         <div class="pull-right">
           <span>{{moduleMaintainers(module)}}</span>
-          <img ng-src="https://img.shields.io/npm/v/{{module._id}}.svg?style=flat"/>
+          <img ng-src="https://img.shields.io/npm/v/{{module.key}}.svg?style=flat"/>
           <span class="badge badge-success">{{module.time.modified | date:'yyyy-MM-dd'}}</span>
         </div>
       </h4>
@@ -124,7 +124,6 @@
 </div>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
-<script src="../javascripts/module-control.data.js"></script>
 <script src="../javascripts/module-control.js"></script>
 
     </div>

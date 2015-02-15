@@ -130,10 +130,12 @@
 
   <div class="section"><a name="s-Using grunt or gulp with Deployd"></a><h2>Using grunt or gulp with Deployd <a class="anchor-link" href="#s-Using grunt or gulp with Deployd">#</a></h2>
 
-<p>To use Grunt or Gulp with Deployd, you should add a package.json at the root of your project.</p>
+<p>By default, Deployd will load all npm modules found in <code>node_modules</code>. This can be problematic if you want to use Grunt, gulp or other development tools: Deployd will try to load them since they are inside the <code>node_modules</code>folder and will fail. <br />
+To avoid that, you can add a package.json and let Deployd know which dependencies to load.</p>
 
-<p>Inside <code>devDependencies</code>, you can add your grunt/gulp plugins and inside dependencies, add the dpd modules you need.
-Example:  </p>
+<p>Inside <code>devDependencies</code>, you can add your grunt/gulp plugins and inside <code>dependencies</code>, add the dpd modules you need.</p>
+
+<p>Example:  </p>
 
 <pre><code>"dependencies": {
   "deployd": "^0.7.0",

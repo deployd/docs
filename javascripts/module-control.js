@@ -1,22 +1,23 @@
 angular.module('docs', [])
 
 .controller('ModulesCtrl', function($scope, $http) {
-
   $scope.input = {};
-
-  var allModules = $.map(window.Modules, function(value, index) {
-    return value;
-  });
-
-  $scope.modules = allModules;
+  
+  
+  $.getJSON('http://npm.dathub.org/api/rows?start=dpd-', function(res){
+    $scope.modules = _.filter(res.rows, function(mod){
+      return mod.time.modified >= '2013-01-01';
+    });
+    $scope.$apply();
+  })
 
 
   $scope.search = function(){
     var searchFor = $scope.input.searchFor;
     var regex = new RegExp(searchFor);
     $scope.modules = [];
-    for (var i = 0, ii = allModules.length; i < ii; i++) {
-      var mod = allModules[i];
+    for (var i = 0, ii = $scope.modules.length; i < ii; i++) {
+      var mod = $scope.modules[i];
       if (regex.test(mod.name) || regex.test(mod.description)) {
         $scope.modules.push(mod);
       }

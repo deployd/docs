@@ -170,7 +170,8 @@ server.listen(PORT);
 
 <ul>
 <li><strong>db</strong> {Object} - the database to connect to
-<ul><li><strong>db.port</strong> {Number} - the port of the database server</li>
+<ul><li><strong>db.connectionString</strong> {String} - The URI of the mongoDB using <a href="http://docs.mongodb.org/manual/reference/connection-string/">standard Connection String</a>. If <code>db.connectionString</code> is set, the other db options are ignored.</li>
+<li><strong>db.port</strong> {Number} - the port of the database server</li>
 <li><strong>db.host</strong> {String} - the ip or domain of the database server</li>
 <li><strong>db.name</strong> {String} - the name of the database</li>
 <li><strong>db.credentials</strong> {Object} - credentials for db</li>

@@ -201,7 +201,9 @@ npm install my-dpd-module
 
 <p>To find deployd modules available on npm <a href="https://encrypted.google.com/search?q=dpd&amp;q=site:npmjs.org&amp;hl=en">search for <code>dpd</code></a>.</p>
 
-<p>If you used the Deployd installer, you will need to download <a href="http://nodejs.org/download/">node.js</a> in order to use npm.</p></div><div class="section"><a name="s-From Source-1820"></a><h3>From Source <a class="anchor-link" href="#s-From Source-1820">#</a></h3>
+<p>If you used the Deployd installer, you will need to download <a href="http://nodejs.org/download/">node.js</a> in order to use npm.</p>
+
+<p>If you need to use a task manager like Grunt or Gulp for your development environement, you'll have to add a package.json as explained <a href="../../docs/server/use-grunt-or-gulp.html">in this page</a>.</p></div><div class="section"><a name="s-From Source-1820"></a><h3>From Source <a class="anchor-link" href="#s-From Source-1820">#</a></h3>
 
 <p>You can also install a module from source by putting it in your project's <code>node_modules</code> folder. Even a single file is valid (eg: <code>/node_modules/foo.js</code>).</p></div></div>  
 
@@ -341,9 +343,19 @@ dpd('uploads')
 
 <p>Event scripts do not share a global scope with other modules in your app. Instead each time an event script is run, a new scope is created for it.</p>
 
-<p>The following functions and objects are available to all event scripts.</p><div class="section api"><a name="s-me-2548"></a><h4>me <!-- api --> <a class="anchor-link" href="#s-me-2548">#</a></h4>
+<p>The following functions and objects are available to all event scripts.</p><div class="section"><a name="s-ctx <!-- ctx -->-2548"></a><h4>ctx <!-- ctx --> <a class="anchor-link" href="#s-ctx <!-- ctx -->-2548">#</a></h4>
 
-<p>The current user if one exists on the current <code>Context</code>.</p></div><div class="section api"><a name="s-isMe()-2548"></a><h4>isMe() <!-- api -->  <a class="anchor-link" href="#s-isMe()-2548">#</a></h4>
+<p>The context of the request. This object contains everything from the request (request, response, body, headers, etc...):</p>
+
+<pre><code>// Example:
+if (ctx &amp;&amp; ctx.req &amp;&amp; ctx.req.headers &amp;&amp; ctx.req.headers.host !== '192.168.178.34:2403') {
+  cancel("You are not authorized to do that", 401);
+}
+</code></pre>
+
+<p>The entire object is <a href="https://gist.github.com/NicolasRitouet/2fc5dd20f3af7dc7e192">available as a gist here</a>.</p></div><div class="section api"><a name="s-me-2548"></a><h4>me <!-- api --> <a class="anchor-link" href="#s-me-2548">#</a></h4>
+
+<p>The current user if one exists on the current <code>Context</code>.</p></div><div class="section api"><a name="s-isMe()-2548"></a><h4>isMe() <!-- api --> <a class="anchor-link" href="#s-isMe()-2548">#</a></h4>
 
 <pre><code>isMe(id)
 </code></pre>
@@ -372,7 +384,7 @@ cancelUnless(condition, message, [statusCode])
 <pre><code>emit([userCollection, query], message, [data])
 </code></pre>
 
-<p>Emits a realtime message to the client. You can use <code>userCollection</code> and <code>query</code> parameters to limit the message broadcast to specific users.</p></div><div class="section api"><a name="s-console-2548"></a><h4>console <!-- api -->  <a class="anchor-link" href="#s-console-2548">#</a></h4>
+<p>Emits a realtime message to the client. You can use <code>userCollection</code> and <code>query</code> parameters to limit the message broadcast to specific users.</p></div><div class="section api"><a name="s-console-2548"></a><h4>console <!-- api --> <a class="anchor-link" href="#s-console-2548">#</a></h4>
 
 <p>Support for console.log() and other console methods.</p></div></div></div>  
 
