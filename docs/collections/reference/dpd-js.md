@@ -42,7 +42,7 @@ The examples below use a Collection called `/todos` with the following schema:
 
 Every function in the Collection API takes a callback function (represented by `fn` in the docs) with the signature `function(result, error)`.
 
-The callback will be executed asynchronously when the API has received a response from the server. 
+The callback will be executed asynchronously when the API has received a response from the server.
 
 The `result` argument differs depending on the function. If the result failed, it will be `null` and the `error` argument will contain the error message.
 
@@ -56,7 +56,7 @@ The `error` argument, if there was an error, is an object:
  - `errors` (object): A hash of error messages corresponding to the properties of the object that were sent - usually indicates validation errors. Not always present.
 
 Examples of errors:
-  
+
     {
       "status": 401,
       "message": "You are not allowed to access that collection!"
@@ -72,6 +72,36 @@ Examples of errors:
       }
     }
 
+
+#### Promises
+
+Every function in the collection API returns a promise.
+We use the [`ayepromise` library](https://github.com/cburgmer/ayepromise) (which follows the [Promises/A+ 1.1 specs](https://promisesaplus.com/)).
+To learn how to use promises, please, refer [to this article](http://www.html5rocks.com/en/tutorials/es6/promises).
+
+The first callback contains the same `result` same with the classic callbacks.
+The second callback contains the `error` object as described above.
+Here's an example to use promises within dpd.js:
+
+    dpd.todos.post({message: "Hello world"}).then(function(todo) {
+      // do something with todo
+      console.log(todo); // display {id: "###", message: 'Hello world'}
+    }, function(err) {
+      // do something with the error
+      console.log(err); // display an error if the request failed
+    });
+
+<!--...-->
+
+    dpd.todos.get('1234324324').then(function(todo) {
+      // do something with todo
+      console.log(todo); // display {id: "###", message: 'Hello world'}
+    }, function(err) {
+      // do something with the error
+      console.log(err.errors.message); // display the error message
+    });
+
+
 #### .get([id], [query], fn) <!-- api -->
 
 ##### Listing Data
@@ -83,7 +113,7 @@ The `.get(fn)` function returns an array of objects in the collection.
       //Do something
     });
 
-`results` is an array of objects: 
+`results` is an array of objects:
 
     [
       {
@@ -99,7 +129,7 @@ The `.get(fn)` function returns an array of objects in the collection.
 
 If the collection has no objects, it will be an empty array:
 
-    []    
+    []
 
 ##### Querying Data
 
@@ -110,7 +140,7 @@ The `.get(query, fn)` function filters results by the specified query object. Se
       // Do something
     });
 
-`results` is an array of objects: 
+`results` is an array of objects:
 
     [
       {
@@ -141,7 +171,7 @@ The `.get(id, fn)` function returns a single object by its `id` property.
 
 ##### Creating an Object
 
-The `.post(object, fn)` function creates an object in the collection with the specified properties. 
+The `.post(object, fn)` function creates an object in the collection with the specified properties.
 
     // Create a todo
     dpd.todos.post({title: "Walk the dog"}, function(result, error)) {
@@ -243,10 +273,10 @@ The `dpd.on(message, fn)` function listens for realtime messages emitted from th
 In your Collection Event:
 
     // On Post
-    emit('todos:create', this); 
+    emit('todos:create', this);
 
 Calling `.on()` on the collection itself will namespace the message by the collection name:
-  
+
     // Same as dpd.on('todos:create', fn)
     dpd.todos.on('create', function(post) {
       // Do something
@@ -290,7 +320,7 @@ Calling `.once()` on the collection itself will namespace the message by the col
 
 #### dpd.socketReady(fn) <!-- api -->
 
-The `dpd.socketReady(fn)` function waits for a connection to be established to the server and executes the `fn` callback with no arguments. If a connection has already been established, it will execute the `fn` callback immediately. 
+The `dpd.socketReady(fn)` function waits for a connection to be established to the server and executes the `fn` callback with no arguments. If a connection has already been established, it will execute the `fn` callback immediately.
 
 It can sometimes take a second or more to establish a connection, and messages sent during this time will not be received by your front end. This function is useful for ensuring that you will receive an message when it is broadcast.
 
