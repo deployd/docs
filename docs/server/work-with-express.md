@@ -11,7 +11,7 @@ Deployd can be used with express/connect. Deployd will attach functions and hand
 
 For an app in your current directory:
 
-    npm install deployd express socket.io@0.9.x
+    npm install deployd express socket.io
 
 ### Hello World
 
