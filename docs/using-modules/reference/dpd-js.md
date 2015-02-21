@@ -31,7 +31,7 @@ Examples:
 
 Every function in the Dpd.js API takes a callback function (represented by `fn` in the docs) with the signature `function(result, error)`.
 
-The callback will be executed asynchronously when the API has received a response from the server. 
+The callback will be executed asynchronously when the API has received a response from the server.
 
 The `result` argument differs depending on the function. If the result failed, it will be `null` and the `error` argument will contain the error message.
 
@@ -45,7 +45,7 @@ The `error` argument, if there was an error, is an object:
  - `errors` (object): A hash of error messages corresponding to the properties of the object that was sent - usually indicates validation errors. Not always present.
 
 Examples of errors:
-	
+
 	{
 		"status": 401,
 		"message": "You are not allowed to access that resource!"
@@ -60,6 +60,36 @@ Examples of errors:
 			"category": "Not a valid category"
 		}
 	}
+
+
+
+#### Promises
+
+Every function in the collection API returns a promise.
+We use the [`ayepromise` library](https://github.com/cburgmer/ayepromise) (which follows the [Promises/A+ 1.1 specs](https://promisesaplus.com/)).
+To learn how to use promises, please, refer [to this article](http://www.html5rocks.com/en/tutorials/es6/promises).
+
+The first callback contains the same `result` same with the classic callbacks.
+The second callback contains the `error` object as described above.
+Here's an example to use promises within dpd.js:
+
+	dpd.todos.post({message: "Hello world"}).then(function(todo) {
+		// do something with todo
+		console.log(todo); // display {id: "###", message: 'Hello world'}
+	}, function(err) {
+		// do something with the error
+		console.log(err); // display an error if the request failed
+	});
+
+<!--...-->
+
+	dpd.todos.get('1234324324').then(function(todo) {
+		// do something with todo
+		console.log(todo); // display {id: "###", message: 'Hello world'}
+	}, function(err) {
+		// do something with the error
+		console.log(err.errors.message); // display the error message
+	});
 
 
 ### get() <!-- api -->
@@ -91,7 +121,7 @@ Makes a POST HTTP request at the URL `/<resource>/<path>`, using the `query` obj
 Makes a PUT HTTP request at the URL `/<resource>/<path>`, using the `query` object as the query string if provided and `body` as the request body.
 
 - `path` - An identifier for a particular object, usually the id
-- `query` - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the `q` parameter. 
+- `query` - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the `q` parameter.
 - `body` - The body of the request; will be serialized as JSON and sent with `Content-Type: application/json` header.
 - `fn` - Callback `function(result, error)`.
 
