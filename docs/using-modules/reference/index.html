@@ -128,15 +128,15 @@
             <ul class="nav nav-list using-modules">
               <li class="nav-header"><a href="../../../docs/using-modules/reference/dpd-js.html">Dpd.js for Custom Resources</a></li>
             
-      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-get()-2560">get()</a></li>
+      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-get()">get()</a></li>
     
-      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-post()-2560">post()</a></li>
+      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-post()">post()</a></li>
     
-      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-put()-2560">put()</a></li>
+      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-put()">put()</a></li>
     
-      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-del()-2560">del()</a></li>
+      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-del()">del()</a></li>
     
-      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-exec()-2560">exec()</a></li>
+      <li><a href="../../../docs/using-modules/reference/dpd-js.html#s-exec()">exec()</a></li>
     
             </ul>
             
@@ -205,7 +205,7 @@ dpd('uploads')
 
 <p>Every function in the Dpd.js API takes a callback function (represented by <code>fn</code> in the docs) with the signature <code>function(result, error)</code>.</p>
 
-<p>The callback will be executed asynchronously when the API has received a response from the server. </p>
+<p>The callback will be executed asynchronously when the API has received a response from the server.</p>
 
 <p>The <code>result</code> argument differs depending on the function. If the result failed, it will be <code>null</code> and the <code>error</code> argument will contain the error message.</p>
 
@@ -237,7 +237,35 @@ dpd('uploads')
         "category": "Not a valid category"
     }
 }
-</code></pre></div><div class="section api"><a name="s-get()-2560"></a><h3>get() <!-- api --> <a class="anchor-link" href="#s-get()-2560">#</a></h3>
+</code></pre><div class="section"><a name="s-Promises-896"></a><h4>Promises <a class="anchor-link" href="#s-Promises-896">#</a></h4>
+
+<p>Every function in the collection API returns a promise.
+We use the <a href="https://github.com/cburgmer/ayepromise"><code>ayepromise</code> library</a> (which follows the <a href="https://promisesaplus.com/">Promises/A+ 1.1 specs</a>).
+To learn how to use promises, please, refer <a href="http://www.html5rocks.com/en/tutorials/es6/promises">to this article</a>.</p>
+
+<p>The first callback contains the same <code>result</code> same with the classic callbacks.
+The second callback contains the <code>error</code> object as described above.
+Here's an example to use promises within dpd.js:</p>
+
+<pre><code>dpd.todos.post({message: "Hello world"}).then(function(todo) {
+    // do something with todo
+    console.log(todo); // display {id: "###", message: 'Hello world'}
+}, function(err) {
+    // do something with the error
+    console.log(err); // display an error if the request failed
+});
+</code></pre>
+
+<!--...-->
+
+<pre><code>dpd.todos.get('1234324324').then(function(todo) {
+    // do something with todo
+    console.log(todo); // display {id: "###", message: 'Hello world'}
+}, function(err) {
+    // do something with the error
+    console.log(err.errors.message); // display the error message
+});
+</code></pre></div><div class="section api"><a name="s-get()"></a><h3>get() <!-- api --> <a class="anchor-link" href="#s-get()">#</a></h3>
 
 <pre><code>dpd.[resource].get([func], [path], [query], fn)
 </code></pre>
@@ -249,7 +277,7 @@ dpd('uploads')
 <li><code>path</code> - An identifier for a particular object, usually the id</li>
 <li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON.</li>
 <li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
-</ul></div><div class="section api"><a name="s-post()-2560"></a><h3>post() <!-- api --> <a class="anchor-link" href="#s-post()-2560">#</a></h3>
+</ul></div><div class="section api"><a name="s-post()"></a><h3>post() <!-- api --> <a class="anchor-link" href="#s-post()">#</a></h3>
 
 <pre><code>dpd.[resource].post([path], [query], body, fn)
 </code></pre>
@@ -261,7 +289,7 @@ dpd('uploads')
 <li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON.</li>
 <li><code>body</code> - The body of the request; will be serialized as JSON and sent with <code>Content-Type: application/json</code> header.</li>
 <li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
-</ul></div><div class="section api"><a name="s-put()-2560"></a><h3>put() <!-- api --> <a class="anchor-link" href="#s-put()-2560">#</a></h3>
+</ul></div><div class="section api"><a name="s-put()"></a><h3>put() <!-- api --> <a class="anchor-link" href="#s-put()">#</a></h3>
 
 <pre><code>dpd.[resource].put([path], [query], body, fn)
 </code></pre>
@@ -270,10 +298,10 @@ dpd('uploads')
 
 <ul>
 <li><code>path</code> - An identifier for a particular object, usually the id</li>
-<li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the <code>q</code> parameter. </li>
+<li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the <code>q</code> parameter.</li>
 <li><code>body</code> - The body of the request; will be serialized as JSON and sent with <code>Content-Type: application/json</code> header.</li>
 <li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
-</ul></div><div class="section api"><a name="s-del()-2560"></a><h3>del() <!-- api --> <a class="anchor-link" href="#s-del()-2560">#</a></h3>
+</ul></div><div class="section api"><a name="s-del()"></a><h3>del() <!-- api --> <a class="anchor-link" href="#s-del()">#</a></h3>
 
 <pre><code>dpd.[resource].del([path], [query], fn)
 </code></pre>
@@ -284,7 +312,7 @@ dpd('uploads')
 <li><code>path</code> - An identifier for a particular object, usually the id</li>
 <li><code>query</code> - An object defining the querystring. If the object is complex, it will be serialized as JSON and passed as the <code>q</code> parameter.</li>
 <li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
-</ul></div><div class="section api"><a name="s-exec()-2560"></a><h3>exec() <!-- api --> <a class="anchor-link" href="#s-exec()-2560">#</a></h3>
+</ul></div><div class="section api"><a name="s-exec()"></a><h3>exec() <!-- api --> <a class="anchor-link" href="#s-exec()">#</a></h3>
 
 <pre><code>dpd.[resource].exec(func, [path], [body], fn)
 </code></pre>
@@ -296,9 +324,9 @@ dpd('uploads')
 <li><code>path</code> - An identifier for a particular object, usually the id</li>
 <li><code>body</code> - The body of the request; will be serialized as JSON and sent with <code>Content-Type: application/json</code> header.</li>
 <li><code>fn</code> - Callback <code>function(result, error)</code>.</li>
-</ul></div><div class="section"><a name="s-Realtime API-2560"></a><h3>Realtime API <a class="anchor-link" href="#s-Realtime API-2560">#</a></h3>
+</ul></div><div class="section"><a name="s-Realtime API"></a><h3>Realtime API <a class="anchor-link" href="#s-Realtime API">#</a></h3>
 
-<p>The Generic Realtime API behaves the same way as the <a href="../../../docs/collections/reference/dpd-js.html#s-Realtime-API">Collection Realtime API</a>.</p></div></div>  
+<p>The Generic Realtime API behaves the same way as the <a href="../../../docs/collections/reference/dpd-js.html#s-Realtime-API">Collection Realtime API</a>.</p></div></div></div>  
 
     
     <h3 style="text-align: center;">More</h3>
