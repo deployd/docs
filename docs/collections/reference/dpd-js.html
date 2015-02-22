@@ -281,7 +281,7 @@ dpd('todo-lists')
 
 <p>Every function in the Collection API takes a callback function (represented by <code>fn</code> in the docs) with the signature <code>function(result, error)</code>.</p>
 
-<p>The callback will be executed asynchronously when the API has received a response from the server. </p>
+<p>The callback will be executed asynchronously when the API has received a response from the server.</p>
 
 <p>The <code>result</code> argument differs depending on the function. If the result failed, it will be <code>null</code> and the <code>error</code> argument will contain the error message.</p>
 
@@ -313,6 +313,34 @@ dpd('todo-lists')
       "category": "Not a valid category"
   }
 }
+</code></pre></div><div class="section"><a name="s-Promises-1286"></a><h4>Promises <a class="anchor-link" href="#s-Promises-1286">#</a></h4>
+
+<p>Every function in the collection API returns a promise.
+We use the <a href="https://github.com/cburgmer/ayepromise"><code>ayepromise</code> library</a> (which follows the <a href="https://promisesaplus.com/">Promises/A+ 1.1 specs</a>).
+To learn how to use promises, please, refer <a href="http://www.html5rocks.com/en/tutorials/es6/promises">to this article</a>.</p>
+
+<p>The first callback contains the same <code>result</code> same with the classic callbacks.
+The second callback contains the <code>error</code> object as described above.
+Here's an example to use promises within dpd.js:</p>
+
+<pre><code>dpd.todos.post({message: "Hello world"}).then(function(todo) {
+  // do something with todo
+  console.log(todo); // display {id: "###", message: 'Hello world'}
+}, function(err) {
+  // do something with the error
+  console.log(err); // display an error if the request failed
+});
+</code></pre>
+
+<!--...-->
+
+<pre><code>dpd.todos.get('1234324324').then(function(todo) {
+  // do something with todo
+  console.log(todo); // display {id: "###", message: 'Hello world'}
+}, function(err) {
+  // do something with the error
+  console.log(err.errors.message); // display the error message
+});
 </code></pre></div><div class="section api"><a name="s-.get([id], [query], fn)-1286"></a><h4>.get([id], [query], fn) <!-- api --> <a class="anchor-link" href="#s-.get([id], [query], fn)-1286">#</a></h4><div class="section"><a name="s-Listing Data-1950"></a><h5>Listing Data <a class="anchor-link" href="#s-Listing Data-1950">#</a></h5>
 
 <p>The <code>.get(fn)</code> function returns an array of objects in the collection.</p>
@@ -323,7 +351,7 @@ dpd.todos.get(function(results, error) {
 });
 </code></pre>
 
-<p><code>results</code> is an array of objects: </p>
+<p><code>results</code> is an array of objects:</p>
 
 <pre><code>[
   {
@@ -340,7 +368,7 @@ dpd.todos.get(function(results, error) {
 
 <p>If the collection has no objects, it will be an empty array:</p>
 
-<pre><code>[]    
+<pre><code>[]
 </code></pre></div><div class="section"><a name="s-Querying Data-1950"></a><h5>Querying Data <a class="anchor-link" href="#s-Querying Data-1950">#</a></h5>
 
 <p>The <code>.get(query, fn)</code> function filters results by the specified query object. See <a href="../../../docs/collections/reference/querying-collections.html">Querying Collections</a> for information on constructing a query.</p>
@@ -351,7 +379,7 @@ dpd.todos.get({category: 'pets'}, function(results, error) {
 });
 </code></pre>
 
-<p><code>results</code> is an array of objects: </p>
+<p><code>results</code> is an array of objects:</p>
 
 <pre><code>[
   {
@@ -379,7 +407,7 @@ dpd.todos.get("320d6151a9aad8ce", function(result, error) {
 }
 </code></pre></div><div class="section api"><a name="s-.post([id], object, fn)"></a><h4>.post([id], object, fn) <!-- api --> <a class="anchor-link" href="#s-.post([id], object, fn)">#</a></h4><div class="section"><a name="s-Creating an Object-1965"></a><h5>Creating an Object <a class="anchor-link" href="#s-Creating an Object-1965">#</a></h5>
 
-<p>The <code>.post(object, fn)</code> function creates an object in the collection with the specified properties. </p>
+<p>The <code>.post(object, fn)</code> function creates an object in the collection with the specified properties.</p>
 
 <pre><code>// Create a todo
 dpd.todos.post({title: "Walk the dog"}, function(result, error)) {
@@ -479,7 +507,7 @@ dpd.on('todos:create', function(post) {
 <p>In your Collection Event:</p>
 
 <pre><code>// On Post
-emit('todos:create', this); 
+emit('todos:create', this);
 </code></pre>
 
 <p>Calling <code>.on()</code> on the collection itself will namespace the message by the collection name:</p>
@@ -527,7 +555,7 @@ dpd.todos.once('create', function(post) {
 });
 </code></pre></div><div class="section api"><a name="s-dpd.socketReady(fn)-1069"></a><h4>dpd.socketReady(fn) <!-- api --> <a class="anchor-link" href="#s-dpd.socketReady(fn)-1069">#</a></h4>
 
-<p>The <code>dpd.socketReady(fn)</code> function waits for a connection to be established to the server and executes the <code>fn</code> callback with no arguments. If a connection has already been established, it will execute the <code>fn</code> callback immediately. </p>
+<p>The <code>dpd.socketReady(fn)</code> function waits for a connection to be established to the server and executes the <code>fn</code> callback with no arguments. If a connection has already been established, it will execute the <code>fn</code> callback immediately.</p>
 
 <p>It can sometimes take a second or more to establish a connection, and messages sent during this time will not be received by your front end. This function is useful for ensuring that you will receive an message when it is broadcast.</p>
 
