@@ -107,15 +107,15 @@
   <ul id="modules" class="unstyled">
     <li ng-repeat="module in modules | orderBy:'time.modified':true">
       <h4>
-        <a href="https://www.npmjs.org/package/{{module.key}}" target="_blank">
+        <a href="https://www.npmjs.org/package/{{module.name}}" target="_blank">
           <i class="icon-certificate"></i>
           {{module.name}}
         </a>
         - {{module.description}}
         <div class="pull-right">
-          <span>{{moduleMaintainers(module)}}</span>
-          <img ng-src="https://img.shields.io/npm/v/{{module.key}}.svg?style=flat"/>
-          <span class="badge badge-success">{{module.time.modified | date:'yyyy-MM-dd'}}</span>
+          <span>{{module.maintainers.join()}}</span>
+          <img ng-src="https://img.shields.io/npm/v/{{module.name}}.svg?style=flat"/>
+          <span class="badge badge-success">{{module.modified | date:'yyyy-MM-dd'}}</span>
         </div>
       </h4>
     </li>
