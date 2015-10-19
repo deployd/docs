@@ -12,7 +12,7 @@ You can create a new project by running the following commands in your terminal/
     dpd create hello-world
     cd hello-world
     dpd -d
-    
+
 This will create your API, run Deployd, and open up your dashboard.
 
 ![Dashboard](/tutorials/first-api/images/new-dashboard.png)
@@ -45,3 +45,6 @@ You should see something like the following:
 
  - [Your first App](/docs/getting-started/your-first-app.md)
 
+### Debugging
+
+Deployd uses [debug](https://www.npmjs.com/package/debug) to log requests and show other internal debug info. Check how to use it under [The "dpd" Command Line Tool](/docs/basics/cli.md), and [Creating a Module](/docs/developing-modules/creating-modules.md).

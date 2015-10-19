@@ -17,14 +17,14 @@ You don't have to `require()` or load anything to instantiate your module. The f
 
     // /my-app/node_modules/hello.js
     console.log('hello world');
-    
+
 ### Accessing the Server
 
 In order to do anything interesting you need a reference to the current Deployd [server](/docs/developing-modules/internal-api/server.md) object. The server is always available at `process.server`. This means you don't need to require anything to use most of the [internal APIs](/docs/developing-modules/internal-api/collection.md).
 
 ### One Off Modules
 
-The simplest kind of module is a **one-off module**. These are easy to create but hard to reuse. Typically any behavior that is specific to just your app that can't be implemented using an existing module can be built with a simple **one-off module**. 
+The simplest kind of module is a **one-off module**. These are easy to create but hard to reuse. Typically any behavior that is specific to just your app that can't be implemented using an existing module can be built with a simple **one-off module**.
 
 Here's an example one off module that maintains a count of requests to the url `/hits` and writes it to a file every minute.
 
@@ -47,3 +47,8 @@ Here's an example one off module that maintains a count of requests to the url `
 
 Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a `Resource Type`. `Resource Types` are exposed in the dashboard and are much easier to reuse, and you can share them with other Deployd developers. See the [custom resource type guide](/docs/developing-modules/custom-resource-types.md) for more info.
 
+### Debugging
+
+Deployd uses [debug](https://www.npmjs.com/package/debug) to log requests and show other internal debug info. To activate it you need to set the `DEBUG` env variable to `*`, for example:
+
+    process.env['DEBUG'] = '*';
