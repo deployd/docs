@@ -11,19 +11,19 @@
 Start Deployd the current project in development mode with an interactive shell/repl for interacting with the running server.
 
 #### dpd create [name]
-    
+
 Create a Deployd project in a new directory with the given `name`.
 
 #### dpd showkey
-    
+
 Print the app's key for use in a remote dashboard or for making remote authenticated / administrative requests.
 
 #### dpd keygen
-    
+
 Generate a new key for remote access / administration.
 
 #### dpd remote
-    
+
 Open up the remote dashboard in your browser.
 
 ### Help
@@ -37,18 +37,18 @@ Here is the help output of `dpd -h`:
       create [project-name]
       	create a project in a new directory
       	eg. `dpd create my-app`
-  
-      keygen 
+
+      keygen
       	generate a key for remote access (./.dpd/keys.json)
-  
-      showkey 
+
+      showkey
       	shows current key for connecting to remote dashboard (./.dpd/keys.json)
-  
-      remote 
+
+      remote
       	open the remote dashboard in your browser
 
-  
-      * 
+
+      *
       	[default] start the server in the current project in development mode
       	with an interactive shell/repl for interacting with the running server
       	e.g. dpd (starts server in current directory),
@@ -67,4 +67,10 @@ Here is the help output of `dpd -h`:
       -H, --host [host]            specify host for mongo server
       -P, --mongoPort [mongoPort]  mongodb port to connect to
       -n, --dbname [dbname]        name of the mongo database
-      -a, --auth                   prompts for mongo server credentials 
+      -a, --auth                   prompts for mongo server credentials
+
+### Debugging
+
+Deployd uses [debug](https://www.npmjs.com/package/debug) to log requests and show other internal debug info. To activate it you need to set the `DEBUG` env variable to `*`, for example:
+
+    $ DEBUG=* dpd
