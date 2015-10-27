@@ -285,7 +285,7 @@ console.log('hello world');
 
 <p>In order to do anything interesting you need a reference to the current Deployd <a href="../../docs/developing-modules/internal-api/server.html">server</a> object. The server is always available at <code>process.server</code>. This means you don't need to require anything to use most of the <a href="../../docs/developing-modules/internal-api/collection.html">internal APIs</a>.</p></div><div class="section"><a name="s-One Off Modules-1588"></a><h3>One Off Modules <a class="anchor-link" href="#s-One Off Modules-1588">#</a></h3>
 
-<p>The simplest kind of module is a <strong>one-off module</strong>. These are easy to create but hard to reuse. Typically any behavior that is specific to just your app that can't be implemented using an existing module can be built with a simple <strong>one-off module</strong>. </p>
+<p>The simplest kind of module is a <strong>one-off module</strong>. These are easy to create but hard to reuse. Typically any behavior that is specific to just your app that can't be implemented using an existing module can be built with a simple <strong>one-off module</strong>.</p>
 
 <p>Here's an example one off module that maintains a count of requests to the url <code>/hits</code> and writes it to a file every minute.</p>
 
@@ -305,7 +305,12 @@ setInterval(function() {
 }, 60000);
 </code></pre></div><div class="section"><a name="s-Reusable Modules-1588"></a><h3>Reusable Modules <a class="anchor-link" href="#s-Reusable Modules-1588">#</a></h3>
 
-<p>Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a <code>Resource Type</code>. <code>Resource Types</code> are exposed in the dashboard and are much easier to reuse, and you can share them with other Deployd developers. See the <a href="../../docs/developing-modules/custom-resource-types.html">custom resource type guide</a> for more info.</p></div></div>  
+<p>Modules can also expose useful APIs of their own. The simplest way to create reusable modules is to define a <code>Resource Type</code>. <code>Resource Types</code> are exposed in the dashboard and are much easier to reuse, and you can share them with other Deployd developers. See the <a href="../../docs/developing-modules/custom-resource-types.html">custom resource type guide</a> for more info.</p></div><div class="section"><a name="s-Debugging-1588"></a><h3>Debugging <a class="anchor-link" href="#s-Debugging-1588">#</a></h3>
+
+<p>Deployd uses <a href="https://www.npmjs.com/package/debug">debug</a> to log requests and show other internal debug info. To activate it you need to set the <code>DEBUG</code> env variable to <code>*</code>, for example:</p>
+
+<pre><code>process.env['DEBUG'] = '*';
+</code></pre></div></div>  
 
     
     <h3 style="text-align: center;">More</h3>
