@@ -11,6 +11,8 @@ The following events are available for scripting:
 
 ### On Get
 
+> file: resources/{resourcename}/get.js
+
 Called whenever an object is loaded from the server. Commonly used to hide properties, restrict access to private objects, and calculate dynamic values.
 
     // Example On Get: Hide Secret Properties
@@ -31,6 +33,8 @@ Called whenever an object is loaded from the server. Commonly used to hide prope
 
 ### On Validate 
 
+> file: resources/{resourcename}/validate.js
+
 Called whenever an object's values change, including when it is first created. Commonly used to validate property values and calculate certain dynamic values (i.e. last modified time). 
 
     // Example On Validate: Enforce a max length
@@ -50,6 +54,8 @@ Called whenever an object's values change, including when it is first created. C
 
 ### On Post
 
+> file: resources/{resourcename}/post.js
+
 Called when an object is created. Commonly used to prevent unauthorized creation and save data relevant to the creation of an object, such as its creator.
 
     // Example On Post: Save the date created
@@ -65,6 +71,8 @@ Called when an object is created. Commonly used to prevent unauthorized creation
 
 ### On Put
 
+> file: resources/{resourcename}/put.js
+
 Called when an object is updated. Commonly used to restrict editing access to certain roles, or to protect certain properties from editing. It is strongly recommended that you `protect()` any properties that should not be modifiable by users after an object is created.
 
     // Example On Put: Protect readonly/automatic properties
@@ -73,9 +81,43 @@ Called when an object is updated. Commonly used to restrict editing access to ce
 
 ### On Delete 
 
+> file: resources/{resourcename}/delete.js
+
 Called when an object is deleted. Commonly used to prevent unauthorized deletion.
 
     // Example On Delete: Prevent non-admins from deleting
     if (!me || me.role !== 'admin') {
       cancel("You must be an admin to delete this", 401);
     }
+    
+### On Before request 
+
+> file: resources/{resourcename}/beforerequest.js
+
+called before GET/POST/PUT/DELETE requests
+
+### Asynchronous
+
+> Want to look up stuff in the database, but your request finishes before your db-call returns?
+
+
+* In that case, you want **async** webrequest.
+
+By default events are **synchronous**, however they can be turned into async like so:
+
+
+    var async = require("async");
+    $addCallback();
+
+    var payload = this // in case of POST/PUT
+
+    async.each(body.storeData, function (data, done) {
+      doStuffOnData(data, function (err, result) {
+         done(err, result);
+      );
+    }, function (err){
+        if (err) return cancel(err);
+        $finishCallback()`; instead of `done(err,{})`
+    });
+
+> NOTE: in case of **dpd-event** events, use `setResult({})` instead of `done(err,{})`
